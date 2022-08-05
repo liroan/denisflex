@@ -87,6 +87,18 @@ interface ISeasonMovie {
     number: number;
     episodesCount: number;
 }
+
+export interface IResponseData extends IPagesData {
+    docs: IMovie[]
+}
+
+interface IPagesData {
+    total: number,
+    limit: number,
+    page: number,
+    pages: number,
+}
+
 export interface IMovie {
     id: number;
     name: string;
