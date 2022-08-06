@@ -3,7 +3,7 @@ import {store} from "../store/store";
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export type MovieType = "FILM" | "TV_SHOW" | "TV_SERIES" | "VIDEO" | "MINI_SERIES";
+export type MovieType = "FILM" | "TV_SHOW" | "TV_SERIES" | "VIDEO" | "MINI_SERIES" | "ALL";
 
 interface IMoviePreview {
     countries: {country: string}[];
