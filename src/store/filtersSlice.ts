@@ -1,10 +1,10 @@
 
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {MovieType, SortBy} from "../constants/constants";
+import {SortBy} from "../constants/constants";
 
 
 interface FiltersState  {
-    movieTypes: MovieType[];
+    movieTypes: any[];
     rating: [number, number];
     yearsProduction: [number, number];
     genres: string[];

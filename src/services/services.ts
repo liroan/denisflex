@@ -1,13 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {IResponseData} from "../types/types";
 import {API_KEY, API_URL} from "../constants/constants";
+import {IFilmSearchByFiltersResponse, IFiltersResponse, MovieType} from "../types/types";
 
 export const moviesApi = createApi({
     reducerPath: 'moviesApi',
-    baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: API_URL,
+        prepareHeaders: (headers) => {
+            headers.set('X-API-KEY', API_KEY)
+            headers.set('Content-Type', 'application/json')
+            return headers;
+        }
+    }),
     endpoints: (builder) => ({
-        getPopularMovies: builder.query<IResponseData, number>({
-            query: (typeNumber) => `/movie?limit=20&search=${typeNumber}&field=typeNumber&sortField=rating.kp&sortType=-1&token=${API_KEY}`,
+        getPopularMovies: builder.query<IFilmSearchByFiltersResponse, MovieType>({
+            query: (typeMovie) => `/films?order=RATING&type=${typeMovie}`,
+        }),
+        getCountriesAndGenres: builder.query<IFiltersResponse, undefined>({
+            query: () => `/films/filters`,
         }),
     }),
 })
