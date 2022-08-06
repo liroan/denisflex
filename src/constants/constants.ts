@@ -12,3 +12,10 @@ export enum MovieType {
     ANIMATED_SERIES,
     TV_SHOW
 }
+
+export enum SortBy {
+    RATING,
+    NEW_ONES_FIRST,
+    OLD_ONES_FIRST
+}
+

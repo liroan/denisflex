@@ -1,5 +1,4 @@
 import {store} from "../store/store";
-import {MovieType} from "../constants/constants";
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
@@ -10,9 +9,11 @@ interface IExternalIdMovie {
     imdb: string;
 }
 interface IRatingMovie {
-    kp: number;
-    tmdb: number;
+    await: number;
+    filmCritics: number;
     imdb: number;
+    kp: number;
+    russianFilmCritics: number;
 }
 interface IVotesMovie {
     kp: number;
@@ -89,7 +90,7 @@ interface ISeasonMovie {
 }
 
 export interface IResponseData extends IPagesData {
-    docs: IMovie[]
+    docs: IPreviewMovie[]
 }
 
 interface IPagesData {
@@ -99,13 +100,26 @@ interface IPagesData {
     pages: number,
 }
 
-export interface IMovie {
+interface ISequelsMovie {
+    alternativeName: string;
+    enName: string;
+    id: number;
+    poster: IImagesMovie;
+    type: string;
+}
+
+interface ITechnologyMovie {
+    has3D: boolean;
+    hasImax: boolean;
+}
+
+export interface IPreviewMovie {
     id: number;
     name: string;
     alternativeName: string;
     enName: string;
-    names: string[];
-    typeNumber: MovieType;
+    names: {name: string}[];
+    typeNumber: number;
     type: TypeMovie;
     description: string;
     slogan: string;
@@ -128,5 +142,21 @@ export interface IMovie {
     genres: IGenreMovie[];
     facts: IFactMovie[];
     persons: IPersonMovie[];
-    seasonsInfo: ISeasonMovie[];
+    seasonsInfo?: ISeasonMovie[];
+}
+
+export interface IMovie extends IPreviewMovie {
+    ageRating: number;
+    countries: {name: string}[];
+    createDate: Date;
+    ratingMpaa: string;
+    sequelsAndPrequels: ISequelsMovie[];
+    lists: [];
+    logo: {url: string}
+    shortDescription: string;
+    similarMovies: IPreviewMovie[];
+    technology: ITechnologyMovie;
+    ticketsOnSale: boolean;
+    updateDates: Date[];
+    updatedAt: Date;
 }
