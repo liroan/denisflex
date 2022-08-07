@@ -21,7 +21,7 @@ interface IMoviePreview {
     year: number | null;
 }
 
-interface IMovie extends IMoviePreview {
+export interface IMovie extends IMoviePreview {
     completed: boolean
     coverUrl: string | null;
     description: string | null;
@@ -65,4 +65,41 @@ export interface IFilmSearchByFiltersResponse {
 export interface IFiltersResponse {
     genres: { id: number, genre: string }[];
     countries: { id: number, country: string }[];
+}
+
+export interface IFactOrError {
+    text: "string";
+    type: "BLOOPER" | "FACT"
+    spoiler: boolean;
+}
+
+export interface IFactsAndErrors {
+    total: number;
+    items: IFactOrError[];
+}
+
+
+export interface IStaffPerson {
+    staffId: number,
+    nameRu: string,
+    nameEn: string,
+    description: string,
+    posterUrl: string,
+    professionText: string,
+    professionKey: string
+}
+
+export interface ISimilarMovie {
+    filmId: number;
+    nameEn: string;
+    nameOriginal: string;
+    nameRu: string;
+    posterUrl: string;
+    posterUrlPreview: string;
+    relationType: "SIMILAR"
+}
+
+export interface ISimilarMovies {
+    items: ISimilarMovie[];
+    total: number;
 }
