@@ -5,31 +5,31 @@ import {MovieType} from "../types/types";
 
 type SortBy = "RATING" | "NUM_VOTE" | "YEAR";
 
-interface FiltersState  {
-    genre: number;
-    order: SortBy;
-    type: MovieType;
-    ratingFrom: number;
-    ratingTo: number;
-    yearFrom: number;
-    yearTo: number;
-    keyword: string;
-    page: number;
+export interface FiltersState  {
+    genre: number | null;
+    order: SortBy | null;
+    type: MovieType | null;
+    ratingFrom: number | null;
+    ratingTo: number | null;
+    yearFrom: number | null;
+    yearTo: number | null;
+    keyword: string | null;
+    page: number | null;
 }
 
 const initialState: FiltersState = {
-    genre: 1,
-    order: "RATING",
-    type: "ALL",
-    ratingFrom: 0,
-    ratingTo: 10,
-    yearFrom: 1870,
-    yearTo: 2022,
-    keyword: "",
-    page: 1,
+    genre: null,
+    order: null,
+    type: null,
+    ratingFrom: null,
+    ratingTo: null,
+    yearFrom: null,
+    yearTo: null,
+    keyword: null,
+    page: null,
 }
 
-export const popularMoviesSlice = createSlice({
+export const filterSlice = createSlice({
     name: 'filters',
     initialState,
     reducers: {
@@ -48,6 +48,6 @@ export const popularMoviesSlice = createSlice({
     },
 })
 
-export const { changeFiltersHandle, changeFiltersFromUrl } = popularMoviesSlice.actions;
+export const { changeFiltersHandle, changeFiltersFromUrl } = filterSlice.actions;
 
-export default popularMoviesSlice.reducer;
+export default filterSlice.reducer;
