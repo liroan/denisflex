@@ -1,25 +1,32 @@
-import React from 'react';
-import * as queryString from "query-string";
-import {Link, Route, Routes} from 'react-router-dom';
-import FilterTest from './views/FIlterTest/FIlterTest';
-import {useAppDispatch} from "./hooks/hooks";
-import {changeFiltersFromUrl, changeFiltersHandle} from "./store/filtersSlice";
-import FilmTest from "./views/FIlterTest/FilmTest";
+import React, {FC} from 'react';
+import {Outlet, Route, Routes} from 'react-router-dom';
+import Header from "./components/Header/Header";
+import "./style/App.scss"
 
-function App() {
-    // console.log(window.location.search)
-    // const stringified = queryString.parse(window.location.search.substring(1));
-    // console.log(stringified)stringified
-    const dispatch = useAppDispatch();
+
+
+const Dashboard = () => {
     return (
         <div>
-            <button onClick={() => dispatch(changeFiltersFromUrl({keyword: "игра", type:"FILM"  }))}>
-                <Link to='/filter'>Посмотреть все с именем "игра"</Link>
-            </button>
+            <Header />
+            <div style={{ marginTop: 76 }}>
+                <Outlet />
+            </div>
+        </div>
+    );
+}
+
+const App:FC = () => {
+    return (
+        <div>
             <Routes>
-                <Route path="/" element={<div><Link to='/filter'>перейти на фильтры</Link></div>} />
-                <Route path="/filter" element={<FilterTest />} />
-                <Route path="/film" element={<FilmTest />} />
+                <Route path="/" element={<Dashboard />}>
+                    <Route
+                        path="messages"
+                        element={<div style={{ height: "200vh" }}>messages</div>}
+                    />
+                    <Route path="tasks" element={<div style={{ height: "200vh" }}>tasks</div>} />
+                </Route>
             </Routes>
         </div>
     )
