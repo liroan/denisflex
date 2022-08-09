@@ -1,4 +1,5 @@
 .header {
+  z-index: 10000;
   transition: 0.5s;
   color: #fff;
   background: #141414;
@@ -31,7 +32,7 @@
   &__header {
     &_started {
       background: transparent;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #555;
     }
   }
 }

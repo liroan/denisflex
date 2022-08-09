@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header/Header";
 import "./style/App.scss"
+import Home from "./views/Home/Home";
 
 
 
@@ -9,9 +10,7 @@ const Dashboard = () => {
     return (
         <div>
             <Header />
-            <div style={{ paddingTop: 76, background: "#222" }}>
-                <Outlet />
-            </div>
+            <Outlet />
         </div>
     );
 }
@@ -21,6 +20,7 @@ const App:FC = () => {
         <div>
             <Routes>
                 <Route path="/" element={<Dashboard />}>
+                    <Route path="" element={<Home />} />
                     <Route
                         path="messages"
                         element={<div style={{ height: "200vh" }}>messages</div>}
