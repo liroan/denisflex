@@ -1,11 +1,11 @@
 import styles from "../../style/components/Header.module.scss";
 import Container from "../Container/Container";
 import classNames from "classnames";
-import {useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import HeaderInfo from "./HeaderInfo/HeaderInfo";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
 import HeaderLogin from "./HeaderLogin/HeaderLogin";
-const Header = () => {
+const Header:FC = () => {
     const [isOpenInput, setIsOpenInput] = useState(true);
     const [scrolledUp, setScrolledUp] = useState(false);
     const [prevScrollY, setPrevScrollY] = useState(0);

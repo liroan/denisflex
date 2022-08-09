@@ -5,7 +5,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export type MovieType = "FILM" | "TV_SHOW" | "TV_SERIES" | "VIDEO" | "MINI_SERIES" | "ALL";
 
-interface IMoviePreview {
+export interface IMoviePreview {
     countries: {country: string}[];
     genres: {genre: string }[];
     imdbId: string | null;

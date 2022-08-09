@@ -1,0 +1,13 @@
+.header {
+  &__filmsContent {
+    &_empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      margin: 0 auto;
+      text-align: center;
+      height: 200px;
+    }
+  }
+}
