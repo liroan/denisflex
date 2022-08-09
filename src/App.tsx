@@ -9,7 +9,7 @@ const Dashboard = () => {
     return (
         <div>
             <Header />
-            <div style={{ marginTop: 76 }}>
+            <div style={{ paddingTop: 76, background: "#222" }}>
                 <Outlet />
             </div>
         </div>

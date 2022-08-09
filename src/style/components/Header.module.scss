@@ -1,6 +1,8 @@
 .header {
+  transition: 0.5s;
   color: #fff;
   background: #141414;
+  border-bottom: 1px solid transparent;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,5 +14,24 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+
+.app {
+  &__header {
+    &_scrolled {
+      transform: translateY(-76px);
+    }
+  }
+}
+
+
+.app {
+  &__header {
+    &_started {
+      background: transparent;
+      border-bottom: 1px solid #333;
+    }
   }
 }
