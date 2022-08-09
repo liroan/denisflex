@@ -1,0 +1,194 @@
+.header {
+  &__search {
+    z-index: 500;
+    transition: 0.5s;
+    position: relative;
+  }
+  &__searchPopup {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s;
+    color: #fff;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    border-radius: 5px;
+    font-weight: 300;
+    &_open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__category {
+    padding: 15px;
+    border-bottom: 1px solid hsla(0,0%,100%,.1);
+    &_buttons {
+      display: flex;
+    }
+    &_button {
+      padding: 10px;
+      text-align: center;
+      width: 33%;
+      background: #1f1f1f;
+      font-size: 14px;
+      cursor: pointer;
+      &:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      &:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+    &_activeButton {
+      background: #000;
+    }
+  }
+  &__filmsContent {
+    &_empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      margin: 0 auto;
+      text-align: center;
+      height: 200px;
+    }
+    &_list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      margin: 0 auto;
+      text-align: center;
+      height: 200px;
+    }
+  }
+  &__film {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.5s;
+    &:hover {
+      background: #141414;
+      cursor: pointer;
+    }
+  }
+  &__filmInfo {
+    display: flex;
+  }
+  &__filmImg {
+    margin-right: 15px;
+    img {
+      width: 32px;
+      height: 48px;
+    }
+  }
+  &__filmTitle {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 7px;
+  }
+  &__filmRating {
+    margin-left: 30px;
+    color: #00a340;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  &__showAll {
+    font-weight: 400;
+    font-size: 12px;
+    padding: 15px;
+    border-top: 1px solid hsla(0,0%,100%,.1);
+    background: #141414;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  &__field {
+    position: relative;
+  }
+  &__input {
+    width: 400px;
+    input {
+      outline: none;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      background: #333;
+      width: 100%;
+      padding: 10px 40px 10px 10px;
+    }
+  }
+  &__arrow, &__cross, &__searchIcon {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  &__arrow {
+    left: 3%;
+    display: none;
+  }
+  &__cross {
+    right: 15px;
+  }
+  &__searchIcon {
+    right: -30px;
+  }
+}
+
+
+@media screen and (max-width: 850px) {
+  .header {
+    &__search {
+      position: static;
+      &_hidden {
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    &__field {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      visibility: visible;
+    }
+    &__input {
+      width: 100%;
+      height: 100%;
+      input {
+        height: 100%;
+        padding: 10px 50px 10px 50px;
+        font-size: 18px;
+        width: 100%;
+        background: #1f1f1f;
+        border-radius: 0;
+        display: block;
+      }
+    }
+    &__arrow {
+      display: block;
+    }
+    &__searchPopup {
+      top: 100%;
+    }
+    &__showAll {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &__searchPopup {
+      border-radius: 0;
+    }
+  }
+}

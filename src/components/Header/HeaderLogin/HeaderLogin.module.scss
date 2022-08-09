@@ -1,0 +1,30 @@
+.header {
+  &__loginStatus {
+    display: flex;
+    p {
+      font-size: 18px;
+      line-height: 18px;
+      font-weight: 500;
+    }
+  }
+  &__searchIcon {
+    &_right {
+      cursor: pointer;
+      display: none;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+@media screen and (max-width: 850px) {
+  .header {
+    &__searchIcon {
+      &_right {
+        display: block;
+      }
+    }
+  }
+}
+
+
