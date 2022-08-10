@@ -1,9 +1,15 @@
+import styles from "./Button.module.scss";
+import React, {FC} from "react";
 
+interface ButtonProps {
+    children?: React.ReactNode;
+    icon?: React.ReactNode;
+}
 
-const Button = () => {
+const Button:FC<ButtonProps> = ({ children }) => {
     return (
-        <button>
-
+        <button className={styles.button}>
+            { children }
         </button>
     )
 }

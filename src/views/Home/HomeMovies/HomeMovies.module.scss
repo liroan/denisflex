@@ -1,0 +1,19 @@
+.home {
+  &__movies {
+    margin-top: 30px;
+  }
+  &__movieChapterContainer {
+    overflow-x: hidden
+  }
+  &__movieChapter {
+    margin-left: 2%;
+  }
+}
+
+.movieChapter {
+  &__title {
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+}
