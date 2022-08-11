@@ -5,7 +5,8 @@ import classNames from "classnames";
 import React, {useRef} from "react";
 import Slider from "../../components/Slider/Slider";
 import HomeMovies from "./HomeMovies/HomeMovies";
-import {useGetCountriesAndGenresQuery, useGetPopularMoviesQuery} from "../../services/services";
+import {useGetCountriesAndGenresQuery, useGetPopularMoviesQuery, useGetCompilationMoviesQuery} from "../../services/services";
+import Banner from "./Banner/Banner";
 
 
 const films = [
@@ -20,31 +21,20 @@ const films = [
 const Home = () => {
     const { data: genresAndCountries,
         isLoading: genresAndCountriesLoading, error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
-    const { data: films, isLoading: filmsLoading, error: filmsError } = useGetPopularMoviesQuery("FILM");
-    const { data: serials, isLoading: serialsLoading, error: serialsError } = useGetPopularMoviesQuery("TV_SERIES");
-    const { data: shows, isLoading: showsLoading, error: showsError } = useGetPopularMoviesQuery("TV_SHOW");
-    console.log(films, serials, shows)
+    const { data: films, isLoading: filmsLoading, error: filmsError } = useGetCompilationMoviesQuery("TOP_100_POPULAR_FILMS");
+    const { data: serials, isLoading: serialsLoading, error: serialsError } = useGetCompilationMoviesQuery("TOP_250_BEST_FILMS");
+    const { data: shows, isLoading: showsLoading, error: showsError } = useGetCompilationMoviesQuery("TOP_AWAIT_FILMS");
+
+
     return (
         <div className={styles.home}>
-            <div className={styles.home__banner} style={{ backgroundImage: "url(https://avatars.mds.yandex.net/get-ott/1672343/2a0000016cc7177239d4025185c488b1bf43/orig)" }}>
-                <Container>
-                    <div className={styles.home__banner_blackout} />
-                    <div className={styles.home__bannerInfo}>
-                        <h1 className={styles.home__bannerTitle}>Тор: Любовь и гром</h1>
-                        <h2 className={styles.home__bannerDescription}>Джейн Фостер берет на себя обязанности Бога-громовержца и становится обладательницей молота Мьёльнира.</h2>
-                        <Button>
-                            <span className={styles.home__buttonInner}>
-                                Подробнее
-                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                            </span>
-                        </Button>
-                    </div>
-                </Container>
-            </div>
-            <HomeMovies movies={films?.items} isGenre={false} isLoading={filmsLoading} error={filmsError} title="Популярные фильмы"/>
-            <HomeMovies movies={serials?.items} isGenre={false} isLoading={serialsLoading} error={serialsError} title="Популярные сериалы"/>
-            <HomeMovies movies={shows?.items} isGenre={false} isLoading={showsLoading} error={showsError} title="Популярные ТВ-шоу"/>
-            {/*<HomeMovies films={films} isGenre={true} />*/}
+            <Banner />
+            <Container>
+                <HomeMovies movies={films?.films} isGenre={false} isLoading={filmsLoading} error={filmsError} title="Самые популярные"/>
+                <HomeMovies movies={serials?.films} isGenre={false} isLoading={serialsLoading} error={serialsError} title="Самые лучшие"/>
+                <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isGenre={true} isLoading={genresAndCountriesLoading} error={genresAndCountriesError} title="Жанры"/>
+                <HomeMovies movies={shows?.films} isGenre={false} isLoading={showsLoading} error={showsError} title="Самые ожидаемые"/>
+            </Container>
         </div>
     )
 }

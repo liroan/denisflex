@@ -1,19 +1,19 @@
 
 .movieCard {
   position: relative;
-  transition: 1.5s;
-  width: 310px;
-  height: 415px;
+  width: 220px;
+  height: 330px;
+  overflow: hidden;
+  border-radius: 7px;
   img {
+    transition: 0.5s ease-out;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 7px;
     display: block;
   }
-  &:hover {
+  img:hover {
     transform: scale(1.1);
-    margin: 0 50px 0 35px;
   }
   &__marks {
     top: 10px;

@@ -6,7 +6,7 @@ import {
     IFiltersResponse,
     IMovie, ISimilarMovies,
     IStaffPerson,
-    MovieType
+    MovieType, TopMovieType
 } from "../types/types";
 import {FiltersState} from "../store/filtersSlice";
 import * as queryString from "query-string";
@@ -23,8 +23,8 @@ export const moviesApi = createApi({
         }
     }),
     endpoints: (builder) => ({
-        getPopularMovies: builder.query<IFilmSearchByFiltersResponse, MovieType>({
-            query: (typeMovie) => `v2.2/films?order=RATING&type=${typeMovie}`,
+        getCompilationMovies: builder.query<any, TopMovieType>({
+            query: (type) => `v2.2/films/top?type=${type}`,
         }),
         getCountriesAndGenres: builder.query<IFiltersResponse, null>({
             query: () => `v2.2/films/filters`,
@@ -53,5 +53,5 @@ export const moviesApi = createApi({
 })
 
 
-export const { useGetPopularMoviesQuery, useGetSimilarMovieByIdQuery, useGetReviewsMovieByIdQuery,
+export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery,
  useGetCountriesAndGenresQuery } = moviesApi;

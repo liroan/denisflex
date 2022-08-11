@@ -4,7 +4,7 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export type MovieType = "FILM" | "TV_SHOW" | "TV_SERIES" | "VIDEO" | "MINI_SERIES" | "ALL";
-
+export type TopMovieType = "TOP_250_BEST_FILMS" | "TOP_100_POPULAR_FILMS" | "TOP_AWAIT_FILMS";
 export interface IMoviePreview {
     countries: {country: string}[];
     genres: {genre: string }[];

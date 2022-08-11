@@ -15,10 +15,11 @@ const Slider:FC<ISlider> = ({movies, isGenre}) => {
     // const [showArrow, setShowArrow] = useState(true);
     const [maxTranslate, setMaxTranslate] = useState(0);
     const [lastTranslate, setLastTranslate] = useState(0);
-    const { width, height }: { width: number, height: number } = useSizeWindow();
-    const widthItem = isGenre ? 300 : 400;
+    /*const { width, height }: { width: number, height: number } = useSizeWindow();*/
+    const widthItem = isGenre ? 300 : 220;
     const widthItemWithMargin = widthItem + 20;
-
+    const ref = useRef<any>(null);
+    const width = ref?.current?.clientWidth || 0;
     // useEffect(() => {
     //     setShowArrow(width + translate > maxTranslate)
     // }, [width])
@@ -28,6 +29,7 @@ const Slider:FC<ISlider> = ({movies, isGenre}) => {
     }, [movies.length])
 
     const nextItem = () => {
+
         if (maxTranslate >= translate + width && maxTranslate < translate + width + widthItemWithMargin) {
             setTranslate(maxTranslate - width + 50);
             setLastTranslate(translate);
@@ -48,7 +50,7 @@ const Slider:FC<ISlider> = ({movies, isGenre}) => {
     }
 
     return (
-        <div className={classNames(styles.movieChapter__slider, styles.slider)}>
+        <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={ref}>
             {true &&
                 <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left)}>
                     {translate > 0 && <img src={arrow} alt=""/>}

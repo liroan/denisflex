@@ -5,20 +5,16 @@ import classnames from "classnames";
 
 
 interface ISliderItemGenre {
-    img: string,
-    title?: string,
-    card: any
-    rating?: string | number,
-    price?: number,
+    genre: string;
     index: number;
 }
 
 
-const SliderItemGenre:FC<ISliderItemGenre> = ({img, title, card, index}) => {
+const SliderItemGenre:FC<ISliderItemGenre> = ({ genre, index }) => {
     return (
-        <div className={classnames(styles.movieCard, styles.movieCard_genre)} ref={card}>
-            <img src={require(`../../../assets/img/genreSlider/${index + 1}.jpg`)} alt=""/>
-            <div className={styles.movieCard__genre_mask}>{title}</div>
+        <div className={classnames(styles.movieCard, styles.movieCard_genre)}>
+            <div className={styles.movieCard__img}><img src={require(`../../../assets/img/genreSlider/${index + 1}.jpg`)} alt=""/></div>
+            <div className={styles.movieCard__genre_mask}>{genre}</div>
         </div>
     )
 }
