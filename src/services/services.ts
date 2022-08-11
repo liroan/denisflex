@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {API_KEY, API_URL} from "../constants/constants";
 import {
+    FilmTopResponse,
     IFactsAndErrors,
     IFilmSearchByFiltersResponse,
     IFiltersResponse,
@@ -23,7 +24,7 @@ export const moviesApi = createApi({
         }
     }),
     endpoints: (builder) => ({
-        getCompilationMovies: builder.query<any, TopMovieType>({
+        getCompilationMovies: builder.query<FilmTopResponse, TopMovieType>({
             query: (type) => `v2.2/films/top?type=${type}`,
         }),
         getCountriesAndGenres: builder.query<IFiltersResponse, null>({

@@ -1,39 +1,32 @@
 import styles from "./Home.module.scss";
-import Button from "../../components/Button/Button";
 import Container from "../../components/Container/Container";
-import classNames from "classnames";
-import React, {useRef} from "react";
-import Slider from "../../components/Slider/Slider";
+import React from "react";
 import HomeMovies from "./HomeMovies/HomeMovies";
-import {useGetCountriesAndGenresQuery, useGetPopularMoviesQuery, useGetCompilationMoviesQuery} from "../../services/services";
+import {useGetCountriesAndGenresQuery, useGetCompilationMoviesQuery} from "../../services/services";
 import Banner from "./Banner/Banner";
 
-
-const films = [
-    {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
-    {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
-    {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
-    {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
-    {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
-    {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
-    {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"}
-]
 const Home = () => {
-    const { data: genresAndCountries,
-        isLoading: genresAndCountriesLoading, error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
-    const { data: films, isLoading: filmsLoading, error: filmsError } = useGetCompilationMoviesQuery("TOP_100_POPULAR_FILMS");
-    const { data: serials, isLoading: serialsLoading, error: serialsError } = useGetCompilationMoviesQuery("TOP_250_BEST_FILMS");
-    const { data: shows, isLoading: showsLoading, error: showsError } = useGetCompilationMoviesQuery("TOP_AWAIT_FILMS");
 
+    const { data: genresAndCountries, isLoading: genresAndCountriesLoading,
+        error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
+    const { data: popularFilms, isLoading: popularFilmsLoading, error: popularFilmsError } = useGetCompilationMoviesQuery("TOP_100_POPULAR_FILMS");
+    const { data: bestFilms, isLoading: bestFilmsLoading, error: bestFilmsError } = useGetCompilationMoviesQuery("TOP_250_BEST_FILMS");
+    const { data: awaitFilms, isLoading: awaitFilmsLoading, error: awaitFilmsError } = useGetCompilationMoviesQuery("TOP_AWAIT_FILMS");
+
+    console.log(genresAndCountries?.genres?.slice(0, 16), popularFilms?.films, bestFilms?.films, awaitFilms?.films)
 
     return (
         <div className={styles.home}>
             <Banner />
             <Container>
-                <HomeMovies movies={films?.films} isGenre={false} isLoading={filmsLoading} error={filmsError} title="Самые популярные"/>
-                <HomeMovies movies={serials?.films} isGenre={false} isLoading={serialsLoading} error={serialsError} title="Самые лучшие"/>
-                <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isGenre={true} isLoading={genresAndCountriesLoading} error={genresAndCountriesError} title="Жанры"/>
-                <HomeMovies movies={shows?.films} isGenre={false} isLoading={showsLoading} error={showsError} title="Самые ожидаемые"/>
+                <HomeMovies movies={popularFilms?.films} isLoading={popularFilmsLoading}
+                            error={popularFilmsError} title="Самые популярные"/>
+                <HomeMovies movies={bestFilms?.films} isLoading={bestFilmsLoading}
+                            error={bestFilmsError} title="Самые лучшие"/>
+                <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isLoading={genresAndCountriesLoading}
+                            error={genresAndCountriesError} title="Жанры"/>
+                <HomeMovies movies={awaitFilms?.films} isLoading={awaitFilmsLoading}
+                            error={awaitFilmsError} title="Самые ожидаемые"/>
             </Container>
         </div>
     )

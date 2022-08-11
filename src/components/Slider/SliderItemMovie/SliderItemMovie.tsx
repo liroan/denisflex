@@ -3,13 +3,12 @@ import styles from "./SliderItemMovie.module.scss";
 import classNames from "classnames";
 interface IFilmCard {
     posterUrl: string;
-    rating: number | null;
-    posterUrlPreview: string;
-    year: number | null;
+    rating: string | null;
+    year: string | null;
 }
 
 
-const SliderItemMovie:FC<IFilmCard> = ({posterUrl, posterUrlPreview, rating, year}) => {
+const SliderItemMovie:FC<IFilmCard> = ({posterUrl, rating, year}) => {
     return (
         <div className={styles.movieCardContainer}>
             <div className={styles.movieCard}>

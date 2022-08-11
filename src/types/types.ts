@@ -5,9 +5,34 @@ export type AppDispatch = typeof store.dispatch;
 
 export type MovieType = "FILM" | "TV_SHOW" | "TV_SERIES" | "VIDEO" | "MINI_SERIES" | "ALL";
 export type TopMovieType = "TOP_250_BEST_FILMS" | "TOP_100_POPULAR_FILMS" | "TOP_AWAIT_FILMS";
+
+export interface FilmTopResponse {
+    pagesCount: number;
+    films: IMovieTop[];
+}
+
+export interface IGenre {
+    id: number;
+    genre: string;
+}
+
+export interface IMovieTop {
+    filmId: number;
+    nameRu: string | null;
+    nameEn: string | null;
+    year: string | null;
+    filmLength: string | null;
+    countries: { id: number, country: string }[];
+    genres: IGenre[];
+    rating:	string | null;
+    ratingVoteCount: number | null;
+    posterUrl: string;
+    posterUrlPreview: string;
+}
+
 export interface IMoviePreview {
     countries: {country: string}[];
-    genres: {genre: string }[];
+    genres: IGenre[];
     imdbId: string | null;
     kinopoiskId: number;
     nameEn: null | string;
@@ -63,7 +88,7 @@ export interface IFilmSearchByFiltersResponse {
 }
 
 export interface IFiltersResponse {
-    genres: { id: number, genre: string }[];
+    genres: IGenre[];
     countries: { id: number, country: string }[];
 }
 

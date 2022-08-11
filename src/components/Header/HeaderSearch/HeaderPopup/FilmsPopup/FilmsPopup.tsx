@@ -13,7 +13,8 @@ const FilmsPopup:FC<FilmsPopupProps> = ({ movies }) => {
     return (
         <div className={styles.header__filmsContent}>
             <div className={styles.header__filmsContent_noEmpty}>
-                { movies.map((movie: any) => <FilmPopup  img={movie.posterUrlPreview}
+                { movies.map((movie: any, index: number) => <FilmPopup key={index}
+                                                  img={movie.posterUrlPreview}
                                                   name={movie.nameRu || movie.nameEn}
                                                   year={movie.year || 0}
                                                   minutes={0}

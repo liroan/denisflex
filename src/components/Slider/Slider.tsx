@@ -4,74 +4,74 @@ import SliderItemGenre from "./SliderItemGenre/SliderItemGenre";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
 import SliderItemMovie from "./SliderItemMovie/SliderItemMovie";
-import {useSizeWindow} from "../../hooks/hooks";
+import {IGenre, IMovieTop} from "../../types/types";
 interface ISlider {
-    movies: any,
-    isGenre?: boolean
+    movies: IMovieTop[] | IGenre[];
 }
 
-const Slider:FC<ISlider> = ({movies, isGenre}) => {
+const Slider:FC<ISlider> = ({movies}) => {
     const [translate, setTranslate] = useState(0);
-    // const [showArrow, setShowArrow] = useState(true);
     const [maxTranslate, setMaxTranslate] = useState(0);
     const [lastTranslate, setLastTranslate] = useState(0);
-    /*const { width, height }: { width: number, height: number } = useSizeWindow();*/
-    const widthItem = isGenre ? 300 : 220;
-    const widthItemWithMargin = widthItem + 20;
-    const ref = useRef<any>(null);
-    const width = ref?.current?.clientWidth || 0;
-    // useEffect(() => {
-    //     setShowArrow(width + translate > maxTranslate)
-    // }, [width])
+    const translateWrapper = useRef<HTMLDivElement>(null);
+
+    const widthItem = "filmId" in movies[0] ? 320 : 240;
+    const width = translateWrapper?.current?.clientWidth || 0;
+
 
     useEffect(() => {
-        setMaxTranslate(widthItemWithMargin * movies.length)
+        setMaxTranslate(widthItem * movies.length)
     }, [movies.length])
 
     const nextItem = () => {
-
-        if (maxTranslate >= translate + width && maxTranslate < translate + width + widthItemWithMargin) {
+        if (maxTranslate >= translate + width && maxTranslate < translate + width + widthItem) {
             setTranslate(maxTranslate - width + 50);
             setLastTranslate(translate);
         }
         else if (maxTranslate >= translate + width)
-            setTranslate(prevState => prevState + widthItemWithMargin);
+            setTranslate(prevState => prevState + widthItem);
         else
             setTranslate(0);
     }
 
     const previousItem = () => {
         if (translate === maxTranslate - width + 50) {
-            console.log(lastTranslate, translate)
             setTranslate(lastTranslate)
         }
         else
-            setTranslate(prevState => prevState - widthItemWithMargin);
+            setTranslate(prevState => prevState - widthItem);
     }
 
     return (
-        <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={ref}>
-            {true &&
-                <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left)}>
-                    {translate > 0 && <img src={arrow} alt=""/>}
-                </div>
-            }
+        <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={translateWrapper}>
+
+            <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left)}>
+                {translate > 0 && <img src={arrow} alt=""/>}
+            </div>
+
             <div className={styles.slider__translateWrapper} style={{transform: `translateX(${-translate}px`}}>
-                {movies.map((film: any, index: number) => {
-                    const item = !isGenre ? <SliderItemMovie {...film} /> : <SliderItemGenre {...film} index={index} />;
+                {movies.map((film, index) => {
+                    let item, key;
+                    if ("filmId" in film) {
+                        item = <SliderItemMovie posterUrl={film.posterUrl} rating={film.rating} year={film.year}/>;
+                        key = film.filmId;
+                    }
+                    else {
+                        item = <SliderItemGenre genre={film.genre} index={index}/>;
+                        key = film.id;
+                    }
                     return (
-                        <div className={styles.slider__item}>
+                        <div className={styles.slider__item} key={key}>
                             { item }
                         </div>
                     )
                 })}
             </div>
-            {
-                true &&
-                    <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right)}>
-                        <img src={arrow} alt=""/>
-                    </div>
-            }
+
+            <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right)}>
+                <img src={arrow} alt=""/>
+            </div>
+
         </div>
     )
 }
