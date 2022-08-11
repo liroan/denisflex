@@ -15,7 +15,7 @@ const Slider:FC<ISlider> = ({movies}) => {
     const [lastTranslate, setLastTranslate] = useState(0);
     const translateWrapper = useRef<HTMLDivElement>(null);
 
-    const widthItem = "filmId" in movies[0] ? 320 : 240;
+    const widthItem = "filmId" in movies[0] ? 240 : 320;
     const width = translateWrapper?.current?.clientWidth || 0;
 
 
