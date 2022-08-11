@@ -24,7 +24,7 @@ const Home = () => {
                 <HomeMovies movies={bestFilms?.films} isLoading={bestFilmsLoading}
                             error={bestFilmsError} title="Самые лучшие"/>
                 <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isLoading={genresAndCountriesLoading}
-                            error={genresAndCountriesError} title="Жанры"/>
+                            error={genresAndCountriesError} title="Жанры" isGenre={true}/>
                 <HomeMovies movies={awaitFilms?.films} isLoading={awaitFilmsLoading}
                             error={awaitFilmsError} title="Самые ожидаемые"/>
             </Container>
