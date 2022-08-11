@@ -26,7 +26,7 @@ export const moviesApi = createApi({
         getPopularMovies: builder.query<IFilmSearchByFiltersResponse, MovieType>({
             query: (typeMovie) => `v2.2/films?order=RATING&type=${typeMovie}`,
         }),
-        getCountriesAndGenres: builder.query<IFiltersResponse, undefined>({
+        getCountriesAndGenres: builder.query<IFiltersResponse, null>({
             query: () => `v2.2/films/filters`,
         }),
         getFiltersMovie: builder.query<IFilmSearchByFiltersResponse, FiltersState>({
@@ -53,4 +53,5 @@ export const moviesApi = createApi({
 })
 
 
-export const { useGetPopularMoviesQuery, useGetSimilarMovieByIdQuery, useGetReviewsMovieByIdQuery } = moviesApi;
+export const { useGetPopularMoviesQuery, useGetSimilarMovieByIdQuery, useGetReviewsMovieByIdQuery,
+ useGetCountriesAndGenresQuery } = moviesApi;

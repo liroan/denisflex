@@ -5,6 +5,9 @@ import classNames from "classnames";
 import React, {useRef} from "react";
 import Slider from "../../components/Slider/Slider";
 import HomeMovies from "./HomeMovies/HomeMovies";
+import {useGetCountriesAndGenresQuery, useGetPopularMoviesQuery} from "../../services/services";
+
+
 const films = [
     {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
     {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"},
@@ -15,6 +18,12 @@ const films = [
     {rating: 5.5, price: 299, img: "https://i.pinimg.com/originals/8f/ef/79/8fef79d50e79201be484ceb478892916.jpg"}
 ]
 const Home = () => {
+    const { data: genresAndCountries,
+        isLoading: genresAndCountriesLoading, error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
+    const { data: films, isLoading: filmsLoading, error: filmsError } = useGetPopularMoviesQuery("FILM");
+    const { data: serials, isLoading: serialsLoading, error: serialsError } = useGetPopularMoviesQuery("TV_SERIES");
+    const { data: shows, isLoading: showsLoading, error: showsError } = useGetPopularMoviesQuery("TV_SHOW");
+    console.log(films, serials, shows)
     return (
         <div className={styles.home}>
             <div className={styles.home__banner} style={{ backgroundImage: "url(https://avatars.mds.yandex.net/get-ott/1672343/2a0000016cc7177239d4025185c488b1bf43/orig)" }}>
@@ -32,8 +41,10 @@ const Home = () => {
                     </div>
                 </Container>
             </div>
-            <HomeMovies films={films} isGenre={false} />
-            <HomeMovies films={films} isGenre={true} />
+            <HomeMovies movies={films?.items} isGenre={false} isLoading={filmsLoading} error={filmsError} title="Популярные фильмы"/>
+            <HomeMovies movies={serials?.items} isGenre={false} isLoading={serialsLoading} error={serialsError} title="Популярные сериалы"/>
+            <HomeMovies movies={shows?.items} isGenre={false} isLoading={showsLoading} error={showsError} title="Популярные ТВ-шоу"/>
+            {/*<HomeMovies films={films} isGenre={true} />*/}
         </div>
     )
 }

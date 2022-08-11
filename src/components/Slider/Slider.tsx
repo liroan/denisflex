@@ -6,11 +6,11 @@ import classNames from "classnames";
 import SliderItemMovie from "./SliderItemMovie/SliderItemMovie";
 import {useSizeWindow} from "../../hooks/hooks";
 interface ISlider {
-    films: any,
+    movies: any,
     isGenre?: boolean
 }
 
-const Slider:FC<ISlider> = ({films, isGenre}) => {
+const Slider:FC<ISlider> = ({movies, isGenre}) => {
     const [translate, setTranslate] = useState(0);
     // const [showArrow, setShowArrow] = useState(true);
     const [maxTranslate, setMaxTranslate] = useState(0);
@@ -24,8 +24,8 @@ const Slider:FC<ISlider> = ({films, isGenre}) => {
     // }, [width])
 
     useEffect(() => {
-        setMaxTranslate(widthItemWithMargin * films.length)
-    }, [films.length])
+        setMaxTranslate(widthItemWithMargin * movies.length)
+    }, [movies.length])
 
     const nextItem = () => {
         if (maxTranslate >= translate + width && maxTranslate < translate + width + widthItemWithMargin) {
@@ -55,8 +55,8 @@ const Slider:FC<ISlider> = ({films, isGenre}) => {
                 </div>
             }
             <div className={styles.slider__translateWrapper} style={{transform: `translateX(${-translate}px`}}>
-                {films.map((film: any) => {
-                    const item = !isGenre ? <SliderItemMovie {...film} /> : <SliderItemGenre {...film} />;
+                {movies.map((film: any, index: number) => {
+                    const item = !isGenre ? <SliderItemMovie {...film} /> : <SliderItemGenre {...film} index={index} />;
                     return (
                         <div className={styles.slider__item}>
                             { item }
