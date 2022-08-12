@@ -18,3 +18,24 @@ body {
   font-family: 'Fira Sans', sans-serif;
   background: #181818;
 }
+
+div[role="presentation"] {
+    .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+      background-color: #E50914;
+    }
+    div:nth-child(3) {
+      background: #333;
+      color: #fff;
+    }
+}
+
+.css-1yjjitx-MuiSwitch-track {
+  background-color: #fff !important;
+}
+
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+  background-color: #E50914 !important;
+}
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+  color: #fff !important;
+}

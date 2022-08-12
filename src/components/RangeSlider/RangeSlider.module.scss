@@ -1,0 +1,25 @@
+
+
+.rangeSlider{
+  &__fields {
+    display: flex;
+    margin-bottom: 25px;
+  }
+  &__input {
+    &:first-child {
+      margin-right: 10px;
+    }
+    label {
+      color: #999 !important;
+      & + div {
+        color: #fff !important;
+      }
+    }
+    fieldset {
+      border-color: #999 !important;
+    }
+    input {
+      padding: 10px !important;
+    }
+  }
+}
