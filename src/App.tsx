@@ -9,7 +9,7 @@ import Catalog from "./views/Catalog/Catalog";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className={'app'}>
             <Header />
             <Outlet />
         </div>
