@@ -20,7 +20,7 @@ body {
   position: relative;
 }
 
-div[role="presentation"] {
+div[role="presentation"] { /* стилизация выпад списка у селекта */
     .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
       background-color: #E50914;
     }
@@ -30,13 +30,13 @@ div[role="presentation"] {
     }
 }
 
-.css-1yjjitx-MuiSwitch-track {
+.css-1yjjitx-MuiSwitch-track { /*цвет для дорожки у чек бокса в нач состояние*/
   background-color: #fff !important;
 }
 
-.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {  /*цвет для дорожки у чек бокса в кон состояние */
   background-color: #E50914 !important;
 }
-.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked { /* цвет головы у чек бокса в конечной точке */
   color: #fff !important;
 }

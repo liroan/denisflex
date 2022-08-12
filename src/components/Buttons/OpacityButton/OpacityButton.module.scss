@@ -1,0 +1,33 @@
+
+
+.opacityButton {
+  button {
+    font-size: 14px;
+    text-transform: none;
+    font-weight: 400;
+    width: 155px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  button {
+    color: #fff !important;
+    background: transparent !important;
+    border: 1px solid #fff !important;
+    &:hover {
+      background: #fff !important;
+      color: #141414 !important;
+      border: 1px solid #fff !important;
+      svg {
+        fill: #141414;
+        stroke: #141414;
+      }
+    }
+  }
+}

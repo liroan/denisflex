@@ -1,6 +1,6 @@
 import styles from "./Banner.module.scss";
 import Container from "../../../components/Container/Container";
-import Button from "../../../components/Button/Button";
+import Button from "../../../components/Buttons/Button/Button";
 import React, {FC} from "react";
 
 

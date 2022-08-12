@@ -1,0 +1,30 @@
+
+
+.filter {
+  &__accordion {
+    margin-bottom: 30px;
+  }
+}
+
+.accordion {
+  &__title {
+    h6 {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 20px;
+    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  &__arrow {
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &_rotate {
+      transform: rotate(180deg);
+    }
+  }
+}

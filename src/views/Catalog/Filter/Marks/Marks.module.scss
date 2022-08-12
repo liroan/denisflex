@@ -1,0 +1,18 @@
+
+
+.filter {
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  &__mark {
+    margin: 0 8px 8px 0;
+    display: block;
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+}

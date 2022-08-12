@@ -1,0 +1,40 @@
+.filter {
+  &__header {
+    display: none;
+    padding: 0 5%;
+    height: 76px;
+    background: #222;
+    border-bottom: 1px solid #444;
+    justify-content: space-between;
+    align-items: center;
+    h5 {
+      font-size: 22px;
+      font-weight: 500;
+    }
+  }
+  &__exit {
+    button {
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        width: 20px;
+        height: 20px;
+        stroke: #fff;
+        fill: #fff;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1100px){
+  .filter {
+    &__header {
+      display: flex;
+    }
+  }
+}
