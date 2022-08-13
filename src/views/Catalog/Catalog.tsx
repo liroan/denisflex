@@ -12,7 +12,14 @@ import * as queryString from "query-string";
 import {removeInitialFilter} from "../../utils/utils";
 
 const Catalog:FC = () => {
+
+
     const [isShowFilters, setIsShowFilters] = useState(false);
+
+    useEffect(() => {
+        document.body.style.overflowY = isShowFilters ? "hidden" : "unset";
+    }, [isShowFilters])
+
     const filters = useAppSelector(state => state.filters);
     const { data: films, isLoading, error } = useGetFiltersMovieQuery(filters);
 
@@ -33,6 +40,7 @@ const Catalog:FC = () => {
         setSearchParams(queryString.stringify(filterWithoutInitialValue))
     }, [filters])
 
+    console.log(isLoading)
 
     return (
         <div className={styles.catalog}>
@@ -43,7 +51,9 @@ const Catalog:FC = () => {
                         <div className={styles.catalog__filter}>
                             <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters} filters={filters}/>
                         </div>
-                        <CatalogFilms />
+                        {
+                            (isLoading || !films) ? <div>Загрузка</div> : <CatalogFilms films={films.items} />
+                        }
                     </div>
                 </Container>
             </Container>
