@@ -9,7 +9,7 @@ import SelectComponent from "../../../components/Select/Select";
 import Checkboxes from "./Checkboxes/Checkboxes";
 import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
-import {changeFiltersHandle, FiltersState} from "../../../store/filtersSlice";
+import {changeFiltersHandle, FiltersState, initialStateFilter, resetFilters} from "../../../store/filtersSlice";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {IGenre} from "../../../types/types";
 
@@ -59,7 +59,7 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genr
 
             <div className={styles.filter__wrapper}>
 
-                <Marks />
+                <Marks filters={filters} genresNames={genresNames} />
 
                 <Accordion title="Рейтинг">
                     <RangeSlider min={1} max={10}
@@ -70,7 +70,7 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genr
                 </Accordion>
 
                 <Accordion title="Годы производства">
-                    <RangeSlider min={1960} max={2022}
+                    <RangeSlider min={1900} max={2022}
                                  fromValue={formData.yearFrom} beforeValue={formData.yearTo}
                                  setFromValue={changeValue('yearFrom')}
                                  setBeforeValue={changeValue('yearTo')}
@@ -91,7 +91,7 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genr
 
                 <div className={classNames(styles.filter__buttons)}>
                     <RedButton type="submit">Применить</RedButton>
-                    <OpacityButton onClick={() => console.log('lol')}>Сбросить</OpacityButton>
+                    <OpacityButton onClick={() => dispatch(resetFilters())}>Сбросить</OpacityButton>
                 </div>
 
             </div>

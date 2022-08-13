@@ -12,6 +12,18 @@ export const getDataWindow = (): { width: number, height: number } => {
 
 
 export const removeInitialFilter = (object: FiltersState): Partial<FiltersState> => {
-    // @ts-ignore
-    return Object.fromEntries(Object.entries(object).filter(p => p[1] != initialStateFilter[p[0]]))
+    return Object.fromEntries(Object.entries(object).filter(p => {
+        // @ts-ignore
+        console.log(p[0], p[0] == "genres", p[1] === 0)
+        if (p[0] == "genres" && p[1] === 0) return false;
+        // @ts-ignore
+        return p[1] != initialStateFilter[p[0]] && initialStateFilter[p[0]] !== undefined;
+    }))
+}
+
+export const removeUnwantedProperties = (object: FiltersState): Partial<FiltersState> => {
+    const newObject: Partial<FiltersState> = { ...object };
+    if (newObject["genres"] === 0) delete newObject.genres;
+    if (newObject["keyword"] === "") delete newObject.keyword;
+    return newObject;
 }

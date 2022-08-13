@@ -18,12 +18,12 @@ export interface FiltersState  {
 }
 
 export const initialStateFilter: FiltersState = {
-    genres: 1,
+    genres: 0,
     order: "RATING",
     type: "FILM",
     ratingFrom: 1,
     ratingTo: 10,
-    yearFrom: 1960,
+    yearFrom: 1900,
     yearTo: 2022,
     keyword: "",
     page: 1,
@@ -45,10 +45,15 @@ export const filterSlice = createSlice({
                 ...state,
                 ...action.payload
             };
+        },
+        resetFilters: (state) => {
+            return {
+                ...initialStateFilter
+            };
         }
     },
 })
 
-export const { changeFiltersHandle, changeFiltersFromUrl } = filterSlice.actions;
+export const { changeFiltersHandle, changeFiltersFromUrl, resetFilters } = filterSlice.actions;
 
 export default filterSlice.reducer;

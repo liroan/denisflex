@@ -16,8 +16,7 @@ const Catalog:FC = () => {
 
 
     const [isShowFilters, setIsShowFilters] = useState(false);
-    const { data: genresAndCountries, isLoading: genresAndCountriesLoading,
-        error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
+    const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
 
     useEffect(() => {
         document.body.style.overflowY = isShowFilters ? "hidden" : "unset";
@@ -39,9 +38,10 @@ const Catalog:FC = () => {
     }, [])
     useEffect(() => {
         const filterWithoutInitialValue = removeInitialFilter(filters);
-        console.log(filterWithoutInitialValue, filters, initialStateFilter)
         setSearchParams(queryString.stringify(filterWithoutInitialValue))
     }, [filters])
+
+    const genres = genresAndCountries && [{ id: 76756, genre: "Все жанры" }, ...genresAndCountries?.genres];
 
     return (
         <div className={styles.catalog}>
@@ -51,7 +51,7 @@ const Catalog:FC = () => {
                     <div className={styles.catalog__mainInfo}>
                         <div className={styles.catalog__filter}>
                             <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters}
-                                    filters={filters} genres={genresAndCountries?.genres}/>
+                                    filters={filters} genres={genres}/>
                         </div>
                         {
                             (isFetching || !films) ? <CatalogPreloader /> : <CatalogFilms films={films.items} />

@@ -13,7 +13,7 @@ interface SelectComponentProps {
 
 const SelectComponent:FC<SelectComponentProps> = ({ id, title, options, value, setValue }) => {
     const handleChange = (event: SelectChangeEvent) => {
-        setValue(+event.target.value + 1);
+        setValue(+event.target.value);
     };
 
     return (
@@ -22,7 +22,7 @@ const SelectComponent:FC<SelectComponentProps> = ({ id, title, options, value, s
                 <InputLabel id={id}>{title}</InputLabel>
                 <Select
                     labelId={id}
-                    value={String(value - 1)}
+                    value={String(value)}
                     label={title}
                     onChange={handleChange}
                 >

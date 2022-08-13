@@ -11,7 +11,7 @@ import {
 } from "../types/types";
 import {FiltersState} from "../store/filtersSlice";
 import * as queryString from "query-string";
-import {removeNullableProperty} from "../utils/utils";
+import {removeNullableProperty, removeUnwantedProperties} from "../utils/utils";
 
 export const moviesApi = createApi({
     reducerPath: 'moviesApi',
@@ -32,7 +32,7 @@ export const moviesApi = createApi({
         }),
         getFiltersMovie: builder.query<IFilmSearchByFiltersResponse, FiltersState>({
             query: (filters) => {
-                return `v2.2/films?${queryString.stringify(removeNullableProperty(filters))}`
+                return `v2.2/films?${queryString.stringify(removeUnwantedProperties(filters))}`
             }
         }),
         getMovieById: builder.query<IMovie, number>({
