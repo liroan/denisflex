@@ -10,6 +10,7 @@ import {useSearchParams} from "react-router-dom";
 import {changeFiltersFromUrl, FiltersState, initialStateFilter} from "../../store/filtersSlice";
 import * as queryString from "query-string";
 import {removeInitialFilter} from "../../utils/utils";
+import CatalogPreloader from "./CatalogPreloader/CatalogPreloader";
 
 const Catalog:FC = () => {
 
@@ -53,7 +54,7 @@ const Catalog:FC = () => {
                                     filters={filters} genres={genresAndCountries?.genres}/>
                         </div>
                         {
-                            (isFetching || !films) ? <div>Загрузка</div> : <CatalogFilms films={films.items} />
+                            (isFetching || !films) ? <CatalogPreloader /> : <CatalogFilms films={films.items} />
                         }
                     </div>
                 </Container>

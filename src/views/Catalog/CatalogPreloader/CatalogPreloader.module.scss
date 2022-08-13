@@ -1,0 +1,28 @@
+
+.preloader {
+  border-top: 1px solid #333;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__title {
+    margin-bottom: 10px;
+  }
+  &__poster {
+    margin-right: 25px;
+  }
+  &__info {
+    display: flex;
+  }
+  &__time {
+    margin-bottom: 8px;
+  }
+  &__rating {
+    margin-right: 20px;
+  }
+  &__additionalInfo {
+    display: flex;
+    align-items: center;
+    margin-left: 90px;
+  }
+}

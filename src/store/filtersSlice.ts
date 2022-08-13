@@ -6,7 +6,7 @@ import {MovieType} from "../types/types";
 export type SortBy = "RATING" | "NUM_VOTE" | "YEAR";
 
 export interface FiltersState  {
-    genre: number;
+    genres: number;
     order: SortBy;
     type: MovieType | null;
     ratingFrom: number;
@@ -18,7 +18,7 @@ export interface FiltersState  {
 }
 
 export const initialStateFilter: FiltersState = {
-    genre: 1,
+    genres: 1,
     order: "RATING",
     type: "FILM",
     ratingFrom: 1,

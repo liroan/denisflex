@@ -81,7 +81,7 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genr
                 <Accordion title="Жанры">
                     <SelectComponent id="genres-select" title="Жанры"
                                      options={genresNames}
-                                     value={formData.genre} setValue={changeValue('genre')}
+                                     value={formData.genres} setValue={changeValue('genres')}
                      />
                 </Accordion>
 

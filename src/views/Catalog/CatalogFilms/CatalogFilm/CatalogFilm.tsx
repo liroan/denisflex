@@ -15,9 +15,10 @@ interface CatalogFilmProps {
     nameOriginal: string | null;
     year: number | null;
     ratingKinopoisk: number | null;
+    ratingImdb: number | null;
 }
 
-const CatalogFilm:FC<CatalogFilmProps> = ({ posterUrl, nameRu, nameEn, nameOriginal, year, ratingKinopoisk }) => {
+const CatalogFilm:FC<CatalogFilmProps> = ({ posterUrl,ratingImdb, nameRu, nameEn, nameOriginal, year, ratingKinopoisk }) => {
 
     const [isFavourite, setIsFavourite] = useState(false)
 
@@ -37,7 +38,7 @@ const CatalogFilm:FC<CatalogFilmProps> = ({ posterUrl, nameRu, nameEn, nameOrigi
                 </div>
             </div>
             <div className={styles.film__additionalInfo}>
-                <div className={styles.film__rating}>{ ratingKinopoisk }</div>
+                <div className={styles.film__rating}>{ ratingKinopoisk || ratingImdb }</div>
                 {
                    /* !isFavourite ? <OpacityButton onClick={() => setIsFavourite(true)} startIcon={favouritesIcon}>Буду смотреть</OpacityButton>
                         : <RedButton onClick={() => setIsFavourite(false)} startIcon={checkMarkIcon}>Буду смотреть</RedButton>*/

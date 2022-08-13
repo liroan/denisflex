@@ -13,9 +13,9 @@ const CatalogFilms:FC<CatalogFilmsProps> = ({ films }) => {
     return (
         <div className={styles.films}>
             {
-                films.map(({posterUrl, nameRu, nameEn, nameOriginal, year, ratingKinopoisk}) => (
+                films.map(({posterUrl, nameRu, nameEn, nameOriginal, year, ratingKinopoisk, ratingImdb}) => (
                     <CatalogFilm posterUrl={posterUrl} nameRu={nameRu} nameEn={nameEn}
-                                 nameOriginal={nameOriginal} year={year} ratingKinopoisk={ratingKinopoisk} />
+                                 nameOriginal={nameOriginal} year={year} ratingKinopoisk={ratingKinopoisk} ratingImdb={ratingImdb}/>
                 ))
             }
         </div>
