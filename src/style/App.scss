@@ -21,6 +21,7 @@ body {
 }
 
 div[role="presentation"] { /* стилизация выпад списка у селекта */
+    z-index: 100002;
     .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
       background-color: #E50914;
     }

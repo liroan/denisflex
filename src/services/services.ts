@@ -55,4 +55,4 @@ export const moviesApi = createApi({
 
 
 export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery,
- useGetCountriesAndGenresQuery } = moviesApi;
+ useGetCountriesAndGenresQuery, useGetFiltersMovieQuery } = moviesApi;

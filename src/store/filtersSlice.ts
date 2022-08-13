@@ -3,39 +3,40 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {MovieType} from "../types/types";
 
 
-type SortBy = "RATING" | "NUM_VOTE" | "YEAR";
+export type SortBy = "RATING" | "NUM_VOTE" | "YEAR";
 
 export interface FiltersState  {
-    genre: number | null;
-    order: SortBy | null;
+    genre: number;
+    order: SortBy;
     type: MovieType | null;
-    ratingFrom: number | null;
-    ratingTo: number | null;
-    yearFrom: number | null;
-    yearTo: number | null;
-    keyword: string | null;
-    page: number | null;
+    ratingFrom: number;
+    ratingTo: number;
+    yearFrom: number;
+    yearTo: number;
+    keyword: string;
+    page: number;
 }
 
-const initialState: FiltersState = {
-    genre: null,
-    order: null,
-    type: null,
-    ratingFrom: null,
-    ratingTo: null,
-    yearFrom: null,
-    yearTo: null,
-    keyword: null,
-    page: null,
+export const initialStateFilter: FiltersState = {
+    genre: 1,
+    order: "RATING",
+    type: "FILM",
+    ratingFrom: 1,
+    ratingTo: 10,
+    yearFrom: 1960,
+    yearTo: 2022,
+    keyword: "",
+    page: 1,
 }
 
 export const filterSlice = createSlice({
     name: 'filters',
-    initialState,
+    initialState: initialStateFilter,
     reducers: {
         changeFiltersFromUrl: (state, action: PayloadAction<Partial<FiltersState>>) => {
+            console.log('lol')
             return {
-                ...initialState,
+                ...initialStateFilter,
                 ...action.payload
             }
         },
@@ -43,7 +44,7 @@ export const filterSlice = createSlice({
             return {
                 ...state,
                 ...action.payload
-            }
+            };
         }
     },
 })

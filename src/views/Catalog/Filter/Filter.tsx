@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import styles from "./Filter.module.scss";
 import RangeSlider from "../../../components/RangeSlider/RangeSlider";
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
 import Accordion from "./Accordion/Accordion";
 import RedButton from "../../../components/Buttons/RedButton/RedButton";
 import OpacityButton from "../../../components/Buttons/OpacityButton/OpacityButton";
@@ -9,15 +9,48 @@ import SelectComponent from "../../../components/Select/Select";
 import Checkboxes from "./Checkboxes/Checkboxes";
 import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
+import {changeFiltersHandle, FiltersState} from "../../../store/filtersSlice";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 
 interface FilterProps {
     isShowFilters: boolean;
     setIsShowFilters: Dispatch<SetStateAction<boolean>>;
+    filters: FiltersState;
 }
 
-const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters }) => {
+const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters }) => {
+
+
+    const [formData, setFormData] = useState(filters);
+
+    useEffect(() => {
+        setFormData(filters)
+    }, [filters])
+
+    const dispatch = useAppDispatch();
+   /* const [ratingFrom, setRatingFrom] = useState(1);
+    const [ratingTo, setRatingTo] = useState(10);
+    const [yearFrom, setYearFrom] = useState(1960);
+    const [yearTo, setYearTo] = useState(2022);
+    const [genre, setGenre] = useState('Драмы');
+    const [order, setOrder] = useState();
+    const [type, setType] = useState();*/
+
+    const handleSubmit = (event: any) => {
+        dispatch(changeFiltersHandle(formData))
+        event.preventDefault();
+    }
+
+    const changeValue = (name: string) => (value: any) => {
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value,
+        }))
+    }
+
+
     return (
-        <div className={classNames(styles.filter, { [styles.filterTransform]: isShowFilters })}>
+        <form onSubmit={handleSubmit} className={classNames(styles.filter, { [styles.filterTransform]: isShowFilters })}>
 
             <FilterHeader setIsShowFilters={setIsShowFilters}/>
 
@@ -26,27 +59,40 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters }) => {
                 <Marks />
 
                 <Accordion title="Рейтинг">
-                    <RangeSlider min={1} max={10} />
+                    <RangeSlider min={1} max={10}
+                                 fromValue={formData.ratingFrom} beforeValue={formData.ratingTo}
+                                 setFromValue={changeValue('ratingFrom')}
+                                 setBeforeValue={changeValue('ratingTo')}
+                    />
                 </Accordion>
 
                 <Accordion title="Годы производства">
-                    <RangeSlider min={1960} max={2022} />
+                    <RangeSlider min={1960} max={2022}
+                                 fromValue={formData.yearFrom} beforeValue={formData.yearTo}
+                                 setFromValue={changeValue('yearFrom')}
+                                 setBeforeValue={changeValue('yearTo')}
+
+                    />
                 </Accordion>
 
                 <Accordion title="Жанры">
-                    <SelectComponent id="genres-select" title="Жанры" options={['Драмы', 'Комедии', 'Ужасы']}/>
+                    <SelectComponent id="genres-select" title="Жанры"
+                                     options={['Драмы', 'Комедии', 'Ужасы']}
+                                     value={formData.genre} setValue={changeValue('genre')}
+                     />
                 </Accordion>
 
                 <Accordion title="Сортировка">
-                    <Checkboxes />
+                    <Checkboxes value={formData.order} onChange={changeValue('order')} />
                 </Accordion>
 
                 <div className={classNames(styles.filter__buttons)}>
-                    <RedButton onClick={() => console.log('lol')}>Применить</RedButton>
+                    <RedButton type="submit">Применить</RedButton>
                     <OpacityButton onClick={() => console.log('lol')}>Сбросить</OpacityButton>
                 </div>
+
             </div>
-        </div>
+        </form>
     )
 }
 

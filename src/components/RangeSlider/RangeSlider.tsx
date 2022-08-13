@@ -2,13 +2,23 @@ import * as React from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import styles from "./RangeSlider.module.scss"
 import {TextField} from "@mui/material";
+import {Dispatch} from "react";
 
 const STEP = 1;
 
+interface RangeSlider {
+    min: number;
+    max: number;
+    setFromValue: Dispatch<React.SetStateAction<string | number>>;
+    setBeforeValue: Dispatch<React.SetStateAction<string | number>>;
+    fromValue: number;
+    beforeValue: number;
+}
 
-const RangeSlider: React.FC<any> = ({ min, max }) => {
-    const [fromValue, setFromValue] = React.useState(min);
-    const [beforeValue, setBeforeValue] = React.useState(max);
+const RangeSlider: React.FC<RangeSlider> = ({ min, max,
+                                                setFromValue, setBeforeValue,
+                                                fromValue, beforeValue
+}) => {
 
     const onChangeFromValue = (e: any) => {
         const newValue = e.target.value ? +e.target.value : '';
@@ -30,7 +40,8 @@ const RangeSlider: React.FC<any> = ({ min, max }) => {
         if (newValue === '' || newValue > max) setBeforeValue(max)
         else if (newValue < fromValue) setBeforeValue(fromValue);
     }
-    const values = [Math.min(Math.max(fromValue, min), max), Math.min(Math.max(beforeValue, fromValue), max)];
+
+    const values = [Math.min(Math.max(+fromValue, min), max), Math.min(Math.max(+beforeValue, +fromValue), max)];
     return (
         <div className={styles.rangeSlider}>
             <div className={styles.rangeSlider__fields}>

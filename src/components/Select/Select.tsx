@@ -1,5 +1,5 @@
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
-import React, {FC} from "react";
+import React, {Dispatch, FC, SetStateAction} from "react";
 import classNames from "classnames";
 import styles from "./Select.module.scss";
 
@@ -7,13 +7,13 @@ interface SelectComponentProps {
     id:string;
     title: string;
     options: string[];
+    value: number;
+    setValue: Dispatch<SetStateAction<number>>
 }
 
-const SelectComponent:FC<SelectComponentProps> = ({ id, title, options }) => {
-    const [value, setValue] = React.useState('');
-
+const SelectComponent:FC<SelectComponentProps> = ({ id, title, options, value, setValue }) => {
     const handleChange = (event: SelectChangeEvent) => {
-        setValue(event.target.value as string);
+        setValue(+event.target.value);
     };
 
     return (
@@ -22,7 +22,7 @@ const SelectComponent:FC<SelectComponentProps> = ({ id, title, options }) => {
                 <InputLabel id={id}>{title}</InputLabel>
                 <Select
                     labelId={id}
-                    value={value}
+                    value={String(value)}
                     label={title}
                     onChange={handleChange}
                 >
