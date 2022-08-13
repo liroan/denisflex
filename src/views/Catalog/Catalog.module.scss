@@ -13,13 +13,6 @@
     width: 100%;
     position: relative;
   }
-  &__filter {
-    margin-right: 60px;
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 1000px;
-  }
 }
 
 
@@ -38,26 +31,6 @@
     }*/
     &__mainInfo {
       position: static;
-    }
-    &__filter {
-      transform: translateX(-100%);
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-  }
-  .filter {
-    &__wrapper {
-      width: calc(min(460px, 90%));
-      margin: 0 auto;
-      padding: 30px 0;
-    }
-    &__buttons {
-      display: flex;
-      div {
-        width: 45%;
-      }
-      justify-content: space-between;
     }
   }
 }
