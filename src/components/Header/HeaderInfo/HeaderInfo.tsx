@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from "react";
 import styles from "./HeaderInfo.module.scss";
 import classnames from "classnames";
 import logo from "../../../assets/img/header/logo.png"
+import {Link} from "react-router-dom";
 const HeaderInfo:FC = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const PopupRef = React.useRef<HTMLDivElement>(null);
@@ -33,12 +34,12 @@ const HeaderInfo:FC = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <Link to="/catalog">
                             <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg>
                             Каталог
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <a href="">

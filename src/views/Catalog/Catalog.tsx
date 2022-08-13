@@ -5,7 +5,7 @@ import Filter from "./Filter/Filter";
 import CatalogInfo from "./CatalogInfo/CatalogInfo";
 import CatalogFilms from "./CatalogFilms/CatalogFilms";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {useGetFiltersMovieQuery} from "../../services/services";
+import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../services/services";
 import {useSearchParams} from "react-router-dom";
 import {changeFiltersFromUrl, FiltersState, initialStateFilter} from "../../store/filtersSlice";
 import * as queryString from "query-string";
@@ -15,13 +15,15 @@ const Catalog:FC = () => {
 
 
     const [isShowFilters, setIsShowFilters] = useState(false);
+    const { data: genresAndCountries, isLoading: genresAndCountriesLoading,
+        error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
 
     useEffect(() => {
         document.body.style.overflowY = isShowFilters ? "hidden" : "unset";
     }, [isShowFilters])
 
     const filters = useAppSelector(state => state.filters);
-    const { data: films, isLoading, error } = useGetFiltersMovieQuery(filters);
+    const { data: films, isFetching, error } = useGetFiltersMovieQuery(filters);
 
 
     let [searchParams, setSearchParams] = useSearchParams();
@@ -40,8 +42,6 @@ const Catalog:FC = () => {
         setSearchParams(queryString.stringify(filterWithoutInitialValue))
     }, [filters])
 
-    console.log(isLoading)
-
     return (
         <div className={styles.catalog}>
             <Container>
@@ -49,10 +49,11 @@ const Catalog:FC = () => {
                     <CatalogInfo setIsShowFilters={setIsShowFilters}/>
                     <div className={styles.catalog__mainInfo}>
                         <div className={styles.catalog__filter}>
-                            <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters} filters={filters}/>
+                            <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters}
+                                    filters={filters} genres={genresAndCountries?.genres}/>
                         </div>
                         {
-                            (isLoading || !films) ? <div>Загрузка</div> : <CatalogFilms films={films.items} />
+                            (isFetching || !films) ? <div>Загрузка</div> : <CatalogFilms films={films.items} />
                         }
                     </div>
                 </Container>

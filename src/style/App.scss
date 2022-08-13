@@ -22,6 +22,7 @@ body {
 
 div[role="presentation"] { /* стилизация выпад списка у селекта */
     z-index: 100002;
+    max-height: 300px;
     .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
       background-color: #E50914;
     }

@@ -11,14 +11,16 @@ import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
 import {changeFiltersHandle, FiltersState} from "../../../store/filtersSlice";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
+import {IGenre} from "../../../types/types";
 
 interface FilterProps {
     isShowFilters: boolean;
     setIsShowFilters: Dispatch<SetStateAction<boolean>>;
     filters: FiltersState;
+    genres?: IGenre[];
 }
 
-const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters }) => {
+const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genres }) => {
 
 
     const [formData, setFormData] = useState(filters);
@@ -48,6 +50,7 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters }) =>
         }))
     }
 
+    const genresNames = genres ? genres.map(genre => genre.genre) : [];
 
     return (
         <form onSubmit={handleSubmit} className={classNames(styles.filter, { [styles.filterTransform]: isShowFilters })}>
@@ -77,7 +80,7 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters }) =>
 
                 <Accordion title="Жанры">
                     <SelectComponent id="genres-select" title="Жанры"
-                                     options={['Драмы', 'Комедии', 'Ужасы']}
+                                     options={genresNames}
                                      value={formData.genre} setValue={changeValue('genre')}
                      />
                 </Accordion>
