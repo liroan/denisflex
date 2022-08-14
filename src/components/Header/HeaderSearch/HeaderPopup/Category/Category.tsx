@@ -1,24 +1,32 @@
 import styles from "./Category.module.scss";
 import classNames from "classnames";
-import {FC} from "react";
+import React, {FC} from "react";
+import {MovieType} from "../../../../../types/types";
 
+interface CategoryProps {
+    type: MovieType;
+    setType: React.Dispatch<React.SetStateAction<MovieType>>;
+}
 
-const Category:FC = () => {
+const movieTypes: { id: number; label: string; value: MovieType }[] = [
+    { id: 1, label: "Всё", value: "ALL" },
+    { id: 2, label: "Фильмы", value: "FILM" },
+    { id: 3, label: "Сериалы", value: "TV_SERIES" },
+    { id: 4, label: "ТВ-Шоу", value: "TV_SHOW" }
+]
+
+const Category:FC<CategoryProps> = ({ type, setType }) => {
     return (
         <div className={styles.header__category}>
             <div className={styles.header__category_buttons}>
-                <div className={classNames(styles.header__category_button)}>
-                    Всё
-                </div>
-                <div className={classNames(styles.header__category_button, styles.header__category_activeButton)}>
-                    Фильмы
-                </div>
-                <div className={styles.header__category_button}>
-                    Сериалы
-                </div>
-                <div className={styles.header__category_button}>
-                    Мультики
-                </div>
+                {
+                    movieTypes.map(({ label, value }) => (
+                        <div onClick={() => setType(value)}
+                            className={classNames(styles.header__category_button, { [styles.header__category_activeButton]: value === type })}>
+                            { label }
+                        </div>
+                    ))
+                }
             </div>
         </div>
     )
