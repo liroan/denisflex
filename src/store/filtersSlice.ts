@@ -8,7 +8,7 @@ export type SortBy = "RATING" | "NUM_VOTE" | "YEAR";
 export interface FiltersState  {
     genres: number;
     order: SortBy;
-    type: MovieType | null;
+    type: MovieType;
     ratingFrom: number;
     ratingTo: number;
     yearFrom: number;

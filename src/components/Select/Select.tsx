@@ -7,13 +7,14 @@ interface SelectComponentProps {
     id:string;
     title: string;
     options: string[];
-    value: number;
-    setValue: Dispatch<SetStateAction<number>>
+    value: number | string;
+    setValue: Dispatch<SetStateAction<number | string>>;
+    mutator: (value: string) => number | string;
 }
 
-const SelectComponent:FC<SelectComponentProps> = ({ id, title, options, value, setValue }) => {
+const SelectComponent:FC<SelectComponentProps> = ({ id, title, options, value, setValue, mutator }) => {
     const handleChange = (event: SelectChangeEvent) => {
-        setValue(+event.target.value);
+        setValue(mutator(event.target.value));
     };
 
     return (

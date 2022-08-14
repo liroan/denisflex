@@ -12,6 +12,7 @@ import FilterHeader from "./FilterHeader/FilterHeader";
 import {changeFiltersHandle, FiltersState, initialStateFilter, resetFilters} from "../../../store/filtersSlice";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {IGenre} from "../../../types/types";
+import {MovieTypeFilter} from "../../../constants/constants";
 
 interface FilterProps {
     isShowFilters: boolean;
@@ -30,13 +31,6 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genr
     }, [filters])
 
     const dispatch = useAppDispatch();
-   /* const [ratingFrom, setRatingFrom] = useState(1);
-    const [ratingTo, setRatingTo] = useState(10);
-    const [yearFrom, setYearFrom] = useState(1960);
-    const [yearTo, setYearTo] = useState(2022);
-    const [genre, setGenre] = useState('Драмы');
-    const [order, setOrder] = useState();
-    const [type, setType] = useState();*/
 
     const handleSubmit = (event: any) => {
         dispatch(changeFiltersHandle(formData))
@@ -51,6 +45,8 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genr
     }
 
     const genresNames = genres ? genres.map(genre => genre.genre) : [];
+
+    console.log(formData);
 
     return (
         <form onSubmit={handleSubmit} className={classNames(styles.filter, { [styles.filterTransform]: isShowFilters })}>
@@ -82,7 +78,16 @@ const Filter:FC<FilterProps> = ({ isShowFilters, setIsShowFilters, filters, genr
                     <SelectComponent id="genres-select" title="Жанры"
                                      options={genresNames}
                                      value={formData.genres} setValue={changeValue('genres')}
+                                     mutator={(value: string) => +value}
                      />
+                </Accordion>
+
+                <Accordion title="Тип произведения">
+                    <SelectComponent id="types-select" title="Тип произведения"
+                                     options={["все", "фильмы", "тв-шоу", "сериалы"]}
+                                     value={MovieTypeFilter.indexOf(formData.type)} setValue={changeValue('type')}
+                                     mutator={(value: string) => MovieTypeFilter[+value]}
+                    />
                 </Accordion>
 
                 <Accordion title="Сортировка">

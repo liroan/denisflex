@@ -1,6 +1,7 @@
 import styles from "./Marks.module.scss";
 import React, {FC} from "react";
 import {FiltersState, SortBy} from "../../../../store/filtersSlice";
+import {MovieTypeDict, MovieTypeFilter} from "../../../../constants/constants";
 
 interface MarksProps {
     filters: FiltersState;
@@ -21,6 +22,7 @@ const sortByDict: ISortByDict = {
 const Marks:FC<MarksProps> = ({ filters, genresNames }) => {
     return (
         <div className={styles.filter__info}>
+            <div className={styles.filter__mark}>Тип произведения: { MovieTypeDict[filters.type] }</div>
             <div className={styles.filter__mark}>Рейтинг: {filters.ratingFrom} - {filters.ratingTo}</div>
             <div className={styles.filter__mark}>Года производства: {filters.yearFrom} -  {filters.yearTo}</div>
             <div className={styles.filter__mark}>Жанр: {genresNames[filters.genres]}</div>
