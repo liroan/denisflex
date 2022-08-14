@@ -42,7 +42,8 @@ export const filterSlice = createSlice({
         changeFiltersHandle: (state, action: PayloadAction<Partial<FiltersState>>) => {
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
+                page: 1
             };
         },
         resetFilters: (state) => {

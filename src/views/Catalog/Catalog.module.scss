@@ -13,6 +13,9 @@
     width: 100%;
     position: relative;
   }
+  &__filter {
+    margin-right: 60px;
+  }
 }
 
 
@@ -31,6 +34,9 @@
     }*/
     &__mainInfo {
       position: static;
+    }
+    &__filter {
+      margin-right: 0;
     }
   }
 }

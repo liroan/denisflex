@@ -1,5 +1,27 @@
 
 
 .films {
+    width: 100%;
     overflow-x: hidden;
+    &__paginator {
+        width: 640px;
+        margin: 30px auto;
+    }
+}
+
+
+@media screen and (max-width: 700px ){
+    .films {
+        &__paginator {
+            width: 310px;
+        }
+    }
+}
+
+@media screen and (max-width: 350px ){
+    .films {
+        &__paginator {
+            width: 240px;
+        }
+    }
 }

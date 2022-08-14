@@ -4,6 +4,7 @@
   padding: 25px;
   display: flex;
   justify-content: space-between;
+  position: relative;
   &__poster {
     margin-right: 25px;
     img {
@@ -89,5 +90,63 @@
     font-weight: 600;
     margin-right: 25px;
     color: #00a340;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .film {
+    padding-left: 0;
+    border-top: 1px solid transparent;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .film {
+    padding: 25px 0;
+    &__additionalInfo {
+      position: absolute;
+      right: 10px;
+      top: 25px;
+      margin-left: 0;
+      button {
+        min-width: 45px;
+        max-width: 45px;
+        height: 30px;
+        span:first-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &__rating {
+      margin-right: 10px;
+    }
+    &__title {
+      margin-right: 100px;
+    }
+    &__textButton {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .film {
+    &__poster {
+      margin-right: 15px;
+      img {
+        width: 50px;
+        height: 80px;
+      }
+    }
+    &__descr {
+      display: none;
+    }
+    &__rating {
+      font-size: 14px;
+    }
+    &__title {
+      margin-right: 100px;
+      font-size: 14px;
+    }
   }
 }

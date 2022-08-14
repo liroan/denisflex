@@ -22,7 +22,7 @@ const CatalogFilms:FC<CatalogFilmsProps> = ({ filmsResponse,isFetching  }) => {
                                  nameOriginal={nameOriginal} year={year} ratingKinopoisk={ratingKinopoisk} ratingImdb={ratingImdb}/>
                 ))
             }
-            <Paginator totalPages={filmsResponse?.totalPages} />
+            <div className={styles.films__paginator}><Paginator totalPages={filmsResponse?.totalPages} /></div>
         </div>
     )
 }

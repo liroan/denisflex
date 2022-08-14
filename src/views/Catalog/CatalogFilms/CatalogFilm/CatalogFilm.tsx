@@ -45,13 +45,13 @@ const CatalogFilm:FC<CatalogFilmProps> = ({ posterUrl,ratingImdb, nameRu, nameEn
                     !isFavourite ? (
                         <div className={styles.film__addFavourites}>
                             <Button variant="contained" startIcon={favouritesIcon} onClick={() => setIsFavourite(true)}>
-                                Буду смотреть
+                                <span className={styles.film__textButton}>Буду смотреть</span>
                             </Button>
                         </div>
                     ) : (
                         <div className={styles.film__deleteFavourites}>
                             <Button variant="contained" startIcon={checkMarkIcon} onClick={() => setIsFavourite(false)}>
-                                Буду смотреть
+                                <span className={styles.film__textButton}>Буду смотреть</span>
                             </Button>
                         </div>
                     )
