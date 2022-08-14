@@ -2,22 +2,27 @@ import classNames from "classnames";
 import styles from "./CatalogFilms.module.scss";
 import React, {FC} from "react";
 import CatalogFilm from "./CatalogFilm/CatalogFilm";
-import {IMoviePreview} from "../../../types/types";
+import {IFilmSearchByFiltersResponse, IMoviePreview} from "../../../types/types";
+import Paginator from "../Paginator/Paginator";
+import CatalogPreloader from "../CatalogPreloader/CatalogPreloader";
 
 interface CatalogFilmsProps {
-    films: IMoviePreview[];
+    filmsResponse?: IFilmSearchByFiltersResponse;
+    isFetching: boolean;
 }
+const totalPages = 13;
 
-
-const CatalogFilms:FC<CatalogFilmsProps> = ({ films }) => {
+const CatalogFilms:FC<CatalogFilmsProps> = ({ filmsResponse,isFetching  }) => {
+    const films = filmsResponse?.items;
     return (
         <div className={styles.films}>
-            {
+            { (isFetching || !films) ? <CatalogPreloader /> :
                 films.map(({posterUrl, nameRu, nameEn, nameOriginal, year, ratingKinopoisk, ratingImdb}) => (
                     <CatalogFilm posterUrl={posterUrl} nameRu={nameRu} nameEn={nameEn}
                                  nameOriginal={nameOriginal} year={year} ratingKinopoisk={ratingKinopoisk} ratingImdb={ratingImdb}/>
                 ))
             }
+            <Paginator totalPages={filmsResponse?.totalPages} />
         </div>
     )
 }

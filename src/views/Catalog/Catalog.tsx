@@ -23,14 +23,14 @@ const Catalog:FC = () => {
     }, [isShowFilters])
 
     const filters = useAppSelector(state => state.filters);
-    const { data: films, isFetching, error } = useGetFiltersMovieQuery(filters);
+    const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters);
 
 
     let [searchParams, setSearchParams] = useSearchParams();
 
     const params: Partial<FiltersState> = {};
     searchParams.forEach((value, key) => { // @ts-ignore
-        params[key] = value;
+        params[key] = +value ? +value : value;
     });
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -53,9 +53,7 @@ const Catalog:FC = () => {
                             <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters}
                                     filters={filters} genres={genres}/>
                         </div>
-                        {
-                            (isFetching || !films) ? <CatalogPreloader /> : <CatalogFilms films={films.items} />
-                        }
+                        <CatalogFilms filmsResponse={filmsResponse} isFetching={isFetching} />
                     </div>
                 </Container>
             </Container>

@@ -50,10 +50,13 @@ export const filterSlice = createSlice({
             return {
                 ...initialStateFilter
             };
+        },
+        setPage: (state, action: PayloadAction<Partial<number>>) => {
+            state.page = action.payload;
         }
     },
 })
 
-export const { changeFiltersHandle, changeFiltersFromUrl, resetFilters } = filterSlice.actions;
+export const { changeFiltersHandle, changeFiltersFromUrl, resetFilters, setPage } = filterSlice.actions;
 
 export default filterSlice.reducer;

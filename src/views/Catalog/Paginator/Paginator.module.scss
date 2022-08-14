@@ -1,0 +1,46 @@
+
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 620px;
+  margin: 30px auto;
+  &__arrow {
+    display: flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    svg {
+      cursor: pointer;
+    }
+    &:first-child {
+      margin-right: 40px;
+    }
+    &:last-child {
+      margin-left: 20px;
+      transform: rotate(180deg);
+    }
+  }
+  & div {
+    margin-right: 20px;
+  }
+  &__button {
+    button {
+      transition: 0.3s ease-out;
+      border: none;
+      background: #333;
+      width: 80px;
+      padding: 10px;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 20px;
+    }
+    &_active {
+      button {
+        width: 120px;
+        background: #E50914;
+        box-shadow: 0 5px 5px -5px rgb(255 64 129 / 15%), 0 10px 10px -5px rgb(255 64 129 / 15%), 0 15px 15px -5px rgb(255 64 129 / 15%), 0 20px 20px -5px rgb(255 64 129 / 15%);
+      }
+    }
+  }
+}
