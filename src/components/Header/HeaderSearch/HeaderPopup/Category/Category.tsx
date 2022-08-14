@@ -7,6 +7,9 @@ const Category:FC = () => {
     return (
         <div className={styles.header__category}>
             <div className={styles.header__category_buttons}>
+                <div className={classNames(styles.header__category_button)}>
+                    Всё
+                </div>
                 <div className={classNames(styles.header__category_button, styles.header__category_activeButton)}>
                     Фильмы
                 </div>

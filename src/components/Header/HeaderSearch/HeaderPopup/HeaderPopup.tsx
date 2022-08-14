@@ -10,12 +10,12 @@ const films = [
 ]
 
 interface HeaderPopupProps {
-    isOpenSearchPopup: boolean;
+
 }
 
-const HeaderPopup:FC<HeaderPopupProps> = ({ isOpenSearchPopup }) => {
+const HeaderPopup:FC<HeaderPopupProps> = () => {
     return (
-        <div className={classNames(styles.header__searchPopup, { [styles.header__searchPopup_open]: isOpenSearchPopup })}>
+        <div className={classNames(styles.header__searchPopup)}>
             <Category />
             <FilmsPopup movies={films} />
             <div className={styles.header__showAll}>
