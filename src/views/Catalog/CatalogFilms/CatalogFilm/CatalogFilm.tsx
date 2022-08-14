@@ -33,7 +33,7 @@ const CatalogFilm:FC<CatalogFilmProps> = ({ posterUrl,ratingImdb, nameRu, nameEn
                     <h3 className={styles.film__title}>{ nameRu || nameEn || nameOriginal }</h3>
                     <h4 className={styles.film__time}>{ year }</h4>
                     <p className={styles.film__descr}>
-                        Описание отсутсвует. Нажмите на фильм и перейдите на него, чтобы увидеть подробную информацию о нем
+                        Описание недоступно. Нажмите на фильм и перейдите на него, чтобы увидеть подробную информацию о нем
                     </p>
                 </div>
             </div>

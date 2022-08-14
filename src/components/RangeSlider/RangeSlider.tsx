@@ -13,29 +13,32 @@ interface RangeSlider {
     setBeforeValue: Dispatch<React.SetStateAction<string | number>>;
     fromValue: number;
     beforeValue: number;
+    idFirstField: string;
+    idSecondField: string;
 }
 
 const RangeSlider: React.FC<RangeSlider> = ({ min, max,
                                                 setFromValue, setBeforeValue,
-                                                fromValue, beforeValue
+                                                fromValue, beforeValue,
+                                                idFirstField,idSecondField
 }) => {
 
-    const onChangeFromValue = (e: any) => {
+    const onChangeFromValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value ? +e.target.value : '';
         if (newValue !== '' && newValue < 1) setFromValue(min);
         else if (newValue !== '' && newValue > beforeValue) setFromValue(beforeValue);
         else setFromValue(newValue);
     }
-    const onBlurFromValue = (e: any) => {
+    const onBlurFromValue = (e: React.FocusEvent<HTMLInputElement>) => {
         const newValue = e.target.value ? +e.target.value : '';
         if (newValue === '' || newValue < min) setFromValue(min)
         else if (newValue > beforeValue) setFromValue(beforeValue);
     }
-    const onChangeBeforeValue = (e: any) => {
+    const onChangeBeforeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value ? +e.target.value : '';
         setBeforeValue(newValue);
     }
-    const onBlurBeforeValue = (e: any) => {
+    const onBlurBeforeValue = (e: React.FocusEvent<HTMLInputElement>) => {
         const newValue = e.target.value ? +e.target.value : '';
         if (newValue === '' || newValue > max) setBeforeValue(max)
         else if (newValue < fromValue) setBeforeValue(fromValue);
@@ -47,7 +50,7 @@ const RangeSlider: React.FC<RangeSlider> = ({ min, max,
             <div className={styles.rangeSlider__fields}>
                 <div className={styles.rangeSlider__input}>
                     <TextField
-                        id="outlined-number"
+                        id={idFirstField}
                         label="От"
                         type="number"
                         InputLabelProps={{
@@ -60,7 +63,7 @@ const RangeSlider: React.FC<RangeSlider> = ({ min, max,
                 </div>
                 <div className={styles.rangeSlider__input}>
                     <TextField
-                        id="outlined-number2"
+                        id={idSecondField}
                         label="До"
                         type="number"
                         InputLabelProps={{

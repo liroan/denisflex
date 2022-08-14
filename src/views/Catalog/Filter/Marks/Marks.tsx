@@ -8,11 +8,8 @@ interface MarksProps {
     genresNames: string[];
 }
 
-type ISortByDict = {
-    [key in SortBy]: string;
-};
 
-const sortByDict: ISortByDict = {
+const sortByDict: { [key in SortBy]: string; } = {
     "RATING": "по рейтингу",
     "NUM_VOTE": "по голосам",
     "YEAR": "по дате выхода"

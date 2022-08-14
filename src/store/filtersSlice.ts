@@ -34,7 +34,6 @@ export const filterSlice = createSlice({
     initialState: initialStateFilter,
     reducers: {
         changeFiltersFromUrl: (state, action: PayloadAction<Partial<FiltersState>>) => {
-            console.log('lol')
             return {
                 ...initialStateFilter,
                 ...action.payload

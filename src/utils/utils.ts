@@ -11,13 +11,11 @@ export const getDataWindow = (): { width: number, height: number } => {
 }
 
 
-export const removeInitialFilter = (object: FiltersState): Partial<FiltersState> => {
-    return Object.fromEntries(Object.entries(object).filter(p => {
-        // @ts-ignore
-        console.log(p[0], p[0] == "genres", p[1] === 0)
-        if (p[0] == "genres" && p[1] === 0) return false;
-        // @ts-ignore
-        return p[1] != initialStateFilter[p[0]] && initialStateFilter[p[0]] !== undefined;
+
+export const removeInitialFilter = (filtersState: FiltersState): Partial<FiltersState> => {
+    return Object.fromEntries(Object.entries(filtersState).filter(([key, value]) => {
+        if (key == "genres" && value === 0) return false;
+        return value != initialStateFilter[key as keyof FiltersState] && initialStateFilter[key as keyof FiltersState] !== undefined;
     }))
 }
 

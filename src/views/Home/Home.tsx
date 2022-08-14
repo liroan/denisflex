@@ -13,7 +13,6 @@ const Home = () => {
     const { data: bestFilms, isLoading: bestFilmsLoading, error: bestFilmsError } = useGetCompilationMoviesQuery("TOP_250_BEST_FILMS");
     const { data: awaitFilms, isLoading: awaitFilmsLoading, error: awaitFilmsError } = useGetCompilationMoviesQuery("TOP_AWAIT_FILMS");
 
-    console.log(genresAndCountries?.genres?.slice(0, 16), popularFilms?.films, bestFilms?.films, awaitFilms?.films)
 
     return (
         <div className={styles.home}>

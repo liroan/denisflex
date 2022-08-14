@@ -4,44 +4,48 @@ import Container from "../../components/Container/Container";
 import Filter from "./Filter/Filter";
 import CatalogInfo from "./CatalogInfo/CatalogInfo";
 import CatalogFilms from "./CatalogFilms/CatalogFilms";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {useAppDispatch, useAppSelector, useSizeWindow} from "../../hooks/hooks";
 import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../services/services";
 import {useSearchParams} from "react-router-dom";
-import {changeFiltersFromUrl, FiltersState, initialStateFilter} from "../../store/filtersSlice";
+import {changeFiltersFromUrl, FiltersState } from "../../store/filtersSlice";
 import * as queryString from "query-string";
 import {removeInitialFilter} from "../../utils/utils";
-import CatalogPreloader from "./CatalogPreloader/CatalogPreloader";
+import {IGenre} from "../../types/types";
+
+
 
 const Catalog:FC = () => {
 
-
     const [isShowFilters, setIsShowFilters] = useState(false);
-    const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
-
-    useEffect(() => {
-        document.body.style.overflowY = isShowFilters ? "hidden" : "unset";
-    }, [isShowFilters])
-
+    const [genresWithAllGenres, setGenresWithAllGenres] = useState<IGenre[]>([]);
+    const [searchParams, setSearchParams] = useSearchParams();
     const filters = useAppSelector(state => state.filters);
+    const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
     const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters);
-
-
-    let [searchParams, setSearchParams] = useSearchParams();
-
-    const params: Partial<FiltersState> = {};
-    searchParams.forEach((value, key) => { // @ts-ignore
-        params[key] = +value ? +value : value;
-    });
     const dispatch = useAppDispatch();
-    useEffect(() => {
+
+
+    useEffect(() => { // парсим параметры из браузерной строки в стэйт
+        const params: Partial<FiltersState> = {};
+        searchParams.forEach((value, key) => {
+            // @ts-ignore
+            params[key as keyof FiltersState] = +value ? +value : value;
+        });
         dispatch(changeFiltersFromUrl(params));
-    }, [])
-    useEffect(() => {
+    }, [searchParams])
+
+    useEffect(() => {  // данные из state засовываем в фильтры
         const filterWithoutInitialValue = removeInitialFilter(filters);
         setSearchParams(queryString.stringify(filterWithoutInitialValue))
     }, [filters])
 
-    const genres = genresAndCountries && [{ id: 76756, genre: "Все жанры" }, ...genresAndCountries?.genres];
+    useEffect(() => { // добавляет к жанрам еще один жанр "Все жанры"
+        if (genresAndCountries) {
+            const allGenres: IGenre =  { id: genresAndCountries.genres[genresAndCountries.genres.length - 1].id + 1,genre: "Все жанры" }
+            setGenresWithAllGenres([allGenres, ...genresAndCountries.genres])
+        }
+    }, [genresAndCountries])
+
 
     return (
         <div className={styles.catalog}>
@@ -51,7 +55,7 @@ const Catalog:FC = () => {
                     <div className={styles.catalog__mainInfo}>
                         <div className={styles.catalog__filter}>
                             <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters}
-                                    filters={filters} genres={genres}/>
+                                    filters={filters} genres={genresWithAllGenres}/>
                         </div>
                         <CatalogFilms filmsResponse={filmsResponse} isFetching={isFetching} />
                     </div>

@@ -6,15 +6,10 @@ export const API_KEY = "dcdbea88-8c9c-4f9c-9ef4-bc55c1597048";
 export const API_URL = "https://kinopoiskapiunofficial.tech/api/";
 
 
-export const MovieTypeFilter = ["ALL", "FILM", "TV_SHOW", "TV_SERIES"];
+export const MovieTypeFilter: MovieType[] = ["ALL", "FILM", "TV_SHOW", "TV_SERIES"];
 
 
-
-type IMovieTypeDict = {
-    [key in MovieType]: string;
-};
-
-export const MovieTypeDict: IMovieTypeDict = {
+export const MovieTypeDict: { [key in MovieType]: string; } = {
     "ALL": 'все',
     "FILM": 'фильмы',
     "TV_SHOW": 'тв-шоу',

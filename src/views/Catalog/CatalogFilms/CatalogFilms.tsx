@@ -10,7 +10,7 @@ interface CatalogFilmsProps {
     filmsResponse?: IFilmSearchByFiltersResponse;
     isFetching: boolean;
 }
-const totalPages = 13;
+
 
 const CatalogFilms:FC<CatalogFilmsProps> = ({ filmsResponse,isFetching  }) => {
     const films = filmsResponse?.items;

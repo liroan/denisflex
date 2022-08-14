@@ -6,12 +6,13 @@ interface OpacityButtonProps {
     onClick: () => void;
     startIcon?: React.ReactNode;
     children?: React.ReactNode;
+    type: "button" | "submit" | "reset" | undefined;
 }
 
-const OpacityButton:FC<OpacityButtonProps> = ({ onClick, startIcon, children }) => {
+const OpacityButton:FC<OpacityButtonProps> = ({ onClick, startIcon, type, children }) => {
     return (
         <div className={styles.opacityButton}>
-            <Button variant="contained" startIcon={startIcon} onClick={onClick}>
+            <Button variant="contained" startIcon={startIcon} onClick={onClick} type={type}>
                 { children }
             </Button>
         </div>

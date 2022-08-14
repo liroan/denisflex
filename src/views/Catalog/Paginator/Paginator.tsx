@@ -42,9 +42,7 @@ const Paginator:FC<PaginatorProps> = ({ totalPages }) => {
         if (activeNumber === 1) return;
         setActiveNumber(activeNumber - 1);
     }
-    buttons.forEach((_, i) => {
-        console.log(startNumber)
-    })
+
 
     return (
         <div className={styles.paginator}>

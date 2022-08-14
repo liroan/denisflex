@@ -12,7 +12,6 @@ const Header:FC = () => {
     useEffect(() => {
         const checkScrolled = () => {
             setScrolledUp(window.scrollY - prevScrollY <= 0);
-            console.log(window.scrollY - prevScrollY <= 0)
             setPrevScrollY(window.scrollY);
         }
         window.addEventListener('scroll', checkScrolled);

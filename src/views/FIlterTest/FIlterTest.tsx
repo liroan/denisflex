@@ -15,7 +15,6 @@ const FilterTest = () => {
     const filters = useAppSelector(state => state.filters);
     useEffect(() => {
         dispatch(changeFiltersFromUrl(params));
-        console.log(params)
     }, [])
     useEffect(() => {
         const newFilters = Object.fromEntries(Object.entries(filters).filter(filter => filter[1] !== null));
