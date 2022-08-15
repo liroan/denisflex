@@ -1,10 +1,11 @@
-import styles from "../HeaderPopup.module.scss";
+import styles from "./FilmsPopup.module.scss";
 import {FC} from "react";
 import FilmPopup from "./FilmPopup/FilmPopup";
 import EmptyFilms from "./EmptyFilms/EmptyFilms";
 import {IMoviePreview, MovieType} from "../../../../../types/types";
 import {useGetFiltersMovieQuery} from "../../../../../services/services";
 import {initialStateFilter} from "../../../../../store/filtersSlice";
+import FilmsPopupPreloader from "../FilmsPopupPreloader/FilmsPopupPreloader";
 
 interface FilmsPopupProps {
     type: MovieType;
@@ -12,9 +13,9 @@ interface FilmsPopupProps {
 }
 
 const FilmsPopup:FC<FilmsPopupProps> = ({ type, valueSearch }) => {
-    const { data: movies, isFetching, error } = useGetFiltersMovieQuery({ ...initialStateFilter, type, keyword: valueSearch })
-    if (isFetching) return <div>Загрузка...</div>
-    if (!movies || movies.total === 0 || error) return <EmptyFilms />
+    const { data: movies, isFetching, error, isLoading } = useGetFiltersMovieQuery({ ...initialStateFilter, type, keyword: valueSearch })
+    if (isFetching) return <FilmsPopupPreloader />
+    if (!movies || movies.total === 0 || error) return <EmptyFilms>По вашему запросу ничего не найдено</EmptyFilms>
     return (
         <div className={styles.header__filmsContent}>
             <div className={styles.header__filmsContent_noEmpty}>

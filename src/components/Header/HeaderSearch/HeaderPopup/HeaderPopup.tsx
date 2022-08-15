@@ -7,6 +7,8 @@ import {useGetFiltersMovieQuery} from "../../../../services/services";
 import {MovieType} from "../../../../types/types";
 import {initialStateFilter} from "../../../../store/filtersSlice";
 import {Link} from "react-router-dom";
+import FilmsPopupPreloader from "./FilmsPopupPreloader/FilmsPopupPreloader";
+import EmptyFilms from "./FilmsPopup/EmptyFilms/EmptyFilms";
 const films = [
     {id: 1, img: "https://st.kp.yandex.net/images/film_big/4961816.jpg", name: "Джери и Марша играют по крупному", year: 2022, minutes: 96},
     {id: 1, img: "https://st.kp.yandex.net/images/film_big/4961816.jpg", name: "Джери и Марша играют по крупному", year: 2022, minutes: 96},
@@ -24,7 +26,7 @@ const HeaderPopup:FC<HeaderPopupProps> = React.memo(({ valueSearch }) => {
     return (
         <div className={classNames(styles.header__searchPopup)}>
             <Category type={type} setType={setType} />
-            { valueSearch && <FilmsPopup type={type} valueSearch={valueSearch} /> }
+            { valueSearch ? <FilmsPopup type={type} valueSearch={valueSearch} /> : <EmptyFilms>Фильмы будут загружены после того, как вы перестанете вводить</EmptyFilms>}
             <div className={styles.header__showAll}>
                 <Link to={`/catalog?type=${type}&keyword=${valueSearch}`}>Показать всё</Link>
             </div>

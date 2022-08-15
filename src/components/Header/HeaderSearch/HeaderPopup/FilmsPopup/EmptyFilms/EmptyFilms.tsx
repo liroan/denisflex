@@ -1,11 +1,15 @@
 import styles from "./EmptyFilms.module.scss";
-import {FC} from "react";
+import React, {FC} from "react";
 
 
-const EmptyFilms:FC = () => {
+interface EmptyFilmsProps {
+    children?: React.ReactNode | string;
+}
+
+const EmptyFilms:FC<EmptyFilmsProps> = ({ children }) => {
     return (
         <div className={styles.header__filmsContent_empty}>
-            По вашему запросу ничего не найдено
+            { children }
         </div>
     )
 }
