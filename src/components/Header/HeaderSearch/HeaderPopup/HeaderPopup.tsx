@@ -17,21 +17,23 @@ const films = [
 
 interface HeaderPopupProps {
     valueSearch: string;
+    type: MovieType;
+    setType: React.Dispatch<React.SetStateAction<MovieType>>;
+    closeSearchPopup: () => void;
 }
 
-const HeaderPopup:FC<HeaderPopupProps> = React.memo(({ valueSearch }) => {
+const HeaderPopup:FC<HeaderPopupProps> = ({ valueSearch, type, setType, closeSearchPopup }) => {
 
-    const [type, setType] = useState<MovieType>("ALL");
 
     return (
         <div className={classNames(styles.header__searchPopup)}>
             <Category type={type} setType={setType} />
             { valueSearch ? <FilmsPopup type={type} valueSearch={valueSearch} /> : <EmptyFilms>Фильмы будут загружены после того, как вы перестанете вводить</EmptyFilms>}
             <div className={styles.header__showAll}>
-                <Link to={`/catalog?type=${type}&keyword=${valueSearch}`}>Показать всё</Link>
+                <Link to={`/catalog?type=${type}&keyword=${valueSearch}`} onClick={closeSearchPopup}>Показать всё</Link>
             </div>
         </div>
     )
-})
+}
 
 export default HeaderPopup;
