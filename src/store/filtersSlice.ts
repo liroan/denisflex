@@ -20,7 +20,7 @@ export interface FiltersState  {
 export const initialStateFilter: FiltersState = {
     genres: 0,
     order: "RATING",
-    type: "FILM",
+    type: "ALL",
     ratingFrom: 1,
     ratingTo: 10,
     yearFrom: 1900,

@@ -51,7 +51,7 @@ const Catalog:FC = () => {
         <div className={styles.catalog}>
             <Container>
                 <Container>
-                    <CatalogInfo setIsShowFilters={setIsShowFilters}/>
+                    <CatalogInfo setIsShowFilters={setIsShowFilters} keyword={filters.keyword}/>
                     <div className={styles.catalog__mainInfo}>
                         <div className={styles.catalog__filter}>
                             <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters}
