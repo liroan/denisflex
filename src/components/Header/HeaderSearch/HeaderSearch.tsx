@@ -18,16 +18,19 @@ const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput}) => {
 
     const editValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         clearTimeout(timeoutId);
+        setIsOpenSearchPopup(true)
         setTimeoutId(setTimeout(() => {
             setValueSearch(myRef?.current?.value || "");
-            setIsOpenSearchPopup(!!myRef?.current?.value)
+            if (!myRef?.current?.value) setIsOpenSearchPopup(false)
         }, 1000))
     }
 
 
     return (
         <div className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
-            <HeaderField editValue={editValue} setIsOpenInput={setIsOpenInput} myRef={myRef}/>
+            <HeaderField editValue={editValue} setIsOpenInput={setIsOpenInput}
+                         myRef={myRef} setIsOpenSearchPopup={setIsOpenSearchPopup}
+                         setValueSearch={setValueSearch} />
             { isOpenSearchPopup && <HeaderPopup valueSearch={valueSearch} /> }
         </div>
     )

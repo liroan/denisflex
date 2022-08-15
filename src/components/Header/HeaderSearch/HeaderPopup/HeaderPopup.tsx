@@ -21,14 +21,10 @@ const HeaderPopup:FC<HeaderPopupProps> = React.memo(({ valueSearch }) => {
 
     const [type, setType] = useState<MovieType>("ALL");
 
-    const { data: films, isFetching } = useGetFiltersMovieQuery({ ...initialStateFilter, type, keyword: valueSearch })
-    console.log(films)
     return (
         <div className={classNames(styles.header__searchPopup)}>
             <Category type={type} setType={setType} />
-            {
-                (isFetching || !films) ? <div>Загрузка...</div> : <FilmsPopup movies={films.items}/>
-            }
+            { valueSearch && <FilmsPopup type={type} valueSearch={valueSearch} /> }
             <div className={styles.header__showAll}>
                 <Link to={`/catalog?type=${type}&keyword=${valueSearch}`}>Показать всё</Link>
             </div>
