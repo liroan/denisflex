@@ -18,7 +18,8 @@ const Header:FC = () => {
         }
         window.addEventListener('scroll', checkScrolled);
         return () => window.removeEventListener('scroll', checkScrolled)
-    }, [prevScrollY, ])
+    }, [prevScrollY])
+
     return (
         <header className={classNames(styles.header, styles.app__header,
             {[styles.app__header_scrolled]: !scrolledUp && prevScrollY !== 0, [styles.app__header_started]: prevScrollY === 0 })}>

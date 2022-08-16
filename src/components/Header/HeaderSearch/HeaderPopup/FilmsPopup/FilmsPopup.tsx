@@ -9,11 +9,11 @@ import FilmsPopupPreloader from "../FilmsPopupPreloader/FilmsPopupPreloader";
 
 interface FilmsPopupProps {
     type: MovieType;
-    valueSearch: string;
+    queryKeyword: string;
 }
 
-const FilmsPopup:FC<FilmsPopupProps> = ({ type, valueSearch }) => {
-    const { data: movies, isFetching, error, isLoading } = useGetFiltersMovieQuery({ ...initialStateFilter, type, keyword: valueSearch })
+const FilmsPopup:FC<FilmsPopupProps> = ({ type, queryKeyword }) => {
+    const { data: movies, isFetching, error, isLoading } = useGetFiltersMovieQuery({ ...initialStateFilter, type, keyword: queryKeyword })
     if (isFetching) return <FilmsPopupPreloader />
     if (!movies || movies.total === 0 || error) return <EmptyFilms>По вашему запросу ничего не найдено</EmptyFilms>
     return (

@@ -1,8 +1,12 @@
 import styles from "./HeaderLogin.module.scss";
-import {FC} from "react";
+import React, {FC, RefObject} from "react";
 
+interface HeaderLoginProps {
+    setIsOpenInput: React.Dispatch<React.SetStateAction<boolean>>;
+    openInputIconRef: RefObject<HTMLDivElement>;
+}
 
-const HeaderLogin:FC<any> = ({ setIsOpenInput, openInputIconRef }) => {
+const HeaderLogin:FC<HeaderLoginProps> = ({ setIsOpenInput, openInputIconRef }) => {
     return (
         <div className={styles.header__loginStatus}>
             <p>Войти</p>

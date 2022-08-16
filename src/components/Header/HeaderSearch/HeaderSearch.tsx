@@ -12,48 +12,60 @@ interface HeaderSearchProps {
     openInputIconRef: RefObject<HTMLDivElement>;
 }
 
+
 const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openInputIconRef}) => {
+
     const [isOpenSearchPopup, setIsOpenSearchPopup] = useState(false);
-    const [valueSearch, setValueSearch] = useState<string>('');
+    const [inputKeyword, setInputKeyword] = useState('');
+    const [queryKeyword, setQueryKeyword] = useState('');
     const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | undefined>();
     const [type, setType] = useState<MovieType>("ALL");
-    const myRef = useRef<HTMLInputElement>()
-    const PopupSearch = useRef<HTMLDivElement>(null);
+    const popupSearchRef = useRef<HTMLDivElement>(null);
 
-    const editValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        clearTimeout(timeoutId);
+    const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        setInputKeyword(value)
         setIsOpenSearchPopup(true)
+        setIsOpenInput(true)
+        clearTimeout(timeoutId);
+
         setTimeoutId(setTimeout(() => {
-            setValueSearch(myRef?.current?.value || "");
-            if (!myRef?.current?.value) setIsOpenSearchPopup(false)
+            setQueryKeyword(value);
+            if (!value) setIsOpenSearchPopup(false)
         }, 1000))
     }
 
     useEffect(() => {
-        const closeOpenMenu = (e: any) => {
-            if (PopupSearch.current && !e.path.includes(PopupSearch.current) && !e.path.includes(openInputIconRef.current)) {
-                setIsOpenSearchPopup(false);
-                setIsOpenInput(false);
+        const closeOpenMenu = (e: MouseEvent) => {
+            const event = e as MouseEvent & { path: Node[]; };
+            if (popupSearchRef.current && openInputIconRef.current &&
+                !event.path.includes(popupSearchRef.current) && !event.path.includes(openInputIconRef.current)) {
+                closePopupWithSaveKeyword();
             }
         }
         window.addEventListener('click', closeOpenMenu);
         return () => window.removeEventListener('click', closeOpenMenu);
     }, [])
 
-    const closeSearchPopup = () => {
-        if (myRef?.current?.value) myRef.current.value = '';
-        setIsOpenSearchPopup(false)
-        setValueSearch('')
-        setIsOpenInput(false)
+    const closePopupWithDeleteKeyword = () => {
+        closePopupWithSaveKeyword();
+        setQueryKeyword('');
+        setInputKeyword('');
+    }
+
+    const closePopupWithSaveKeyword = () => {
+        setIsOpenSearchPopup(false);
+        setIsOpenInput(false);
     }
 
     return (
-        <div ref={PopupSearch} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
-            <HeaderField editValue={editValue} setIsOpenInput={setIsOpenInput}
-                         myRef={myRef} setIsOpenSearchPopup={setIsOpenSearchPopup}
-                         valueSearch={valueSearch} closeSearchPopup={closeSearchPopup} type={type}
+        <div ref={popupSearchRef} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
+            <HeaderField onChangeKeyword={onChangeKeyword} setIsOpenInput={setIsOpenInput} setIsOpenSearchPopup={setIsOpenSearchPopup}
+                         queryKeyword={queryKeyword} closePopupWithDeleteKeyword={closePopupWithDeleteKeyword} type={type}
+                         inputKeyword={inputKeyword}
             />
-            { isOpenSearchPopup && <HeaderPopup valueSearch={valueSearch} type={type} setType={setType} closeSearchPopup={closeSearchPopup}/> }
+            { isOpenSearchPopup && <HeaderPopup queryKeyword={queryKeyword} type={type} setType={setType}
+                                                closePopupWithDeleteKeyword={closePopupWithDeleteKeyword}/> }
         </div>
     )
 }
