@@ -34,7 +34,7 @@ const Catalog:FC = () => {
         dispatch(changeFiltersFromUrl(params));
     }, [searchParams])
 
-    useEffect(() => {  // данные из state засовываем в фильтры
+    useEffect(() => {  // данные из state засовываем в строку
         const filterWithoutInitialValue = removeInitialFilter(filters);
         setSearchParams(queryString.stringify(filterWithoutInitialValue))
     }, [filters])

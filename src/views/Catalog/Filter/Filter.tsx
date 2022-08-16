@@ -37,12 +37,12 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
 
     const dispatch = useAppDispatch();
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         dispatch(changeFiltersHandle(formData))
         event.preventDefault();
     }
 
-    const changeValue = (name: string) => (value: any) => {
+    const changeValue = (name: string) => (value: string | number) => {
         setFormData(prevState => ({
             ...prevState,
             [name]: value,

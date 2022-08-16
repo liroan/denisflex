@@ -8,7 +8,7 @@ interface SelectComponentProps {
     title: string;
     options: string[];
     value: number | string;
-    setValue: Dispatch<SetStateAction<number | string>>;
+    setValue: (value: string | number) => void;
     mutator: (value: string) => number | string;
 }
 

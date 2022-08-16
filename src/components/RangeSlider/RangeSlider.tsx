@@ -9,8 +9,8 @@ const STEP = 1;
 interface RangeSlider {
     min: number;
     max: number;
-    setFromValue: Dispatch<React.SetStateAction<string | number>>;
-    setBeforeValue: Dispatch<React.SetStateAction<string | number>>;
+    setFromValue: (value: string | number) => void;
+    setBeforeValue: (value: string | number) => void;
     fromValue: number;
     beforeValue: number;
     idFirstField: string;

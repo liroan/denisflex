@@ -13,7 +13,7 @@ const checkboxes: { id: number; label: string; sortType: SortBy }[] = [
 
 interface CheckboxesProps {
     value: SortBy;
-    onChange: Dispatch<SetStateAction<SortBy>>
+    onChange: (value: SortBy) => void;
 }
 
 const Checkboxes:FC<CheckboxesProps> = ({ value, onChange }) => {
