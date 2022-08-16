@@ -6,6 +6,8 @@ import {setPage} from "../../../store/filtersSlice";
 
 interface PaginatorProps {
     totalPages?: number;
+    activeNumber: number;
+    setActiveNumber: (number: number) => void;
 }
 
 const PaginatorButton:FC<any> = ({ number, isActive, onClick }) => {
@@ -16,18 +18,12 @@ const PaginatorButton:FC<any> = ({ number, isActive, onClick }) => {
     )
 }
 
-const Paginator:FC<PaginatorProps> = ({ totalPages }) => {
+const Paginator:FC<PaginatorProps> = ({ totalPages, activeNumber, setActiveNumber }) => {
 
-    let { page: activeNumber } = useAppSelector(state => state.filters)
     const startNumber = activeNumber - ((activeNumber - 1) % 5);
-
-    const dispatch = useAppDispatch();
 
     if (!totalPages || activeNumber > totalPages) return null;
 
-    const setActiveNumber = (number: number) => {
-        dispatch(setPage(number))
-    }
 
     const countButtons = 5;
     const buttons = new Array(countButtons).fill(0).filter((_, i) => startNumber + i <= totalPages);

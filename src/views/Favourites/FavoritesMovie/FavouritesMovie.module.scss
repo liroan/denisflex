@@ -1,0 +1,17 @@
+
+.movie {
+  &__poster {
+    img {
+      border-radius: 20px;
+      object-fit: cover;
+      width: 250px;
+      height: 300px;
+    }
+  }
+  &__title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+}
