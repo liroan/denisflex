@@ -7,6 +7,7 @@ import Catalog from "./views/Catalog/Catalog";
 import {IMoviePreview} from "./types/types";
 import useLocalStorage from "use-local-storage";
 import Favourites from "./views/Favourites/Favourites";
+import Film from "./views/Film/Film";
 
 
 
@@ -50,6 +51,7 @@ const App:FC = () => {
                         <Route index element={<Home />} />
                         <Route path="catalog" element={<Catalog />} />
                         <Route path="favourites" element={<Favourites />} />
+                        <Route path="film" element={<Film />} />
                     </Route>
                 </Routes>
             </div>

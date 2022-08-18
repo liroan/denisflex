@@ -1,0 +1,9 @@
+
+.film {
+  width: 100%;
+  & > div {
+    margin-top: 76px;
+    height: 200vh;
+    background: #111;
+  }
+}
