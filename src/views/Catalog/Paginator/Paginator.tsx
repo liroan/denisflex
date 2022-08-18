@@ -50,7 +50,7 @@ const Paginator:FC<PaginatorProps> = ({ totalPages, activeNumber, setActiveNumbe
                 </div>
             }
             {
-                buttons.map((_, i) => <PaginatorButton number={i + startNumber}
+                buttons.length > 1 && buttons.map((_, i) => <PaginatorButton number={i + startNumber}
                                                        onClick={() => setActiveNumber(i + startNumber)}
                                                        isActive={activeNumber === i + startNumber}/>)
             }

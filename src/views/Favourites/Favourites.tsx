@@ -1,21 +1,26 @@
 import {useGetMoviesLocalStorage} from "../../hooks/hooks";
 import styles from "./Favourites.module.scss";
 import Paginator from "../Catalog/Paginator/Paginator";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import FavouritesMovie from "./FavoritesMovie/FavouritesMovie";
 import Container from "../../components/Container/Container";
 
 const Favourites = () => {
     const [movies, editMovies] = useGetMoviesLocalStorage();
-
     const totalPages = Math.ceil(movies.length / 20);
+
     const [activeNumber, setActiveNumber] = useState(1);
+
+    useEffect(() => {
+        if (activeNumber > totalPages) setActiveNumber(totalPages)
+    }, [movies.length, activeNumber])
 
     const showingMovies = movies.slice((activeNumber - 1) * 20, Math.min(activeNumber * 20, movies.length))
 
     return (
        <div className={styles.favorites}>
            <Container>
+               <div className={styles.favorites__title}>Избранное</div>
                <div className={styles.favorites__films}>
                    {
                        showingMovies.map(movie => (

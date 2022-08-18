@@ -3,10 +3,10 @@ import {Button} from "@mui/material";
 import React, {FC} from "react";
 
 interface OpacityButtonProps {
-    onClick: () => void;
+    onClick?: () => void;
     startIcon?: React.ReactNode;
     children?: React.ReactNode;
-    type: "button" | "submit" | "reset" | undefined;
+    type?: "button" | "submit" | "reset";
 }
 
 const OpacityButton:FC<OpacityButtonProps> = ({ onClick, startIcon, type, children }) => {
