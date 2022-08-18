@@ -6,23 +6,25 @@ import React, {FC, useState} from "react";
 import classNames from "classnames";
 import {
     useGetCompilationMoviesQuery,
-    useGetFactsAndErrorsMovieByIdQuery, useGetSimilarMovieByIdQuery,
+    useGetFactsAndErrorsMovieByIdQuery, useGetMovieByIdQuery, useGetSimilarMovieByIdQuery,
     useGetStaffMovieByIdQuery
 } from "../../services/services";
 import parse  from 'html-react-parser';
 import HomeMovies from "../Home/HomeMovies/HomeMovies";
-import Link from "react-router-dom";
+import Link, {useParams} from "react-router-dom";
+import {IMovie} from "../../types/types";
+import {isArray} from "util";
 
-const lineTitles = [
-    { id: 1, title: "Страны" },
-    { id: 2, title: "Жанр" },
-    { id: 3, title: "Слоган" },
-    { id: 4, title: "Возраст" },
-    { id: 5, title: "Бюджет" },
-    { id: 6, title: "Время" },
-    { id: 7, title: "Сборы в США" },
-    { id: 8, title: "Сборы в мире" },
-    { id: 9, title: "Премьера в мире" },
+const lineTitles:{ id: number, title: string, value: keyof IMovie }[] = [
+    { id: 1, title: "Страны", value: "countries" },
+    { id: 2, title: "Жанр", value: "genres" },
+    { id: 3, title: "Слоган", value: "slogan" },
+    { id: 4, title: "Возраст", value: "ratingAgeLimits" },
+    { id: 5, title: "Бюджет", value: "ratingAgeLimits" },
+    { id: 6, title: "Время", value: "filmLength" },
+    { id: 7, title: "Сборы в США", value: "ratingAgeLimits"},
+    { id: 8, title: "Сборы в мире", value: "ratingAgeLimits" },
+    { id: 9, title: "Премьера в мире", value: "year" },
 ]
 
 enum Category {
@@ -53,14 +55,23 @@ const TitleWithCount:FC<TitleWithCountProps> = ({title, count}) => {
 
 
 const Film = () => {
-
+    const { filmId } = useParams();
+    const filmIdNumber = filmId && +filmId ? +filmId : 0;
     const [activeCategory, setActiveCategory] = useState(Category.DESCRIPTION);
-    const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(915196);
-    const { data: factsAndErrors, isLoading: factsAndErrorsLoading, error: factsAndErrorsError } = useGetFactsAndErrorsMovieByIdQuery(915196);
-    const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(915196);
+    const { data: movieData, isLoading: movieDataLoading, error: movieDataError } = useGetMovieByIdQuery(filmIdNumber);
+    const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmIdNumber);
+    const { data: factsAndErrors, isLoading: factsAndErrorsLoading, error: factsAndErrorsError } = useGetFactsAndErrorsMovieByIdQuery(filmIdNumber);
+    const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmIdNumber);
 
+    if (!movieData) return <div>Загрузка...</div>
 
+    const noArray = (value: any): string => {
+        return Array.isArray(value) ? "" : value;
+    }
 
+    console.log(movieData)
+
+    const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription} = movieData;
     return (
         <div className={styles.film}>
             <Container>
@@ -71,11 +82,11 @@ const Film = () => {
                     </div>
                     <div className={styles.film__content}>
                         <div className={styles.film__poster}>
-                            <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/92aa795e-6092-46ee-8867-054abfdb3d3c/x1000" alt=""/>
+                            <img src={posterUrl} alt=""/>
                         </div>
                         <div className={styles.film__info}>
-                            <h1 className={styles.film__title}>В пасти безумия (1994)</h1>
-                            <h5 className={styles.film__subtitle}>In the Mouth of Madness</h5>
+                            <h1 className={styles.film__title}>{ nameRu || nameEn || nameOriginal }, ({year})</h1>
+                            <h5 className={styles.film__subtitle}>{shortDescription}</h5>
                             <div className={styles.film__buttons}>
                                 <RedButton>Смотреть</RedButton>
                                 <OpacityButton>Добавить в избранное</OpacityButton>
@@ -89,7 +100,7 @@ const Film = () => {
                                                 { line.title }
                                             </div>
                                             <div className={styles.film__lineInfo}>
-                                                { line.title }
+                                                { line.value ? noArray(movieData[line.value]) : "-" }
                                             </div>
                                         </div>
                                     ))

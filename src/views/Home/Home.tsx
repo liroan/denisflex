@@ -28,7 +28,7 @@ const Home = () => {
                 </div>
                 <div className={styles.home__movies_margin}>
                     <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isLoading={genresAndCountriesLoading}
-                                error={genresAndCountriesError} title="Жанры" isGenre={true}/>
+                                error={genresAndCountriesError} title="Жанры" isWideCard />
                 </div>
                 <div className={styles.home__movies_margin}>
                     <HomeMovies movies={awaitFilms?.films} isLoading={awaitFilmsLoading}

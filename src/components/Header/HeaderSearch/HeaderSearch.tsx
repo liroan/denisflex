@@ -5,6 +5,7 @@ import HeaderField from "./HeaderField/HeaderField";
 import Header from "../Header";
 import HeaderPopup from "./HeaderPopup/HeaderPopup";
 import {MovieType} from "../../../types/types";
+import {useLocation} from "react-router-dom";
 
 interface HeaderSearchProps {
     isOpenInput: boolean;
@@ -21,6 +22,7 @@ const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openIn
     const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | undefined>();
     const [type, setType] = useState<MovieType>("ALL");
     const popupSearchRef = useRef<HTMLDivElement>(null);
+    let location = useLocation();
 
     const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
@@ -52,6 +54,9 @@ const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openIn
         setQueryKeyword('');
         setInputKeyword('');
     }
+    React.useEffect(() => {
+        closePopupWithDeleteKeyword();
+    }, [location]);
 
     const closePopupWithSaveKeyword = () => {
         setIsOpenSearchPopup(false);

@@ -13,10 +13,10 @@ interface HomeMoviesProps {
     isLoading: boolean;
     error?: FetchBaseQueryError | SerializedError;
     title: string | React.ReactNode;
-    isGenre?: boolean;
+    isWideCard?: boolean;
 }
 
-const HomeMovies:FC<HomeMoviesProps> = ({ movies, isLoading, error, title, isGenre }) => {
+const HomeMovies:FC<HomeMoviesProps> = ({ movies, isLoading, error, title, isWideCard }) => {
     if (error || (!movies && !isLoading)) return <div>Не удалось загрузить фильмы</div>;
     return (
         <div className={styles.home__movies}>
@@ -25,8 +25,8 @@ const HomeMovies:FC<HomeMoviesProps> = ({ movies, isLoading, error, title, isGen
                     <div className={styles.movieChapter__title}><h3>{title}</h3></div>
                     {
                         (isLoading || !movies)
-                            ? (isGenre ? <MoviesLoader width={300} height={200} /> : <MoviesLoader width={220} height={330} />)
-                            : <Slider movies={movies} />
+                            ? (isWideCard ? <MoviesLoader width={300} height={200} /> : <MoviesLoader width={220} height={330} />)
+                            : <Slider movies={movies} isWideCard={isWideCard} />
                     }
                 </div>
             </div>

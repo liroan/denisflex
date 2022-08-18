@@ -54,5 +54,5 @@ export const moviesApi = createApi({
 })
 
 
-export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery, useGetSimilarMovieByIdQuery,
+export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery, useGetSimilarMovieByIdQuery, useGetMovieByIdQuery,
  useGetCountriesAndGenresQuery, useGetFiltersMovieQuery, useGetFactsAndErrorsMovieByIdQuery, useGetStaffMovieByIdQuery } = moviesApi;

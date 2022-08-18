@@ -8,15 +8,16 @@ import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../types/types"
 import SliderItemStaff from "./SliderItemStaff/SliderItemStaff";
 interface ISlider {
     movies: IMovieTop[] | IGenre[] | IStaffPerson[] | ISimilarMovie[];
+    isWideCard?: boolean;
 }
 
-const Slider:FC<ISlider> = ({movies}) => {
+const Slider:FC<ISlider> = ({movies, isWideCard}) => {
     const [translate, setTranslate] = useState(0);
     const [maxTranslate, setMaxTranslate] = useState(0);
     const [lastTranslate, setLastTranslate] = useState(0);
     const translateWrapper = useRef<HTMLDivElement>(null);
 
-    const widthItem = "filmId" in movies[0] ? 240 : 320;
+    const widthItem = !isWideCard ? 240 : 320;
     const width = translateWrapper?.current?.clientWidth || 0;
 
 
@@ -55,8 +56,9 @@ const Slider:FC<ISlider> = ({movies}) => {
                     let item, key;
                     if ("filmId" in film) {
                         if ("relationType" in film)
-                            item = <SliderItemMovie posterUrl={film.posterUrl} />;
-                        else  item = <SliderItemMovie posterUrl={film.posterUrl} rating={film.rating} year={film.year}/>;
+                            item = <SliderItemMovie posterUrl={film.posterUrl} filmId={film.filmId}/>;
+                        else  item = <SliderItemMovie posterUrl={film.posterUrl} rating={film.rating}
+                                                      year={film.year} filmId={film.filmId}/>;
                         key = film.filmId;
                     }
                     else if ("genre" in film) {

@@ -51,7 +51,7 @@ const App:FC = () => {
                         <Route index element={<Home />} />
                         <Route path="catalog" element={<Catalog />} />
                         <Route path="favourites" element={<Favourites />} />
-                        <Route path="film" element={<Film />} />
+                        <Route path="film/:filmId" element={<Film />} />
                     </Route>
                 </Routes>
             </div>
