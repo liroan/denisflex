@@ -93,7 +93,7 @@ export interface IFiltersResponse {
 }
 
 export interface IFactOrError {
-    text: "string";
+    text: string;
     type: "BLOOPER" | "FACT"
     spoiler: boolean;
 }

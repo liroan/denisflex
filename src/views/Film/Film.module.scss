@@ -3,7 +3,136 @@
   width: 100%;
   & > div {
     margin-top: 76px;
-    height: 200vh;
     background: #111;
+    color: #fff;
+    padding-top: 40px;
+  }
+  &__back {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    p {
+      font-size: 16px;
+      font-weight: 400;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  &__poster {
+    margin-right: 50px;
+    img {
+      width: 300px;
+      height: auto;
+      border-radius: 5px;
+    }
+  }
+  &__title {
+    font-weight: 800;
+    font-size: 40px;
+    max-width: 650px;
+    line-height: 48px;
+    margin-bottom: 20px;
+  }
+  &__subtitle {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 28px;
+    color: #999;
+    margin-bottom: 25px;
+  }
+  &__buttons {
+    margin-bottom: 35px;
+    display: flex;
+    button {
+      margin-right: 10px;
+      border-radius: 30px;
+      width: auto;
+    }
+  }
+  &__about {
+    font-weight: 800;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  &__dataLine {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  &__lineTitle {
+    width: 170px;
+    margin-right: 20px;
+    font-size: 14px;
+    color: #999;
+    font-weight: 300;
+  }
+  &__lineInfo {
+    font-size: 14px;
+    font-weight: 300;
+  }
+  &__switch {
+    display: flex;
+    position: relative;
+  }
+  &__switchBorder {
+    position: absolute;
+    left: -1%;
+    bottom: 0;
+    width: 102%;
+    height: 1px;
+    background: #333;
+  }
+  &__option {
+    z-index: 100000;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 300;
+    margin-right: 10px;
+    transition: 0.4s;
+    padding: 10px;
+    border-bottom: 3px solid transparent;
+    transform: translateY(1px);
+  }
+  &__activeOption {
+    color: #E50914;
+    border-bottom: 3px solid #E50914;
+  }
+
+  &__switchContent {
+    margin-top: 20px;
+  }
+  &__description {
+    font-size: 15px;
+    line-height: 23px;
+    font-weight: 300;
+    color: #888;
+    padding-bottom: 50px;
+  }
+  &__factsTitle {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  &__facts {
+    padding-bottom: 50px;
+  }
+  &__fact {
+    font-size: 14px;
+    color: #777;
+    margin-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333;
+    font-weight: 300;
+    a {
+      color: #fff;
+    }
   }
 }

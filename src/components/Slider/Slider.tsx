@@ -4,9 +4,10 @@ import SliderItemGenre from "./SliderItemGenre/SliderItemGenre";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
 import SliderItemMovie from "./SliderItemMovie/SliderItemMovie";
-import {IGenre, IMovieTop} from "../../types/types";
+import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../types/types";
+import SliderItemStaff from "./SliderItemStaff/SliderItemStaff";
 interface ISlider {
-    movies: IMovieTop[] | IGenre[];
+    movies: IMovieTop[] | IGenre[] | IStaffPerson[] | ISimilarMovie[];
 }
 
 const Slider:FC<ISlider> = ({movies}) => {
@@ -53,12 +54,18 @@ const Slider:FC<ISlider> = ({movies}) => {
                 {movies.map((film, index) => {
                     let item, key;
                     if ("filmId" in film) {
-                        item = <SliderItemMovie posterUrl={film.posterUrl} rating={film.rating} year={film.year}/>;
+                        if ("relationType" in film)
+                            item = <SliderItemMovie posterUrl={film.posterUrl} />;
+                        else  item = <SliderItemMovie posterUrl={film.posterUrl} rating={film.rating} year={film.year}/>;
                         key = film.filmId;
                     }
-                    else {
+                    else if ("genre" in film) {
                         item = <SliderItemGenre genre={film.genre} index={index}/>;
                         key = film.id;
+                    } else {
+                        item = <SliderItemStaff posterUrl={film.posterUrl} description={film.description}
+                                                professionText={film.professionText} nameRu={film.nameRu} nameEn={film.nameEn} />;
+                        key = film.staffId;
                     }
                     return (
                         <div className={styles.slider__item} key={key}>

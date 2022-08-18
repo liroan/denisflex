@@ -18,14 +18,22 @@ const Home = () => {
         <div className={styles.home}>
             <Banner />
             <Container>
-                <HomeMovies movies={popularFilms?.films} isLoading={popularFilmsLoading}
-                            error={popularFilmsError} title="Самые популярные"/>
-                <HomeMovies movies={bestFilms?.films} isLoading={bestFilmsLoading}
-                            error={bestFilmsError} title="Самые лучшие"/>
-                <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isLoading={genresAndCountriesLoading}
-                            error={genresAndCountriesError} title="Жанры" isGenre={true}/>
-                <HomeMovies movies={awaitFilms?.films} isLoading={awaitFilmsLoading}
-                            error={awaitFilmsError} title="Самые ожидаемые"/>
+                <div className={styles.home__movies_margin}>
+                    <HomeMovies movies={popularFilms?.films} isLoading={popularFilmsLoading}
+                                error={popularFilmsError} title="Самые популярные"/>
+                </div>
+                <div className={styles.home__movies_margin}>
+                    <HomeMovies movies={bestFilms?.films} isLoading={bestFilmsLoading}
+                                error={bestFilmsError} title="Самые лучшие"/>
+                </div>
+                <div className={styles.home__movies_margin}>
+                    <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isLoading={genresAndCountriesLoading}
+                                error={genresAndCountriesError} title="Жанры" isGenre={true}/>
+                </div>
+                <div className={styles.home__movies_margin}>
+                    <HomeMovies movies={awaitFilms?.films} isLoading={awaitFilmsLoading}
+                                error={awaitFilmsError} title="Самые ожидаемые"/>
+                </div>
             </Container>
         </div>
     )

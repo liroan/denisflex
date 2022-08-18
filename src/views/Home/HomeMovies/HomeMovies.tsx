@@ -2,17 +2,17 @@ import styles from "./HomeMovies.module.scss";
 import classNames from "classnames";
 import Slider from "../../../components/Slider/Slider";
 import React, {FC, useRef} from "react";
-import {IGenre, IMovieTop} from "../../../types/types";
+import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../../types/types";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {SerializedError} from "@reduxjs/toolkit";
 import MovieLoader from "../../../components/MoviesLoader/MovieLoader/MovieLoader";
 import MoviesLoader from "../../../components/MoviesLoader/MoviesLoader";
 
 interface HomeMoviesProps {
-    movies: IMovieTop[] | IGenre[] | undefined;
+    movies: IMovieTop[] | IGenre[] | IStaffPerson[] | ISimilarMovie[] | undefined;
     isLoading: boolean;
     error?: FetchBaseQueryError | SerializedError;
-    title: string;
+    title: string | React.ReactNode;
     isGenre?: boolean;
 }
 

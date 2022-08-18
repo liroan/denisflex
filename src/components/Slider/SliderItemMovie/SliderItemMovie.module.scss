@@ -1,4 +1,6 @@
+.movieCardContainer {
 
+}
 .movieCard {
   position: relative;
   width: 220px;
@@ -45,11 +47,15 @@
 }
 
 .movieCardContainer {
-  &__title {
-    margin-top: 15px;
+  &__name {
+    margin-top: 10px;
     color: #fff;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 16px;
+  }
+  &__role {
+    color: #888;
+    font-weight: 500;
+    font-size: 12px;
   }
 }
