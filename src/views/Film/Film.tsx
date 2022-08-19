@@ -26,7 +26,14 @@ const convertDate = (distributors: IDistributors[]) => {
     return !lol ? <span> &#8210;</span> : `${new Date(lol.date).toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: "numeric"})}`
 }
 
-const lineTitles:{ id: number, title: string, value: keyof IMovie | "budget" | "distributors", converter?: ((value: any) => string | React.ReactNode)}[] = [
+type ILineContent = {
+    id: number;
+    title: string;
+    value: keyof IMovie | "budget" | "distributors";
+    converter?: ((value: any) => string | React.ReactNode);
+}
+
+const lineTitles:ILineContent[] = [
     { id: 1, title: "Страны", value: "countries", converter: (countries: ICountry[]) => countries.map(c => c.country).join(', ') },
     { id: 2, title: "Жанр", value: "genres", converter: (genres: IGenre[]) => genres.map(g => g.genre).join(', ') },
     { id: 3, title: "Слоган", value: "slogan", },
