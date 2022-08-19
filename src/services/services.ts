@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {API_KEY, API_URL} from "../constants/constants";
 import {
-    FilmTopResponse,
+    FilmTopResponse, IBudgetResponse, IDistributorsResponse,
     IFactsAndErrors,
     IFilmSearchByFiltersResponse,
     IFiltersResponse,
@@ -50,9 +50,17 @@ export const moviesApi = createApi({
         getReviewsMovieById: builder.query<ISimilarMovies, {id: number, page: number}>({
             query: ({id, page}) => `v2.2/films/${id}/reviews?page=${page}`,
         }),
+        getDistributorsMovieById: builder.query<IDistributorsResponse, number>({
+            query: (id) => `v2.2/films/${id}/distributions`,
+        }),
+        getBoxOfficeMovieById: builder.query<IBudgetResponse, number>({
+            query: (id) => `v2.2/films/${id}/box_office`,
+        }),
     }),
 })
 
 
-export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery, useGetSimilarMovieByIdQuery, useGetMovieByIdQuery,
+export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery,
+    useGetBoxOfficeMovieByIdQuery, useGetDistributorsMovieByIdQuery,
+    useGetSimilarMovieByIdQuery, useGetMovieByIdQuery,
  useGetCountriesAndGenresQuery, useGetFiltersMovieQuery, useGetFactsAndErrorsMovieByIdQuery, useGetStaffMovieByIdQuery } = moviesApi;

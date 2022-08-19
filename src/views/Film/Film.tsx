@@ -5,26 +5,41 @@ import OpacityButton from "../../components/Buttons/OpacityButton/OpacityButton"
 import React, {FC, useState} from "react";
 import classNames from "classnames";
 import {
-    useGetCompilationMoviesQuery,
+    useGetBoxOfficeMovieByIdQuery,
+    useGetCompilationMoviesQuery, useGetDistributorsMovieByIdQuery,
     useGetFactsAndErrorsMovieByIdQuery, useGetMovieByIdQuery, useGetSimilarMovieByIdQuery,
     useGetStaffMovieByIdQuery
 } from "../../services/services";
 import parse  from 'html-react-parser';
 import HomeMovies from "../Home/HomeMovies/HomeMovies";
 import Link, {useParams} from "react-router-dom";
-import {IMovie} from "../../types/types";
+import {IBudget, ICountry, IDistributors, IGenre, IMovie} from "../../types/types";
 import {isArray} from "util";
 
-const lineTitles:{ id: number, title: string, value: keyof IMovie }[] = [
-    { id: 1, title: "Страны", value: "countries" },
-    { id: 2, title: "Жанр", value: "genres" },
-    { id: 3, title: "Слоган", value: "slogan" },
-    { id: 4, title: "Возраст", value: "ratingAgeLimits" },
-    { id: 5, title: "Бюджет", value: "ratingAgeLimits" },
-    { id: 6, title: "Время", value: "filmLength" },
-    { id: 7, title: "Сборы в США", value: "ratingAgeLimits"},
-    { id: 8, title: "Сборы в мире", value: "ratingAgeLimits" },
-    { id: 9, title: "Премьера в мире", value: "year" },
+const parseToNormalNumber = (number: number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")
+}
+
+const convertBudget = (type: string) => (budget: IBudget[]) => {
+    const lol = budget.find(b => b.type === type);
+    return !lol ? <span> &#8210;</span> : `${lol.symbol} ${parseToNormalNumber(lol.amount)}`
+}
+
+const convertDate = (distributors: IDistributors[]) => {
+    const lol = distributors.find(d => d.type === "WORLD_PREMIER");
+    return !lol ? <span> &#8210;</span> : `${new Date(lol.date).toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: "numeric"})}`
+}
+
+const lineTitles:{ id: number, title: string, value: keyof IMovie | "budget" | "distributors", converter?: ((value: any) => string | React.ReactNode)}[] = [
+    { id: 1, title: "Страны", value: "countries", converter: (countries: ICountry[]) => countries.map(c => c.country).join(', ') },
+    { id: 2, title: "Жанр", value: "genres", converter: (genres: IGenre[]) => genres.map(g => g.genre).join(', ') },
+    { id: 3, title: "Слоган", value: "slogan", },
+    { id: 4, title: "Возраст", value: "ratingAgeLimits", converter: (age: string) => age && `${age.slice(3)}+` },
+    { id: 5, title: "Бюджет", value: "budget", converter: convertBudget("BUDGET")},
+    { id: 6, title: "Время", value: "filmLength", converter: (time: string) => time && `${time} мин` },
+    { id: 7, title: "Сборы в США", value: "budget", converter: convertBudget("USA") },
+    { id: 8, title: "Сборы в мире", value: "budget", converter: convertBudget("WORLD") },
+    { id: 9, title: "Премьера в мире", value: "distributors", converter: convertDate },
 ]
 
 enum Category {
@@ -48,11 +63,11 @@ const TitleWithCount:FC<TitleWithCountProps> = ({title, count}) => {
     return <span>{title} <span style={{ color: "#555", fontWeight: 400 }}>({count})</span></span>;
 }
 
-/*const ParseAToLink = (text: string): string => {
-    return text.replaceAll(`class="all"`, `class="all" onClick="lol"`)
-}*/
 
-
+const lol = (value: any, converter?: (value: any) => string | React.ReactNode): string | React.ReactNode => {
+    if (!value || value.length === 0) return <span> &#8210;</span>;
+    return converter ? converter(value) : value;
+}
 
 const Film = () => {
     const { filmId } = useParams();
@@ -63,15 +78,20 @@ const Film = () => {
     const { data: factsAndErrors, isLoading: factsAndErrorsLoading, error: factsAndErrorsError } = useGetFactsAndErrorsMovieByIdQuery(filmIdNumber);
     const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmIdNumber);
 
+
+    const { data: budget } = useGetBoxOfficeMovieByIdQuery(filmIdNumber);
+    const { data: distributors } = useGetDistributorsMovieByIdQuery(filmIdNumber);
+
+    console.log(budget, distributors)
     if (!movieData) return <div>Загрузка...</div>
 
-    const noArray = (value: any): string => {
-        return Array.isArray(value) ? "" : value;
+    const findProperty = (key: keyof IMovie | "budget" | "distributors"): any => {
+        if (key === "budget") return budget?.items;
+        if (key === "distributors") return distributors?.items;
+        return movieData[key];
     }
 
-    console.log(movieData)
-
-    const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription} = movieData;
+    const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription, description} = movieData;
     return (
         <div className={styles.film}>
             <Container>
@@ -94,13 +114,13 @@ const Film = () => {
                             <div className={styles.film__about}>О фильме</div>
                             <div className={styles.film__dataLines}>
                                 {
-                                    lineTitles.map(line => (
+                                    lineTitles.map(({ title, value, converter }) => (
                                         <div className={styles.film__dataLine}>
                                             <div className={styles.film__lineTitle}>
-                                                { line.title }
+                                                { title }
                                             </div>
                                             <div className={styles.film__lineInfo}>
-                                                { line.value ? noArray(movieData[line.value]) : "-" }
+                                                { value && lol(findProperty(value), converter) }
                                             </div>
                                         </div>
                                     ))
@@ -122,9 +142,7 @@ const Film = () => {
                     <div className={styles.film__switchContent}>
                         {
                             activeCategory === Category.DESCRIPTION && (
-                                <p className={styles.film__description}>
-                                    Произведения Саттера Кэйна побили все рекорды популярности - Стивену Кингу такое не снилось. Эффект, производимый на некоторых почитателей таланта Кэйна, - полная дезориентация и потеря памяти, массовые вспышки насилия, шизофреники, переполнившие клиники. Сам же автор романов ужасов, приносящих бешеный доход издательствам, исчез уже два месяца тому назад. Для его поисков издательство нанимает страхового агента Джона Трента, и поиски приводят его в город, описанный в книге, но отсутствующий на карте...
-                                </p>
+                                <p className={styles.film__description}>{description}</p>
                             )
                         }
                         {

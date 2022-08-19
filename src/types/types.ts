@@ -128,3 +128,37 @@ export interface ISimilarMovies {
     items: ISimilarMovie[];
     total: number;
 }
+
+export interface ICountry {
+    country: string;
+    id: string;
+}
+
+
+export interface IDistributorsResponse {
+    items: IDistributors[];
+    total: number;
+}
+
+export interface IDistributors {
+    companies: string[];
+    country: ICountry;
+    date: string;
+    reRelease: boolean;
+    subType: null;
+    type: "PREMIERE" | "WORLD_PREMIER";
+}
+
+export interface IBudgetResponse {
+    items: IBudget[];
+    total: number;
+}
+
+export interface IBudget {
+    amount: number;
+    currencyCode: string;
+    name: string;
+    symbol: string;
+    type: string;
+}
+
