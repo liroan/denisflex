@@ -5,7 +5,7 @@ import {
     IFactsAndErrors,
     IFilmSearchByFiltersResponse,
     IFiltersResponse,
-    IMovie, ISimilarMovies,
+    IMovie, IPerson, ISimilarMovies,
     IStaffPerson,
     MovieType, TopMovieType
 } from "../types/types";
@@ -56,11 +56,15 @@ export const moviesApi = createApi({
         getBoxOfficeMovieById: builder.query<IBudgetResponse, number>({
             query: (id) => `v2.2/films/${id}/box_office`,
         }),
+        getPersonById: builder.query<IPerson, number>({
+            query: (id) => `v1/staff/${id}`,
+        }),
     }),
 })
 
 
 export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery,
+    useGetPersonByIdQuery,
     useGetBoxOfficeMovieByIdQuery, useGetDistributorsMovieByIdQuery,
     useGetSimilarMovieByIdQuery, useGetMovieByIdQuery,
  useGetCountriesAndGenresQuery, useGetFiltersMovieQuery, useGetFactsAndErrorsMovieByIdQuery, useGetStaffMovieByIdQuery } = moviesApi;
