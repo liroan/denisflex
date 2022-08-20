@@ -19,7 +19,7 @@ const CatalogFilms:FC<CatalogFilmsProps> = React.memo(({ filmsResponse,isFetchin
         <div className={styles.films}>
             { (isFetching || !films) ? <CatalogPreloader /> :
                 films.map(filmData => (
-                    <CatalogFilm filmData={filmData}
+                    <CatalogFilm filmData={filmData} key={filmData.kinopoiskId}
                                  isFavourite={movies.some(film => film.kinopoiskId === filmData.kinopoiskId)}
                                  editMovies={editMovies}
                     />

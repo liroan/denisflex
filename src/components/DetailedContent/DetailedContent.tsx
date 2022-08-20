@@ -2,8 +2,7 @@ import styles from "../../views/Film/Film.module.scss";
 import RedButton from "../Buttons/RedButton/RedButton";
 import OpacityButton from "../Buttons/OpacityButton/OpacityButton";
 import React, {FC} from "react";
-import {getConvertedPropertyOrDash} from "../../utils/utils";
-
+import getConvertedPropertyOrDash from "../../utils/getConvertedPropertyOrDash";
 
 interface DetailedContentProps {
     poster: string,
@@ -36,8 +35,8 @@ const DetailedContent:FC<DetailedContentProps> = React.memo(({ poster, title, su
                 <div className={styles.film__about}>{isFilm ? 'О фильме' : 'О персоне'}</div>
                 <div className={styles.film__dataLines}>
                     {
-                        lineTitles.map(({ title, value, converter }) => (
-                            <div className={styles.film__dataLine}>
+                        lineTitles.map(({ id, title, value, converter }) => (
+                            <div className={styles.film__dataLine} key={id}>
                                 <div className={styles.film__lineTitle}>
                                     { title }
                                 </div>

@@ -11,8 +11,7 @@ import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
 import {changeFiltersHandle, FiltersState, resetFilters} from "../../../store/filtersSlice";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
-import {IGenre} from "../../../types/types";
-import {MovieTypeFilter} from "../../../constants/constants";
+import {IGenre, MovieType} from "../../../types/types";
 import useSizeWindow from "../../../hooks/useSizeWindow";
 
 interface FilterProps {
@@ -22,6 +21,7 @@ interface FilterProps {
     genres?: IGenre[];
 }
 
+export const MovieTypeFilter: MovieType[] = ["ALL", "FILM", "TV_SHOW", "TV_SERIES"];
 
 const convertToMovieType = (value: string) => MovieTypeFilter[+value];
 const convertToNumber = (value: string) => +value;

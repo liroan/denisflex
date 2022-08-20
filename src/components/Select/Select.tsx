@@ -30,7 +30,7 @@ const SelectComponent:FC<SelectComponentProps> = React.memo(({ id, title, option
                     label={title}
                     onChange={handleChange}
                 >
-                    { options.map((option, index) => <MenuItem value={index}>{option}</MenuItem>) }
+                    { options.map((option, index) => <MenuItem value={index} key={index}>{option}</MenuItem>) }
                 </Select>
             </FormControl>
         </div>

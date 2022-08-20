@@ -27,7 +27,7 @@ const CatalogPreloaderFilm = () => {
 const CatalogPreloader = () => {
     return (
        <div>
-           { new Array(10).fill(0).map(_ => <CatalogPreloaderFilm />) }
+           { new Array(10).fill(0).map((_, i) => <CatalogPreloaderFilm key={i}/>) }
        </div>
     )
 }

@@ -20,8 +20,8 @@ const Category:FC<CategoryProps> = React.memo(({ type, setType }) => {
         <div className={styles.header__category}>
             <div className={styles.header__category_buttons}>
                 {
-                    movieTypes.map(({ label, value }) => (
-                        <div onClick={() => setType(value)}
+                    movieTypes.map(({ label, value, id }) => (
+                        <div onClick={() => setType(value)} key={id}
                             className={classNames(styles.header__category_button, { [styles.header__category_activeButton]: value === type })}>
                             { label }
                         </div>

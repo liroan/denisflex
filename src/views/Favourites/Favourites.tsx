@@ -1,6 +1,6 @@
 
 import styles from "./Favourites.module.scss";
-import Paginator from "../Catalog/Paginator/Paginator";
+import Paginator from "../../components/Paginator/Paginator";
 import {FC, useEffect, useMemo, useState} from "react";
 import FavouritesMovie from "./FavoritesMovie/FavouritesMovie";
 import Container from "../../components/Container/Container";
@@ -26,7 +26,7 @@ const Favourites:FC = () => {
                <div className={styles.favorites__films}>
                    {
                        showingMovies.map(movie => (
-                           <div className={styles.favorites__movie}>
+                           <div className={styles.favorites__movie} key={movie.kinopoiskId}>
                                <FavouritesMovie movie={movie} key={movie.kinopoiskId} editMovies={editMovies}/>
                            </div>
                        ))

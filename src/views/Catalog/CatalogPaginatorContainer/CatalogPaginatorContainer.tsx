@@ -1,4 +1,4 @@
-import Paginator from "../Paginator/Paginator";
+import Paginator from "../../../components/Paginator/Paginator";
 import React, {FC, useCallback} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
 import {setPage} from "../../../store/filtersSlice";

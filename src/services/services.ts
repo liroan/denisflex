@@ -11,7 +11,7 @@ import {
 } from "../types/types";
 import {FiltersState} from "../store/filtersSlice";
 import * as queryString from "query-string";
-import {removeNullableProperty, removeUnwantedProperties} from "../utils/utils";
+import removeUnwantedProperties from "../utils/removeUnwantedProperties";
 
 export const moviesApi = createApi({
     reducerPath: 'moviesApi',

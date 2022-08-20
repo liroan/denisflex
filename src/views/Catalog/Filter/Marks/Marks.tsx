@@ -1,13 +1,19 @@
 import styles from "./Marks.module.scss";
 import React, {FC} from "react";
 import {FiltersState, SortBy} from "../../../../store/filtersSlice";
-import {MovieTypeDict} from "../../../../constants/constants";
+import {MovieType} from "../../../../types/types";
 
 interface MarksProps {
     filters: FiltersState;
     genresNames: string[];
 }
 
+export const MovieTypeDict: { [key in MovieType]: string; } = {
+    "ALL": 'все',
+    "FILM": 'фильмы',
+    "TV_SHOW": 'тв-шоу',
+    "TV_SERIES": 'сериалы'
+}
 
 const sortByDict: { [key in SortBy]: string; } = {
     "RATING": "по рейтингу",

@@ -18,7 +18,7 @@ const Accordion:FC<AccordionProps> = ({ title, children }) => {
                 <h6>{ title }</h6>
                 <div className={classNames(styles.accordion__arrow, { [styles.accordion__arrow_rotate]: isShow })}
                      onClick={() => setIsShow(prevState => !prevState)}>
-                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>
                 </div>
             </div>
             { isShow && children }

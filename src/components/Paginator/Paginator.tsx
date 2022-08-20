@@ -1,19 +1,12 @@
 import styles from "./Paginator.module.scss"
 import React, {FC} from "react";
 import classNames from "classnames";
+import PaginatorButton from "./PaginatorButton/PaginatorButton";
 
 interface PaginatorProps {
     totalPages?: number;
     activeNumber: number;
     setActiveNumber: (number: number) => void;
-}
-
-const PaginatorButton:FC<any> = ({ number, isActive, onClick }) => {
-    return (
-        <div className={classNames(styles.paginator__button, { [styles.paginator__button_active]: isActive })}>
-            <button onClick={onClick}>{number}</button>
-        </div>
-    )
 }
 
 const Paginator:FC<PaginatorProps> = React.memo(({ totalPages, activeNumber, setActiveNumber }) => {
@@ -49,7 +42,7 @@ const Paginator:FC<PaginatorProps> = React.memo(({ totalPages, activeNumber, set
                 </div>
             }
             {
-                buttons.length > 1 && buttons.map((_, i) => <PaginatorButton number={i + startNumber}
+                buttons.length > 1 && buttons.map((_, i) => <PaginatorButton number={i + startNumber} key={i}
                                                        onClick={() => setActiveNumber(i + startNumber)}
                                                        isActive={activeNumber === i + startNumber}/>)
             }

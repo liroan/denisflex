@@ -28,8 +28,8 @@ const FilmSwitcherContent:FC<FilmSwitcherContentProps> = React.memo(({ activeCat
                     <div className={styles.film__facts}>
                         <h6 className={styles.film__factsTitle}>Знаете ли вы, что…</h6>
                         {
-                            factsAndErrors?.items.map(fact => (
-                                <p key={fact.text}  className={styles.film__fact}>
+                            factsAndErrors?.items.map((fact, i) => (
+                                <p key={i} className={styles.film__fact}>
                                     { parse(fact.text)  }
                                 </p>
                             ))

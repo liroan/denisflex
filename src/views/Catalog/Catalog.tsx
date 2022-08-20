@@ -9,8 +9,8 @@ import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../serv
 import {useSearchParams} from "react-router-dom";
 import {changeFiltersFromUrl, FiltersState } from "../../store/filtersSlice";
 import * as queryString from "query-string";
-import {removeInitialFilter} from "../../utils/utils";
 import {IGenre} from "../../types/types";
+import removeInitialFilter from "../../utils/removeInitialFilters";
 
 
 

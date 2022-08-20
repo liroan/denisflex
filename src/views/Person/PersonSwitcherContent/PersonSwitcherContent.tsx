@@ -17,8 +17,8 @@ const PersonSwitcherContent:FC<PersonSwitcherContentProps> = React.memo(({ activ
                     <div className={styles.film__facts}>
                         <h6 className={styles.film__factsTitle}>Знаете ли вы, что…</h6>
                         {
-                            factsAndErrors?.map(fact => (
-                                <p className={styles.film__fact}>
+                            factsAndErrors?.map((fact, i) => (
+                                <p className={styles.film__fact} key={i}>
                                     { parse(fact)  }
                                 </p>
                             ))

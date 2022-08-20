@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getDataWindow} from "../utils/utils";
+import getDataWindow from "../utils/getDataWindow";
 
 const useSizeWindow = () => {
     const [sizeWindow, setSizeWindow] = useState(getDataWindow());

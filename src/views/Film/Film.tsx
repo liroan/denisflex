@@ -9,7 +9,8 @@ import {IBudget, ICountry, IDistributors, IGenre, IMovie} from "../../types/type
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
 import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
-import {parseToDischargeNumber, TitleWithCount} from "../../utils/utils";
+import parseToDischargeNumber from "../../utils/parseToDischargeNumber";
+import getTitleWithCount from "../../utils/getTitleWithCount";
 
 
 
@@ -90,12 +91,12 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
 
                     <FilmSwitcherContent activeCategory={activeCategory} description={description} factsAndErrors={factsAndErrors}>
                         <SliderContainer movies={staff} isLoading={staffLoading}
-                                         error={staffError} title={<TitleWithCount title="Состав" count={staff?.length}/>} />
+                                         error={staffError} title={getTitleWithCount("Состав", staff?.length) } />
                     </FilmSwitcherContent>
 
                     <div className={styles.film__similar}>
                         <SliderContainer movies={similarFilms?.items} isLoading={similarFilmsLoading}
-                                         error={similarFilmsError} title={<TitleWithCount title="Похожее кино" count={similarFilms?.total}/>} />
+                                         error={similarFilmsError} title={getTitleWithCount("Похожее кино", similarFilms?.total) } />
                     </div>
                 </Container>
             </Container>
