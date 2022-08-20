@@ -14,7 +14,7 @@ import removeInitialFilter from "../../utils/removeInitialFilters";
 
 
 
-const Catalog:FC = () => {
+const Catalog:FC = React.memo(() => {
 
     const [isShowFilters, setIsShowFilters] = useState(false);
     const [genresWithAllGenres, setGenresWithAllGenres] = useState<IGenre[]>([]);
@@ -63,6 +63,6 @@ const Catalog:FC = () => {
             </Container>
         </div>
     )
-}
+})
 
 export default Catalog;

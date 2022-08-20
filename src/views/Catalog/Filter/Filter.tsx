@@ -13,6 +13,11 @@ import {changeFiltersHandle, FiltersState, resetFilters} from "../../../store/fi
 import {useAppDispatch} from "../../../hooks/reduxHooks";
 import {IGenre, MovieType} from "../../../types/types";
 import useSizeWindow from "../../../hooks/useSizeWindow";
+import Rating from "./Fields/Rating/Rating";
+import Years from "./Fields/Years/Years";
+import Genres from "./Fields/Genres/Genres";
+import Type from "./Fields/Type/Type";
+import CheckboxAccordion from "./Fields/CheckboxAccordeon/CheckboxAccordeon";
 
 interface FilterProps {
     isShowFilters: boolean;
@@ -23,8 +28,6 @@ interface FilterProps {
 
 export const MovieTypeFilter: MovieType[] = ["ALL", "FILM", "TV_SHOW", "TV_SERIES"];
 
-const convertToMovieType = (value: string) => MovieTypeFilter[+value];
-const convertToNumber = (value: string) => +value;
 
 const types = ["все", "фильмы", "тв-шоу", "сериалы"];
 
@@ -70,44 +73,11 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
 
                 <Marks filters={filters} genresNames={genresNames} />
 
-                <Accordion title="Рейтинг">
-                    <RangeSlider min={1} max={10}
-                                 idFirstField="ratingFrom" idSecondField="ratingTo"
-                                 fromValue={formData.ratingFrom} beforeValue={formData.ratingTo}
-                                 changeValue={changeValue}
-                    />
-                </Accordion>
-
-                <Accordion title="Годы производства">
-                    <RangeSlider min={1900} max={2022}
-                                 idFirstField="yearFrom" idSecondField="yearTo"
-                                 fromValue={formData.yearFrom} beforeValue={formData.yearTo}
-                                 changeValue={changeValue}
-
-                    />
-                </Accordion>
-
-                <Accordion title="Жанры">
-                    <SelectComponent id="genres" title="Жанры"
-                                     options={genresNames}
-                                     value={formData.genres}
-                                     changeValue={changeValue}
-                                     mutator={convertToNumber}
-                     />
-                </Accordion>
-
-                <Accordion title="Тип произведения">
-                    <SelectComponent id="type" title="Тип произведения"
-                                     options={types}
-                                     value={MovieTypeFilter.indexOf(formData.type)}
-                                     changeValue={changeValue}
-                                     mutator={convertToMovieType}
-                    />
-                </Accordion>
-
-                <Accordion title="Сортировка">
-                    <Checkboxes value={formData.order} name="order"  changeValue={changeValue} />
-                </Accordion>
+                <Rating changeValue={changeValue} ratingFrom={formData.ratingFrom} ratingTo={formData.ratingTo} />
+                <Years changeValue={changeValue} yearFrom={formData.yearFrom} yearTo={formData.yearTo} />
+                <Genres changeValue={changeValue} genres={formData.genres} genresNames={genresNames}/>
+                <Type changeValue={changeValue} type={formData.type} types={types} />
+                <CheckboxAccordion order={formData.order} changeValue={changeValue}/>
 
                 <div className={classNames(styles.filter__buttons)}>
                     <RedButton type="submit">Применить</RedButton>

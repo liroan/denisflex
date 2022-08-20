@@ -11,20 +11,20 @@ import EditMoviesContext from "./context/EditMoviesContext";
 import useStateMovies from "./hooks/useStateMovies";
 
 
-const Dashboard = () => {
+const Dashboard = React.memo(() => {
     return (
         <div className={'app'}>
             <Header />
             <Outlet />
         </div>
     );
-}
+})
 
 
 const App:FC = () => {
 
     const moviesState = useStateMovies();
-
+    console.log('lol12')
     return (
         <EditMoviesContext.Provider value={moviesState}>
             <div>
