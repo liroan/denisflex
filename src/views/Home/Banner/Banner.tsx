@@ -8,6 +8,9 @@ import React, {FC} from "react";
 const Banner:FC = () => {
     return (
         <div className={styles.home__banner}>
+            <video autoPlay loop muted className={styles.home__bgVideo} id="bgvideo">
+                <source src="/videos/film.mp4" type="video/mp4"/>
+            </video>
             <Container>
                 <div className={styles.home__banner_blackout} />
                 <div className={styles.home__bannerInfo}>

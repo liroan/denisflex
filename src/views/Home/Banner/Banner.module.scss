@@ -2,13 +2,9 @@
   &__banner {
     color: #fff;
     position: relative;
+    overflow: hidden;
     z-index: -2;
     padding: 170px 0;
-    background-image: url("https://image.tmdb.org/t/p/original/kKTPv9LKKs5L3oO1y5FNObxAPWI.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-    margin-bottom: 50px;
     &_blackout {
       z-index: -1;
       position: absolute;
@@ -19,6 +15,15 @@
       background: #000;
       opacity: 0.6;
     }
+  }
+  &__bgVideo {
+    transform: scale(1.9);
+    width: 100%;
+    z-index: -3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
   }
   &__bannerInfo {
     z-index: 10000;
@@ -32,6 +37,7 @@
     margin-bottom: 40px;
     max-width: 400px;
     font-weight: 300;
+    line-height: 26px;
   }
   &__buttonInner {
     display: inline-flex;

@@ -59,23 +59,24 @@ const switcher = [
     { id: 3, title: "Факты", value: FilmCategory.FACTS },
 ]
 
-const Film = () => {
-    const { filmId } = useParams();
-    const filmIdNumber = filmId && +filmId ? +filmId : 0;
+interface FilmProps {
+    movieData: IMovie;
+    budget?: IBudget[];
+    distributors?: IDistributors[];
+    filmId: number;
+}
+
+const Film:FC<FilmProps> = ({ movieData, budget, distributors , filmId}) => {
 
     const [activeCategory, setActiveCategory] = useState(FilmCategory.DESCRIPTION);
-    const { data: movieData, isLoading: movieDataLoading, error: movieDataError } = useGetMovieByIdQuery(filmIdNumber);
-    const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmIdNumber);
-    const { data: factsAndErrors, isLoading: factsAndErrorsLoading, error: factsAndErrorsError } = useGetFactsAndErrorsMovieByIdQuery(filmIdNumber);
-    const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmIdNumber);
-    const { data: budget } = useGetBoxOfficeMovieByIdQuery(filmIdNumber);
-    const { data: distributors } = useGetDistributorsMovieByIdQuery(filmIdNumber);
+    const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmId);
+    const { data: factsAndErrors, isLoading: factsAndErrorsLoading, error: factsAndErrorsError } = useGetFactsAndErrorsMovieByIdQuery(filmId);
+    const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
 
-    if (!movieData) return <div>Загрузка...</div>
 
     const findProperty = (key: keyof IMovie | "budget" | "distributors"): typeof movieData[keyof IMovie] |  IDistributors[] | IBudget[] | undefined => {
-        if (key === "budget") return budget?.items;
-        if (key === "distributors") return distributors?.items;
+        if (key === "budget") return budget;
+        if (key === "distributors") return distributors;
         return movieData[key];
     }
 
