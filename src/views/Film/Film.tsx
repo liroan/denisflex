@@ -8,7 +8,7 @@ import {
 } from "../../services/services";
 import HomeMovies from "../Home/HomeMovies/HomeMovies";
 import {useParams} from "react-router-dom";
-import {IBudget, ICountry, IDistributors, IGenre, IMovie} from "../../types/types";
+import {IBudget, ICountry, IDistributors, IGenre, IMovie, IPerson} from "../../types/types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
 import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
@@ -17,21 +17,23 @@ import {parseToDischargeNumber, TitleWithCount} from "../../utils/utils";
 
 
 const convertBudget = (type: string) => (budget: IBudget[]) => {
-    const lol = budget.find(b => b.type === type);
-    return !lol ? <span> &#8210;</span> : `${lol.symbol} ${parseToDischargeNumber(lol.amount)}`
+    const obj = budget.find(b => b.type === type);
+    return !obj ? <span> &#8210;</span> : `${obj.symbol} ${parseToDischargeNumber(obj.amount)}`
 }
 
 const convertDate = (distributors: IDistributors[]) => {
-    const lol = distributors.find(d => d.type === "WORLD_PREMIER");
-    return !lol ? <span> &#8210;</span> : `${new Date(lol.date).toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: "numeric"})}`
+    const obj = distributors.find(d => d.type === "WORLD_PREMIER");
+    return !obj ? <span> &#8210;</span> : `${new Date(obj.date).toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: "numeric"})}`
 }
 
 type ILineContent = {
     id: number;
     title: string;
     value: keyof IMovie | "budget" | "distributors";
-    converter?: ((value: any) => string | React.ReactNode);
+    converter?: (value: any) => string | React.ReactNode;
 }
+
+
 
 const lineTitles:ILineContent[] = [
     { id: 1, title: "Страны", value: "countries", converter: (countries: ICountry[]) => countries.map(c => c.country).join(', ') },
@@ -71,7 +73,7 @@ const Film = () => {
 
     if (!movieData) return <div>Загрузка...</div>
 
-    const findProperty = (key: keyof IMovie | "budget" | "distributors"): any => {
+    const findProperty = (key: keyof IMovie | "budget" | "distributors"): typeof movieData[keyof IMovie] |  IDistributors[] | IBudget[] | undefined => {
         if (key === "budget") return budget?.items;
         if (key === "distributors") return distributors?.items;
         return movieData[key];

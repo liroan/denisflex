@@ -38,6 +38,8 @@ const switcher = [
     { id: 1, title: "Факты", value: PersonCategory.FACTS },
 ]
 
+
+
 const Person = () => {
     const { personId } = useParams();
     const personIdNumber = personId && +personId ? +personId : 0;
@@ -48,7 +50,7 @@ const Person = () => {
     if (!personData) return <div>Загрузка...</div>
     console.log(personData)
 
-    const findProperty = (key: keyof IPerson): any => {
+    const findProperty = (key: keyof IPerson): typeof personData[keyof IPerson] => {
         return personData[key];
     }
 

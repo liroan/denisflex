@@ -3,7 +3,7 @@ import RedButton from "../Buttons/RedButton/RedButton";
 import OpacityButton from "../Buttons/OpacityButton/OpacityButton";
 import React, {FC} from "react";
 import {getConvertedPropertyOrDash} from "../../utils/utils";
-import {IMovie} from "../../types/types";
+
 
 interface DetailedContentProps {
     poster: string,
