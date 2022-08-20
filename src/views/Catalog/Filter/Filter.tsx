@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import styles from "./Filter.module.scss";
 import RangeSlider from "../../../components/RangeSlider/RangeSlider";
-import React, {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
+import React, {Dispatch, FC, SetStateAction, useCallback, useEffect, useMemo, useState} from "react";
 import Accordion from "./Accordion/Accordion";
 import RedButton from "../../../components/Buttons/RedButton/RedButton";
 import OpacityButton from "../../../components/Buttons/OpacityButton/OpacityButton";
@@ -10,9 +10,10 @@ import Checkboxes from "./Checkboxes/Checkboxes";
 import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
 import {changeFiltersHandle, FiltersState, resetFilters} from "../../../store/filtersSlice";
-import {useAppDispatch, useSizeWindow} from "../../../hooks/hooks";
+import {useAppDispatch} from "../../../hooks/reduxHooks";
 import {IGenre} from "../../../types/types";
 import {MovieTypeFilter} from "../../../constants/constants";
+import useSizeWindow from "../../../hooks/useSizeWindow";
 
 interface FilterProps {
     isShowFilters: boolean;
@@ -20,6 +21,12 @@ interface FilterProps {
     filters: FiltersState;
     genres?: IGenre[];
 }
+
+
+const convertToMovieType = (value: string) => MovieTypeFilter[+value];
+const convertToNumber = (value: string) => +value;
+
+const types = ["все", "фильмы", "тв-шоу", "сериалы"];
 
 const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, filters, genres }) => {
 
@@ -37,19 +44,19 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
 
     const dispatch = useAppDispatch();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
         dispatch(changeFiltersHandle(formData))
         event.preventDefault();
-    }
+    }, [formData])
 
-    const changeValue = (name: string) => (value: string | number) => {
+    const changeValue = useCallback((name: string) => (value: string | number) => {
         setFormData(prevState => ({
             ...prevState,
             [name]: value,
         }))
-    }
+    }, []);
 
-    const genresNames = genres ? genres.map(genre => genre.genre) : [];
+    const genresNames = useMemo(() => genres ? genres.map(genre => genre.genre) : [], [genres]);
 
 
 
@@ -67,8 +74,7 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
                     <RangeSlider min={1} max={10}
                                  idFirstField="ratingFrom" idSecondField="ratingTo"
                                  fromValue={formData.ratingFrom} beforeValue={formData.ratingTo}
-                                 setFromValue={changeValue('ratingFrom')}
-                                 setBeforeValue={changeValue('ratingTo')}
+                                 changeValue={changeValue}
                     />
                 </Accordion>
 
@@ -76,30 +82,31 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
                     <RangeSlider min={1900} max={2022}
                                  idFirstField="yearFrom" idSecondField="yearTo"
                                  fromValue={formData.yearFrom} beforeValue={formData.yearTo}
-                                 setFromValue={changeValue('yearFrom')}
-                                 setBeforeValue={changeValue('yearTo')}
+                                 changeValue={changeValue}
 
                     />
                 </Accordion>
 
                 <Accordion title="Жанры">
-                    <SelectComponent id="genres-select" title="Жанры"
+                    <SelectComponent id="genres" title="Жанры"
                                      options={genresNames}
-                                     value={formData.genres} setValue={changeValue('genres')}
-                                     mutator={(value: string) => +value}
+                                     value={formData.genres}
+                                     changeValue={changeValue}
+                                     mutator={convertToNumber}
                      />
                 </Accordion>
 
                 <Accordion title="Тип произведения">
-                    <SelectComponent id="types-select" title="Тип произведения"
-                                     options={["все", "фильмы", "тв-шоу", "сериалы"]}
-                                     value={MovieTypeFilter.indexOf(formData.type)} setValue={changeValue('type')}
-                                     mutator={(value: string) => MovieTypeFilter[+value]}
+                    <SelectComponent id="type" title="Тип произведения"
+                                     options={types}
+                                     value={MovieTypeFilter.indexOf(formData.type)}
+                                     changeValue={changeValue}
+                                     mutator={convertToMovieType}
                     />
                 </Accordion>
 
                 <Accordion title="Сортировка">
-                    <Checkboxes value={formData.order} onChange={changeValue('order')} />
+                    <Checkboxes value={formData.order} name="order"  changeValue={changeValue} />
                 </Accordion>
 
                 <div className={classNames(styles.filter__buttons)}>

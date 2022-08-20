@@ -1,5 +1,5 @@
 import React from "react"
-import ContentLoader, {IContentLoaderProps} from "react-content-loader"
+import ContentLoader from "react-content-loader"
 import styles from "./MovieLoader.module.scss"
 
 export interface MovieLoaderProps extends React.HTMLAttributes<any> {
@@ -8,7 +8,7 @@ export interface MovieLoaderProps extends React.HTMLAttributes<any> {
 }
 
 
-const MovieLoader:React.FC<MovieLoaderProps> = ({ width, height }) => (
+const MovieLoader:React.FC<MovieLoaderProps> = React.memo(({ width, height }) => (
     <div className={styles.movieLoader}>
         <ContentLoader
             speed={2}
@@ -21,6 +21,6 @@ const MovieLoader:React.FC<MovieLoaderProps> = ({ width, height }) => (
             <rect x="0" y="0" rx="0" ry="0" width={width} height={height} />
         </ContentLoader>
     </div>
-)
+))
 
 export default MovieLoader;

@@ -1,9 +1,16 @@
 import styles from "./FilmPopup.module.scss";
-import {FC} from "react";
+import React, {FC} from "react";
 import {Link} from "react-router-dom";
 
+interface FilmPopupProps {
+    img: string;
+    name: string | null;
+    year: number;
+    minutes: number;
+    filmId: number;
+}
 
-const FilmPopup:FC<any> = ({ img, name, year, minutes, filmId }) => {
+const FilmPopup:FC<FilmPopupProps> = React.memo(({ img, name, year, minutes, filmId }) => {
     return (
         <Link to={`film/${filmId}`}>
             <div className={styles.header__film}>
@@ -22,6 +29,6 @@ const FilmPopup:FC<any> = ({ img, name, year, minutes, filmId }) => {
             </div>
         </Link>
     )
-}
+})
 
 export default FilmPopup;

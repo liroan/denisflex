@@ -2,26 +2,25 @@ import * as React from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import styles from "./RangeSlider.module.scss"
 import {TextField} from "@mui/material";
-import {Dispatch} from "react";
 
 const STEP = 1;
 
 interface RangeSlider {
     min: number;
     max: number;
-    setFromValue: (value: string | number) => void;
-    setBeforeValue: (value: string | number) => void;
+    changeValue: (name: string) => (value: string | number) => void;
     fromValue: number;
     beforeValue: number;
     idFirstField: string;
     idSecondField: string;
 }
 
-const RangeSlider: React.FC<RangeSlider> = ({ min, max,
-                                                setFromValue, setBeforeValue,
-                                                fromValue, beforeValue,
-                                                idFirstField,idSecondField
+const RangeSlider: React.FC<RangeSlider> = React.memo(({ min, max, fromValue, changeValue,
+                                                beforeValue, idFirstField,idSecondField
 }) => {
+
+    const setFromValue = changeValue(idFirstField);
+    const setBeforeValue = changeValue(idSecondField);
 
     const onChangeFromValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value ? +e.target.value : '';
@@ -100,7 +99,7 @@ const RangeSlider: React.FC<RangeSlider> = ({ min, max,
                             </div>
                         </div>
                     )}
-                    renderThumb={({ props, isDragged }) => (
+                    renderThumb={({ props }) => (
                         <div
                             {...props}
                             style={{...props.style, height: '17px', width: '17px', borderRadius: '50%', backgroundColor: '#FFF',
@@ -113,6 +112,6 @@ const RangeSlider: React.FC<RangeSlider> = ({ min, max,
             </div>
         </div>
     );
-};
+});
 
 export default RangeSlider;

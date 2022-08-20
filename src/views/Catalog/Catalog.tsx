@@ -4,7 +4,7 @@ import Container from "../../components/Container/Container";
 import Filter from "./Filter/Filter";
 import CatalogInfo from "./CatalogInfo/CatalogInfo";
 import CatalogFilms from "./CatalogFilms/CatalogFilms";
-import {useAppDispatch, useAppSelector, useSizeWindow} from "../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../services/services";
 import {useSearchParams} from "react-router-dom";
 import {changeFiltersFromUrl, FiltersState } from "../../store/filtersSlice";
@@ -21,7 +21,7 @@ const Catalog:FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filters = useAppSelector(state => state.filters);
     const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
-    const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters);
+    const { data: filmsResponse, isFetching } = useGetFiltersMovieQuery(filters);
     const dispatch = useAppDispatch();
 
 

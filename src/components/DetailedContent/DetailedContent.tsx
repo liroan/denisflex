@@ -15,8 +15,7 @@ interface DetailedContentProps {
     lineTitles: { id: number, title: string, value: any, converter?: ((value: any) => string | React.ReactNode)}[]
 }
 
-const DetailedContent:FC<DetailedContentProps> = ({ poster, title,
-                                                      subtitle, year,
+const DetailedContent:FC<DetailedContentProps> = React.memo(({ poster, title, subtitle, year,
                                                       isFilm, findProperty, lineTitles }) => {
     return (
         <div className={styles.film__content}>
@@ -53,5 +52,6 @@ const DetailedContent:FC<DetailedContentProps> = ({ poster, title,
             </div>
         </div>
     )
-}
+})
+
 export default DetailedContent;

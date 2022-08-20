@@ -1,11 +1,12 @@
-import {useGetMoviesLocalStorage} from "../../hooks/hooks";
+
 import styles from "./Favourites.module.scss";
 import Paginator from "../Catalog/Paginator/Paginator";
-import {useEffect, useState} from "react";
+import {FC, useEffect, useMemo, useState} from "react";
 import FavouritesMovie from "./FavoritesMovie/FavouritesMovie";
 import Container from "../../components/Container/Container";
+import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
 
-const Favourites = () => {
+const Favourites:FC = () => {
     const [movies, editMovies] = useGetMoviesLocalStorage();
     const totalPages = Math.ceil(movies.length / 20);
 
@@ -15,7 +16,8 @@ const Favourites = () => {
         if (activeNumber > totalPages) setActiveNumber(totalPages)
     }, [movies.length, activeNumber])
 
-    const showingMovies = movies.slice((activeNumber - 1) * 20, Math.min(activeNumber * 20, movies.length))
+    const showingMovies = useMemo(() => movies.slice((activeNumber - 1) * 20, Math.min(activeNumber * 20, movies.length)),
+        [activeNumber, movies])
 
     return (
        <div className={styles.favorites}>

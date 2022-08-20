@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import {Link, useParams, useSearchParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import * as queryString from "query-string";
 import {changeFiltersFromUrl, changeFiltersHandle, FiltersState} from "../../store/filtersSlice"
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 
 const FilterTest = () => {
     let [searchParams, setSearchParams] = useSearchParams();

@@ -6,12 +6,12 @@ interface EmptyFilmsProps {
     children?: React.ReactNode | string;
 }
 
-const EmptyFilms:FC<EmptyFilmsProps> = ({ children }) => {
+const EmptyFilms:FC<EmptyFilmsProps> = React.memo(({ children }) => {
     return (
         <div className={styles.header__filmsContent_empty}>
             { children }
         </div>
     )
-}
+})
 
 export default EmptyFilms;

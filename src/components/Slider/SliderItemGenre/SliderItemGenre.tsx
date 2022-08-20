@@ -1,4 +1,4 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import styles from "./SliderItemGenre.module.scss";
 import classnames from "classnames";
 import {Link} from "react-router-dom";
@@ -11,7 +11,7 @@ interface ISliderItemGenre {
 }
 
 
-const SliderItemGenre:FC<ISliderItemGenre> = ({ genre, index }) => {
+const SliderItemGenre:FC<ISliderItemGenre> = React.memo(({ genre, index }) => {
     return (
         <Link to={`/catalog?genres=${index + 1}`}>
             <div className={classnames(styles.movieCard, styles.movieCard_genre)}>
@@ -20,6 +20,6 @@ const SliderItemGenre:FC<ISliderItemGenre> = ({ genre, index }) => {
             </div>
         </Link>
     )
-}
+})
 
 export default SliderItemGenre;

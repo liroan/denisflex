@@ -1,19 +1,12 @@
 import classNames from "classnames";
 import styles from "./HeaderPopup.module.scss";
-import React, {Dispatch, FC, SetStateAction, useState} from "react";
+import React, {FC} from "react";
 import Category from "./Category/Category";
 import FilmsPopup from "./FilmsPopup/FilmsPopup";
-import {useGetFiltersMovieQuery} from "../../../../services/services";
 import {MovieType} from "../../../../types/types";
-import {initialStateFilter} from "../../../../store/filtersSlice";
 import {Link} from "react-router-dom";
-import FilmsPopupPreloader from "./FilmsPopupPreloader/FilmsPopupPreloader";
 import EmptyFilms from "./FilmsPopup/EmptyFilms/EmptyFilms";
-const films = [
-    {id: 1, img: "https://st.kp.yandex.net/images/film_big/4961816.jpg", name: "Джери и Марша играют по крупному", year: 2022, minutes: 96},
-    {id: 1, img: "https://st.kp.yandex.net/images/film_big/4961816.jpg", name: "Джери и Марша играют по крупному", year: 2022, minutes: 96},
-    {id: 1, img: "https://st.kp.yandex.net/images/film_big/4961816.jpg", name: "Джери и Марша играют по крупному", year: 2022, minutes: 96},
-]
+
 
 interface HeaderPopupProps {
     queryKeyword: string;
@@ -22,8 +15,7 @@ interface HeaderPopupProps {
     closePopupWithDeleteKeyword: () => void;
 }
 
-const HeaderPopup:FC<HeaderPopupProps> = ({ queryKeyword, type, setType, closePopupWithDeleteKeyword }) => {
-
+const HeaderPopup:FC<HeaderPopupProps> = React.memo(({ queryKeyword, type, setType, closePopupWithDeleteKeyword }) => {
 
     return (
         <div className={classNames(styles.header__searchPopup)}>
@@ -37,6 +29,6 @@ const HeaderPopup:FC<HeaderPopupProps> = ({ queryKeyword, type, setType, closePo
             </div>
         </div>
     )
-}
+})
 
 export default HeaderPopup;

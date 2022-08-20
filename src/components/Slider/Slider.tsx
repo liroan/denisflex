@@ -1,5 +1,5 @@
 import arrow from "../../assets/img/home/arrow.png";
-import {FC, Ref, useCallback, useEffect, useRef, useState} from "react";
+import React, {FC, useCallback, useEffect, useRef, useState} from "react";
 import SliderItemGenre from "./SliderItemGenre/SliderItemGenre";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
@@ -11,7 +11,7 @@ interface ISlider {
     isWideCard?: boolean;
 }
 
-const Slider:FC<ISlider> = ({movies, isWideCard}) => {
+const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
     const [translate, setTranslate] = useState(0);
     const [maxTranslate, setMaxTranslate] = useState(0);
     const [lastTranslate, setLastTranslate] = useState(0);
@@ -25,7 +25,7 @@ const Slider:FC<ISlider> = ({movies, isWideCard}) => {
         setMaxTranslate(widthItem * movies.length)
     }, [movies.length])
 
-    const nextItem = () => {
+    const nextItem = useCallback(() => {
         if (maxTranslate >= translate + width && maxTranslate < translate + width + widthItem) {
             setTranslate(maxTranslate - width + 50);
             setLastTranslate(translate);
@@ -34,15 +34,15 @@ const Slider:FC<ISlider> = ({movies, isWideCard}) => {
             setTranslate(prevState => prevState + widthItem);
         else
             setTranslate(0);
-    }
+    }, [maxTranslate, translate, width])
 
-    const previousItem = () => {
+    const previousItem = useCallback(() => {
         if (translate === maxTranslate - width + 50) {
             setTranslate(lastTranslate)
         }
         else
             setTranslate(prevState => prevState - widthItem);
-    }
+    }, [maxTranslate, translate, width])
 
     return (
         <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={translateWrapper}>
@@ -83,6 +83,6 @@ const Slider:FC<ISlider> = ({movies, isWideCard}) => {
 
         </div>
     )
-}
+})
 
 export default Slider;

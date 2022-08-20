@@ -5,12 +5,12 @@ interface ContainerProps {
     children: React.ReactNode;
 }
 
-const Container:FC<ContainerProps> = ({ children }) => {
+const Container:FC<ContainerProps> = React.memo(({ children }) => {
     return (
         <div className={styles.container}>
             {children}
         </div>
     )
-}
+})
 
 export default Container;

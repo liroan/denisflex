@@ -1,8 +1,16 @@
 import styles from "./HeaderSearch.module.scss";
 import classNames from "classnames";
-import React, {Dispatch, FC, MutableRefObject, RefObject, SetStateAction, useEffect, useRef, useState} from "react";
+import React, {
+    Dispatch,
+    FC,
+    RefObject,
+    SetStateAction,
+    useCallback,
+    useEffect,
+    useRef,
+    useState
+} from "react";
 import HeaderField from "./HeaderField/HeaderField";
-import Header from "../Header";
 import HeaderPopup from "./HeaderPopup/HeaderPopup";
 import {MovieType} from "../../../types/types";
 import {useLocation} from "react-router-dom";
@@ -14,7 +22,7 @@ interface HeaderSearchProps {
 }
 
 
-const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openInputIconRef}) => {
+const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenInput, openInputIconRef}) => {
 
     const [isOpenSearchPopup, setIsOpenSearchPopup] = useState(false);
     const [inputKeyword, setInputKeyword] = useState('');
@@ -24,7 +32,7 @@ const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openIn
     const popupSearchRef = useRef<HTMLDivElement>(null);
     let location = useLocation();
 
-    const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeKeyword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setInputKeyword(value)
         setIsOpenSearchPopup(true)
@@ -35,7 +43,7 @@ const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openIn
             setQueryKeyword(value);
             if (!value) setIsOpenSearchPopup(false)
         }, 1000))
-    }
+    }, [])
 
     useEffect(() => {
         const closeOpenMenu = (e: MouseEvent) => {
@@ -49,19 +57,20 @@ const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openIn
         return () => window.removeEventListener('click', closeOpenMenu);
     }, [])
 
-    const closePopupWithDeleteKeyword = () => {
+    const closePopupWithDeleteKeyword = useCallback(() => {
         closePopupWithSaveKeyword();
         setQueryKeyword('');
         setInputKeyword('');
-    }
+    }, [])
+
     React.useEffect(() => {
         closePopupWithDeleteKeyword();
     }, [location]);
 
-    const closePopupWithSaveKeyword = () => {
+    const closePopupWithSaveKeyword = useCallback(() => {
         setIsOpenSearchPopup(false);
         setIsOpenInput(false);
-    }
+    }, [])
 
     return (
         <div ref={popupSearchRef} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
@@ -73,6 +82,6 @@ const HeaderSearch:FC<HeaderSearchProps> = ({isOpenInput, setIsOpenInput, openIn
                                                 closePopupWithDeleteKeyword={closePopupWithDeleteKeyword}/> }
         </div>
     )
-}
+})
 
 export default HeaderSearch;

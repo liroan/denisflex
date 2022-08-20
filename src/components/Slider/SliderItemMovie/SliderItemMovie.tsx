@@ -1,4 +1,4 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import styles from "./SliderItemMovie.module.scss";
 import classNames from "classnames";
 import {Link} from "react-router-dom";
@@ -10,7 +10,7 @@ interface IFilmCard {
 }
 
 
-const SliderItemMovie:FC<IFilmCard> = ({filmId, posterUrl, rating, year}) => {
+const SliderItemMovie:FC<IFilmCard> = React.memo(({filmId, posterUrl, rating, year}) => {
     return (
         <Link to={"/film/" + filmId}>
             <div className={styles.movieCardContainer}>
@@ -24,6 +24,6 @@ const SliderItemMovie:FC<IFilmCard> = ({filmId, posterUrl, rating, year}) => {
             </div>
         </Link>
     )
-}
+})
 
 export default SliderItemMovie;

@@ -2,7 +2,7 @@ import classNames from "classnames";
 import styles from "../../Catalog.module.scss";
 import FormGroup from "@mui/material/FormGroup";
 import {FormControlLabel, Switch} from "@mui/material";
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, {FC} from "react";
 import {SortBy} from "../../../../store/filtersSlice";
 
 const checkboxes: { id: number; label: string; sortType: SortBy }[] = [
@@ -13,10 +13,12 @@ const checkboxes: { id: number; label: string; sortType: SortBy }[] = [
 
 interface CheckboxesProps {
     value: SortBy;
-    onChange: (value: SortBy) => void;
+    changeValue: (name: string) => (value: string | number) => void;
+    name: string;
 }
 
-const Checkboxes:FC<CheckboxesProps> = ({ value, onChange }) => {
+const Checkboxes:FC<CheckboxesProps> = React.memo(({ value, changeValue, name }) => {
+    const onChange = changeValue(name);
     return (
         <div className={classNames(styles.filter__checkboxes)}>
             <FormGroup>
@@ -32,6 +34,6 @@ const Checkboxes:FC<CheckboxesProps> = ({ value, onChange }) => {
             </FormGroup>
         </div>
     )
-}
+})
 
 export default Checkboxes;

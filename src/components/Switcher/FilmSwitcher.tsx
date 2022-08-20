@@ -10,21 +10,21 @@ interface FilmSwitcherProps {
     setActiveCategory:  React.Dispatch<React.SetStateAction<FilmCategory>> | React.Dispatch<React.SetStateAction<PersonCategory>>;
 }
 
-const FilmSwitcher:FC<FilmSwitcherProps> = ({ activeCategory, switcher, setActiveCategory }) => {
+const FilmSwitcher:FC<FilmSwitcherProps> = React.memo(({ activeCategory, switcher, setActiveCategory }) => {
     return (
         <div className={styles.film__switch}>
             {
                 switcher.map(({ id, title, value }) => (
-                    <div className={classNames(styles.film__option, { [styles.film__activeOption]: value === activeCategory })} onClick={setActiveCategory && (() => {
+                    <div key={id} className={classNames(styles.film__option, { [styles.film__activeOption]: value === activeCategory })} onClick={setActiveCategory && (() => {
                         setActiveCategory(value)
                     })}>
                         { title }
                     </div>
                 ))
             }
-            <div className={styles.film__switchBorder}></div>
+            <div className={styles.film__switchBorder}/>
         </div>
     )
-}
+})
 
 export default FilmSwitcher;

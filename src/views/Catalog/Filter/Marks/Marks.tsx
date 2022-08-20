@@ -1,7 +1,7 @@
 import styles from "./Marks.module.scss";
 import React, {FC} from "react";
 import {FiltersState, SortBy} from "../../../../store/filtersSlice";
-import {MovieTypeDict, MovieTypeFilter} from "../../../../constants/constants";
+import {MovieTypeDict} from "../../../../constants/constants";
 
 interface MarksProps {
     filters: FiltersState;
@@ -16,7 +16,7 @@ const sortByDict: { [key in SortBy]: string; } = {
 }
 
 
-const Marks:FC<MarksProps> = ({ filters, genresNames }) => {
+const Marks:FC<MarksProps> = React.memo(({ filters, genresNames }) => {
     return (
         <div className={styles.filter__info}>
             <div className={styles.filter__mark}>Тип произведения: { MovieTypeDict[filters.type] }</div>
@@ -26,6 +26,6 @@ const Marks:FC<MarksProps> = ({ filters, genresNames }) => {
             <div className={styles.filter__mark}>Сортировка: { sortByDict[filters.order] }</div>
         </div>
     )
-}
+})
 
 export default Marks;

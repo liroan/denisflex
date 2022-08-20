@@ -6,12 +6,12 @@ interface ButtonProps {
     icon?: React.ReactNode;
 }
 
-const Button:FC<ButtonProps> = ({ children }) => {
+const Button:FC<ButtonProps> = React.memo(({ children }) => {
     return (
         <button className={styles.button}>
             { children }
         </button>
     )
-}
+})
 
 export default Button;

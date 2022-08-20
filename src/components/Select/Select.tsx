@@ -1,5 +1,5 @@
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, {FC} from "react";
 import classNames from "classnames";
 import styles from "./Select.module.scss";
 
@@ -8,11 +8,14 @@ interface SelectComponentProps {
     title: string;
     options: string[];
     value: number | string;
-    setValue: (value: string | number) => void;
+    changeValue: (name: string) => (value: string | number) => void;
     mutator: (value: string) => number | string;
 }
 
-const SelectComponent:FC<SelectComponentProps> = ({ id, title, options, value, setValue, mutator }) => {
+const SelectComponent:FC<SelectComponentProps> = React.memo(({ id, title, options, value, changeValue, mutator }) => {
+
+    const setValue = changeValue(id);
+
     const handleChange = (event: SelectChangeEvent) => {
         setValue(mutator(event.target.value));
     };
@@ -32,6 +35,6 @@ const SelectComponent:FC<SelectComponentProps> = ({ id, title, options, value, s
             </FormControl>
         </div>
     )
-}
+})
 
 export default SelectComponent;

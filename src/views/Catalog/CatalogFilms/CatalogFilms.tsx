@@ -1,13 +1,10 @@
-import classNames from "classnames";
 import styles from "./CatalogFilms.module.scss";
-import React, {FC, useContext} from "react";
+import React, {FC} from "react";
 import CatalogFilm from "./CatalogFilm/CatalogFilm";
-import {IFilmSearchByFiltersResponse, IMoviePreview} from "../../../types/types";
-import Paginator from "../Paginator/Paginator";
+import {IFilmSearchByFiltersResponse} from "../../../types/types";
 import CatalogPreloader from "../CatalogPreloader/CatalogPreloader";
-import {EditMoviesContext} from "../../../App";
-import {useGetMoviesLocalStorage} from "../../../hooks/hooks";
 import CatalogPaginatorContainer from "../CatalogPaginatorContainer/CatalogPaginatorContainer";
+import useGetMoviesLocalStorage from "../../../hooks/useGetMoviesLocalStorage";
 
 interface CatalogFilmsProps {
     filmsResponse?: IFilmSearchByFiltersResponse;
@@ -15,7 +12,7 @@ interface CatalogFilmsProps {
 }
 
 
-const CatalogFilms:FC<CatalogFilmsProps> = ({ filmsResponse,isFetching  }) => {
+const CatalogFilms:FC<CatalogFilmsProps> = React.memo(({ filmsResponse,isFetching  }) => {
     const films = filmsResponse?.items;
     const [movies, editMovies] = useGetMoviesLocalStorage();
      return (
@@ -28,9 +25,11 @@ const CatalogFilms:FC<CatalogFilmsProps> = ({ filmsResponse,isFetching  }) => {
                     />
                 ))
             }
-            <div className={styles.films__paginator}><CatalogPaginatorContainer totalPages={filmsResponse?.totalPages} /></div>
+            <div className={styles.films__paginator}>
+                <CatalogPaginatorContainer totalPages={filmsResponse?.totalPages} />
+            </div>
         </div>
     )
-}
+})
 
 export default CatalogFilms;

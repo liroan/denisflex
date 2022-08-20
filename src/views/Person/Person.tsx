@@ -3,19 +3,12 @@
 
 import styles from "../Film/Film.module.scss";
 import Container from "../../components/Container/Container";
-import React, {FC, useState} from "react";
-import {
-    useGetBoxOfficeMovieByIdQuery, useGetDistributorsMovieByIdQuery,
-    useGetFactsAndErrorsMovieByIdQuery, useGetMovieByIdQuery, useGetPersonByIdQuery, useGetSimilarMovieByIdQuery,
-    useGetStaffMovieByIdQuery
-} from "../../services/services";
-import HomeMovies from "../Home/HomeMovies/HomeMovies";
+import React, {useState} from "react";
+import {useGetPersonByIdQuery} from "../../services/services";
 import {useParams} from "react-router-dom";
-import {IBudget, ICountry, IDistributors, IGenre, IMovie, IPerson } from "../../types/types";
+import {IPerson} from "../../types/types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
-import {parseToDischargeNumber, TitleWithCount} from "../../utils/utils";
 import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
-import {FilmCategory} from "../Film/Film";
 import PersonSwitcherContent from "./PersonSwitcherContent/PersonSwitcherContent";
 
 
@@ -46,13 +39,14 @@ const Person = () => {
 
 
     const [activeCategory, setActiveCategory] = useState(PersonCategory.FACTS);
-    const { data: personData, isLoading: personLoading, error: personError } = useGetPersonByIdQuery(personIdNumber);
+    const { data: personData} = useGetPersonByIdQuery(personIdNumber);
+
     if (!personData) return <div>Загрузка...</div>
-    console.log(personData)
 
     const findProperty = (key: keyof IPerson): typeof personData[keyof IPerson] => {
         return personData[key];
     }
+
 
     const { nameRu, nameEn, posterUrl } = personData;
     return (

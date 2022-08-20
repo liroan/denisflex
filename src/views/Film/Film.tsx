@@ -1,14 +1,11 @@
 import styles from "./Film.module.scss";
 import Container from "../../components/Container/Container";
-import React, {FC, useState} from "react";
-import {
-    useGetBoxOfficeMovieByIdQuery, useGetDistributorsMovieByIdQuery,
-    useGetFactsAndErrorsMovieByIdQuery, useGetMovieByIdQuery, useGetSimilarMovieByIdQuery,
+import React, {FC, useCallback, useState} from "react";
+import {useGetFactsAndErrorsMovieByIdQuery, useGetSimilarMovieByIdQuery,
     useGetStaffMovieByIdQuery
 } from "../../services/services";
-import HomeMovies from "../Home/HomeMovies/HomeMovies";
-import {useParams} from "react-router-dom";
-import {IBudget, ICountry, IDistributors, IGenre, IMovie, IPerson} from "../../types/types";
+import SliderContainer from "../../components/SliderContainer/SliderContainer";
+import {IBudget, ICountry, IDistributors, IGenre, IMovie} from "../../types/types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
 import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
@@ -66,19 +63,20 @@ interface FilmProps {
     filmId: number;
 }
 
-const Film:FC<FilmProps> = ({ movieData, budget, distributors , filmId}) => {
+const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmId}) => {
 
     const [activeCategory, setActiveCategory] = useState(FilmCategory.DESCRIPTION);
     const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmId);
-    const { data: factsAndErrors, isLoading: factsAndErrorsLoading, error: factsAndErrorsError } = useGetFactsAndErrorsMovieByIdQuery(filmId);
+    const { data: factsAndErrors } = useGetFactsAndErrorsMovieByIdQuery(filmId);
     const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
 
 
-    const findProperty = (key: keyof IMovie | "budget" | "distributors"): typeof movieData[keyof IMovie] |  IDistributors[] | IBudget[] | undefined => {
+    const findProperty = useCallback((key: keyof IMovie | "budget" | "distributors")
+        : typeof movieData[keyof IMovie] |  IDistributors[] | IBudget[] | undefined => {
         if (key === "budget") return budget;
         if (key === "distributors") return distributors;
         return movieData[key];
-    }
+    }, [movieData, budget, distributors])
 
     const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription, description} = movieData;
     return (
@@ -91,18 +89,18 @@ const Film:FC<FilmProps> = ({ movieData, budget, distributors , filmId}) => {
                     <FilmSwitcher  activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory} />
 
                     <FilmSwitcherContent activeCategory={activeCategory} description={description} factsAndErrors={factsAndErrors}>
-                        <HomeMovies movies={staff} isLoading={staffLoading}
-                                    error={staffError} title={<TitleWithCount title="Состав" count={staff?.length}/>} />
+                        <SliderContainer movies={staff} isLoading={staffLoading}
+                                         error={staffError} title={<TitleWithCount title="Состав" count={staff?.length}/>} />
                     </FilmSwitcherContent>
 
                     <div className={styles.film__similar}>
-                        <HomeMovies movies={similarFilms?.items} isLoading={similarFilmsLoading}
-                                    error={similarFilmsError} title={<TitleWithCount title="Похожее кино" count={similarFilms?.total}/>} />
+                        <SliderContainer movies={similarFilms?.items} isLoading={similarFilmsLoading}
+                                         error={similarFilmsError} title={<TitleWithCount title="Похожее кино" count={similarFilms?.total}/>} />
                     </div>
                 </Container>
             </Container>
         </div>
     )
-}
+})
 
 export default Film;

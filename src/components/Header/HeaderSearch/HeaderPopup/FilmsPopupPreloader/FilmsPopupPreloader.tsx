@@ -3,7 +3,7 @@ import {Skeleton} from "@mui/material";
 import React from "react";
 
 
-const FilmPopupPreloader = () => {
+const FilmPopupPreloader = React.memo(() => {
     return (
         <div className={styles.preloader}>
             <div className={styles.preloader__info}>
@@ -20,21 +20,14 @@ const FilmPopupPreloader = () => {
             </div>
         </div>
     )
-}
+})
 
-const FilmsPopupPreloader = () => {
+const FilmsPopupPreloader = React.memo(() => {
     return (
         <div style={{ width: '100%', maxHeight: 500, overflowY: 'auto' }}>
-            <FilmPopupPreloader />
-            <FilmPopupPreloader />
-            <FilmPopupPreloader />
-            <FilmPopupPreloader />
-            <FilmPopupPreloader />
-            <FilmPopupPreloader />
-            <FilmPopupPreloader />
-            <FilmPopupPreloader />
+            { new Array(10).fill(0).map((_, i) => <FilmPopupPreloader key={i} />)  }
         </div>
     )
-}
+})
 
 export default FilmsPopupPreloader;

@@ -1,11 +1,11 @@
 import styles from "./Home.module.scss";
 import Container from "../../components/Container/Container";
-import React from "react";
-import HomeMovies from "./HomeMovies/HomeMovies";
+import React, {FC} from "react";
+import SliderContainer from "../../components/SliderContainer/SliderContainer";
 import {useGetCountriesAndGenresQuery, useGetCompilationMoviesQuery} from "../../services/services";
 import Banner from "./Banner/Banner";
 
-const Home = () => {
+const Home:FC = () => {
 
     const { data: genresAndCountries, isLoading: genresAndCountriesLoading,
         error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
@@ -19,20 +19,20 @@ const Home = () => {
             <Banner />
             <Container>
                 <div className={styles.home__movies_margin}>
-                    <HomeMovies movies={popularFilms?.films} isLoading={popularFilmsLoading}
-                                error={popularFilmsError} title="Самые популярные"/>
+                    <SliderContainer movies={popularFilms?.films} isLoading={popularFilmsLoading}
+                                     error={popularFilmsError} title="Самые популярные"/>
                 </div>
                 <div className={styles.home__movies_margin}>
-                    <HomeMovies movies={bestFilms?.films} isLoading={bestFilmsLoading}
-                                error={bestFilmsError} title="Самые лучшие"/>
+                    <SliderContainer movies={bestFilms?.films} isLoading={bestFilmsLoading}
+                                     error={bestFilmsError} title="Самые лучшие"/>
                 </div>
                 <div className={styles.home__movies_margin}>
-                    <HomeMovies movies={genresAndCountries?.genres?.slice(0, 16)} isLoading={genresAndCountriesLoading}
-                                error={genresAndCountriesError} title="Жанры" isWideCard />
+                    <SliderContainer movies={genresAndCountries?.genres?.slice(0, 16)} isLoading={genresAndCountriesLoading}
+                                     error={genresAndCountriesError} title="Жанры" isWideCard />
                 </div>
                 <div className={styles.home__movies_margin}>
-                    <HomeMovies movies={awaitFilms?.films} isLoading={awaitFilmsLoading}
-                                error={awaitFilmsError} title="Самые ожидаемые"/>
+                    <SliderContainer movies={awaitFilms?.films} isLoading={awaitFilmsLoading}
+                                     error={awaitFilmsError} title="Самые ожидаемые"/>
                 </div>
             </Container>
         </div>

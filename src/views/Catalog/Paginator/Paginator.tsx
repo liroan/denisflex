@@ -1,8 +1,6 @@
 import styles from "./Paginator.module.scss"
-import React, {FC, useEffect, useState} from "react";
+import React, {FC} from "react";
 import classNames from "classnames";
-import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {setPage} from "../../../store/filtersSlice";
 
 interface PaginatorProps {
     totalPages?: number;
@@ -18,7 +16,7 @@ const PaginatorButton:FC<any> = ({ number, isActive, onClick }) => {
     )
 }
 
-const Paginator:FC<PaginatorProps> = ({ totalPages, activeNumber, setActiveNumber }) => {
+const Paginator:FC<PaginatorProps> = React.memo(({ totalPages, activeNumber, setActiveNumber }) => {
 
     const startNumber = activeNumber - ((activeNumber - 1) % 5);
 
@@ -26,6 +24,7 @@ const Paginator:FC<PaginatorProps> = ({ totalPages, activeNumber, setActiveNumbe
 
 
     const countButtons = 5;
+
     const buttons = new Array(countButtons).fill(0).filter((_, i) => startNumber + i <= totalPages);
 
     const nextNumber = () => {
@@ -45,7 +44,7 @@ const Paginator:FC<PaginatorProps> = ({ totalPages, activeNumber, setActiveNumbe
             {
                 <div className={styles.paginator__arrow}>
                     {
-                        activeNumber !== 1 && <svg stroke="currentColor" onClick={previousNumber} fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        activeNumber !== 1 && <svg stroke="currentColor" onClick={previousNumber} fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg>
                     }
                 </div>
             }
@@ -57,12 +56,12 @@ const Paginator:FC<PaginatorProps> = ({ totalPages, activeNumber, setActiveNumbe
             {
                 <div className={styles.paginator__arrow}>
                     {
-                        activeNumber !== totalPages && <svg stroke="currentColor" fill="none" onClick={nextNumber} strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        activeNumber !== totalPages && <svg stroke="currentColor" fill="none" onClick={nextNumber} strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg>
                     }
                 </div>
             }
         </div>
     )
-}
+})
 
 export default Paginator;

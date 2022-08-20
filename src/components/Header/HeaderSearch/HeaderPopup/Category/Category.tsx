@@ -15,7 +15,7 @@ const movieTypes: { id: number; label: string; value: MovieType }[] = [
     { id: 4, label: "ТВ-Шоу", value: "TV_SHOW" }
 ]
 
-const Category:FC<CategoryProps> = ({ type, setType }) => {
+const Category:FC<CategoryProps> = React.memo(({ type, setType }) => {
     return (
         <div className={styles.header__category}>
             <div className={styles.header__category_buttons}>
@@ -30,6 +30,6 @@ const Category:FC<CategoryProps> = ({ type, setType }) => {
             </div>
         </div>
     )
-}
+})
 
 export default Category;

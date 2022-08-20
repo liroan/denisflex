@@ -1,5 +1,4 @@
 import styles from "../Film.module.scss";
-import HomeMovies from "../../Home/HomeMovies/HomeMovies";
 import parse from "html-react-parser";
 import React, {FC} from "react";
 import {IFactsAndErrors} from "../../../types/types";
@@ -13,7 +12,7 @@ interface FilmSwitcherContentProps {
     factsAndErrors?: IFactsAndErrors;
 }
 
-const FilmSwitcherContent:FC<FilmSwitcherContentProps> = ({ activeCategory, description, children, factsAndErrors }) => {
+const FilmSwitcherContent:FC<FilmSwitcherContentProps> = React.memo(({ activeCategory, description, children, factsAndErrors }) => {
     return (
         <div className={styles.film__switchContent}>
             {
@@ -30,7 +29,7 @@ const FilmSwitcherContent:FC<FilmSwitcherContentProps> = ({ activeCategory, desc
                         <h6 className={styles.film__factsTitle}>Знаете ли вы, что…</h6>
                         {
                             factsAndErrors?.items.map(fact => (
-                                <p className={styles.film__fact}>
+                                <p key={fact.text}  className={styles.film__fact}>
                                     { parse(fact.text)  }
                                 </p>
                             ))
@@ -40,6 +39,6 @@ const FilmSwitcherContent:FC<FilmSwitcherContentProps> = ({ activeCategory, desc
             }
         </div>
     )
-}
+})
 
 export default FilmSwitcherContent;

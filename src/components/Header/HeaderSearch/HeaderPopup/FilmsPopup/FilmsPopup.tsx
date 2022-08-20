@@ -1,8 +1,8 @@
 import styles from "./FilmsPopup.module.scss";
-import {FC} from "react";
+import React, {FC} from "react";
 import FilmPopup from "./FilmPopup/FilmPopup";
 import EmptyFilms from "./EmptyFilms/EmptyFilms";
-import {IMoviePreview, MovieType} from "../../../../../types/types";
+import {MovieType} from "../../../../../types/types";
 import {useGetFiltersMovieQuery} from "../../../../../services/services";
 import {initialStateFilter} from "../../../../../store/filtersSlice";
 import FilmsPopupPreloader from "../FilmsPopupPreloader/FilmsPopupPreloader";
@@ -12,8 +12,8 @@ interface FilmsPopupProps {
     queryKeyword: string;
 }
 
-const FilmsPopup:FC<FilmsPopupProps> = ({ type, queryKeyword }) => {
-    const { data: movies, isFetching, error, isLoading } = useGetFiltersMovieQuery({ ...initialStateFilter, type, keyword: queryKeyword })
+const FilmsPopup:FC<FilmsPopupProps> = React.memo(({ type, queryKeyword }) => {
+    const { data: movies, isFetching, error } = useGetFiltersMovieQuery({ ...initialStateFilter, type, keyword: queryKeyword })
     if (isFetching) return <FilmsPopupPreloader />
     if (!movies || movies.total === 0 || error) return <EmptyFilms>По вашему запросу ничего не найдено</EmptyFilms>
     return (
@@ -28,6 +28,6 @@ const FilmsPopup:FC<FilmsPopupProps> = ({ type, queryKeyword }) => {
             </div>
         </div>
     )
-}
+})
 
 export default FilmsPopup;

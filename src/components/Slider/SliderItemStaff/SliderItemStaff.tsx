@@ -14,7 +14,7 @@ const titleOrDash = (title: string): string | React.ReactNode => {
     return title || <span>&mdash</span>;
 }
 
-const SliderItemStaff:FC<SliderItemStaffProps> = ({posterUrl, description,
+const SliderItemStaff:FC<SliderItemStaffProps> = React.memo(({posterUrl, description,
                                                       professionText, nameEn, nameRu}) => {
     return (
         <div className={styles.movieCardContainer}>
@@ -28,6 +28,6 @@ const SliderItemStaff:FC<SliderItemStaffProps> = ({posterUrl, description,
             <h4 className={styles.movieCardContainer__role}>{ description }</h4>
         </div>
     )
-}
+})
 
 export default SliderItemStaff;

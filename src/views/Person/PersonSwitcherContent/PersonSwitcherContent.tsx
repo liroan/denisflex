@@ -1,8 +1,6 @@
 import styles from "../../Film/Film.module.scss";
-import HomeMovies from "../../Home/HomeMovies/HomeMovies";
 import parse from "html-react-parser";
 import React, {FC} from "react";
-import {IFactsAndErrors} from "../../../types/types";
 import {PersonCategory} from "../Person";
 
 
@@ -11,7 +9,7 @@ interface PersonSwitcherContentProps {
     factsAndErrors: string[];
 }
 
-const PersonSwitcherContent:FC<PersonSwitcherContentProps> = ({ activeCategory, factsAndErrors }) => {
+const PersonSwitcherContent:FC<PersonSwitcherContentProps> = React.memo(({ activeCategory, factsAndErrors }) => {
     return (
         <div className={styles.film__switchContent}>
             {
@@ -30,6 +28,6 @@ const PersonSwitcherContent:FC<PersonSwitcherContentProps> = ({ activeCategory, 
             }
         </div>
     )
-}
+})
 
 export default PersonSwitcherContent;

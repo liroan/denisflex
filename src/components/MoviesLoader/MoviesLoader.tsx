@@ -7,7 +7,7 @@ interface MoviesLoaderProps {
     height: number;
 }
 
-const MoviesLoader:FC<MoviesLoaderProps> = ({ width, height }) => {
+const MoviesLoader:FC<MoviesLoaderProps> = React.memo(({ width, height }) => {
 
     return (
         <div className={styles.moviesLoader}>
@@ -18,7 +18,7 @@ const MoviesLoader:FC<MoviesLoaderProps> = ({ width, height }) => {
             }
         </div>
     )
-}
+})
 
 
 export default MoviesLoader;
