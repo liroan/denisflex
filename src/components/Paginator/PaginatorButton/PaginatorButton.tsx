@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import classNames from "classnames";
-import styles from "../Paginator.module.scss";
+import styles from "./PaginatorButton.module.scss";
 
 interface PaginatorButtonProps {
     number: number;

@@ -24,7 +24,7 @@ const Dashboard = React.memo(() => {
 const App:FC = () => {
 
     const moviesState = useStateMovies();
-    console.log('lol12')
+
     return (
         <EditMoviesContext.Provider value={moviesState}>
             <div>

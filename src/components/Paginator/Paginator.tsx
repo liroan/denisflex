@@ -9,14 +9,14 @@ interface PaginatorProps {
     setActiveNumber: (number: number) => void;
 }
 
+const countButtons = 5;
+
 const Paginator:FC<PaginatorProps> = React.memo(({ totalPages, activeNumber, setActiveNumber }) => {
 
     const startNumber = activeNumber - ((activeNumber - 1) % 5);
 
     if (!totalPages || activeNumber > totalPages) return null;
 
-
-    const countButtons = 5;
 
     const buttons = new Array(countButtons).fill(0).filter((_, i) => startNumber + i <= totalPages);
 

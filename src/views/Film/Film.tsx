@@ -11,6 +11,7 @@ import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
 import parseToDischargeNumber from "../../utils/parseToDischargeNumber";
 import getTitleWithCount from "../../utils/getTitleWithCount";
+import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
 
 
 
@@ -70,7 +71,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
     const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmId);
     const { data: factsAndErrors } = useGetFactsAndErrorsMovieByIdQuery(filmId);
     const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
-
+    const [movies, editMovies] = useGetMoviesLocalStorage();
 
     const findProperty = useCallback((key: keyof IMovie | "budget" | "distributors")
         : typeof movieData[keyof IMovie] |  IDistributors[] | IBudget[] | undefined => {
@@ -79,13 +80,25 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
         return movieData[key];
     }, [movieData, budget, distributors])
 
+    const toggler = useCallback(() => {
+        editMovies(movieData)
+    }, [editMovies, movieData])
+
     const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription, description} = movieData;
     return (
         <div className={styles.film}>
             <Container>
                 <Container>
-                    <DetailedContent poster={posterUrl} title={nameRu || nameEn || nameOriginal} isFilm
-                                     subtitle={shortDescription} year={year} findProperty={findProperty} lineTitles={lineTitles} />
+                    <DetailedContent poster={posterUrl}
+                                     title={nameRu || nameEn || nameOriginal}
+                                     isFilm
+                                     subtitle={shortDescription}
+                                     year={year}
+                                     findProperty={findProperty}
+                                     lineTitles={lineTitles}
+                                     isFavourite={movies.findIndex(movie => movie.kinopoiskId === movieData.kinopoiskId) !== -1}
+                                     toggler={toggler}
+                    />
 
                     <FilmSwitcher  activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory} />
 

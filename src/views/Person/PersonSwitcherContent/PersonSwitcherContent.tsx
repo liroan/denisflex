@@ -2,6 +2,7 @@ import styles from "../../Film/Film.module.scss";
 import parse from "html-react-parser";
 import React, {FC} from "react";
 import {PersonCategory} from "../Person";
+import Facts from "../../../components/Facts/Facts";
 
 
 interface PersonSwitcherContentProps {
@@ -13,18 +14,7 @@ const PersonSwitcherContent:FC<PersonSwitcherContentProps> = React.memo(({ activ
     return (
         <div className={styles.film__switchContent}>
             {
-                activeCategory === PersonCategory.FACTS && (
-                    <div className={styles.film__facts}>
-                        <h6 className={styles.film__factsTitle}>Знаете ли вы, что…</h6>
-                        {
-                            factsAndErrors?.map((fact, i) => (
-                                <p className={styles.film__fact} key={i}>
-                                    { parse(fact)  }
-                                </p>
-                            ))
-                        }
-                    </div>
-                )
+                activeCategory === PersonCategory.FACTS && <Facts facts={factsAndErrors} />
             }
         </div>
     )

@@ -32,6 +32,22 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
     const popupSearchRef = useRef<HTMLDivElement>(null);
     let location = useLocation();
 
+    useEffect(() => {
+        const closeOpenMenu = (e: MouseEvent) => {
+            const event = e as MouseEvent & { path: Node[]; };
+            if (popupSearchRef.current && openInputIconRef.current &&
+                !event.path.includes(popupSearchRef.current) && !event.path.includes(openInputIconRef.current)) {
+                closePopupWithSaveKeyword();
+            }
+        }
+        window.addEventListener('click', closeOpenMenu);
+        return () => window.removeEventListener('click', closeOpenMenu);
+    }, [])
+
+    useEffect(() => {
+        closePopupWithDeleteKeyword();
+    }, [location]);
+
     const onChangeKeyword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setInputKeyword(value)
@@ -45,27 +61,12 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
         }, 1000))
     }, [])
 
-    useEffect(() => {
-        const closeOpenMenu = (e: MouseEvent) => {
-            const event = e as MouseEvent & { path: Node[]; };
-            if (popupSearchRef.current && openInputIconRef.current &&
-                !event.path.includes(popupSearchRef.current) && !event.path.includes(openInputIconRef.current)) {
-                closePopupWithSaveKeyword();
-            }
-        }
-        window.addEventListener('click', closeOpenMenu);
-        return () => window.removeEventListener('click', closeOpenMenu);
-    }, [])
-
     const closePopupWithDeleteKeyword = useCallback(() => {
         closePopupWithSaveKeyword();
         setQueryKeyword('');
         setInputKeyword('');
     }, [])
 
-    React.useEffect(() => {
-        closePopupWithDeleteKeyword();
-    }, [location]);
 
     const closePopupWithSaveKeyword = useCallback(() => {
         setIsOpenSearchPopup(false);
@@ -74,11 +75,16 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
 
     return (
         <div ref={popupSearchRef} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
-            <HeaderField onChangeKeyword={onChangeKeyword} setIsOpenInput={setIsOpenInput} setIsOpenSearchPopup={setIsOpenSearchPopup}
-                         queryKeyword={queryKeyword} closePopupWithDeleteKeyword={closePopupWithDeleteKeyword} type={type}
+            <HeaderField onChangeKeyword={onChangeKeyword}
+                         setIsOpenInput={setIsOpenInput}
+                         setIsOpenSearchPopup={setIsOpenSearchPopup}
+                         queryKeyword={queryKeyword}
+                         closePopupWithDeleteKeyword={closePopupWithDeleteKeyword} type={type}
                          inputKeyword={inputKeyword}
             />
-            { isOpenSearchPopup && <HeaderPopup queryKeyword={queryKeyword} type={type} setType={setType}
+            { isOpenSearchPopup && <HeaderPopup queryKeyword={queryKeyword}
+                                                type={type}
+                                                setType={setType}
                                                 closePopupWithDeleteKeyword={closePopupWithDeleteKeyword}/> }
         </div>
     )

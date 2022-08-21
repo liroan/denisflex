@@ -57,33 +57,6 @@
       }
     }
   }
-  &__addFavourites {
-    button {
-      color: #fff !important;
-      background: transparent !important;
-      border: 1px solid #fff;
-      &:hover {
-        background: #fff !important;
-        color: #141414 !important;
-        border: 1px solid #fff;
-        svg {
-          fill: #141414;
-          stroke: #141414;
-        }
-      }
-    }
-  }
-  &__deleteFavourites {
-    button {
-      color: #fff !important;
-      background: #E50914 !important;
-      border: 1px solid #E50914;
-      &:hover {
-        background: rgba(#E50914, 0.4) !important;
-        border: 1px solid rgba(#E50914, 0.4);
-      }
-    }
-  }
 
   &__rating {
     font-size: 20px;

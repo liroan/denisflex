@@ -1,0 +1,23 @@
+
+.film {
+  &__factsTitle {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  &__facts {
+    padding-bottom: 50px;
+  }
+  &__fact {
+    font-size: 14px;
+    color: #777;
+    margin-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333;
+    font-weight: 300;
+    a {
+      color: #fff;
+    }
+  }
+}
