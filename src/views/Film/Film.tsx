@@ -69,7 +69,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
 
     const [activeCategory, setActiveCategory] = useState(FilmCategory.DESCRIPTION);
     const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmId);
-    const { data: factsAndErrors } = useGetFactsAndErrorsMovieByIdQuery(filmId);
+    const { data: factsAndErrors, isLoading: factsLoading, error: factsError } = useGetFactsAndErrorsMovieByIdQuery(filmId);
     const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
     const [movies, editMovies] = useGetMoviesLocalStorage();
 
@@ -102,7 +102,12 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
 
                     <FilmSwitcher  activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory} />
 
-                    <FilmSwitcherContent activeCategory={activeCategory} description={description} factsAndErrors={factsAndErrors}>
+                    <FilmSwitcherContent activeCategory={activeCategory}
+                                         description={description}
+                                         factsAndErrors={factsAndErrors}
+                                         factsLoading={factsLoading}
+                                         factsError={factsError}
+                    >
                         <SliderContainer movies={staff} isLoading={staffLoading}
                                          error={staffError} title={getTitleWithCount("Состав", staff?.length) } />
                     </FilmSwitcherContent>

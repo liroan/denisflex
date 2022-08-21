@@ -10,6 +10,9 @@ import {IPerson} from "../../types/types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
 import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
 import PersonSwitcherContent from "./PersonSwitcherContent/PersonSwitcherContent";
+import useGetScreensaver from "../../hooks/useGetScreensaver";
+import Preloader from "../../components/Preloader/Preloader";
+import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
 
 
 
@@ -39,9 +42,10 @@ const Person = () => {
 
 
     const [activeCategory, setActiveCategory] = useState(PersonCategory.FACTS);
-    const { data: personData} = useGetPersonByIdQuery(personIdNumber);
+    const { data: personData, isFetching, error} = useGetPersonByIdQuery(personIdNumber);
 
-    if (!personData) return <div>Загрузка...</div>
+    if (isFetching) return <Preloader />
+    if (!personData || error) return <ErrorScreen />
 
     const findProperty = (key: keyof IPerson): typeof personData[keyof IPerson] => {
         return personData[key];

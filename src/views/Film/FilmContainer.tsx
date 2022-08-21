@@ -5,6 +5,9 @@ import {
 } from "../../services/services";
 import Film from "./Film";
 import {useParams} from "react-router-dom";
+import Preloader from "../../components/Preloader/Preloader";
+import React from "react";
+import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
 
 
 const FilmContainer = () => {
@@ -15,8 +18,8 @@ const FilmContainer = () => {
     const { data: movieData, isFetching: movieDataFetching, error } = useGetMovieByIdQuery(filmIdNumber);
     const { data: budget, isFetching: budgetFetching } = useGetBoxOfficeMovieByIdQuery(filmIdNumber);
     const { data: distributors, isFetching: distributorsFetching } = useGetDistributorsMovieByIdQuery(filmIdNumber);
-    if (movieDataFetching || budgetFetching || distributorsFetching) return <div>Загрузка</div>;
-    if (error || !movieData || filmIdNumber === -1) return <div>Ошибка</div>
+    if (movieDataFetching || budgetFetching || distributorsFetching) return <Preloader />;
+    if (error || !movieData || filmIdNumber === -1) return <ErrorScreen />
     return <Film movieData={movieData} budget={budget?.items} distributors={distributors?.items} filmId={filmIdNumber}/>
 }
 

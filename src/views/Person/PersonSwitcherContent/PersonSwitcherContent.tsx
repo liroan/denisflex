@@ -14,7 +14,7 @@ const PersonSwitcherContent:FC<PersonSwitcherContentProps> = React.memo(({ activ
     return (
         <div className={styles.film__switchContent}>
             {
-                activeCategory === PersonCategory.FACTS && <Facts facts={factsAndErrors} />
+                activeCategory === PersonCategory.FACTS && <Facts facts={factsAndErrors} isLoading={false} />
             }
         </div>
     )

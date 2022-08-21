@@ -21,7 +21,7 @@ const Catalog:FC = React.memo(() => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filters = useAppSelector(state => state.filters);
     const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
-    const { data: filmsResponse, isFetching } = useGetFiltersMovieQuery(filters);
+    const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters);
     const dispatch = useAppDispatch();
 
 
@@ -57,7 +57,7 @@ const Catalog:FC = React.memo(() => {
                             <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters}
                                     filters={filters} genres={genresWithAllGenres}/>
                         </div>
-                        <CatalogFilms filmsResponse={filmsResponse} isFetching={isFetching} />
+                        <CatalogFilms filmsResponse={filmsResponse} isFetching={isFetching} error={error} />
                     </div>
                 </Container>
             </Container>
