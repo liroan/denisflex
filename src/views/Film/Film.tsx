@@ -12,6 +12,7 @@ import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
 import parseToDischargeNumber from "../../utils/parseToDischargeNumber";
 import getTitleWithCount from "../../utils/getTitleWithCount";
 import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
+import Back from "../../components/Back/Back";
 
 
 
@@ -89,6 +90,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
         <div className={styles.film}>
             <Container>
                 <Container>
+                    <Back />
                     <DetailedContent poster={posterUrl}
                                      title={nameRu || nameEn || nameOriginal}
                                      isFilm

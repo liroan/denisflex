@@ -65,7 +65,7 @@ const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
                         item = <SliderItemGenre genre={film.genre} index={index}/>;
                         key = film.id;
                     } else {
-                        item = <SliderItemStaff posterUrl={film.posterUrl} description={film.description}
+                        item = <SliderItemStaff posterUrl={film.posterUrl} description={film.description} id={film.staffId}
                                                 professionText={film.professionText} nameRu={film.nameRu} nameEn={film.nameEn} />;
                         key = film.staffId;
                     }
@@ -77,9 +77,11 @@ const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
                 })}
             </div>
 
-            <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right)}>
-                <img src={arrow} alt=""/>
-            </div>
+            { maxTranslate > width && (
+                 <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right)}>
+                    <img src={arrow} alt=""/>
+                </div>
+            )}
 
         </div>
     )

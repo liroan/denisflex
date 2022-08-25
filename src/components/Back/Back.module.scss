@@ -1,0 +1,14 @@
+.back {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  p {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
