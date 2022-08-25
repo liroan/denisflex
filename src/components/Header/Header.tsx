@@ -8,6 +8,7 @@ import HeaderLogin from "./HeaderLogin/HeaderLogin";
 const Header:FC = () => {
     const [isOpenInput, setIsOpenInput] = useState(false);
     const [scrolledUp, setScrolledUp] = useState(false);
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [prevScrollY, setPrevScrollY] = useState(0);
     const openInputIconRef = useRef<HTMLDivElement>(null);
 
@@ -22,10 +23,10 @@ const Header:FC = () => {
 
     return (
         <header className={classNames(styles.header, styles.app__header,
-            {[styles.app__header_scrolled]: !scrolledUp && prevScrollY !== 0,
+            {[styles.app__header_scrolled]: !scrolledUp && prevScrollY !== 0 && !isOpenMenu,
                 [styles.app__header_started]: prevScrollY === 0 })}>
             <Container>
-                <HeaderInfo />
+                <HeaderInfo isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
                 <HeaderSearch isOpenInput={isOpenInput} setIsOpenInput={setIsOpenInput} openInputIconRef={openInputIconRef}/>
                 <HeaderLogin setIsOpenInput={setIsOpenInput} openInputIconRef={openInputIconRef}/>
             </Container>

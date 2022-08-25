@@ -3,5 +3,16 @@
   &__filmsContent {
     max-height: 500px;
     overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 5px; /* ширина для вертикального скролла */
+      background-color: #111;
+    }
+
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+      background-color: #E50914;
+      border-radius: 0;
+      height: 5px;
+    }
   }
 }

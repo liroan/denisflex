@@ -3,7 +3,7 @@ import styles from "./CatalogFilm.module.scss";
 import {Button} from "@mui/material";
 
 import {IMoviePreview} from "../../../../types/types";
-import {Link} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import FavouritesButton from "../../../../components/Buttons/FavouritesButton/FavouritesButton";
 
 
@@ -17,28 +17,27 @@ interface CatalogFilmProps {
 const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, editMovies }) => {
 
     const {posterUrl, nameOriginal, nameRu, nameEn, year, ratingKinopoisk, ratingImdb, kinopoiskId} = filmData;
-    
+    const navigate = useNavigate();
     return (
-        <div className={styles.film}>
+        <div className={styles.film} onClick={() => navigate(`/film/${kinopoiskId}`)}>
             <div className={styles.film__info}>
                 <div className={styles.film__poster}>
-                    <Link to={`/film/${kinopoiskId}`}>
-                        <img src={posterUrl} alt=""/>
-                    </Link>
+                    <img src={posterUrl} alt=""/>
                 </div>
                 <div className={styles.film__text}>
-                    <h3 className={styles.film__title}><Link to={`/film/${kinopoiskId}`}>{nameRu || nameEn || nameOriginal}</Link></h3>
+                    <h3 className={styles.film__title}>{nameRu || nameEn || nameOriginal}</h3>
                     <h4 className={styles.film__time}>{year}</h4>
                     <p className={styles.film__descr}>
-                        <Link to={`/film/${kinopoiskId}`}>
-                            Описание недоступно. Нажмите на фильм и перейдите на него, чтобы увидеть подробную информацию о нем
-                        </Link>
+                        Описание недоступно. Нажмите на фильм и перейдите на него, чтобы увидеть подробную информацию о нем
                     </p>
                 </div>
             </div>
             <div className={styles.film__additionalInfo}>
                 <div className={styles.film__rating}>{ratingKinopoisk || ratingImdb}</div>
-                <FavouritesButton isFavourite={isFavourite} toggler={() => editMovies(filmData)}/>
+                <FavouritesButton isFavourite={isFavourite} toggler={(e) => {
+                    e.stopPropagation();
+                    editMovies(filmData)
+                }} />
             </div>
         </div>
     )

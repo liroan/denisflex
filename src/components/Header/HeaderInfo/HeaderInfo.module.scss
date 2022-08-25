@@ -26,7 +26,7 @@
       visibility: hidden;
     }
     li {
-      font-size: 15px;
+      font-size: 16px;
       line-height: 15px;
       font-weight: 400;
       a {
@@ -38,7 +38,27 @@
         }
       }
       margin: 22px 0;
+      &:hover {
+        a {
+          color: #fff;
+        }
+        svg {
+          stroke: #fff;
+        }
+      }
     }
+  }
+  &__activeLink {
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        background: red;
+        height: 3px;
+        width: 16px;
+      }
   }
   &__logo {
     z-index: 1000;
@@ -77,6 +97,17 @@
         top: -6px;
       }
     }
+    &_close {
+      transition: 0.5s;
+      transform: rotate(45deg);
+      &:after {
+        display: none;
+      }
+      &:before {
+        top: 0;
+        transform: rotate(-90deg);
+      }
+    }
   }
 }
 
@@ -86,6 +117,9 @@
       z-index: 1;
     }
     &__burger {
+      display: none;
+    }
+    &__nav {
       display: none;
     }
   }

@@ -15,9 +15,6 @@ const FilmPopupPreloader = React.memo(() => {
                     <div className={styles.preloader__time}><Skeleton variant="rectangular" width={50} height={20} /></div>
                 </div>
             </div>
-            <div className={styles.preloader__additionalInfo}>
-                <div className={styles.preloader__rating}><Skeleton variant="rounded" width={25} height={25} /></div>
-            </div>
         </div>
     )
 })
