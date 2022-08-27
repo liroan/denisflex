@@ -42,3 +42,9 @@ div[role="presentation"] { /* стилизация выпад списка у с
 .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked { /* цвет головы у чек бокса в конечной точке */
   color: #fff !important;
 }
+
+@media screen and (max-width: 850px) {
+  body {
+    margin-bottom: 64px;
+  }
+}
