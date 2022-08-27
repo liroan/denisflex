@@ -9,6 +9,7 @@ import Person from "./views/Person/Person";
 import FilmContainer from "./views/Film/FilmContainer";
 import EditMoviesContext from "./context/EditMoviesContext";
 import useStateMovies from "./hooks/useStateMovies";
+import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
 
 
 const Dashboard = React.memo(() => {
@@ -16,6 +17,7 @@ const Dashboard = React.memo(() => {
         <div className={'app'}>
             <Header />
             <Outlet />
+            <NavigatePanel />
         </div>
     );
 })
