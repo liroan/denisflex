@@ -47,7 +47,7 @@ const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
     return (
         <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={translateWrapper}>
 
-            <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left)}>
+            <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left, { [styles.slider__arrow_wide]: isWideCard })}>
                 {translate > 0 && <img src={arrow} alt=""/>}
             </div>
 
@@ -78,7 +78,7 @@ const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
             </div>
 
             { maxTranslate > width && (
-                 <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right)}>
+                 <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right, { [styles.slider__arrow_wide]: isWideCard })}>
                     <img src={arrow} alt=""/>
                 </div>
             )}

@@ -12,7 +12,7 @@ const ErrorContent = React.memo(() => {
         }
     };
 
-    return <Lottie options={defaultOptions} height={300} width={300} />;
+    return <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))" />;
 })
 
 

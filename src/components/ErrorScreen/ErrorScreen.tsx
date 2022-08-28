@@ -1,7 +1,7 @@
 import React from "react";
 import errorScreen from "../../assets/img/error/errorScreen.json";
 import Lottie from 'react-lottie';
-
+import styles from "./ErrorScreen.module.scss"
 const ErrorScreen = React.memo(() => {
     const defaultOptions = {
         loop: true,
@@ -12,8 +12,8 @@ const ErrorScreen = React.memo(() => {
         }
     };
 
-    return <div style={{ width: "100vw", height: "100vh", background: "#333", display: "flex", alignItems: "center", overflow: "hidden" }}>
-        <Lottie options={defaultOptions} height={500} width={500} />;
+    return <div className={styles.errorScreen}>
+        <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))" />;
     </div>
 })
 

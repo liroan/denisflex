@@ -12,7 +12,7 @@ const EmptyContent = React.memo(() => {
         }
     };
 
-    return <Lottie options={defaultOptions} height={400} width={400} />;
+    return <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))" />;
 })
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import preloader from "../../assets/img/preloader/preloader.json";
 import Lottie from 'react-lottie';
-
+import styles from "./Preloader.module.scss"
 const Preloader = React.memo(() => {
     const defaultOptions = {
         loop: true,
@@ -13,9 +13,9 @@ const Preloader = React.memo(() => {
     };
 
     return (
-        <div style={{ width: "100vw", height: "100vh", background: "#000", zIndex: 10000000, position: 'relative',
-            display: "flex", alignItems: "center", overflow: "hidden" }}>
-            <Lottie options={defaultOptions} height={400} width={400} />;
+
+        <div className={styles.preloader}>
+            <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))" />;
         </div>
     )
 })
