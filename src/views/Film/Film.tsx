@@ -7,7 +7,7 @@ import {useGetFactsAndErrorsMovieByIdQuery, useGetSimilarMovieByIdQuery,
 import SliderContainer from "../../components/SliderContainer/SliderContainer";
 import {IBudget, ICountry, IDistributors, IGenre, IMovie} from "../../types/types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
-import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
+import Switcher from "../../components/Switcher/Switcher";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
 import parseToDischargeNumber from "../../utils/parseToDischargeNumber";
 import getTitleWithCount from "../../utils/getTitleWithCount";
@@ -102,7 +102,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
                                      toggler={toggler}
                     />
 
-                    <FilmSwitcher  activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory} />
+                    <Switcher activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory} />
 
                     <FilmSwitcherContent activeCategory={activeCategory}
                                          description={description}

@@ -1,7 +1,7 @@
 
 .header{
   &__filmsContent {
-    max-height: 500px;
+    max-height: calc(min(500px, 50vh));
     overflow-y: auto;
     &::-webkit-scrollbar {
       width: 5px; /* ширина для вертикального скролла */

@@ -28,6 +28,9 @@
 
 @media screen and (max-width: 1100px){
   .catalog {
+    &__title, &__subtitle, &__openFilters {
+      margin-left: 15px;
+    }
     &__openFilters {
       display: block;
     }

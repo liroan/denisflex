@@ -23,7 +23,7 @@ const Header:FC = () => {
 
     return (
         <header className={classNames(styles.header, styles.app__header,
-            {[styles.app__header_scrolled]: !scrolledUp && prevScrollY !== 0 && !isOpenMenu,
+            {[styles.app__header_scrolled]: !scrolledUp && prevScrollY !== 0 && !isOpenMenu && !isOpenInput,
                 [styles.app__header_started]: prevScrollY === 0 })}>
             <Container>
                 <HeaderInfo isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />

@@ -1,5 +1,4 @@
-import styles from "../../Film/Film.module.scss";
-import parse from "html-react-parser";
+import styles from "./PersonSwitcherContent.module.scss";
 import React, {FC} from "react";
 import {PersonCategory} from "../Person";
 import Facts from "../../../components/Facts/Facts";
@@ -12,7 +11,7 @@ interface PersonSwitcherContentProps {
 
 const PersonSwitcherContent:FC<PersonSwitcherContentProps> = React.memo(({ activeCategory, factsAndErrors }) => {
     return (
-        <div className={styles.film__switchContent}>
+        <div className={styles.person__switchContent}>
             {
                 activeCategory === PersonCategory.FACTS && <Facts facts={factsAndErrors} isLoading={false} />
             }

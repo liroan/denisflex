@@ -1,4 +1,4 @@
-import styles from "../Film.module.scss";
+import styles from "./FilmSwitcherContent.module.scss";
 import parse from "html-react-parser";
 import React, {FC} from "react";
 import {IFactsAndErrors} from "../../../types/types";

@@ -34,7 +34,7 @@ const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, edi
             </div>
             <div className={styles.film__additionalInfo}>
                 <div className={styles.film__rating}>{ratingKinopoisk || ratingImdb}</div>
-                <FavouritesButton isFavourite={isFavourite} toggler={(e) => {
+                <FavouritesButton isAdaptive isFavourite={isFavourite} toggler={(e) => {
                     e.stopPropagation();
                     editMovies(filmData)
                 }} />

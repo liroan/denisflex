@@ -22,6 +22,7 @@
   }
   &__info {
     display: flex;
+    align-items: center;
   }
   &__title {
     font-weight: 500;
@@ -74,14 +75,13 @@
 
 @media screen and (max-width: 1100px) {
   .film {
-    padding-left: 0;
+    padding: 10px;
     border-top: 1px solid transparent;
   }
 }
 
 @media screen and (max-width: 700px) {
   .film {
-    padding: 25px 0;
     &__additionalInfo {
       position: absolute;
       right: 10px;

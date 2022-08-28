@@ -1,14 +1,14 @@
 
 
 
-import styles from "../Film/Film.module.scss";
+import styles from "./Person.module.scss";
 import Container from "../../components/Container/Container";
 import React, {useState} from "react";
 import {useGetPersonByIdQuery} from "../../services/services";
 import {useParams} from "react-router-dom";
 import {IPerson} from "../../types/types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
-import FilmSwitcher from "../../components/Switcher/FilmSwitcher";
+import Switcher from "../../components/Switcher/Switcher";
 import PersonSwitcherContent from "./PersonSwitcherContent/PersonSwitcherContent";
 import useGetScreensaver from "../../hooks/useGetScreensaver";
 import Preloader from "../../components/Preloader/Preloader";
@@ -54,13 +54,13 @@ const Person = () => {
 
     const { nameRu, nameEn, posterUrl } = personData;
     return (
-        <div className={styles.film}>
+        <div className={styles.person}>
             <Container>
                 <Container>
                     <DetailedContent poster={posterUrl} title={nameRu || nameEn }
                                      subtitle={nameEn} findProperty={findProperty} lineTitles={lineTitles} />
 
-                    <FilmSwitcher  activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory}/>
+                    <Switcher activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory}/>
 
                     <PersonSwitcherContent  activeCategory={activeCategory} factsAndErrors={personData.facts} />
                 </Container>
