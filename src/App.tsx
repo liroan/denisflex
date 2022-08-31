@@ -6,6 +6,7 @@ import EditMoviesContext from "./context/EditMoviesContext";
 import useLocalStorageMovies from "./hooks/useLocalStorageMovies";
 import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
 import Preloader from "./components/Preloader/Preloader";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
 const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
@@ -29,21 +30,23 @@ const App:FC = () => {
     const moviesState = useLocalStorageMovies();
 
     return (
-        <EditMoviesContext.Provider value={moviesState}>
-            <div>
-                <Suspense fallback={<Preloader />}>
-                    <Routes>
-                        <Route path="/" element={<Dashboard />}>
-                                <Route index element={<HomeLazy />} />
-                                <Route path="catalog" element={<CatalogLazy />} />
-                                <Route path="favourites" element={<FavouritesLazy />} />
-                                <Route path="film/:filmId" element={<FilmContainerLazy />} />
-                                <Route path="name/:personId" element={<PersonLazy />} />
-                        </Route>
-                    </Routes>
-                </Suspense>
-            </div>
-        </EditMoviesContext.Provider>
+        <ErrorBoundary>
+            <EditMoviesContext.Provider value={moviesState}>
+                <div>
+                    <Suspense fallback={<Preloader />}>
+                        <Routes>
+                            <Route path="/" element={<Dashboard />}>
+                                    <Route index element={<HomeLazy />} />
+                                    <Route path="catalog" element={<CatalogLazy />} />
+                                    <Route path="favourites" element={<FavouritesLazy />} />
+                                    <Route path="film/:filmId" element={<FilmContainerLazy />} />
+                                    <Route path="name/:personId" element={<PersonLazy />} />
+                            </Route>
+                        </Routes>
+                    </Suspense>
+                </div>
+            </EditMoviesContext.Provider>
+        </ErrorBoundary>
     )
 }
 
