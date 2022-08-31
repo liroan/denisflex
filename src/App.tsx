@@ -1,16 +1,17 @@
-import React, {FC} from 'react';
+import React, {FC, Suspense} from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header/Header";
 import "./App.scss"
-import Home from "./views/Home/Home";
-import Catalog from "./views/Catalog/Catalog";
-import Favourites from "./views/Favourites/Favourites";
-import Person from "./views/Person/Person";
-import FilmContainer from "./views/Film/FilmContainer";
 import EditMoviesContext from "./context/EditMoviesContext";
 import useLocalStorageMovies from "./hooks/useLocalStorageMovies";
 import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
+import Preloader from "./components/Preloader/Preloader";
 
+const HomeLazy = React.lazy(() => import('./views/Home/Home'));
+const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
+const FavouritesLazy = React.lazy(() => import('./views/Favourites/Favourites'));
+const PersonLazy = React.lazy(() => import('./views/Person/Person'));
+const FilmContainerLazy = React.lazy(() => import('./views/Film/FilmContainer'));
 
 const Dashboard = React.memo(() => {
     return (
@@ -30,15 +31,17 @@ const App:FC = () => {
     return (
         <EditMoviesContext.Provider value={moviesState}>
             <div>
-                <Routes>
-                    <Route path="/" element={<Dashboard />}>
-                        <Route index element={<Home />} />
-                        <Route path="catalog" element={<Catalog />} />
-                        <Route path="favourites" element={<Favourites />} />
-                        <Route path="film/:filmId" element={<FilmContainer />} />
-                        <Route path="name/:personId" element={<Person />} />
-                    </Route>
-                </Routes>
+                <Suspense fallback={<Preloader />}>
+                    <Routes>
+                        <Route path="/" element={<Dashboard />}>
+                                <Route index element={<HomeLazy />} />
+                                <Route path="catalog" element={<CatalogLazy />} />
+                                <Route path="favourites" element={<FavouritesLazy />} />
+                                <Route path="film/:filmId" element={<FilmContainerLazy />} />
+                                <Route path="name/:personId" element={<PersonLazy />} />
+                        </Route>
+                    </Routes>
+                </Suspense>
             </div>
         </EditMoviesContext.Provider>
     )
