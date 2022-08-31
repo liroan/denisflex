@@ -17,8 +17,7 @@ const Switcher:FC<FilmSwitcherProps> = React.memo(({ activeCategory, switcher, s
                 switcher.map(({ id, title, value }) => (
                     <div key={id}
                          className={classNames(styles.switcher__option, { [styles.switcher__activeOption]: value === activeCategory })}
-                         onClick={setActiveCategory && (() => {setActiveCategory(value)
-                    })}>
+                         onClick={() => setActiveCategory(value)}>
                         { title }
                     </div>
                 ))

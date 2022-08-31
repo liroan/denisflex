@@ -30,22 +30,26 @@ const Paginator:FC<PaginatorProps> = React.memo(({ totalPages, activeNumber, set
         setActiveNumber(activeNumber - 1);
     }
 
+    const clickNumber = (index: number) => {
+        setActiveNumber(index + startNumber)
+        document.body.scrollIntoView({block: "start", behavior: "smooth" })
+    }
+
 
     return (
         <div className={styles.paginator}>
             {
                 <div className={styles.paginator__arrow}>
                     {
-                        activeNumber !== 1 && <svg stroke="currentColor" onClick={previousNumber} fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg>
+                        activeNumber !== 1 && (
+                            <svg stroke="currentColor" onClick={previousNumber} fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg>
+                        )
                     }
                 </div>
             }
             {
                 buttons.length > 1 && buttons.map((_, i) => <PaginatorButton number={i + startNumber} key={i}
-                                                       onClick={() => {
-                                                           setActiveNumber(i + startNumber)
-                                                           document.body.scrollIntoView({block: "start", behavior: "smooth" })
-                                                       }}
+                                                       onClick={() => clickNumber(i)}
                                                        isActive={activeNumber === i + startNumber}/>)
             }
             {

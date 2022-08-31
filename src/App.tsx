@@ -8,7 +8,7 @@ import Favourites from "./views/Favourites/Favourites";
 import Person from "./views/Person/Person";
 import FilmContainer from "./views/Film/FilmContainer";
 import EditMoviesContext from "./context/EditMoviesContext";
-import useStateMovies from "./hooks/useStateMovies";
+import useLocalStorageMovies from "./hooks/useLocalStorageMovies";
 import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
 
 
@@ -25,7 +25,7 @@ const Dashboard = React.memo(() => {
 
 const App:FC = () => {
 
-    const moviesState = useStateMovies();
+    const moviesState = useLocalStorageMovies();
 
     return (
         <EditMoviesContext.Provider value={moviesState}>

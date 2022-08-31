@@ -19,12 +19,7 @@ const FilmsPopup:FC<FilmsPopupProps> = React.memo(({ type, queryKeyword }) => {
     return (
         <div className={styles.header__filmsContent}>
             <div className={styles.header__filmsContent_noEmpty}>
-                { movies.items.map((movie, index) => <FilmPopup key={index} filmId={movie.kinopoiskId}
-                                                  img={movie.posterUrlPreview}
-                                                  name={movie.nameRu || movie.nameEn}
-                                                  year={movie.year || 0}
-                                                  minutes={0}
-                />) }
+                { movies.items.map((movie, index) => <FilmPopup key={index} movie={movie} />) }
             </div>
         </div>
     )

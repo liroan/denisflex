@@ -34,12 +34,13 @@ const HeaderInfo:FC<HeaderInfoProps> = React.memo(({ isOpenMenu, setIsOpenMenu }
     return (
         <div className={styles.header__info} ref={PopupRef}>
             <div className={styles.header__burger} onClick={() => setIsOpenMenu(prevState => !prevState)}>
-                <div className={classnames(styles.header__burger_centerLine, { [styles.header__burger_close]: isOpenMenu })} />
+                <div className={classnames(styles.header__burger_open, { [styles.header__burger_close]: isOpenMenu })} />
             </div>
             <div className={styles.header__logo}>
                 <Link to="/"><img src={logo} alt=""/></Link>
             </div>
-            <NavigatePanel className={classnames(styles.header__nav, {[styles.header__nav_show]: isOpenMenu, [styles.header__nav_hidden]: !isOpenMenu})}/>
+            <NavigatePanel className={classnames(styles.header__nav, {[styles.header__nav_show]: isOpenMenu,
+                [styles.header__nav_hidden]: !isOpenMenu})}/>
         </div>
     )
 })

@@ -1,30 +1,28 @@
 import styles from "./FilmPopup.module.scss";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
+import {IMoviePreview} from "../../../../../../types/types";
 
 interface FilmPopupProps {
-    img: string;
-    name: string | null;
-    year: number;
-    minutes: number;
-    filmId: number;
+    movie: IMoviePreview;
 }
 
-const FilmPopup:FC<FilmPopupProps> = React.memo(({ img, name, year, minutes, filmId }) => {
+const FilmPopup:FC<FilmPopupProps> = React.memo(({ movie: { posterUrl, nameRu, nameEn,
+    nameOriginal, year, kinopoiskId, ratingImdb, ratingKinopoisk } }) => {
     return (
-        <Link to={`film/${filmId}`}>
+        <Link to={`film/${kinopoiskId}`}>
             <div className={styles.header__film}>
                 <div className={styles.header__filmInfo}>
                     <div className={styles.header__filmImg}>
-                        <img src={img} alt=""/>
+                        <img src={posterUrl} alt=""/>
                     </div>
                     <div className={styles.header__filmContent}>
-                        <p className={styles.header__filmTitle}>{name}</p>
-                        <p className={styles.header__filmTime}>{year}, {minutes} мин</p>
+                        <p className={styles.header__filmTitle}>{nameRu || nameEn || nameOriginal}</p>
+                        <p className={styles.header__filmTime}>{year}</p>
                     </div>
                 </div>
                 <div className={styles.header__filmRating}>
-                    6.7
+                    {ratingKinopoisk || ratingImdb}
                 </div>
             </div>
         </Link>

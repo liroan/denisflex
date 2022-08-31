@@ -7,7 +7,7 @@ import CatalogFilms from "./CatalogFilms/CatalogFilms";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../services/services";
 import {useLocation, useSearchParams} from "react-router-dom";
-import {changeFiltersFromUrl, FiltersState, resetIsEdit} from "../../store/filtersSlice";
+import {changeFiltersFromUrl, FiltersState} from "../../store/filtersSlice";
 import * as queryString from "query-string";
 import {IGenre} from "../../types/types";
 import removeInitialFilter from "../../utils/removeInitialFilters";

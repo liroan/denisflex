@@ -25,12 +25,12 @@ interface HeaderSearchProps {
 const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenInput, openInputIconRef}) => {
 
     const [isOpenSearchPopup, setIsOpenSearchPopup] = useState(false);
-    const [inputKeyword, setInputKeyword] = useState('');
     const [queryKeyword, setQueryKeyword] = useState('');
-    const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | undefined>();
     const [type, setType] = useState<MovieType>("ALL");
     const popupSearchRef = useRef<HTMLDivElement>(null);
-    let location = useLocation();
+    const inputSearchRef = useRef<HTMLInputElement>(null);
+    const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const location = useLocation();
 
     useEffect(() => {
         const closeOpenMenu = (e: MouseEvent) => {
@@ -48,23 +48,22 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
         closePopupWithDeleteKeyword();
     }, [location]);
 
-    const onChangeKeyword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
-        setInputKeyword(value)
+    const onChangeKeyword = useCallback(() => {
+        if (!inputSearchRef.current) return;
+        const { value } = inputSearchRef.current;
         setIsOpenSearchPopup(true)
         setIsOpenInput(true)
-        clearTimeout(timeoutId);
-
-        setTimeoutId(setTimeout(() => {
+        if (timer.current) clearTimeout(timer.current);
+        timer.current = setTimeout(() => {
             setQueryKeyword(value);
             if (!value) setIsOpenSearchPopup(false)
-        }, 1000))
+        }, 500)
     }, [])
 
     const closePopupWithDeleteKeyword = useCallback(() => {
         closePopupWithSaveKeyword();
         setQueryKeyword('');
-        setInputKeyword('');
+        if (inputSearchRef.current?.value) inputSearchRef.current.value = '';
     }, [])
 
 
@@ -80,7 +79,7 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
                          setIsOpenSearchPopup={setIsOpenSearchPopup}
                          queryKeyword={queryKeyword}
                          closePopupWithDeleteKeyword={closePopupWithDeleteKeyword} type={type}
-                         inputKeyword={inputKeyword}
+                         inputSearchRef={inputSearchRef}
             />
             { isOpenSearchPopup && <HeaderPopup queryKeyword={queryKeyword}
                                                 type={type}

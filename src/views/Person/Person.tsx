@@ -13,6 +13,7 @@ import PersonSwitcherContent from "./PersonSwitcherContent/PersonSwitcherContent
 import useGetScreensaver from "../../hooks/useGetScreensaver";
 import Preloader from "../../components/Preloader/Preloader";
 import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
+import Back from "../../components/Back/Back";
 
 
 
@@ -38,7 +39,7 @@ const switcher = [
 
 const Person = () => {
     const { personId } = useParams();
-    const personIdNumber = personId && +personId ? +personId : 0;
+    const personIdNumber = Number(personId) || -1;
 
 
     const [activeCategory, setActiveCategory] = useState(PersonCategory.FACTS);
@@ -57,6 +58,7 @@ const Person = () => {
         <div className={styles.person}>
             <Container>
                 <Container>
+                    <Back />
                     <DetailedContent poster={posterUrl} title={nameRu || nameEn }
                                      subtitle={nameEn} findProperty={findProperty} lineTitles={lineTitles} />
 

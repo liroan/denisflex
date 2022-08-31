@@ -5,6 +5,8 @@ import {FC, useEffect, useRef, useState} from "react";
 import HeaderInfo from "./HeaderInfo/HeaderInfo";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
 import HeaderLogin from "./HeaderLogin/HeaderLogin";
+
+
 const Header:FC = () => {
     const [isOpenInput, setIsOpenInput] = useState(false);
     const [isShowHeader, setIsShowHeader] = useState(true);
