@@ -7,7 +7,7 @@ import {
     IFiltersResponse,
     IMovie, IPerson, ISimilarMovies,
     IStaffPerson,
-    MovieType, TopMovieType
+    TopMovieType
 } from "../types/types";
 import {FiltersState} from "../store/filtersSlice";
 import * as queryString from "query-string";

@@ -1,5 +1,5 @@
 import styles from './CatalogPreloader.module.scss';
-import {Button, Skeleton} from "@mui/material";
+import {Skeleton} from "@mui/material";
 import React from "react";
 
 

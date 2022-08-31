@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect} from "react";
 import styles from "./HeaderInfo.module.scss";
 import classnames from "classnames";
 import logo from "../../../assets/img/header/logo.png"
-import {Link, NavLink, useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import NavigatePanel from "../../NavigatePanel/NavigatePanel";
 
 

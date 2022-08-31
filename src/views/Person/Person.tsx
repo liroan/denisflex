@@ -10,7 +10,6 @@ import {IPerson} from "../../types/types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
 import Switcher from "../../components/Switcher/Switcher";
 import PersonSwitcherContent from "./PersonSwitcherContent/PersonSwitcherContent";
-import useGetScreensaver from "../../hooks/useGetScreensaver";
 import Preloader from "../../components/Preloader/Preloader";
 import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
 import Back from "../../components/Back/Back";

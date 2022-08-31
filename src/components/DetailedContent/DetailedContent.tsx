@@ -1,6 +1,5 @@
 import styles from "./DetailedContent.module.scss";
 import RedButton from "../Buttons/RedButton/RedButton";
-import OpacityButton from "../Buttons/OpacityButton/OpacityButton";
 import React, {FC} from "react";
 import getConvertedPropertyOrDash from "../../utils/getConvertedPropertyOrDash";
 import FavouritesButton from "../Buttons/FavouritesButton/FavouritesButton";

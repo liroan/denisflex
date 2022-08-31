@@ -1,6 +1,6 @@
 import styles from "./SliderContainer.module.scss";
 import classNames from "classnames";
-import Slider from "../Slider/Slider";
+import Slider from "./Slider/Slider";
 import React, {FC} from "react";
 import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../types/types";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";

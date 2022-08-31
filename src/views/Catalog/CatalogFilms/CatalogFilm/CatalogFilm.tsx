@@ -1,9 +1,8 @@
 import React, {FC} from "react";
 import styles from "./CatalogFilm.module.scss";
-import {Button} from "@mui/material";
 
 import {IMoviePreview} from "../../../../types/types";
-import {Link, NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import FavouritesButton from "../../../../components/Buttons/FavouritesButton/FavouritesButton";
 
 

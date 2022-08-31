@@ -6,7 +6,7 @@ import CatalogInfo from "./CatalogInfo/CatalogInfo";
 import CatalogFilms from "./CatalogFilms/CatalogFilms";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../services/services";
-import {useLocation, useSearchParams} from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import {changeFiltersFromUrl, FiltersState} from "../../store/filtersSlice";
 import * as queryString from "query-string";
 import {IGenre} from "../../types/types";
@@ -25,7 +25,7 @@ const Catalog:FC = React.memo(() => {
     const [isCanUpdateFilterFromURL, setIsCanUpdateFilterFromURL] = useState(false);
 
     const dispatch = useAppDispatch();
-    useEffect(() => { // парсим параметры из браузерной строки в стэйт
+    useEffect(() => {
         const params: Partial<FiltersState> = {};
         searchParams.forEach((value, key) => {
             // @ts-ignore
@@ -35,14 +35,14 @@ const Catalog:FC = React.memo(() => {
         setIsCanUpdateFilterFromURL(true);
     }, [searchParams])
 
-    useEffect(() => {  // данные из state засовываем в строку
+    useEffect(() => {
         const filterWithoutInitialValue = removeInitialFilter(filters);
         if (isCanUpdateFilterFromURL)
             setSearchParams(queryString.stringify(filterWithoutInitialValue))
     }, [filters, isCanUpdateFilterFromURL])
 
 
-    useEffect(() => { // добавляет к жанрам еще один жанр "Все жанры"
+    useEffect(() => {
         if (genresAndCountries) {
             const allGenres: IGenre =  { id: genresAndCountries.genres[genresAndCountries.genres.length - 1].id + 1,genre: "Все жанры" }
             setGenresWithAllGenres([allGenres, ...genresAndCountries.genres])

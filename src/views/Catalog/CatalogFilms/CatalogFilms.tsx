@@ -8,8 +8,6 @@ import useGetMoviesLocalStorage from "../../../hooks/useGetMoviesLocalStorage";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {SerializedError} from "@reduxjs/toolkit";
 import useGetScreensaver from "../../../hooks/useGetScreensaver";
-import MoviesLoader from "../../../components/MoviesLoader/MoviesLoader";
-import Slider from "../../../components/Slider/Slider";
 
 interface CatalogFilmsProps {
     filmsResponse?: IFilmSearchByFiltersResponse;

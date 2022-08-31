@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header/Header";
-import "./style/App.scss"
+import "./App.scss"
 import Home from "./views/Home/Home";
 import Catalog from "./views/Catalog/Catalog";
 import Favourites from "./views/Favourites/Favourites";

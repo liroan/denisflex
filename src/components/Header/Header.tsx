@@ -1,4 +1,4 @@
-import styles from "../../style/components/Header.module.scss";
+import styles from "./Header.module.scss";
 import Container from "../Container/Container";
 import classNames from "classnames";
 import {FC, useEffect, useRef, useState} from "react";

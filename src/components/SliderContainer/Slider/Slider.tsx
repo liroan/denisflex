@@ -1,10 +1,10 @@
-import arrow from "../../assets/img/home/arrow.png";
+import arrow from "../../../assets/img/home/arrow.png";
 import React, {FC, useCallback, useEffect, useRef, useState} from "react";
 import SliderItemGenre from "./SliderItemGenre/SliderItemGenre";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
 import SliderItemMovie from "./SliderItemMovie/SliderItemMovie";
-import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../types/types";
+import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../../types/types";
 import SliderItemStaff from "./SliderItemStaff/SliderItemStaff";
 interface ISlider {
     movies: IMovieTop[] | IGenre[] | IStaffPerson[] | ISimilarMovie[];

@@ -1,12 +1,8 @@
 import classNames from "classnames";
 import styles from "./Filter.module.scss";
-import RangeSlider from "../../../components/RangeSlider/RangeSlider";
 import React, {Dispatch, FC, SetStateAction, useCallback, useEffect, useMemo, useState} from "react";
-import Accordion from "./Accordion/Accordion";
 import RedButton from "../../../components/Buttons/RedButton/RedButton";
 import OpacityButton from "../../../components/Buttons/OpacityButton/OpacityButton";
-import SelectComponent from "../../../components/Select/Select";
-import Checkboxes from "./Checkboxes/Checkboxes";
 import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
 import {changeFiltersHandle, FiltersState, resetFilters} from "../../../store/filtersSlice";
@@ -41,7 +37,7 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
         setFormData(filters)
     }, [filters])
 
-    useEffect(() => { // убираем второй скролл у окна фильтров
+    useEffect(() => {
         document.body.style.overflowY = isShowFilters && width <= 1100 ? "hidden" : "unset";
     }, [isShowFilters, width])
 
