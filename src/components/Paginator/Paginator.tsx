@@ -1,6 +1,5 @@
 import styles from "./Paginator.module.scss"
 import React, {FC} from "react";
-import classNames from "classnames";
 import PaginatorButton from "./PaginatorButton/PaginatorButton";
 
 interface PaginatorProps {
@@ -43,7 +42,10 @@ const Paginator:FC<PaginatorProps> = React.memo(({ totalPages, activeNumber, set
             }
             {
                 buttons.length > 1 && buttons.map((_, i) => <PaginatorButton number={i + startNumber} key={i}
-                                                       onClick={() => setActiveNumber(i + startNumber)}
+                                                       onClick={() => {
+                                                           setActiveNumber(i + startNumber)
+                                                           document.body.scrollIntoView({block: "start", behavior: "smooth" })
+                                                       }}
                                                        isActive={activeNumber === i + startNumber}/>)
             }
             {

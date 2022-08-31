@@ -21,7 +21,7 @@ const FilmPopupPreloader = React.memo(() => {
 
 const FilmsPopupPreloader = React.memo(() => {
     return (
-        <div style={{ width: '100%', maxHeight: 500, overflowY: 'auto' }}>
+        <div style={{ width: '100%' }}>
             { new Array(10).fill(0).map((_, i) => <FilmPopupPreloader key={i} />)  }
         </div>
     )

@@ -22,7 +22,7 @@ const NavigatePanel:FC<NavigatePanelProps> = ({ className}) => {
                 {
                     links.map(({ id, icon, label, to }) => (
                         <li key={id}>
-                            <NavLink to={to} className={({ isActive }) => isActive ? styles.panel__activeLink : ""}>
+                            <NavLink to={to} className={({ isActive }) => isActive ? styles.panel__activeLink : ""} onClick={() => window.scrollTo(0, 0)}>
                                 { icon }
                                 { label }
                             </NavLink>

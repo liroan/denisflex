@@ -1,9 +1,9 @@
 .header {
   z-index: 10000;
-  transition: 0.5s;
+  transition: 0.2s;
   color: #fff;
-  background: #141414;
   position: fixed;
+  box-shadow: 7px -20px 20px 13px #31313191;
   top: 0;
   left: 0;
   width: 100%;
@@ -20,8 +20,8 @@
 
 .app {
   &__header {
-    &_scrolled {
-      transform: translateY(-76px);
+    &_active {
+      background: #141414;
     }
   }
 }
@@ -29,9 +29,8 @@
 
 .app {
   &__header {
-    &_started {
-      background: transparent;
-      box-shadow: 7px -20px 20px 13px #31313191;
+    &_hidden {
+      transform: translateY(-76px);
     }
   }
 }

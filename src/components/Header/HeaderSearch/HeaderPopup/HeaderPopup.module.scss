@@ -15,6 +15,7 @@
     }
   }
   &__showAll {
+    position: relative;
     font-weight: 400;
     font-size: 12px;
     padding: 15px;
@@ -23,14 +24,34 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+  &__filmsWrapper {
+    max-height: 500px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 5px; /* ширина для вертикального скролла */
+      background-color: #111;
+    }
+
+    /* ползунок скроллбара */
+    &::-webkit-scrollbar-thumb {
+      background-color: #E50914;
+      border-radius: 0;
+      height: 5px;
+    }
+  }
 }
 
 
 @media screen and (max-width: 850px) {
   .header {
+    &__filmsWrapper {
+      height: calc(100vh - 64px - 93px - 68px - 44px);
+      max-height: calc(100vh - 64px - 93px - 68px - 44px);
+    }
     &__searchPopup {
       top: 100%;
       border-radius: 0;
+      // height: calc(100vh - 76px - 63px);
     }
     &__showAll {
       border-bottom-left-radius: 0;

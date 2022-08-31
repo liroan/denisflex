@@ -26,7 +26,7 @@ const SliderContainer:FC<HomeMoviesProps> = React.memo(({ movies, isLoading, err
                     <div className={styles.movieChapter__title}><h3>{title}</h3></div>
                     {
                         screensaver ? screensaver : (
-                            isLoading ? (isWideCard ? <MoviesLoader width={300} height={200} /> : <MoviesLoader width={220} height={330} />)
+                            isLoading ? (isWideCard ? <MoviesLoader width={300} height={195} /> : <MoviesLoader width={220} height={325} />)
                             : <Slider movies={movies!} isWideCard={isWideCard} />
                         )
                     }

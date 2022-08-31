@@ -5,7 +5,7 @@ import EmptyFilms from "./EmptyFilms/EmptyFilms";
 import {MovieType} from "../../../../../types/types";
 import {useGetFiltersMovieQuery} from "../../../../../services/services";
 import {initialStateFilter} from "../../../../../store/filtersSlice";
-import FilmsPopupPreloader from "../FilmsPopupPreloader/FilmsPopupPreloader";
+import FilmsPopupPreloader from "./FilmsPopupPreloader/FilmsPopupPreloader";
 
 interface FilmsPopupProps {
     type: MovieType;

@@ -37,7 +37,7 @@ const HeaderInfo:FC<HeaderInfoProps> = React.memo(({ isOpenMenu, setIsOpenMenu }
                 <div className={classnames(styles.header__burger_centerLine, { [styles.header__burger_close]: isOpenMenu })} />
             </div>
             <div className={styles.header__logo}>
-                <img src={logo} alt=""/>
+                <Link to="/"><img src={logo} alt=""/></Link>
             </div>
             <NavigatePanel className={classnames(styles.header__nav, {[styles.header__nav_show]: isOpenMenu, [styles.header__nav_hidden]: !isOpenMenu})}/>
         </div>

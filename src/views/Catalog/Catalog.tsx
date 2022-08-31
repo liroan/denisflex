@@ -6,8 +6,8 @@ import CatalogInfo from "./CatalogInfo/CatalogInfo";
 import CatalogFilms from "./CatalogFilms/CatalogFilms";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../services/services";
-import {useSearchParams} from "react-router-dom";
-import {changeFiltersFromUrl, FiltersState } from "../../store/filtersSlice";
+import {useLocation, useSearchParams} from "react-router-dom";
+import {changeFiltersFromUrl, FiltersState, resetIsEdit} from "../../store/filtersSlice";
 import * as queryString from "query-string";
 import {IGenre} from "../../types/types";
 import removeInitialFilter from "../../utils/removeInitialFilters";
@@ -22,9 +22,9 @@ const Catalog:FC = React.memo(() => {
     const filters = useAppSelector(state => state.filters);
     const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
     const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters);
+    const [isCanUpdateFilterFromURL, setIsCanUpdateFilterFromURL] = useState(false);
+
     const dispatch = useAppDispatch();
-
-
     useEffect(() => { // парсим параметры из браузерной строки в стэйт
         const params: Partial<FiltersState> = {};
         searchParams.forEach((value, key) => {
@@ -32,12 +32,15 @@ const Catalog:FC = React.memo(() => {
             params[key as keyof FiltersState] = +value ? +value : value;
         });
         dispatch(changeFiltersFromUrl(params));
+        setIsCanUpdateFilterFromURL(true);
     }, [searchParams])
 
     useEffect(() => {  // данные из state засовываем в строку
         const filterWithoutInitialValue = removeInitialFilter(filters);
-        setSearchParams(queryString.stringify(filterWithoutInitialValue))
-    }, [filters])
+        if (isCanUpdateFilterFromURL)
+            setSearchParams(queryString.stringify(filterWithoutInitialValue))
+    }, [filters, isCanUpdateFilterFromURL])
+
 
     useEffect(() => { // добавляет к жанрам еще один жанр "Все жанры"
         if (genresAndCountries) {
@@ -45,7 +48,6 @@ const Catalog:FC = React.memo(() => {
             setGenresWithAllGenres([allGenres, ...genresAndCountries.genres])
         }
     }, [genresAndCountries])
-
 
     return (
         <div className={styles.catalog}>

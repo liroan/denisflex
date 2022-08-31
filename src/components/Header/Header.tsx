@@ -7,24 +7,27 @@ import HeaderSearch from "./HeaderSearch/HeaderSearch";
 import HeaderLogin from "./HeaderLogin/HeaderLogin";
 const Header:FC = () => {
     const [isOpenInput, setIsOpenInput] = useState(false);
-    const [scrolledUp, setScrolledUp] = useState(false);
+    const [isShowHeader, setIsShowHeader] = useState(true);
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [prevScrollY, setPrevScrollY] = useState(0);
     const openInputIconRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const checkScrolled = () => {
-            setScrolledUp(window.scrollY - prevScrollY <= 0);
+            setIsShowHeader(window.scrollY < prevScrollY);
             setPrevScrollY(window.scrollY);
         }
         window.addEventListener('scroll', checkScrolled);
+        setPrevScrollY(window.scrollY);
         return () => window.removeEventListener('scroll', checkScrolled)
     }, [prevScrollY])
 
     return (
         <header className={classNames(styles.header, styles.app__header,
-            {[styles.app__header_scrolled]: !scrolledUp && prevScrollY !== 0 && !isOpenMenu && !isOpenInput,
-                [styles.app__header_started]: prevScrollY === 0 })}>
+            {
+                [styles.app__header_active]: (isShowHeader || isOpenInput || isOpenMenu) && prevScrollY !== 0 ,
+                [styles.app__header_hidden]: !isShowHeader && !isOpenInput && !isOpenMenu
+            })}>
             <Container>
                 <HeaderInfo isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
                 <HeaderSearch isOpenInput={isOpenInput} setIsOpenInput={setIsOpenInput} openInputIconRef={openInputIconRef}/>

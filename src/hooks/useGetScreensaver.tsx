@@ -10,7 +10,6 @@ const useGetScreensaver = (isLoading: boolean, error?: FetchBaseQueryError | Ser
         let Screensaver: FC | null = null;
         if (!isLoading && error) Screensaver = ErrorContent;
         if (!isLoading && items?.length === 0) Screensaver = EmptyContent;
-        console.log(!isLoading,  error, !isLoading, items?.length)
         return Screensaver ? <Screensaver /> : null;
     }, [isLoading, error, items])
 }

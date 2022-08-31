@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import preloader from "../../assets/img/preloader/preloader.json";
 import Lottie from 'react-lottie';
 import styles from "./Preloader.module.scss"
@@ -11,6 +11,13 @@ const Preloader = React.memo(() => {
             preserveAspectRatio: 'xMidYMid slice'
         }
     };
+
+    useEffect(() => {
+        document.body.style.overflowY = "hidden";
+        return () => {
+            document.body.style.overflowY = "unset";
+        }
+    }, [])
 
     return (
 
