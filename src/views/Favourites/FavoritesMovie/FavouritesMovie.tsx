@@ -21,8 +21,8 @@ const FavouritesMovie:FC<FavoritesMovieProps> = ({ movie, editMovies }) => {
         <div className={styles.movie}>
             <div className={styles.movie__poster}>
                 <img src={movie.posterUrl} alt="" />
-                <div className={styles.lol}>
-                    <div className={styles.lol2}>
+                <div className={styles.movie__blind}>
+                    <div className={styles.movie__blindContent}>
                         <Link to={`/film/${movie.kinopoiskId}`}>
                             <RedButton startIcon={<LiveTvIcon/>}>
                                 Перейти к просмотру
@@ -35,7 +35,7 @@ const FavouritesMovie:FC<FavoritesMovieProps> = ({ movie, editMovies }) => {
                 </div>
             </div>
             <h6 className={styles.movie__title}>
-                {movie.nameRu || movie.nameEn || movie.nameOriginal}
+                <span>{movie.nameRu || movie.nameEn || movie.nameOriginal}</span>
             </h6>
         </div>
     )

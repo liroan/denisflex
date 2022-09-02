@@ -9,7 +9,7 @@ interface FilterHeaderProps {
 const FilterHeader:FC<FilterHeaderProps> = React.memo(({ setIsShowFilters }) => {
     return (
         <div className={styles.filter__header}>
-            <RedButton onClick={() => console.log('lol')} type="submit">Применить</RedButton>
+            <RedButton onClick={() => setIsShowFilters(false)} type="submit">Применить</RedButton>
             <h5>Фильтры</h5>
             <div className={styles.filter__exit}>
                 <button onClick={() => setIsShowFilters(false)} type="button">

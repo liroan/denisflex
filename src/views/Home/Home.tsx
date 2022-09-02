@@ -6,7 +6,6 @@ import {useGetCountriesAndGenresQuery, useGetCompilationMoviesQuery} from "../..
 import Banner from "./Banner/Banner";
 
 const Home:FC = () => {
-
     const { data: genresAndCountries, isLoading: genresAndCountriesLoading,
         error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
     const { data: popularFilms, isLoading: popularFilmsLoading, error: popularFilmsError } = useGetCompilationMoviesQuery("TOP_100_POPULAR_FILMS");
@@ -21,7 +20,9 @@ const Home:FC = () => {
             <Container>
                 <div className={styles.home__movies_margin}>
                     <SliderContainer movies={popularFilms?.films} isLoading={popularFilmsLoading}
-                                     error={popularFilmsError} title="Самые популярные"/>
+                                     error={popularFilmsError} title="Самые популярные"
+
+                    />
                 </div>
                 <div className={styles.home__movies_margin}>
                     <SliderContainer movies={bestFilms?.films} isLoading={bestFilmsLoading}

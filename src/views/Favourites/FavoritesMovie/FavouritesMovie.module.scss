@@ -9,10 +9,10 @@
       border-radius: 20px;
       object-fit: cover;
       width: 100%;
-      height: 330px;
+      height: 400px;
     }
     &:hover {
-      .lol {
+      .movie__blind {
         opacity: 1;
         visibility: visible;
         height: 100%;
@@ -27,30 +27,30 @@
     color: #fff;
     width: 100%;
     font-size: 16px;
-    font-weight: 500;
-    margin-top: 20px;
+    font-weight: 300;
+    margin-top: 10px;
+    text-align: center;
   }
-}
-
-.lol {
-  position: absolute;
-  top: 0;
-  transition: 0.4s;
-  visibility: hidden;
-  opacity: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background: rgba(#000, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  button {
-    transition: 0.8s;
+  &__blind {
+    position: absolute;
+    top: 0;
+    transition: 0.4s;
     visibility: hidden;
     opacity: 0;
+    left: 0;
     width: 100%;
-    margin: 5px 0;
+    height: 0;
+    background: rgba(#000, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      transition: 0.8s;
+      visibility: hidden;
+      opacity: 0;
+      width: 100%;
+      margin: 5px 0;
+    }
   }
 }
 

@@ -76,8 +76,11 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
                 <CheckboxAccordion order={formData.order} changeValue={changeValue}/>
 
                 <div className={classNames(styles.filter__buttons)}>
-                    <RedButton type="submit">Применить</RedButton>
-                    <OpacityButton onClick={() => dispatch(resetFilters())} type="button">Сбросить</OpacityButton>
+                    <RedButton type="submit" onClick={() => setIsShowFilters(false)}>Применить</RedButton>
+                    <OpacityButton onClick={() => {
+                        dispatch(resetFilters())
+                        setIsShowFilters(false)
+                    }} type="button">Сбросить</OpacityButton>
                 </div>
 
             </div>

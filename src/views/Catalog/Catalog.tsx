@@ -26,9 +26,8 @@ const Catalog:FC = React.memo(() => {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        const params: Partial<FiltersState> = {};
+        const params: any = {};
         searchParams.forEach((value, key) => {
-            // @ts-ignore
             params[key as keyof FiltersState] = +value ? +value : value;
         });
         dispatch(changeFiltersFromUrl(params));

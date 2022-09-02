@@ -9,9 +9,9 @@
   &__films {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 50px 50px;
-    padding-bottom: 80px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 40px 10px;
+    padding-bottom: 100px;
   }
   &__title {
     font-size: 32px;
