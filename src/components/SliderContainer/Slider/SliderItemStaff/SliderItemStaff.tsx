@@ -13,9 +13,9 @@ const titleOrDash = (title: string): string | React.ReactNode => {
 }
 
 const SliderItemStaff:FC<SliderItemStaffProps> = React.memo(({ staff: {posterUrl, description,
-                                                      professionText, nameEn, nameRu, id }}) => {
+                                                      professionText, nameEn, nameRu, staffId }}) => {
     return (
-        <Link to={'/name/' + id}>
+        <Link to={'/name/' + staffId}>
             <div className={styles.movieCardContainer}>
                 <div className={styles.movieCard}>
                     <img src={posterUrl} alt=""/>

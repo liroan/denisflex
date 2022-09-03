@@ -10,7 +10,6 @@ import {
     TopMovieType
 } from "../types/types";
 import {FiltersState} from "../store/filtersSlice";
-import * as queryString from "query-string";
 import removeUnwantedProperties from "../utils/removeUnwantedProperties";
 
 export const moviesApi = createApi({
@@ -25,15 +24,19 @@ export const moviesApi = createApi({
     }),
     endpoints: (builder) => ({
         getCompilationMovies: builder.query<FilmTopResponse, TopMovieType>({
-            query: (type) => `v2.2/films/top?type=${type}`,
+            query: (type) => ({
+                url: "v2.2/films/top",
+                params: { type }
+            }),
         }),
         getCountriesAndGenres: builder.query<IFiltersResponse, null>({
             query: () => `v2.2/films/filters`,
         }),
         getFiltersMovie: builder.query<IFilmSearchByFiltersResponse, FiltersState>({
-            query: (filters) => {
-                return `v2.2/films?${queryString.stringify(removeUnwantedProperties(filters))}`
-            }
+            query: (filters) => ({
+                url: "v2.2/films",
+                params: { ...removeUnwantedProperties(filters) }
+            })
         }),
         getMovieById: builder.query<IMovie, number>({
             query: (id) => `v2.2/films/${id}`,
@@ -42,13 +45,19 @@ export const moviesApi = createApi({
             query: (id) => `v2.2/films/${id}/facts`,
         }),
         getStaffMovieById: builder.query<IStaffPerson[], number>({
-            query: (filmId) => `v1/staff?filmId=${filmId}`,
+            query: (filmId) => ({
+                url: "v1/staff",
+                params: { filmId }
+            }),
         }),
         getSimilarMovieById: builder.query<ISimilarMovies, number>({
             query: (id) => `v2.2/films/${id}/similars`,
         }),
         getReviewsMovieById: builder.query<ISimilarMovies, {id: number, page: number}>({
-            query: ({id, page}) => `v2.2/films/${id}/reviews?page=${page}`,
+            query: ({id, page}) => ({
+                url: `v2.2/films/${id}/reviews`,
+                params: { page }
+            }),
         }),
         getDistributorsMovieById: builder.query<IDistributorsResponse, number>({
             query: (id) => `v2.2/films/${id}/distributions`,

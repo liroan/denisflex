@@ -20,19 +20,18 @@ const CatalogFilms:FC<CatalogFilmsProps> = React.memo(({ filmsResponse,isFetchin
     const films = filmsResponse?.items;
     const [movies, editMovies] = useGetMoviesLocalStorage();
     const screensaver = useGetScreensaver(isFetching, error, filmsResponse?.items)
-     return (
+
+    const filmCards = films?.map(filmData => (
+        <CatalogFilm filmData={filmData} key={filmData.kinopoiskId}
+                     isFavourite={movies.some(film => film.kinopoiskId === filmData.kinopoiskId)}
+                     editMovies={editMovies}
+        />
+    ))
+    const content = isFetching ? <CatalogPreloader /> : filmCards
+    return (
         <div className={styles.films}>
             {
-
-                screensaver ? screensaver : (
-                    isFetching ? <CatalogPreloader />
-                        : films?.map(filmData => (
-                            <CatalogFilm filmData={filmData} key={filmData.kinopoiskId}
-                                         isFavourite={movies.some(film => film.kinopoiskId === filmData.kinopoiskId)}
-                                         editMovies={editMovies}
-                            />
-                        ))
-                )
+                screensaver ? screensaver : content
             }
             <div className={styles.films__paginator}>
                 <CatalogPaginatorContainer totalPages={filmsResponse?.totalPages} />

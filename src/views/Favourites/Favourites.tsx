@@ -21,24 +21,24 @@ const Favourites:FC = () => {
     const showingMovies = useMemo(() => movies.slice((activeNumber - 1) * 20, Math.min(activeNumber * 20, movies.length)),
         [activeNumber, movies])
 
+    const movieCards = (
+        <div className={styles.favorites__films}>
+            {
+                showingMovies.map(movie => (
+                    <div className={styles.favorites__movie} key={movie.kinopoiskId}>
+                        <FavouritesMovie movie={movie} key={movie.kinopoiskId} editMovies={editMovies}/>
+                    </div>
+                ))
+            }
+        </div>
+    )
 
     return (
        <div className={styles.favorites}>
            <Container>
                <div className={styles.favorites__title}>Избранное</div>
                {
-                   screensaver ? screensaver :
-                       (
-                           <div className={styles.favorites__films}>
-                               {
-                                   showingMovies.map(movie => (
-                                       <div className={styles.favorites__movie} key={movie.kinopoiskId}>
-                                           <FavouritesMovie movie={movie} key={movie.kinopoiskId} editMovies={editMovies}/>
-                                       </div>
-                                   ))
-                               }
-                           </div>
-                       )
+                   screensaver ? screensaver : movieCards
                }
                <div className={styles.favorites__paginator}>
                    <Paginator totalPages={totalPages} activeNumber={activeNumber} setActiveNumber={setActiveNumber}/>

@@ -105,7 +105,6 @@ export interface IFactsAndErrors {
 
 
 export interface IStaffPerson {
-    id: number;
     staffId: number,
     nameRu: string,
     nameEn: string,

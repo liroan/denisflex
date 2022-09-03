@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useCallback} from "react";
 import styles from "./CatalogFilm.module.scss";
 
 import {IMoviePreview} from "../../../../types/types";
@@ -17,6 +17,11 @@ const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, edi
 
     const {posterUrl, nameOriginal, nameRu, nameEn, year, ratingKinopoisk, ratingImdb, kinopoiskId} = filmData;
     const navigate = useNavigate();
+    const toggleIsFavourite = useCallback((e: React.MouseEvent) => {
+        e.stopPropagation();
+        editMovies(filmData)
+    }, [editMovies, filmData])
+
     return (
         <div className={styles.film} onClick={() => navigate(`/film/${kinopoiskId}`)}>
             <div className={styles.film__info}>
@@ -33,10 +38,7 @@ const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, edi
             </div>
             <div className={styles.film__additionalInfo}>
                 <div className={styles.film__rating}>{ratingKinopoisk || ratingImdb}</div>
-                <FavouritesButton isAdaptive isFavourite={isFavourite} toggler={(e) => {
-                    e.stopPropagation();
-                    editMovies(filmData)
-                }} />
+                <FavouritesButton isAdaptive isFavourite={isFavourite} toggler={toggleIsFavourite} />
             </div>
         </div>
     )

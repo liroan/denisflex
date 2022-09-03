@@ -1,5 +1,5 @@
 import styles from "./CatalogInfo.module.scss";
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, {Dispatch, FC, SetStateAction, useCallback} from "react";
 import OpacityButton from "../../../components/Buttons/OpacityButton/OpacityButton";
 import {Link} from "react-router-dom";
 
@@ -13,6 +13,8 @@ const icon = <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0
 
 
 const CatalogInfo:FC<CatalogInfo> = React.memo(({ setIsShowFilters, keyword }) => {
+    const openFilters = useCallback(() => setIsShowFilters(true), [])
+
     return (
         <div className={styles.catalog__meta}>
             <h2 className={styles.catalog__title}>
@@ -24,7 +26,7 @@ const CatalogInfo:FC<CatalogInfo> = React.memo(({ setIsShowFilters, keyword }) =
                 ) : "Подборка фильмов всего мира" }
             </h3>
             <div className={styles.catalog__openFilters}>
-                <OpacityButton onClick={() => setIsShowFilters(true)} type="button" startIcon={icon}>
+                <OpacityButton onClick={openFilters} type="button" startIcon={icon}>
                     Фильтры
                 </OpacityButton>
             </div>

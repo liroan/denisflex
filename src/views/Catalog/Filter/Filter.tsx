@@ -57,7 +57,12 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
 
     const genresNames = useMemo(() => genres ? genres.map(genre => genre.genre) : [], [genres]);
 
+    const hideFilters = useCallback(() => setIsShowFilters(false), []);
 
+    const reset = useCallback(() => {
+        dispatch(resetFilters())
+        hideFilters()
+    }, [])
 
 
     return (
@@ -76,11 +81,8 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
                 <CheckboxAccordion order={formData.order} changeValue={changeValue}/>
 
                 <div className={classNames(styles.filter__buttons)}>
-                    <RedButton type="submit" onClick={() => setIsShowFilters(false)}>Применить</RedButton>
-                    <OpacityButton onClick={() => {
-                        dispatch(resetFilters())
-                        setIsShowFilters(false)
-                    }} type="button">Сбросить</OpacityButton>
+                    <RedButton type="submit" onClick={hideFilters}>Применить</RedButton>
+                    <OpacityButton onClick={reset} type="button">Сбросить</OpacityButton>
                 </div>
 
             </div>

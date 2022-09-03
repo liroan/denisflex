@@ -124,7 +124,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
                                          factsError={factsError}
                     >
                         <SliderContainer items={staff}
-                                         getSliderCard={(item: IStaffPerson) => <SliderItemStaff staff={item} key={item.id} />}
+                                         getSliderCard={(item: IStaffPerson) => <SliderItemStaff staff={item} key={item.staffId} />}
                                          isLoading={staffLoading}
                                          error={staffError} title={getTitleWithCount("Состав", staff?.length) }
                         />
