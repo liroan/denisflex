@@ -1,0 +1,58 @@
+.movieCard {
+  position: relative;
+  width: 220px;
+  height: 330px;
+  overflow: hidden;
+  border-radius: 7px;
+  img {
+    transition: 0.5s ease-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  img:hover {
+    transform: scale(1.1);
+  }
+  &__marks {
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    display: flex;
+    color: #fff;
+    transition: 0.5s;
+  }
+  &__mark {
+    font-size: 16px;
+    padding: 2px 10px;
+    font-weight: 300;
+    border-radius: 3px;
+    margin-right: 5px;
+    &_red {
+      background: red;
+      button {
+        background: red;
+      }
+    }
+    &_gray {
+      background: #222;
+      button {
+        background: #222;
+      }
+    }
+  }
+}
+
+.movieCardContainer {
+  &__name {
+    margin-top: 10px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  &__role {
+    color: #888;
+    font-weight: 500;
+    font-size: 12px;
+  }
+}

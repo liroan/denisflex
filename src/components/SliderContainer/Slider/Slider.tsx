@@ -1,17 +1,16 @@
 import arrow from "../../../assets/img/home/arrow.png";
 import React, {FC, useCallback, useEffect, useRef, useState} from "react";
-import SliderItemGenre from "./SliderItemGenre/SliderItemGenre";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
-import SliderItemMovie from "./SliderItemMovie/SliderItemMovie";
-import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../../types/types";
-import SliderItemStaff from "./SliderItemStaff/SliderItemStaff";
-interface ISlider {
-    movies: IMovieTop[] | IGenre[] | IStaffPerson[] | ISimilarMovie[];
+
+interface SliderProps<T> {
+    items: T[];
+    getSliderCard: (item: T, index: number) => React.ReactNode;
     isWideCard?: boolean;
 }
 
-const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
+function Slider<T>(props: SliderProps<T>) {
+    const { items, getSliderCard, isWideCard } = props;
     const [translate, setTranslate] = useState(0);
     const [maxTranslate, setMaxTranslate] = useState(0);
     const [lastTranslate, setLastTranslate] = useState(0);
@@ -22,8 +21,8 @@ const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
 
 
     useEffect(() => {
-        setMaxTranslate(widthItem * movies.length)
-    }, [movies.length])
+        setMaxTranslate(widthItem * items.length)
+    }, [items.length])
 
     const nextItem = useCallback(() => {
         if (maxTranslate >= translate + width && maxTranslate < translate + width + widthItem) {
@@ -52,29 +51,7 @@ const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
             </div>
 
             <div className={styles.slider__translateWrapper} style={{transform: `translateX(${-translate}px`}}>
-                {movies.map((film, index) => {
-                    let item, key;
-                    if ("filmId" in film) {
-                        if ("relationType" in film)
-                            item = <SliderItemMovie posterUrl={film.posterUrl} filmId={film.filmId}/>;
-                        else  item = <SliderItemMovie posterUrl={film.posterUrl} rating={film.rating}
-                                                      year={film.year} filmId={film.filmId}/>;
-                        key = film.filmId;
-                    }
-                    else if ("genre" in film) {
-                        item = <SliderItemGenre genre={film.genre} index={index}/>;
-                        key = film.id;
-                    } else {
-                        item = <SliderItemStaff posterUrl={film.posterUrl} description={film.description} id={film.staffId}
-                                                professionText={film.professionText} nameRu={film.nameRu} nameEn={film.nameEn} />;
-                        key = film.staffId;
-                    }
-                    return (
-                        <div className={styles.slider__item} key={key}>
-                            { item }
-                        </div>
-                    )
-                })}
+                {items.map(getSliderCard)}
             </div>
 
             { maxTranslate > width && (
@@ -85,6 +62,6 @@ const Slider:FC<ISlider> = React.memo(({movies, isWideCard}) => {
 
         </div>
     )
-})
+}
 
 export default Slider;

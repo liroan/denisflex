@@ -2,22 +2,18 @@ import styles from "../SliderItemMovie/SliderItemMovie.module.scss";
 import classNames from "classnames";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
+import {IStaffPerson} from "../../../../types/types";
 
 interface SliderItemStaffProps {
-    posterUrl: string;
-    description: string | null;
-    professionText: string;
-    nameRu: string;
-    nameEn: string;
-    id: number;
+    staff: IStaffPerson
 }
 
 const titleOrDash = (title: string): string | React.ReactNode => {
     return title || <span>&mdash</span>;
 }
 
-const SliderItemStaff:FC<SliderItemStaffProps> = React.memo(({posterUrl, description,
-                                                      professionText, nameEn, nameRu, id}) => {
+const SliderItemStaff:FC<SliderItemStaffProps> = React.memo(({ staff: {posterUrl, description,
+                                                      professionText, nameEn, nameRu, id }}) => {
     return (
         <Link to={'/name/' + id}>
             <div className={styles.movieCardContainer}>

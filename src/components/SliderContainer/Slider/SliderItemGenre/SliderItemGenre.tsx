@@ -2,16 +2,16 @@ import React, {FC} from "react";
 import styles from "./SliderItemGenre.module.scss";
 import classnames from "classnames";
 import {useNavigate} from "react-router-dom";
+import {IGenre} from "../../../../types/types";
 
 
 
 interface ISliderItemGenre {
-    genre: string;
-    index: number;
+    genreInfo: IGenre & { index: number }
 }
 
 
-const SliderItemGenre:FC<ISliderItemGenre> = React.memo(({ genre, index }) => {
+const SliderItemGenre:FC<ISliderItemGenre> = React.memo(({ genreInfo: { genre, index } }) => {
     const navigate = useNavigate();
     const onClickGenre = () => {
         navigate(`/catalog?genres=${index + 1}`);
