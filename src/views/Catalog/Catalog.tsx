@@ -21,10 +21,8 @@ const Catalog:FC = React.memo(() => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filters = useAppSelector(state => state.filters);
     const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
+    const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters);
     const [isCanUpdateFilterFromURL, setIsCanUpdateFilterFromURL] = useState(false);
-    const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters, {
-        skip: isCanUpdateFilterFromURL
-    });
 
     const dispatch = useAppDispatch();
     useEffect(() => {
