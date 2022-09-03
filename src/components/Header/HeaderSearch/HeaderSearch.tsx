@@ -14,6 +14,7 @@ import HeaderField from "./HeaderField/HeaderField";
 import HeaderPopup from "./HeaderPopup/HeaderPopup";
 import {MovieType} from "../../../types/types";
 import {useLocation} from "react-router-dom";
+import useDebounce from "../../../hooks/useDebounce";
 
 interface HeaderSearchProps {
     isOpenInput: boolean;
@@ -25,19 +26,29 @@ interface HeaderSearchProps {
 const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenInput, openInputIconRef}) => {
 
     const [isOpenSearchPopup, setIsOpenSearchPopup] = useState(false);
-    const [queryKeyword, setQueryKeyword] = useState('');
     const [type, setType] = useState<MovieType>("ALL");
     const popupSearchRef = useRef<HTMLDivElement>(null);
     const inputSearchRef = useRef<HTMLInputElement>(null);
-    const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const location = useLocation();
+    const [inputKeyword, setInputKeyword] = useState('');
+
+    const closePopup = useCallback(() => {
+        setIsOpenSearchPopup(false);
+        setIsOpenInput(false);
+    }, [])
+
+    const action = useCallback((value: string, debounced: string) => {
+        if (!value && !debounced) closePopup()
+    }, [])
+
+    const queryKeyword = useDebounce(inputKeyword, 700, action);
 
     useEffect(() => {
         const closeOpenMenu = (e: MouseEvent) => {
             const event = e as MouseEvent & { path: Node[]; };
             if (popupSearchRef.current && openInputIconRef.current &&
                 !event.path.includes(popupSearchRef.current) && !event.path.includes(openInputIconRef.current)) {
-                closePopupWithSaveKeyword();
+                closePopup();
             }
         }
         window.addEventListener('click', closeOpenMenu);
@@ -48,33 +59,22 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
         closePopupWithDeleteKeyword();
     }, [location]);
 
-    const onChangeKeyword = useCallback(() => {
-        if (!inputSearchRef.current) return;
-        const { value } = inputSearchRef.current;
+    const onChangeKeyword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setIsOpenSearchPopup(true)
         setIsOpenInput(true)
-        if (timer.current) clearTimeout(timer.current);
-        timer.current = setTimeout(() => {
-            setQueryKeyword(value);
-            if (!value) setIsOpenSearchPopup(false)
-        }, 500)
+        setInputKeyword(e.target.value);
     }, [])
 
     const closePopupWithDeleteKeyword = useCallback(() => {
-        closePopupWithSaveKeyword();
-        setQueryKeyword('');
-        if (inputSearchRef.current?.value) inputSearchRef.current.value = '';
+        closePopup();
+        setInputKeyword('');
     }, [])
 
-
-    const closePopupWithSaveKeyword = useCallback(() => {
-        setIsOpenSearchPopup(false);
-        setIsOpenInput(false);
-    }, [])
 
     return (
         <div ref={popupSearchRef} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
             <HeaderField onChangeKeyword={onChangeKeyword}
+                         inputKeyword={inputKeyword}
                          setIsOpenInput={setIsOpenInput}
                          setIsOpenSearchPopup={setIsOpenSearchPopup}
                          queryKeyword={queryKeyword}
