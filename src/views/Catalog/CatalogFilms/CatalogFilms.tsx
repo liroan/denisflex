@@ -7,7 +7,7 @@ import CatalogPaginatorContainer from "../CatalogPaginatorContainer/CatalogPagin
 import useGetMoviesLocalStorage from "../../../hooks/useGetMoviesLocalStorage";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {SerializedError} from "@reduxjs/toolkit";
-import useGetScreensaver from "../../../hooks/useGetScreensaver";
+import CatalogFilmsWindow from "./CatalogFilmsWindow/CatalogFilmsWindow";
 
 interface CatalogFilmsProps {
     filmsResponse?: IFilmSearchByFiltersResponse;
@@ -19,20 +19,15 @@ interface CatalogFilmsProps {
 const CatalogFilms:FC<CatalogFilmsProps> = React.memo(({ filmsResponse,isFetching, error  }) => {
     const films = filmsResponse?.items;
     const [movies, editMovies] = useGetMoviesLocalStorage();
-    const screensaver = useGetScreensaver(isFetching, error, filmsResponse?.items)
-
-    const filmCards = films?.map(filmData => (
-        <CatalogFilm filmData={filmData} key={filmData.kinopoiskId}
-                     isFavourite={movies.some(film => film.kinopoiskId === filmData.kinopoiskId)}
-                     editMovies={editMovies}
-        />
-    ))
-    const content = isFetching ? <CatalogPreloader /> : filmCards
     return (
         <div className={styles.films}>
-            {
-                screensaver ? screensaver : content
-            }
+            <CatalogFilmsWindow items={films}
+                                editMovies={editMovies}
+                                movies={movies}
+                                isLoading={isFetching}
+                                error={error}
+                                preloader={<CatalogPreloader />}
+            />
             <div className={styles.films__paginator}>
                 <CatalogPaginatorContainer totalPages={filmsResponse?.totalPages} />
             </div>

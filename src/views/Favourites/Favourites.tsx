@@ -1,18 +1,16 @@
 
 import styles from "./Favourites.module.scss";
 import Paginator from "../../components/Paginator/Paginator";
-import {FC, useEffect, useMemo, useState} from "react";
-import FavouritesMovie from "./FavoritesMovie/FavouritesMovie";
+import React, {FC, useEffect, useMemo, useState} from "react";
 import Container from "../../components/Container/Container";
 import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
-import useGetScreensaver from "../../hooks/useGetScreensaver";
+import FavouritesMovies from "./FavouritesMovies/FavouritesMovies";
 
 const Favourites:FC = () => {
     const [movies, editMovies] = useGetMoviesLocalStorage();
     const totalPages = Math.ceil(movies.length / 20);
 
     const [activeNumber, setActiveNumber] = useState(1);
-    const screensaver = useGetScreensaver(false, undefined, movies)
 
     useEffect(() => {
         if (activeNumber > totalPages) setActiveNumber(totalPages)
@@ -21,25 +19,16 @@ const Favourites:FC = () => {
     const showingMovies = useMemo(() => movies.slice((activeNumber - 1) * 20, Math.min(activeNumber * 20, movies.length)),
         [activeNumber, movies])
 
-    const movieCards = (
-        <div className={styles.favorites__films}>
-            {
-                showingMovies.map(movie => (
-                    <div className={styles.favorites__movie} key={movie.kinopoiskId}>
-                        <FavouritesMovie movie={movie} key={movie.kinopoiskId} editMovies={editMovies}/>
-                    </div>
-                ))
-            }
-        </div>
-    )
-
     return (
        <div className={styles.favorites}>
            <Container>
                <div className={styles.favorites__title}>Избранное</div>
-               {
-                   screensaver ? screensaver : movieCards
-               }
+               <FavouritesMovies items={showingMovies}
+                                 editMovies={editMovies}
+                                 isLoading={false}
+                                 error={undefined}
+                                 preloader={<div>Загрузка...</div>}
+               />
                <div className={styles.favorites__paginator}>
                    <Paginator totalPages={totalPages} activeNumber={activeNumber} setActiveNumber={setActiveNumber}/>
                </div>

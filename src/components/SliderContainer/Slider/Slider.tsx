@@ -2,6 +2,7 @@ import arrow from "../../../assets/img/home/arrow.png";
 import React, {FC, useCallback, useEffect, useRef, useState} from "react";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
+import withScreensaver from "../../../hocs/withScreensaver";
 
 interface SliderProps<T> {
     items: T[];
@@ -64,4 +65,4 @@ function Slider<T>(props: SliderProps<T>) {
     )
 }
 
-export default Slider;
+export default withScreensaver(Slider);
