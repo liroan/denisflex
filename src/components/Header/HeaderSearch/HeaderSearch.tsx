@@ -79,6 +79,7 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
                          setIsOpenSearchPopup={setIsOpenSearchPopup}
                          queryKeyword={queryKeyword}
                          closePopupWithDeleteKeyword={closePopupWithDeleteKeyword} type={type}
+                         closePopup={closePopup}
                          inputSearchRef={inputSearchRef}
             />
             { isOpenSearchPopup && <HeaderPopup queryKeyword={queryKeyword}

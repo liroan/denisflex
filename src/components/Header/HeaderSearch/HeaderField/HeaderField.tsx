@@ -14,10 +14,11 @@ interface HeaderFieldProps {
     closePopupWithDeleteKeyword: () => void;
     inputSearchRef: React.RefObject<HTMLInputElement>;
     inputKeyword: string;
+    closePopup: () => void;
 }
 
 const HeaderField:FC<HeaderFieldProps> = React.memo(({ setIsOpenInput, onChangeKeyword, setIsOpenSearchPopup,
-                                              queryKeyword, closePopupWithDeleteKeyword, inputKeyword,
+                                              queryKeyword, closePopupWithDeleteKeyword, inputKeyword, closePopup,
                                               type, inputSearchRef }) => {
 
 
@@ -30,7 +31,7 @@ const HeaderField:FC<HeaderFieldProps> = React.memo(({ setIsOpenInput, onChangeK
 
     return (
         <div className={classNames(styles.header__field)}>
-            <div className={styles.header__arrow} onClick={() => setIsOpenInput(false)}>
+            <div className={styles.header__arrow} onClick={closePopup}>
                 <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg></div>
             <div className={classNames(styles.header__input)}>
                 <input type="text" value={inputKeyword} onChange={onChangeKeyword} ref={inputSearchRef} placeholder="Поиск..." onFocus={openPopupIfValueSearch}/>
