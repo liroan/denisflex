@@ -8,6 +8,7 @@ import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
 import Preloader from "./components/Preloader/Preloader";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import MoviePlayer from "./views/MoviePlayer/MoviePlayer";
+import Footer from "./components/Footer/Footer";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
 const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
@@ -21,6 +22,7 @@ const Dashboard = React.memo(() => {
         <div className={'app'}>
             <Header />
             <Outlet />
+            <Footer />
             <NavigatePanel />
         </div>
     );

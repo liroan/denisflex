@@ -1,0 +1,28 @@
+
+
+.footer {
+  &__uploadButtons {
+    padding-bottom: 50px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+
+@media screen and (max-width: 670px) {
+  .footer {
+    &__uploadButtons {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .footer {
+    &__uploadButtons {
+      gap: 5px;
+    }
+  }
+}

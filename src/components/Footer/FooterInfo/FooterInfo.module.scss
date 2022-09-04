@@ -1,0 +1,43 @@
+
+
+
+.footer {
+  &__info {
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #555;
+    color: #fff;
+    opacity: 0.4;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__copyright {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    span {
+      font-weight: 300;
+    }
+  }
+  &__company {
+    font-weight: 300;
+    a {
+      font-weight: 600;
+      cursor: pointer;
+      opacity: 1;
+      color: #E50914;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .footer {
+    &__info {
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+    &__company {
+      margin-left: 20px;
+    }
+  }
+}
