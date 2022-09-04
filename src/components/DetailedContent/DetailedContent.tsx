@@ -3,6 +3,7 @@ import RedButton from "../Buttons/RedButton/RedButton";
 import React, {FC} from "react";
 import getConvertedPropertyOrDash from "../../utils/getConvertedPropertyOrDash";
 import FavouritesButton from "../Buttons/FavouritesButton/FavouritesButton";
+import {Link} from "react-router-dom";
 
 interface DetailedContentProps {
     poster: string,
@@ -14,11 +15,12 @@ interface DetailedContentProps {
     lineTitles: { id: number, title: string, value: any, converter?: ((value: any) => string | React.ReactNode)}[];
     isFavourite?: boolean;
     toggler?: () => void;
+    kinopoiskId?: number;
 }
 
 const DetailedContent:FC<DetailedContentProps> = React.memo(({ poster, title, subtitle, year,
                                                                  isFavourite, toggler,
-                                                      isFilm, findProperty, lineTitles }) => {
+                                                      isFilm, findProperty, lineTitles, kinopoiskId }) => {
     return (
         <div className={styles.detail__content}>
             <div className={styles.detail__poster}>
@@ -30,7 +32,7 @@ const DetailedContent:FC<DetailedContentProps> = React.memo(({ poster, title, su
                 {
                     isFilm && isFavourite !== undefined && toggler && (
                         <div className={styles.detail__buttons}>
-                            <RedButton>Смотреть</RedButton>
+                            <Link to={`/room/${kinopoiskId}`}><RedButton>Смотреть</RedButton></Link>
                             <FavouritesButton isFavourite={isFavourite} toggler={toggler}/>
                         </div>
                     )

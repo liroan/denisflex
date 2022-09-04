@@ -98,12 +98,12 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
         editMovies(movieData)
     }, [editMovies, movieData])
 
-    const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription, description} = movieData;
+    const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription, description, kinopoiskId} = movieData;
     return (
         <div className={styles.film}>
             <Container>
                 <Container>
-                    <Back />
+                    <div className={styles.film__back}><Back /></div>
                     <DetailedContent poster={posterUrl}
                                      title={nameRu || nameEn || nameOriginal}
                                      isFilm
@@ -113,6 +113,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
                                      lineTitles={lineTitles}
                                      isFavourite={movies.findIndex(movie => movie.kinopoiskId === movieData.kinopoiskId) !== -1}
                                      toggler={toggler}
+                                     kinopoiskId={kinopoiskId}
                     />
 
                     <Switcher activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory} />

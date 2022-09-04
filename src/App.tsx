@@ -7,12 +7,14 @@ import useLocalStorageMovies from "./hooks/useLocalStorageMovies";
 import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
 import Preloader from "./components/Preloader/Preloader";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import MoviePlayer from "./views/MoviePlayer/MoviePlayer";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
 const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
 const FavouritesLazy = React.lazy(() => import('./views/Favourites/Favourites'));
 const PersonLazy = React.lazy(() => import('./views/Person/Person'));
 const FilmContainerLazy = React.lazy(() => import('./views/Film/FilmContainer'));
+const MoviePlayerLazy = React.lazy(() => import('./views/MoviePlayer/MoviePlayer'));
 
 const Dashboard = React.memo(() => {
     return (
@@ -41,6 +43,7 @@ const App:FC = () => {
                                     <Route path="favourites" element={<FavouritesLazy />} />
                                     <Route path="film/:filmId" element={<FilmContainerLazy />} />
                                     <Route path="name/:personId" element={<PersonLazy />} />
+                                    <Route path="room/:filmId" element={<MoviePlayerLazy />}/>
                             </Route>
                         </Routes>
                     </Suspense>

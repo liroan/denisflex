@@ -57,7 +57,7 @@ const Person = () => {
         <div className={styles.person}>
             <Container>
                 <Container>
-                    <Back />
+                    <div className={styles.person__back}><Back /></div>
                     <DetailedContent poster={posterUrl} title={nameRu || nameEn }
                                      subtitle={nameEn} findProperty={findProperty} lineTitles={lineTitles} />
 
