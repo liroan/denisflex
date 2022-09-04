@@ -15,7 +15,7 @@ const SliderItemMovie:FC<SliderItemMovieProps> = React.memo(({ movie: {filmId, p
                 <div className={styles.movieCard}>
                     <img src={posterUrl} alt=""/>
                     <div className={styles.movieCard__marks}>
-                        <div className={classNames(styles.movieCard__mark, styles.movieCard__mark_gray)}><p>{rating}</p></div>
+                        <div className={classNames(styles.movieCard__mark, styles.movieCard__mark_green)}><p>{rating}</p></div>
                         <div className={classNames(styles.movieCard__mark, styles.movieCard__mark_red)}><p>{year} год</p></div>
                     </div>
                 </div>

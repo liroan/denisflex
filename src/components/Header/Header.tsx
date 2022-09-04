@@ -13,14 +13,21 @@ const Header:FC = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [prevScrollY, setPrevScrollY] = useState(0);
     const openInputIconRef = useRef<HTMLDivElement>(null);
+    const throttle = useRef<boolean>(false)
 
     useEffect(() => {
         const checkScrolled = () => {
-            setIsShowHeader(window.scrollY < prevScrollY);
-            setPrevScrollY(window.scrollY);
+            if (!throttle.current) {
+                throttle.current = true;
+                setTimeout(() => {
+                    setIsShowHeader(window.scrollY < prevScrollY);
+                    setPrevScrollY(window.scrollY);
+                    throttle.current = false;
+                }, 200)
+            }
         }
         window.addEventListener('scroll', checkScrolled);
-        setPrevScrollY(window.scrollY);
+        // setPrevScrollY(window.scrollY);
         return () => window.removeEventListener('scroll', checkScrolled)
     }, [prevScrollY])
 
