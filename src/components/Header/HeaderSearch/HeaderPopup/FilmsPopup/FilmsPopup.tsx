@@ -2,7 +2,7 @@ import styles from "./FilmsPopup.module.scss";
 import React, {FC} from "react";
 import FilmPopup from "./FilmPopup/FilmPopup";
 import EmptyFilms from "./EmptyFilms/EmptyFilms";
-import {MovieType} from "../../../../../types/types";
+import {MovieType} from "../../../../../types";
 import {useGetFiltersMovieQuery} from "../../../../../services/services";
 import {initialStateFilter} from "../../../../../store/filtersSlice";
 import FilmsPopupPreloader from "./FilmsPopupPreloader/FilmsPopupPreloader";

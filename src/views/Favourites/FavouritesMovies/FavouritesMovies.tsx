@@ -1,7 +1,7 @@
 import styles from "../Favourites.module.scss";
 import FavouritesMovie from "../FavoritesMovie/FavouritesMovie";
 import React, {FC} from "react";
-import {IMoviePreview} from "../../../types/types";
+import {IMoviePreview} from "../../../types";
 
 interface FavouritesMoviesProps {
     items: IMoviePreview[];

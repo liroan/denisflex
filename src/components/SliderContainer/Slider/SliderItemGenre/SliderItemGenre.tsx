@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import styles from "./SliderItemGenre.module.scss";
 import classnames from "classnames";
 import {useNavigate} from "react-router-dom";
-import {IGenre} from "../../../../types/types";
+import {IGenre} from "../../../../types";
 
 
 

@@ -7,7 +7,7 @@ import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
 import {changeFiltersHandle, FiltersState, resetFilters} from "../../../store/filtersSlice";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
-import {IGenre, MovieType} from "../../../types/types";
+import {IGenre, MovieType} from "../../../types";
 import useSizeWindow from "../../../hooks/useSizeWindow";
 import Rating from "./Fields/Rating/Rating";
 import Years from "./Fields/Years/Years";

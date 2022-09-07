@@ -1,4 +1,4 @@
-import {IMoviePreview} from "../types/types";
+import {IMoviePreview} from "../types";
 import {useContext, useMemo} from "react";
 import EditMoviesContext from "../context/EditMoviesContext";
 

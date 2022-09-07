@@ -2,7 +2,7 @@ import React, {Dispatch, FC, SetStateAction} from "react";
 import classNames from "classnames";
 import styles from "./HeaderField.module.scss";
 import {Link} from "react-router-dom";
-import {MovieType} from "../../../../types/types";
+import {MovieType} from "../../../../types";
 
 
 interface HeaderFieldProps {

@@ -2,7 +2,7 @@ import SelectComponent from "../../../../../components/Select/Select";
 import Accordion from "../../Accordion/Accordion";
 import React, {FC} from "react";
 import {MovieTypeFilter} from "../../Filter";
-import {MovieType} from "../../../../../types/types";
+import {MovieType} from "../../../../../types";
 
 const convertToMovieType = (value: string) => MovieTypeFilter[+value];
 

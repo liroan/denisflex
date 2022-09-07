@@ -1,5 +1,5 @@
 import React from "react";
-import {IMoviePreview} from "../types/types";
+import {IMoviePreview} from "../types";
 
 
 interface IEditMoviesContext {

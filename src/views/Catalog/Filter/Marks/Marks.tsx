@@ -1,7 +1,7 @@
 import styles from "./Marks.module.scss";
 import React, {FC} from "react";
 import {FiltersState, SortBy} from "../../../../store/filtersSlice";
-import {MovieType} from "../../../../types/types";
+import {MovieType} from "../../../../types";
 
 interface MarksProps {
     filters: FiltersState;

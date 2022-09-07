@@ -1,6 +1,6 @@
 import styles from "./FilmSwitcherContent.module.scss";
 import React, {FC} from "react";
-import {IFactsAndErrors} from "../../../types/types";
+import {IFactsAndErrors} from "../../../types";
 import {FilmCategory} from "../Film";
 import Facts from "../../../components/Facts/Facts";
 import EmptyContent from "../../../components/EmptyContent/EmptyContent";

@@ -5,16 +5,8 @@ import {useGetFactsAndErrorsMovieByIdQuery, useGetSimilarMovieByIdQuery,
     useGetStaffMovieByIdQuery
 } from "../../services/services";
 import SliderContainer from "../../components/SliderContainer/SliderContainer";
-import {
-    IBudget,
-    ICountry,
-    IDistributors,
-    IGenre,
-    IMovie,
-    IMovieTop,
-    ISimilarMovie,
-    IStaffPerson
-} from "../../types/types";
+import { IBudget, ICountry, IDistributors,
+    IGenre, IMovie, IMovieSimilar, IPersonStaff} from "../../types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
 import Switcher from "../../components/Switcher/Switcher";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
@@ -22,7 +14,6 @@ import parseToDischargeNumber from "../../utils/parseToDischargeNumber";
 import getTitleWithCount from "../../utils/getTitleWithCount";
 import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
 import Back from "../../components/Back/Back";
-import SliderItemMovie from "../../components/SliderContainer/Slider/SliderItemMovie/SliderItemMovie";
 import SliderItemStaff from "../../components/SliderContainer/Slider/SliderItemStaff/SliderItemStaff";
 import SliderItemSimilarMovie
     from "../../components/SliderContainer/Slider/SliderItemSimilarMovie/SliderItemSimilarMovie";
@@ -125,7 +116,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
                                          factsError={factsError}
                     >
                         <SliderContainer items={staff}
-                                         getSliderCard={(item: IStaffPerson) => <SliderItemStaff staff={item} key={item.staffId} />}
+                                         getSliderCard={(item: IPersonStaff) => <SliderItemStaff staff={item} key={item.staffId} />}
                                          isLoading={staffLoading}
                                          error={staffError} title={getTitleWithCount("Состав", staff?.length) }
                         />
@@ -133,7 +124,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
 
                     <div className={styles.film__similar}>
                         <SliderContainer items={similarFilms?.items}
-                                         getSliderCard={(item: ISimilarMovie) => <SliderItemSimilarMovie movie={item} key={item.filmId} />}
+                                         getSliderCard={(item: IMovieSimilar) => <SliderItemSimilarMovie movie={item} key={item.filmId} />}
                                          isLoading={similarFilmsLoading}
                                          error={similarFilmsError} title={getTitleWithCount("Похожее кино", similarFilms?.total) }
                         />

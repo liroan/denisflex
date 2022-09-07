@@ -1,6 +1,6 @@
 import styles from "./CatalogFilms.module.scss";
 import React, {FC} from "react";
-import {IFilmSearchByFiltersResponse} from "../../../types/types";
+import {IFilmSearchByFiltersResponse} from "../../../types";
 import CatalogPreloader from "../CatalogPreloader/CatalogPreloader";
 import CatalogPaginatorContainer from "../CatalogPaginatorContainer/CatalogPaginatorContainer";
 import useGetMoviesLocalStorage from "../../../hooks/useGetMoviesLocalStorage";

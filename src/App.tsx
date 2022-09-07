@@ -8,6 +8,7 @@ import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
 import Preloader from "./components/Preloader/Preloader";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import Footer from "./components/Footer/Footer";
+import MoviesProvider from "./components/MoviesProvider/MoviesProvider";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
 const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
@@ -36,22 +37,20 @@ const App:FC = () => {
 
     return (
         <ErrorBoundary>
-            <EditMoviesContext.Provider value={moviesState}>
-                <div>
-                    <Suspense fallback={<Preloader />}>
-                        <Routes>
-                            <Route path="/" element={<Dashboard />}>
-                                    <Route index element={<HomeLazy />} />
-                                    <Route path="catalog" element={<CatalogLazy />} />
-                                    <Route path="favourites" element={<FavouritesLazy />} />
-                                    <Route path="film/:filmId" element={<FilmContainerLazy />} />
-                                    <Route path="name/:personId" element={<PersonLazy />} />
-                                    <Route path="room/:filmId" element={<MoviePlayerLazy />}/>
-                            </Route>
-                        </Routes>
-                    </Suspense>
-                </div>
-            </EditMoviesContext.Provider>
+            <MoviesProvider state={moviesState}>
+                <Suspense fallback={<Preloader />}>
+                    <Routes>
+                        <Route path="/" element={<Dashboard />}>
+                            <Route index element={<HomeLazy />} />
+                            <Route path="catalog" element={<CatalogLazy />} />
+                            <Route path="favourites" element={<FavouritesLazy />} />
+                            <Route path="film/:filmId" element={<FilmContainerLazy />} />
+                            <Route path="name/:personId" element={<PersonLazy />} />
+                            <Route path="room/:filmId" element={<MoviePlayerLazy />}/>
+                        </Route>
+                    </Routes>
+                </Suspense>
+            </MoviesProvider>
         </ErrorBoundary>
     )
 }

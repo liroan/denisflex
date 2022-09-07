@@ -1,4 +1,4 @@
-import {IMoviePreview} from "../../../types/types";
+import {IMoviePreview} from "../../../types";
 import {FC} from "react";
 import styles from "./FavouritesMovie.module.scss";
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';

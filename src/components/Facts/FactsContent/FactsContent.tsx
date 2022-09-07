@@ -1,7 +1,7 @@
 import styles from "../Facts.module.scss";
 import parse from "html-react-parser";
 import React, {FC} from "react";
-import {IFactOrError} from "../../../types/types";
+import {IFactOrError} from "../../../types";
 
 interface FactsProps {
     facts: Array<string | IFactOrError>;

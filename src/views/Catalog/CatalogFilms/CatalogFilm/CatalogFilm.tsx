@@ -1,7 +1,7 @@
 import React, {FC, useCallback} from "react";
 import styles from "./CatalogFilm.module.scss";
 
-import {IMoviePreview} from "../../../../types/types";
+import {IMoviePreview} from "../../../../types";
 import {useNavigate} from "react-router-dom";
 import FavouritesButton from "../../../../components/Buttons/FavouritesButton/FavouritesButton";
 

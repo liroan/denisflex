@@ -1,5 +1,5 @@
 import useLocalStorage from "use-local-storage";
-import {IMoviePreview} from "../types/types";
+import {IMoviePreview} from "../types";
 import {useCallback, useMemo} from "react";
 
 

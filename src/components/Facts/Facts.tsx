@@ -1,6 +1,6 @@
 import styles from "./Facts.module.scss";
 import React, {FC} from "react";
-import {IFactOrError} from "../../types/types";
+import {IFactOrError} from "../../types";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {SerializedError} from "@reduxjs/toolkit";
 import FactsContent from "./FactsContent/FactsContent";

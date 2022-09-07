@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {API_KEY, API_URL} from "../constants/constants";
 import {
-    FilmTopResponse, IBudgetResponse, IDistributorsResponse,
+    IFilmTopResponse, IBudgetResponse, IDistributorsResponse,
     IFactsAndErrors,
     IFilmSearchByFiltersResponse,
     IFiltersResponse,
-    IMovie, IPerson, ISimilarMovies,
-    IStaffPerson,
-    TopMovieType
-} from "../types/types";
+    IMovie, IPerson, IMoviesSimilar,
+    IPersonStaff,
+    MovieTopType
+} from "../types";
 import {FiltersState} from "../store/filtersSlice";
 import removeUnwantedProperties from "../utils/removeUnwantedProperties";
 
@@ -23,7 +23,7 @@ export const moviesApi = createApi({
         }
     }),
     endpoints: (builder) => ({
-        getCompilationMovies: builder.query<FilmTopResponse, TopMovieType>({
+        getCompilationMovies: builder.query<IFilmTopResponse, MovieTopType>({
             query: (type) => ({
                 url: "v2.2/films/top",
                 params: { type }
@@ -44,16 +44,16 @@ export const moviesApi = createApi({
         getFactsAndErrorsMovieById: builder.query<IFactsAndErrors, number>({
             query: (id) => `v2.2/films/${id}/facts`,
         }),
-        getStaffMovieById: builder.query<IStaffPerson[], number>({
+        getStaffMovieById: builder.query<IPersonStaff[], number>({
             query: (filmId) => ({
                 url: "v1/staff",
                 params: { filmId }
             }),
         }),
-        getSimilarMovieById: builder.query<ISimilarMovies, number>({
+        getSimilarMovieById: builder.query<IMoviesSimilar, number>({
             query: (id) => `v2.2/films/${id}/similars`,
         }),
-        getReviewsMovieById: builder.query<ISimilarMovies, {id: number, page: number}>({
+        getReviewsMovieById: builder.query<IMoviesSimilar, {id: number, page: number}>({
             query: ({id, page}) => ({
                 url: `v2.2/films/${id}/reviews`,
                 params: { page }
@@ -72,7 +72,7 @@ export const moviesApi = createApi({
 })
 
 
-export const { useGetCompilationMoviesQuery, useGetReviewsMovieByIdQuery,
+export const { useGetCompilationMoviesQuery,
     useGetPersonByIdQuery,
     useGetBoxOfficeMovieByIdQuery, useGetDistributorsMovieByIdQuery,
     useGetSimilarMovieByIdQuery, useGetMovieByIdQuery,

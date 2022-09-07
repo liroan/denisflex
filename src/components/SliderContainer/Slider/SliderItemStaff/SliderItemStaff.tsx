@@ -2,10 +2,10 @@ import styles from "../SliderItemMovie/SliderItemMovie.module.scss";
 import classNames from "classnames";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
-import {IStaffPerson} from "../../../../types/types";
+import {IPersonStaff} from "../../../../types";
 
 interface SliderItemStaffProps {
-    staff: IStaffPerson
+    staff: IPersonStaff
 }
 
 const titleOrDash = (title: string): string | React.ReactNode => {

@@ -1,6 +1,6 @@
 import CatalogFilm from "../CatalogFilm/CatalogFilm";
 import React, {FC} from "react";
-import {IMoviePreview} from "../../../../types/types";
+import {IMoviePreview} from "../../../../types";
 
 interface CatalogFilmsWindowProps {
     films?: IMoviePreview[];

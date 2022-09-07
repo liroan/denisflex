@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import styles from "./SliderItemMovie.module.scss";
 import classNames from "classnames";
 import {Link} from "react-router-dom";
-import {IMoviePreview, IMovieTop, ISimilarMovie} from "../../../../types/types";
+import {IMovieTop} from "../../../../types";
 
 interface SliderItemMovieProps {
     movie: IMovieTop;

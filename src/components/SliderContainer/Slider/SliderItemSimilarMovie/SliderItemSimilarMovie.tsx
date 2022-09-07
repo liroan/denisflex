@@ -1,10 +1,10 @@
 import React, {FC} from "react";
 import styles from "./SliderItemSimilarMovie.module.scss";
 import {Link} from "react-router-dom";
-import {ISimilarMovie} from "../../../../types/types";
+import {IMovieSimilar} from "../../../../types";
 
 interface SliderItemSimilarMovieProps {
-    movie: ISimilarMovie;
+    movie: IMovieSimilar;
 }
 
 const SliderItemSimilarMovie:FC<SliderItemSimilarMovieProps> = React.memo(({ movie: { filmId, posterUrl } }) => {

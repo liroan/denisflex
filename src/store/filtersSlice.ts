@@ -1,6 +1,6 @@
 
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {MovieType} from "../types/types";
+import {MovieType} from "../types";
 
 
 export type SortBy = "RATING" | "NUM_VOTE" | "YEAR";

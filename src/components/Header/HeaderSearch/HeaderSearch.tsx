@@ -12,7 +12,7 @@ import React, {
 } from "react";
 import HeaderField from "./HeaderField/HeaderField";
 import HeaderPopup from "./HeaderPopup/HeaderPopup";
-import {MovieType} from "../../../types/types";
+import {MovieType} from "../../../types";
 import {useLocation} from "react-router-dom";
 import useDebounce from "../../../hooks/useDebounce";
 

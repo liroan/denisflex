@@ -1,7 +1,7 @@
 import styles from "./Category.module.scss";
 import classNames from "classnames";
 import React, {FC} from "react";
-import {MovieType} from "../../../../../types/types";
+import {MovieType} from "../../../../../types";
 
 interface CategoryProps {
     type: MovieType;

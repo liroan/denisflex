@@ -3,7 +3,7 @@ import styles from "./HeaderPopup.module.scss";
 import React, {FC, useEffect} from "react";
 import Category from "./Category/Category";
 import FilmsPopup from "./FilmsPopup/FilmsPopup";
-import {MovieType} from "../../../../types/types";
+import {MovieType} from "../../../../types";
 import {Link} from "react-router-dom";
 import EmptyFilms from "./FilmsPopup/EmptyFilms/EmptyFilms";
 import useSizeWindow from "../../../../hooks/useSizeWindow";

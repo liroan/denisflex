@@ -6,7 +6,7 @@ import Container from "../../components/Container/Container";
 import React, {useState} from "react";
 import {useGetPersonByIdQuery} from "../../services/services";
 import {useParams} from "react-router-dom";
-import {IPerson} from "../../types/types";
+import {IPerson} from "../../types";
 import DetailedContent from "../../components/DetailedContent/DetailedContent";
 import Switcher from "../../components/Switcher/Switcher";
 import PersonSwitcherContent from "./PersonSwitcherContent/PersonSwitcherContent";

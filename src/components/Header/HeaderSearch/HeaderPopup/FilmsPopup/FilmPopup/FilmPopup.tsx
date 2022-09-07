@@ -1,7 +1,7 @@
 import styles from "./FilmPopup.module.scss";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
-import {IMoviePreview} from "../../../../../../types/types";
+import {IMoviePreview} from "../../../../../../types";
 
 interface FilmPopupProps {
     movie: IMoviePreview;
