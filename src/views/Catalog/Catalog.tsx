@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useMemo, useState} from "react";
 import styles from "./Catalog.module.scss";
 import Container from "../../components/Container/Container";
 import Filter from "./Filter/Filter";
@@ -17,7 +17,6 @@ import removeInitialFilter from "../../utils/removeInitialFilters";
 const Catalog:FC = React.memo(() => {
 
     const [isShowFilters, setIsShowFilters] = useState(false);
-    const [genresWithAllGenres, setGenresWithAllGenres] = useState<IGenre[]>([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const filters = useAppSelector(state => state.filters);
     const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
@@ -40,11 +39,11 @@ const Catalog:FC = React.memo(() => {
             setSearchParams(queryString.stringify(filterWithoutInitialValue))
     }, [filters, isCanUpdateFilterFromURL])
 
-
-    useEffect(() => {
+    const genresWithAllGenres = useMemo(() => {
         if (genresAndCountries) {
-            const allGenres: IGenre =  { id: genresAndCountries.genres[genresAndCountries.genres.length - 1].id + 1,genre: "Все жанры" }
-            setGenresWithAllGenres([allGenres, ...genresAndCountries.genres])
+            const allGenres: IGenre =
+                { id: genresAndCountries.genres[genresAndCountries.genres.length - 1].id + 1,genre: "Все жанры" }
+            return [allGenres, ...genresAndCountries.genres]
         }
     }, [genresAndCountries])
 
