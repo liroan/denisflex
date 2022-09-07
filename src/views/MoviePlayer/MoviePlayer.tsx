@@ -1,7 +1,6 @@
 import {FC, useEffect} from "react";
 import styles from "./MoviePlayer.module.scss"
 import Back from "../../components/Back/Back";
-import Container from "../../components/Container/Container";
 import {useParams} from "react-router-dom";
 
 interface MoviePlayerProps {
@@ -9,7 +8,7 @@ interface MoviePlayerProps {
     id?: number;
 }
 
-const MoviePlayer:FC<MoviePlayerProps> = ({ title, id }) => {
+const MoviePlayer:FC<MoviePlayerProps> = ({ title}) => {
 
     const { filmId } = useParams();
 
@@ -17,11 +16,18 @@ const MoviePlayer:FC<MoviePlayerProps> = ({ title, id }) => {
         const script = document.createElement("script");
         script.src = "//yohoho.cc/yo.js";
         document.body.appendChild(script);
-
         return () => {
             script.remove();
         };
     }, [])
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [])
+
     return (
         <div className={styles.video}>
             <div className={styles.video__header}>
