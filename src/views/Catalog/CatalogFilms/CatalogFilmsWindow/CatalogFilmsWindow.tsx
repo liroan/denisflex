@@ -1,19 +1,18 @@
 import CatalogFilm from "../CatalogFilm/CatalogFilm";
 import React, {FC} from "react";
 import {IMoviePreview} from "../../../../types/types";
-import withScreensaver from "../../../../hocs/withScreensaver";
 
 interface CatalogFilmsWindowProps {
-    items?: IMoviePreview[];
+    films?: IMoviePreview[];
     editMovies: (movie: IMoviePreview) => void;
     movies: IMoviePreview[];
 }
 
-const CatalogFilmsWindow:FC<CatalogFilmsWindowProps> = ({ items, editMovies, movies }) => {
+const CatalogFilmsWindow:FC<CatalogFilmsWindowProps> = ({ films, editMovies, movies }) => {
     return (
         <>
             {
-                items?.map(filmData => (
+                films?.map(filmData => (
                     <CatalogFilm filmData={filmData} key={filmData.kinopoiskId}
                                  isFavourite={movies.some(film => film.kinopoiskId === filmData.kinopoiskId)}
                                  editMovies={editMovies}
@@ -24,4 +23,4 @@ const CatalogFilmsWindow:FC<CatalogFilmsWindowProps> = ({ items, editMovies, mov
     )
 }
 
-export default withScreensaver(CatalogFilmsWindow);
+export default CatalogFilmsWindow;

@@ -2,17 +2,16 @@ import styles from "../Facts.module.scss";
 import parse from "html-react-parser";
 import React, {FC} from "react";
 import {IFactOrError} from "../../../types/types";
-import withScreensaver from "../../../hocs/withScreensaver";
 
 interface FactsProps {
-    items: Array<string | IFactOrError>;
+    facts: Array<string | IFactOrError>;
 }
 
-const FactsContent:FC<FactsProps> = ({ items }) => {
+const FactsContent:FC<FactsProps> = ({ facts }) => {
     return (
         <>
         {
-            items.map((fact, i) => (
+            facts.map((fact, i) => (
                 <p key={i} className={styles.film__fact}>
                     {typeof fact !== "string" ? parse(fact.text) : parse(fact)}
                 </p>
@@ -23,4 +22,4 @@ const FactsContent:FC<FactsProps> = ({ items }) => {
 
 }
 
-export default withScreensaver(FactsContent);
+export default FactsContent;

@@ -1,11 +1,11 @@
 import styles from "./SliderContainer.module.scss";
 import classNames from "classnames";
 import Slider from "./Slider/Slider";
-import React, {FC} from "react";
-import {IGenre, IMovieTop, ISimilarMovie, IStaffPerson} from "../../types/types";
+import React from "react";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {SerializedError} from "@reduxjs/toolkit";
 import MoviesLoader from "../MoviesLoader/MoviesLoader";
+import ScreensaverWrapper from "../ScreensaverWrapper/ScreensaverWrapper";
 
 interface HomeMoviesProps<T> {
     items: T[] | undefined;
@@ -28,13 +28,13 @@ function SliderContainer<T>(props: HomeMoviesProps<T>) {
             <div className={styles.home__movieChapterContainer}>
                 <div className={classNames(styles.home__movieChapter, styles.movieChapter)}>
                     <div className={styles.movieChapter__title}><h3>{title}</h3></div>
-                    <Slider items={items!}
-                            getSliderCard={getSliderCard}
-                            isWideCard={isWideCard}
-                            isLoading={isLoading}
-                            error={error}
-                            preloader={moviesLoader}
-                    />
+                    <ScreensaverWrapper isLoading={isLoading} preloader={moviesLoader}
+                                        error={error} itemsLength={items?.length}>
+                        <Slider items={items!}
+                                getSliderCard={getSliderCard}
+                                isWideCard={isWideCard}
+                        />
+                    </ScreensaverWrapper>
                 </div>
             </div>
         </div>

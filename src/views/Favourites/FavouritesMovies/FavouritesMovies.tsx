@@ -2,7 +2,6 @@ import styles from "../Favourites.module.scss";
 import FavouritesMovie from "../FavoritesMovie/FavouritesMovie";
 import React, {FC} from "react";
 import {IMoviePreview} from "../../../types/types";
-import withScreensaver from "../../../hocs/withScreensaver";
 
 interface FavouritesMoviesProps {
     items: IMoviePreview[];
@@ -23,4 +22,4 @@ const FavouritesMovies:FC<FavouritesMoviesProps> = ({ items, editMovies }) => {
     )
 }
 
-export default withScreensaver(FavouritesMovies);
+export default FavouritesMovies;

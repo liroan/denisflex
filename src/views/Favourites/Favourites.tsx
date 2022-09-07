@@ -5,6 +5,7 @@ import React, {FC, useEffect, useMemo, useState} from "react";
 import Container from "../../components/Container/Container";
 import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
 import FavouritesMovies from "./FavouritesMovies/FavouritesMovies";
+import ScreensaverWrapper from "../../components/ScreensaverWrapper/ScreensaverWrapper";
 
 const Favourites:FC = () => {
     const [movies, editMovies] = useGetMoviesLocalStorage();
@@ -23,12 +24,12 @@ const Favourites:FC = () => {
        <div className={styles.favorites}>
            <Container>
                <div className={styles.favorites__title}>Избранное</div>
-               <FavouritesMovies items={showingMovies}
-                                 editMovies={editMovies}
-                                 isLoading={false}
-                                 error={undefined}
-                                 preloader={<div>Загрузка...</div>}
-               />
+               <ScreensaverWrapper isLoading={false} error={undefined}>
+                   <FavouritesMovies items={showingMovies}
+                                     editMovies={editMovies}
+                   />
+               </ScreensaverWrapper>
+
                <div className={styles.favorites__paginator}>
                    <Paginator totalPages={totalPages} activeNumber={activeNumber} setActiveNumber={setActiveNumber}/>
                </div>
