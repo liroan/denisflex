@@ -14,7 +14,7 @@ const FooterRefs = () => {
         <div className={styles.footer__refs}>
             {
                 refs.map(({ title, link }, index) => (
-                    <div className={styles.footer__ref}>
+                    <div className={styles.footer__ref} key={index}>
                         <a href={link}>{title}</a>
                     </div>
                 ))
