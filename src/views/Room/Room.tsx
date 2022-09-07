@@ -1,14 +1,14 @@
 import {FC, useEffect} from "react";
-import styles from "./MoviePlayer.module.scss"
+import styles from "./Room.module.scss"
 import {Back} from "../../components";
 import {useParams} from "react-router-dom";
 
-interface MoviePlayerProps {
+interface RoomProps {
     title?: string;
     id?: number;
 }
 
-const MoviePlayer:FC<MoviePlayerProps> = ({ title}) => {
+const Room:FC<RoomProps> = ({ title}) => {
 
     const { filmId } = useParams();
 
@@ -40,4 +40,4 @@ const MoviePlayer:FC<MoviePlayerProps> = ({ title}) => {
     )
 }
 
-export default MoviePlayer;
+export default Room;

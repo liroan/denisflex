@@ -9,7 +9,7 @@ const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
 const FavouritesLazy = React.lazy(() => import('./views/Favourites/Favourites'));
 const PersonLazy = React.lazy(() => import('./views/Person/Person'));
 const FilmContainerLazy = React.lazy(() => import('./views/Film/FilmContainer'));
-const MoviePlayerLazy = React.lazy(() => import('./views/MoviePlayer/MoviePlayer'));
+const RoomLazy = React.lazy(() => import('./views/Room/Room'));
 
 const Dashboard = React.memo(() => {
     return (
@@ -40,7 +40,7 @@ const App:FC = () => {
                             <Route path="favourites" element={<FavouritesLazy />} />
                             <Route path="film/:filmId" element={<FilmContainerLazy />} />
                             <Route path="name/:personId" element={<PersonLazy />} />
-                            <Route path="room/:filmId" element={<MoviePlayerLazy />}/>
+                            <Route path="room/:filmId" element={<RoomLazy />}/>
                         </Route>
                     </Routes>
                 </Suspense>
