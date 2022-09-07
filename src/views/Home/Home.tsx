@@ -1,12 +1,9 @@
 import styles from "./Home.module.scss";
-import Container from "../../components/Container/Container";
+import {Container, SliderContainer, SliderItemGenre, SliderItemMovie} from "../../components";
 import React, {FC, useMemo} from "react";
-import SliderContainer from "../../components/SliderContainer/SliderContainer";
 import {useGetCountriesAndGenresQuery, useGetCompilationMoviesQuery} from "../../services/services";
 import Banner from "./Banner/Banner";
-import SliderItemGenre from "../../components/SliderContainer/Slider/SliderItemGenre/SliderItemGenre";
 import {IGenre, IMovieTop} from "../../types";
-import SliderItemMovie from "../../components/SliderContainer/Slider/SliderItemMovie/SliderItemMovie";
 
 const Home:FC = () => {
     const { data: genresAndCountries, isLoading: genresAndCountriesLoading,

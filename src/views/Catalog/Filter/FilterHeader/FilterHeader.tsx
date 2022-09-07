@@ -1,5 +1,5 @@
 import styles from "./FilterHeader.module.scss";
-import RedButton from "../../../../components/Buttons/RedButton/RedButton";
+import {RedButton} from "../../../../components";
 import React, {Dispatch, FC, SetStateAction} from "react";
 
 interface FilterHeaderProps {

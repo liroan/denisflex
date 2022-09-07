@@ -1,14 +1,12 @@
 import classNames from "classnames";
 import styles from "./Filter.module.scss";
 import React, {Dispatch, FC, SetStateAction, useCallback, useEffect, useMemo, useState} from "react";
-import RedButton from "../../../components/Buttons/RedButton/RedButton";
-import OpacityButton from "../../../components/Buttons/OpacityButton/OpacityButton";
+import {RedButton, OpacityButton} from "../../../components";
 import Marks from "./Marks/Marks";
 import FilterHeader from "./FilterHeader/FilterHeader";
 import {changeFiltersHandle, FiltersState, resetFilters} from "../../../store/filtersSlice";
-import {useAppDispatch} from "../../../hooks/reduxHooks";
+import {useAppDispatch, useSizeWindow} from "../../../hooks";
 import {IGenre, MovieType} from "../../../types";
-import useSizeWindow from "../../../hooks/useSizeWindow";
 import Rating from "./Fields/Rating/Rating";
 import Years from "./Fields/Years/Years";
 import Genres from "./Fields/Genres/Genres";

@@ -3,11 +3,11 @@ import React, {FC} from "react";
 import {IFilmSearchByFiltersResponse} from "../../../types";
 import CatalogPreloader from "../CatalogPreloader/CatalogPreloader";
 import CatalogPaginatorContainer from "../CatalogPaginatorContainer/CatalogPaginatorContainer";
-import useGetMoviesLocalStorage from "../../../hooks/useGetMoviesLocalStorage";
+import {useGetMoviesLocalStorage} from "../../../hooks";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {SerializedError} from "@reduxjs/toolkit";
 import CatalogFilmsWindow from "./CatalogFilmsWindow/CatalogFilmsWindow";
-import ScreensaverWrapper from "../../../components/ScreensaverWrapper/ScreensaverWrapper";
+import {ScreensaverWrapper} from '../../../components'
 
 interface CatalogFilmsProps {
     filmsResponse?: IFilmSearchByFiltersResponse;

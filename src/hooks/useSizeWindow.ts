@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import getDataWindow from "../utils/getDataWindow";
+import {getDataWindow} from "../utils";
 
-const useSizeWindow = () => {
+export const useSizeWindow = () => {
     const [sizeWindow, setSizeWindow] = useState(getDataWindow());
     useEffect(() => {
         const resize = () => {
@@ -12,6 +12,4 @@ const useSizeWindow = () => {
     }, [])
     return sizeWindow;
 }
-
-export default useSizeWindow;
 

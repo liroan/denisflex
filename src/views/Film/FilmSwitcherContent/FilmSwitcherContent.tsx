@@ -2,8 +2,7 @@ import styles from "./FilmSwitcherContent.module.scss";
 import React, {FC} from "react";
 import {IFactsAndErrors} from "../../../types";
 import {FilmCategory} from "../Film";
-import Facts from "../../../components/Facts/Facts";
-import EmptyContent from "../../../components/EmptyContent/EmptyContent";
+import {Facts, EmptyContent} from "../../../components";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {SerializedError} from "@reduxjs/toolkit";
 

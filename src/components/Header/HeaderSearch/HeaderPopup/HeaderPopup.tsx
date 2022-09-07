@@ -6,7 +6,7 @@ import FilmsPopup from "./FilmsPopup/FilmsPopup";
 import {MovieType} from "../../../../types";
 import {Link} from "react-router-dom";
 import EmptyFilms from "./FilmsPopup/EmptyFilms/EmptyFilms";
-import useSizeWindow from "../../../../hooks/useSizeWindow";
+import {useSizeWindow} from "../../../../hooks";
 
 
 interface HeaderPopupProps {

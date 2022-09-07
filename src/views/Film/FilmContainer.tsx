@@ -5,9 +5,8 @@ import {
 } from "../../services/services";
 import Film from "./Film";
 import {useParams} from "react-router-dom";
-import Preloader from "../../components/Preloader/Preloader";
+import {Preloader, ErrorScreen} from "../../components";
 import React from "react";
-import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
 
 
 const FilmContainer = () => {

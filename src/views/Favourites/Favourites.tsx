@@ -1,11 +1,9 @@
 
 import styles from "./Favourites.module.scss";
-import Paginator from "../../components/Paginator/Paginator";
+import {Paginator, Container, ScreensaverWrapper} from "../../components";
 import React, {FC, useEffect, useMemo, useState} from "react";
-import Container from "../../components/Container/Container";
-import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
+import {useGetMoviesLocalStorage} from "../../hooks";
 import FavouritesMovies from "./FavouritesMovies/FavouritesMovies";
-import ScreensaverWrapper from "../../components/ScreensaverWrapper/ScreensaverWrapper";
 
 const Favourites:FC = () => {
     const [movies, editMovies] = useGetMoviesLocalStorage();

@@ -3,7 +3,7 @@ import styles from "./CatalogFilm.module.scss";
 
 import {IMoviePreview} from "../../../../types";
 import {useNavigate} from "react-router-dom";
-import FavouritesButton from "../../../../components/Buttons/FavouritesButton/FavouritesButton";
+import {FavouritesButton} from '../../../../components'
 
 
 

@@ -1,6 +1,6 @@
-import Paginator from "../../../components/Paginator/Paginator";
+import {Paginator} from '../../../components'
 import React, {FC, useCallback} from "react";
-import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {setPage} from "../../../store/filtersSlice";
 interface CatalogPaginatorContainerProps {
     totalPages?: number;

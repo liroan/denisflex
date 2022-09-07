@@ -1,4 +1,4 @@
-import SelectComponent from "../../../../../components/Select/Select";
+import {SelectComponent} from "../../../../../components";
 import Accordion from "../../Accordion/Accordion";
 import React, {FC} from "react";
 

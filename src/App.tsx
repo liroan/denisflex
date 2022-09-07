@@ -1,14 +1,8 @@
 import React, {FC, Suspense} from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
-import Header from "./components/Header/Header";
+import {Header, NavigatePanel, Preloader, ErrorBoundary, Footer, MoviesProvider } from "./components";
 import "./App.scss"
-import EditMoviesContext from "./context/EditMoviesContext";
-import useLocalStorageMovies from "./hooks/useLocalStorageMovies";
-import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
-import Preloader from "./components/Preloader/Preloader";
-import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
-import Footer from "./components/Footer/Footer";
-import MoviesProvider from "./components/MoviesProvider/MoviesProvider";
+import {useLocalStorageMovies} from "./hooks";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
 const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));

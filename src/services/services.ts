@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {API_KEY, API_URL} from "../constants/constants";
+import {API_KEY, API_URL} from "../constants";
 import {
     IFilmTopResponse, IBudgetResponse, IDistributorsResponse,
     IFactsAndErrors,
@@ -10,7 +10,7 @@ import {
     MovieTopType
 } from "../types";
 import {FiltersState} from "../store/filtersSlice";
-import removeUnwantedProperties from "../utils/removeUnwantedProperties";
+import {removeUnwantedProperties} from "../utils";
 
 export const moviesApi = createApi({
     reducerPath: 'moviesApi',

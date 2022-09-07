@@ -1,7 +1,7 @@
 import styles from "./PersonSwitcherContent.module.scss";
 import React, {FC} from "react";
 import {PersonCategory} from "../Person";
-import Facts from "../../../components/Facts/Facts";
+import {Facts} from "../../../components";
 
 
 interface PersonSwitcherContentProps {

@@ -14,7 +14,7 @@ import HeaderField from "./HeaderField/HeaderField";
 import HeaderPopup from "./HeaderPopup/HeaderPopup";
 import {MovieType} from "../../../types";
 import {useLocation} from "react-router-dom";
-import useDebounce from "../../../hooks/useDebounce";
+import {useDebounce} from "../../../hooks";
 
 interface HeaderSearchProps {
     isOpenInput: boolean;

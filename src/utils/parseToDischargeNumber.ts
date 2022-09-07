@@ -1,6 +1,3 @@
-const parseToDischargeNumber = (number: number) => {
+export const parseToDischargeNumber = (number: number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")
 }
-
-
-export default parseToDischargeNumber;

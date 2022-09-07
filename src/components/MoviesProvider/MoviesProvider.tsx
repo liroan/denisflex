@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import EditMoviesContext from "../../context/EditMoviesContext";
+import {EditMoviesContext} from "../../context";
 import {IMoviePreview} from "../../types";
 
 interface MoviesProviderProps {

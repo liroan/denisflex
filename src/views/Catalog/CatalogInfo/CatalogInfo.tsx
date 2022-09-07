@@ -1,6 +1,6 @@
 import styles from "./CatalogInfo.module.scss";
 import React, {Dispatch, FC, SetStateAction, useCallback} from "react";
-import OpacityButton from "../../../components/Buttons/OpacityButton/OpacityButton";
+import {OpacityButton} from '../../../components'
 import {Link} from "react-router-dom";
 
 

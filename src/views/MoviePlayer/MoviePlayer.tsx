@@ -1,6 +1,6 @@
 import {FC, useEffect} from "react";
 import styles from "./MoviePlayer.module.scss"
-import Back from "../../components/Back/Back";
+import {Back} from "../../components";
 import {useParams} from "react-router-dom";
 
 interface MoviePlayerProps {

@@ -2,17 +2,12 @@
 
 
 import styles from "./Person.module.scss";
-import Container from "../../components/Container/Container";
+import {Container, DetailedContent, Switcher, Preloader, ErrorScreen, Back} from "../../components";
 import React, {useState} from "react";
 import {useGetPersonByIdQuery} from "../../services/services";
 import {useParams} from "react-router-dom";
 import {IPerson} from "../../types";
-import DetailedContent from "../../components/DetailedContent/DetailedContent";
-import Switcher from "../../components/Switcher/Switcher";
 import PersonSwitcherContent from "./PersonSwitcherContent/PersonSwitcherContent";
-import Preloader from "../../components/Preloader/Preloader";
-import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
-import Back from "../../components/Back/Back";
 
 
 

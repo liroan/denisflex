@@ -1,8 +1,8 @@
 import {IMoviePreview} from "../types";
 import {useContext, useMemo} from "react";
-import EditMoviesContext from "../context/EditMoviesContext";
+import {EditMoviesContext} from "../context";
 
-const useGetMoviesLocalStorage = (): [IMoviePreview[], (movie: IMoviePreview) => void] => {
+export const useGetMoviesLocalStorage = (): [IMoviePreview[], (movie: IMoviePreview) => void] => {
     const moviesLocalStorage = useContext(EditMoviesContext)
     let movies: IMoviePreview[] = [];
     let editMovies: (movie: IMoviePreview) => void = (movie) => {};
@@ -13,5 +13,3 @@ const useGetMoviesLocalStorage = (): [IMoviePreview[], (movie: IMoviePreview) =>
     }
     return useMemo(() => ([movies, editMovies]), [movies, editMovies]);
 }
-
-export default useGetMoviesLocalStorage;

@@ -1,16 +1,16 @@
 import React, {FC, useEffect, useMemo, useState} from "react";
 import styles from "./Catalog.module.scss";
-import Container from "../../components/Container/Container";
+import {Container} from "../../components";
 import Filter from "./Filter/Filter";
 import CatalogInfo from "./CatalogInfo/CatalogInfo";
 import CatalogFilms from "./CatalogFilms/CatalogFilms";
-import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {useGetCountriesAndGenresQuery, useGetFiltersMovieQuery} from "../../services/services";
 import {useSearchParams} from "react-router-dom";
 import {changeFiltersFromUrl, FiltersState} from "../../store/filtersSlice";
 import * as queryString from "query-string";
 import {IGenre} from "../../types";
-import removeInitialFilter from "../../utils/removeInitialFilters";
+import {removeInitialFilter} from "../../utils";
 
 
 

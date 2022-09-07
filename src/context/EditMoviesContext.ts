@@ -7,6 +7,4 @@ interface IEditMoviesContext {
     editMovies: (movie: IMoviePreview) => void;
 }
 
-const EditMoviesContext = React.createContext<IEditMoviesContext | null>(null);
-
-export default EditMoviesContext;
+export const EditMoviesContext = React.createContext<IEditMoviesContext | null>(null);

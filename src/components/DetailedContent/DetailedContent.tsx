@@ -1,7 +1,7 @@
 import styles from "./DetailedContent.module.scss";
 import RedButton from "../Buttons/RedButton/RedButton";
 import React, {FC} from "react";
-import getConvertedPropertyOrDash from "../../utils/getConvertedPropertyOrDash";
+import {getConvertedPropertyOrDash} from "../../utils";
 import FavouritesButton from "../Buttons/FavouritesButton/FavouritesButton";
 import {Link} from "react-router-dom";
 

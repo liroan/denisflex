@@ -1,4 +1,4 @@
-import RangeSlider from "../../../../../components/RangeSlider/RangeSlider";
+import {RangeSlider} from "../../../../../components";
 import Accordion from "../../Accordion/Accordion";
 import React, {FC} from "react";
 

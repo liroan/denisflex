@@ -1,22 +1,15 @@
 import styles from "./Film.module.scss";
-import Container from "../../components/Container/Container";
+import {Container, DetailedContent, Switcher,
+    Back, SliderItemStaff, SliderItemSimilarMovie, SliderContainer} from "../../components";
 import React, {FC, useCallback, useState} from "react";
 import {useGetFactsAndErrorsMovieByIdQuery, useGetSimilarMovieByIdQuery,
     useGetStaffMovieByIdQuery
 } from "../../services/services";
-import SliderContainer from "../../components/SliderContainer/SliderContainer";
 import { IBudget, ICountry, IDistributors,
     IGenre, IMovie, IMovieSimilar, IPersonStaff} from "../../types";
-import DetailedContent from "../../components/DetailedContent/DetailedContent";
-import Switcher from "../../components/Switcher/Switcher";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
-import parseToDischargeNumber from "../../utils/parseToDischargeNumber";
-import getTitleWithCount from "../../utils/getTitleWithCount";
-import useGetMoviesLocalStorage from "../../hooks/useGetMoviesLocalStorage";
-import Back from "../../components/Back/Back";
-import SliderItemStaff from "../../components/SliderContainer/Slider/SliderItemStaff/SliderItemStaff";
-import SliderItemSimilarMovie
-    from "../../components/SliderContainer/Slider/SliderItemSimilarMovie/SliderItemSimilarMovie";
+import {parseToDischargeNumber, getTitleWithCount} from "../../utils";
+import {useGetMoviesLocalStorage} from "../../hooks";
 
 
 

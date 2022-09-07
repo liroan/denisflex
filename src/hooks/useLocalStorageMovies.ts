@@ -3,7 +3,7 @@ import {IMoviePreview} from "../types";
 import {useCallback, useMemo} from "react";
 
 
-const useLocalStorageMovies = () =>{
+export const useLocalStorageMovies = () =>{
     const [movies, setMovies] = useLocalStorage<IMoviePreview[]>("favourites", []);
 
     const editMovies = useCallback((movie: IMoviePreview) => {
@@ -15,4 +15,3 @@ const useLocalStorageMovies = () =>{
     return useMemo(() => ({movies, editMovies}), [movies, editMovies]);
 }
 
-export default useLocalStorageMovies;
