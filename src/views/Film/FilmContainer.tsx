@@ -13,7 +13,7 @@ import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
 const FilmContainer = () => {
 
     const { filmId } = useParams();
-    const filmIdNumber = Number(filmId) || -1;
+    const filmIdNumber = Number(filmId);
 
     const { data: movieData, isFetching: movieDataFetching, error } = useGetMovieByIdQuery(filmIdNumber);
     const { data: budget, isFetching: budgetFetching } = useGetBoxOfficeMovieByIdQuery(filmIdNumber);

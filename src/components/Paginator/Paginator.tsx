@@ -17,8 +17,7 @@ const Paginator:FC<PaginatorProps> = React.memo(({ totalPages, activeNumber, set
     if (!totalPages || activeNumber > totalPages) return null;
 
 
-    const buttons = new Array(countButtons).fill(0).filter((_, i) => startNumber + i <= totalPages);
-
+    const buttons = [...Array(countButtons)].filter((_, i) => startNumber + i <= totalPages);
     const nextNumber = () => {
         const newNumber = activeNumber + 1;
         if (newNumber > totalPages) return;

@@ -38,7 +38,7 @@ const switcher = [
 
 const Person = () => {
     const { personId } = useParams();
-    const personIdNumber = Number(personId) || -1;
+    const personIdNumber = Number(personId);
 
 
     const [activeCategory, setActiveCategory] = useState(PersonCategory.FACTS);

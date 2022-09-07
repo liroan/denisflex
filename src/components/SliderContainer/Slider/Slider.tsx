@@ -1,5 +1,5 @@
 import arrow from "../../../assets/img/home/arrow.png";
-import React, {FC, useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
 import withScreensaver from "../../../hocs/withScreensaver";
@@ -47,7 +47,8 @@ function Slider<T>(props: SliderProps<T>) {
     return (
         <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={translateWrapper}>
 
-            <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left, { [styles.slider__arrow_wide]: isWideCard })}>
+            <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left,
+                { [styles.slider__arrow_wide]: isWideCard })}>
                 {translate > 0 && <img src={arrow} alt=""/>}
             </div>
 
@@ -56,7 +57,8 @@ function Slider<T>(props: SliderProps<T>) {
             </div>
 
             { maxTranslate > width && (
-                 <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right, { [styles.slider__arrow_wide]: isWideCard })}>
+                 <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right,
+                     { [styles.slider__arrow_wide]: isWideCard })}>
                     <img src={arrow} alt=""/>
                 </div>
             )}

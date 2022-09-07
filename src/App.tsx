@@ -7,7 +7,6 @@ import useLocalStorageMovies from "./hooks/useLocalStorageMovies";
 import NavigatePanel from "./components/NavigatePanel/NavigatePanel";
 import Preloader from "./components/Preloader/Preloader";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
-import MoviePlayer from "./views/MoviePlayer/MoviePlayer";
 import Footer from "./components/Footer/Footer";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
@@ -19,12 +18,14 @@ const MoviePlayerLazy = React.lazy(() => import('./views/MoviePlayer/MoviePlayer
 
 const Dashboard = React.memo(() => {
     return (
-        <div className={'app'}>
+        <>
             <Header />
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
             <Footer />
             <NavigatePanel />
-        </div>
+        </>
     );
 })
 
