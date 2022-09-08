@@ -1,9 +1,9 @@
 .header {
   z-index: 10000;
   transition: 0.2s;
-  color: #fff;
+  color: var(--color-primary);
   position: fixed;
-  box-shadow: 7px -20px 20px 13px #31313191;
+  box-shadow: 7px -20px 20px 13px var(--color-header-box-shadow);
   top: 0;
   left: 0;
   width: 100%;
@@ -21,7 +21,7 @@
 .app {
   &__header {
     &_active {
-      background: #141414;
+      background: var(--color-header);
     }
   }
 }

@@ -1,7 +1,7 @@
 .preloader {
   width: 100vw;
   height: 100vh;
-  background: #000;
+  background: var(--color-back-primary);
   display: flex;
   align-items: center;
   overflow: hidden;

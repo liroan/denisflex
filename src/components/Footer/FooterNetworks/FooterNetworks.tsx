@@ -1,21 +1,23 @@
 import styles from "./FooterNetworks.module.scss";
-
-
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 const networks = [
-    { img: "https://avatars.mds.yandex.net/get-bunker/118781/0ae3d1ca27d3794204beec7d3810025f8c2b7e87/svg", link: "/"  },
-    { img: "https://avatars.mds.yandex.net/get-bunker/61205/97123f0bc0c689932a2fb6b62d3ab8ce04d7e936/svg", link: "/"  },
-    { img: "https://avatars.mds.yandex.net/get-bunker/56833/9f570502e378d5e28a5a173a273fa811c4490a73/svg", link: "/"  },
-    { img: "https://avatars.mds.yandex.net/get-bunker/128809/65fe1abdd405eb82aec7490588a1ec6745d9ab87/svg", link: "/"  },
+    { icon: <InstagramIcon/>, link: "/"  },
+    { icon: <FacebookIcon/>, link: "/"  },
+    { icon: <TwitterIcon/>, link: "/"  },
+    { icon: <YouTubeIcon/>, link: "/"  },
 ]
 
 const FooterNetworks = () => {
     return (
         <div className={styles.footer__socialNetworks}>
             {
-                networks.map(({img, link}, index)=> (
+                networks.map(({icon, link}, index)=> (
                     <div className={styles.footer__socialNetwork} key={index}>
                         <a href={link}>
-                            <img src={img} alt=""/>
+                            {icon}
                         </a>
                     </div>
                 ))

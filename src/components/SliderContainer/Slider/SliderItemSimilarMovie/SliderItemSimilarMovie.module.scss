@@ -29,9 +29,9 @@
     border-radius: 3px;
     margin-right: 5px;
     &_red {
-      background: red;
+      background: var(--color-red);
       button {
-        background: red;
+        background: var(--color-red);
       }
     }
     &_green {
@@ -46,12 +46,12 @@
 .movieCardContainer {
   &__name {
     margin-top: 10px;
-    color: #fff;
+    color: var(--color-primary);
     font-weight: 500;
     font-size: 16px;
   }
   &__role {
-    color: #888;
+    color: var(--color-gray);
     font-weight: 500;
     font-size: 12px;
   }

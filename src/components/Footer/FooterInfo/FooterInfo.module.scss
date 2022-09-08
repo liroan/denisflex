@@ -5,9 +5,8 @@
   &__info {
     font-size: 14px;
     padding: 20px 0;
-    border-top: 1px solid #555;
-    color: #fff;
-    opacity: 0.4;
+    border-top: 1px solid var(--color-dark-gray);
+    color: var(--color-dark-gray);
     display: flex;
     justify-content: space-between;
   }
@@ -25,7 +24,7 @@
       font-weight: 600;
       cursor: pointer;
       opacity: 1;
-      color: #E50914;
+      color: var(--color-red);
     }
   }
 }

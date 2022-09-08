@@ -3,8 +3,8 @@
   width: 100%;
   & > div {
     margin-top: 76px;
-    background: #111;
-    color: #fff;
+    background: var(--color-primary-bg);
+    color: var(--color-primary);
     padding-top: 20px;
   }
   &__back {

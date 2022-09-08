@@ -5,8 +5,8 @@
   & > div {
     margin-top: 76px;
     padding-top: 50px;
-    background: #111;
-    color: #fff;
+    background: var(--color-primary-bg);
+    color: var(--color-primary);
   }
   &__mainInfo {
     display: flex;

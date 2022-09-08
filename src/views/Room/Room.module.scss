@@ -8,11 +8,11 @@
     left: 0;
     overflow: hidden;
     z-index: 1000000;
-    background: #111;
+    background: var(--color-primary-bg);
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: #fff;
+    color: var(--color-primary);
     padding-left: 20px;
     //p {
     //  font-size: 26px;
@@ -20,7 +20,7 @@
     //}
   }
   &__container {
-    background: #fff;
+    background: var(--color-primary);
     max-height: calc(100vh - 76px);
   }
   &__movie {

@@ -11,13 +11,13 @@
       margin-right: 10px;
     }
     label {
-      color: #999 !important;
+      color: var(--color-gray) !important;
       & + div {
         color: #fff !important;
       }
     }
     fieldset {
-      border-color: #999 !important;
+      border-color: var(--color-gray) !important;
     }
     input {
       padding: 10px !important;

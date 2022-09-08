@@ -16,9 +16,10 @@ a {
 
 body {
   font-family: 'Fira Sans', sans-serif;
-  background: #181818;
+  background: var(--color-bg);
   position: relative;
 }
+
 
 div[role="presentation"] { /* стилизация выпад списка у селекта */
     z-index: 100002;
@@ -33,9 +34,13 @@ div[role="presentation"] { /* стилизация выпад списка у с
 }
 
 .css-1yjjitx-MuiSwitch-track { /*цвет для дорожки у чек бокса в нач состояние*/
-  background-color: #fff !important;
+  background-color: var(--color-primary) !important;
 }
-
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  input {
+    color: var(--color-primary) !important;
+  }
+}
 .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {  /*цвет для дорожки у чек бокса в кон состояние */
   background-color: #E50914 !important;
 }

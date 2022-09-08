@@ -5,7 +5,7 @@
     position: relative;
     padding-top: 10px;
   }
-  color: #fff;
+  color: var(--color-primary);
   &__films {
     width: 100%;
     display: grid;

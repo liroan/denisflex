@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   span {
-    background-color: #111;
+    background-color: var(--color-primary-bg);
   }
   &__title {
     margin-bottom: 10px;

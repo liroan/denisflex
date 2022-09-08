@@ -1,12 +1,13 @@
 .header {
   &__film {
+    color: var(--color-primary);
     padding: 15px;
     display: flex;
     justify-content: space-between;
     transition: 0.5s;
 
     &:hover {
-      background: #141414;
+      background: var(--color-light-black);
       cursor: pointer;
     }
   }

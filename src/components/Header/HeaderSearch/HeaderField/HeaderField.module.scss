@@ -6,11 +6,11 @@
     width: 400px;
     input {
       outline: none;
-      color: #fff;
+      color: var(--color-primary);
       font-size: 14px;
       border-radius: 5px;
       border: none;
-      background: #333;
+      background: var(--color-field);
       width: 100%;
       padding: 10px 40px 10px 10px;
     }
@@ -56,7 +56,7 @@
         padding: 10px 50px 10px 50px;
         font-size: 18px;
         width: 100%;
-        background: #1f1f1f;
+        background: var(--color-light-black);
         border-radius: 0;
         display: block;
       }

@@ -6,7 +6,7 @@
     button {
       cursor: pointer;
       font-family: 'Fira Sans', sans-serif;
-      background: #222;
+      background: var(--color-button-bg);
       display: flex;
       align-items: center;
       gap: 15px;
@@ -14,12 +14,11 @@
       border: none;
       border-radius: 3px;
       span, svg {
-        color: #fff;
-        opacity: 0.6;
+        color: var(--color-dark-gray);
       }
       transition: 0.2s;
       &:hover {
-        background: #333;
+        background: var(--color-button-bg-hover);
       }
     }
   }

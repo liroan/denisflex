@@ -1,0 +1,61 @@
+
+
+:root, [data-theme="default"] {
+  --color-primary: #fff;
+  --color-back-primary: #000;
+  --color-header: #141414;
+  --color-primary-icons: #141414;
+  --color-secondary-icons: #fff;
+  --color-gray: #999;
+  --color-bg: #181818;
+  --color-primary-bg: #111;
+  --color-light-black: #1f1f1f;
+  --color-button-bg: #222;
+  --color-button-bg-hover: #333;
+  --color-secondary-text: rgba(255,255,255, 0.6);
+  --color-description: #888;
+  --color-facts: #777;
+  --color-paginator-button: #333;
+  --color-filter: #222;
+  --color-red: #E50914;
+  --color-dark-red: rgba(229, 9, 20, 0.4);
+  --color-primary-box-shadow: #222;
+  --color-header-box-shadow: #444;
+  --color-mask: rgba(0,0,0,0.6);
+  --color-blind: rgba(0,0,0,0.9);
+  --color-navigate-panel: #111;
+  --color-preloader: #333;
+  --color-dark-gray: rgba(255,255,255, 0.4);
+  --color-border-film: #333;
+  --color-bg-film-hover: #1f1f1f;
+  --color-field: #333;
+  --color-scroll: #111;
+}
+
+[data-theme="dark"] {
+  --color-primary: #000;
+  --color-back-primary: #fff;
+  --color-header: #fff;
+  --color-primary-icons: #fff;
+  --color-secondary-icons: #000;
+  --color-gray: #777;
+  --color-bg: #fff;
+  --color-primary-bg: #fff;
+  --color-light-black: #ddd;
+  --color-button-bg: #ccc;
+  --color-button-bg-hover: #bbb;
+  --color-secondary-text: rgba(255,255,255, 0.3);
+  --color-description: #222;
+  --color-facts: #333;
+  --color-paginator-button: #333;
+  --color-filter: #fff;
+  --color-primary-box-shadow: #ddd;
+  --color-header-box-shadow: #444;
+  --color-navigate-panel: #ddd;
+  --color-preloader: #ccc;
+  --color-dark-gray: #000;
+  --color-border-film: #ddd;
+  --color-bg-film-hover: #eee;
+  --color-field: #eee;
+  --color-scroll: #ccc;
+}

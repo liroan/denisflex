@@ -2,6 +2,7 @@ import React, {FC, Suspense} from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import {Header, NavigatePanel, Preloader, ErrorBoundary, Footer, MoviesProvider } from "./components";
 import "./App.scss"
+import "./styles/_vars.scss"
 import {useLocalStorageMovies} from "./hooks";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
@@ -13,14 +14,14 @@ const RoomLazy = React.lazy(() => import('./views/Room/Room'));
 
 const Dashboard = React.memo(() => {
     return (
-        <>
+        <div className='app'>
             <Header />
             <main>
                 <Outlet />
             </main>
             <Footer />
             <NavigatePanel />
-        </>
+        </div>
     );
 })
 

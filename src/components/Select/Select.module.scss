@@ -2,15 +2,15 @@
 
 .select {
   label {
-    color: #fff !important;
+    color: var(--color-primary) !important;
   }
   fieldset {
-    border-color: #fff !important;
+    border-color: var(--color-primary) !important;
   }
   div[role="button"] {
-    color: #fff !important;
+    color: var(--color-primary) !important;
   }
   svg {
-    fill: #fff;
+    fill: var(--color-primary) ;
   }
 }

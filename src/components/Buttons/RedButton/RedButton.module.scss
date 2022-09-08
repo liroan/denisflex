@@ -17,11 +17,11 @@
   }
   button {
     color: #fff !important;
-    background: #E50914 !important;
-    border: 1px solid #E50914 !important;
+    background: var(--color-red) !important;
+    border: 1px solid var(--color-red) !important;
     &:hover {
-      background: #5c0000  !important;
-      border: 1px solid #5c0000 !important;
+      background: var(--color-dark-red) !important;
+      border: 1px solid var(--color-dark-red) !important;
     }
   }
 }

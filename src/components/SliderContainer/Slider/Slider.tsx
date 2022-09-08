@@ -48,7 +48,7 @@ function Slider<T>(props: SliderProps<T>) {
 
             <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left,
                 { [styles.slider__arrow_wide]: isWideCard })}>
-                {translate > 0 && <img src={arrow} alt=""/>}
+                {translate > 0 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>}
             </div>
 
             <div className={styles.slider__translateWrapper} style={{transform: `translateX(${-translate}px`}}>
@@ -58,7 +58,7 @@ function Slider<T>(props: SliderProps<T>) {
             { maxTranslate > width && (
                  <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right,
                      { [styles.slider__arrow_wide]: isWideCard })}>
-                    <img src={arrow} alt=""/>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
                 </div>
             )}
 
