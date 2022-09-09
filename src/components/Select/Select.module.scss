@@ -13,4 +13,7 @@
   svg {
     fill: var(--color-primary) ;
   }
+  fieldset {
+    border-color: var(--color-light-border) !important;
+  }
 }

@@ -101,9 +101,10 @@ const RangeSlider: React.FC<RangeSlider> = React.memo(({ min, max, fromValue, ch
                     )}
                     renderThumb={({ props }) => (
                         <div
+                            className={styles.rangeSlider__thumb}
                             {...props}
-                            style={{...props.style, height: '17px', width: '17px', borderRadius: '50%', backgroundColor: '#FFF',
-                                outline: 'none',
+                            style={{...props.style, height: '17px', width: '17px', borderRadius: '50%',
+                                boxShadow: 'box-shadow: 10px 5px 5px black', outline: 'none',
                             }}
                         >
                         </div>

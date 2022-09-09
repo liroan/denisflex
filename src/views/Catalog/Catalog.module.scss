@@ -2,10 +2,11 @@
 
 .catalog {
   font-weight: 300;
+  background: var(--color-catalog-bg);
   & > div {
     margin-top: 76px;
     padding-top: 50px;
-    background: var(--color-primary-bg);
+    background: var(--color-catalog);
     color: var(--color-primary);
   }
   &__mainInfo {

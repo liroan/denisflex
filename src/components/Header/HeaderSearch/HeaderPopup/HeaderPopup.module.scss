@@ -1,12 +1,13 @@
 .header {
   &__searchPopup {
+    border: 1px solid var(--color-dark-border);
     z-index: 100000;
     color: var(--color-primary);
     position: absolute;
     top: 45px;
     left: 0;
     width: 100%;
-    background: var(--color-field);
+    background: var(--color-secondary);
     border-radius: 5px;
     font-weight: 300;
     &_open {
@@ -19,11 +20,11 @@
     font-weight: 400;
     font-size: 12px;
     padding: 15px;
-    border-top: 1px solid hsla(0, 0%, 100%, .1);
+    border-top: 1px solid var(--color-dark-border);
     a {
-      color: #fff;
+      color: var(--color-primary);
     }
-    background: var(--color-gray);
+    background: var(--color-back-primary);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }

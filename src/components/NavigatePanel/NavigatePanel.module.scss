@@ -7,14 +7,14 @@
   bottom: -1px;
   width: 100%;
   height: 65px;
-  background: var(--color-light-black);
+  background: var(--color-navigate);
   ul {
     display: flex;
     justify-content: center;
     padding: 10px;
     li {
       a {
-        color: var(--color-gray);
+        color: #999;
       }
       margin: 0 20px;
       text-align: center;

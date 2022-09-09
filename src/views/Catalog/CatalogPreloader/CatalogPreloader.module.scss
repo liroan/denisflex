@@ -1,12 +1,12 @@
 
 .preloader {
-  border-top: 1px solid var(--color-preloader);
+  border-top: 1px solid var(--color-contrast-gray);
   padding: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   span {
-    background-color: var(--color-preloader)
+    background-color: var(--color-contrast-gray)
   }
   &__title {
     margin-bottom: 10px;

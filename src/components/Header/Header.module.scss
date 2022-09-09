@@ -3,7 +3,7 @@
   transition: 0.2s;
   color: var(--color-primary);
   position: fixed;
-  box-shadow: 7px -20px 20px 13px var(--color-header-box-shadow);
+  box-shadow: 7px -20px 20px 13px #444;
   top: 0;
   left: 0;
   width: 100%;
@@ -21,7 +21,7 @@
 .app {
   &__header {
     &_active {
-      background: var(--color-header);
+      background: var(--color-inserts);
     }
   }
 }

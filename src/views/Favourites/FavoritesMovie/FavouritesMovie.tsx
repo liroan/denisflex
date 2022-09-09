@@ -27,9 +27,11 @@ const FavouritesMovie:FC<FavoritesMovieProps> = ({ movie, editMovies }) => {
                                 Перейти к просмотру
                             </RedButton>
                         </Link>
-                        <OpacityButton startIcon={<BookmarkRemoveIcon/>} onClick={removeMovie}>
-                            Удалить из избранного
-                        </OpacityButton>
+                        <div className={styles.movie__remove}>
+                            <OpacityButton startIcon={<BookmarkRemoveIcon/>} onClick={removeMovie}>
+                                Удалить из избранного
+                            </OpacityButton>
+                        </div>
                     </div>
                 </div>
             </div>

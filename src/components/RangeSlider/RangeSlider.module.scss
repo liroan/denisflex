@@ -17,10 +17,14 @@
       }
     }
     fieldset {
-      border-color: var(--color-gray) !important;
+      border-color: var(--color-light-border) !important;
     }
     input {
       padding: 10px !important;
     }
+  }
+  &__thumb {
+    background: #fff;
+    border: 1px solid var(--color-primary);
   }
 }

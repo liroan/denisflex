@@ -6,12 +6,15 @@
     justify-content: center;
     gap: 60px;
     svg {
-      fill: var(--color-dark-gray);
       width: 30px;
       height: 30px;
     }
   }
   &__socialNetwork {
-
+    &:hover {
+      svg {
+        color: #999;
+      }
+    }
   }
 }
