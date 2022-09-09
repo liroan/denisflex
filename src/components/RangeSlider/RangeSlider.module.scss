@@ -11,8 +11,12 @@
       margin-right: 10px;
     }
     label {
+      color: #999;
       & + div {
         color: #fff !important;
+      }
+      &:active {
+        color: red;
       }
     }
     fieldset {
