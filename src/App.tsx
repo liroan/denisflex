@@ -1,9 +1,10 @@
-import React, {FC, Suspense} from 'react';
+import React, {FC, Suspense, useEffect, useState} from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import {Header, NavigatePanel, Preloader, ErrorBoundary, Footer, MoviesProvider } from "./components";
 import "./App.scss"
 import "./styles/_vars.scss"
-import {useLocalStorageMovies} from "./hooks";
+import {useAppDispatch, useLocalStorageMovies} from "./hooks";
+import {setIsMobile} from "./store/auth.slice";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
 const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
@@ -29,6 +30,12 @@ const Dashboard = React.memo(() => {
 const App:FC = () => {
 
     const moviesState = useLocalStorageMovies();
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(
+            setIsMobile(!!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/))
+        )
+    }, [])
 
     return (
         <ErrorBoundary>

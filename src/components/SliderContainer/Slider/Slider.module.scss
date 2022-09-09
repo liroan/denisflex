@@ -29,6 +29,9 @@
     &_wide {
       top: 125px;
     }
+    &_noOpacity {
+      opacity: 1;
+    }
   }
   &__translateWrapper {
     display: flex;

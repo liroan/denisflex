@@ -1,7 +1,7 @@
-import arrow from "../../../assets/img/home/arrow.png";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import styles from "./Slider.module.scss";
 import classNames from "classnames";
+import {useAppSelector} from "../../../hooks";
 
 interface SliderProps<T> {
     items: T[];
@@ -19,6 +19,11 @@ function Slider<T>(props: SliderProps<T>) {
     const widthItem = !isWideCard ? 240 : 320;
     const width = translateWrapper?.current?.clientWidth || 0;
 
+    const isMobile = useAppSelector(state => state.auth.isMobile)
+
+    // if (isMobile) {
+    //     // User-Agent is IPhone, IPod, IPad, Android or BlackBerry
+    // }
 
     useEffect(() => {
         setMaxTranslate(widthItem * items.length)
@@ -47,7 +52,7 @@ function Slider<T>(props: SliderProps<T>) {
         <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={translateWrapper}>
 
             <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left,
-                { [styles.slider__arrow_wide]: isWideCard })}>
+                { [styles.slider__arrow_wide]: isWideCard, [styles.slider__arrow_noOpacity]: isMobile })}>
                 {translate > 0 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>}
             </div>
 
@@ -57,7 +62,7 @@ function Slider<T>(props: SliderProps<T>) {
 
             { maxTranslate > width && (
                  <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right,
-                     { [styles.slider__arrow_wide]: isWideCard })}>
+                     { [styles.slider__arrow_wide]: isWideCard, [styles.slider__arrow_noOpacity]: isMobile })}>
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
                 </div>
             )}
