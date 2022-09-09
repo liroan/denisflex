@@ -19,7 +19,7 @@ const Header:FC = () => {
 
     useEffect(() => {
         const checkScrolled = () => {
-            if (!throttle.current) {
+            if (!throttle.current || window.scrollY === 0) {
                 throttle.current = true;
                 setTimeout(() => {
                     setIsShowHeader(window.scrollY < prevScrollY);
