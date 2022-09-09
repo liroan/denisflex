@@ -30,7 +30,8 @@
       line-height: 15px;
       font-weight: 400;
       a {
-        color: var(--color-gray);;
+        color: var(--color-primary);
+        opacity: 0.6;
         display: flex;
         align-items: center;
         svg {
@@ -40,25 +41,13 @@
       margin: 22px 0;
       &:hover {
         a {
-          color: var(--color-primary);
+          opacity: 1;
         }
         svg {
           stroke: var(--color-primary);
         }
       }
     }
-  }
-  &__activeLink {
-      position: relative;
-      &::before {
-        content: "";
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        background: red;
-        height: 3px;
-        width: 16px;
-      }
   }
   &__logo {
     z-index: 1000;

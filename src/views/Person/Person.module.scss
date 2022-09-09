@@ -2,9 +2,10 @@
 
 .person {
   width: 100%;
+  background: var(--color-catalog-bg);
   & > div {
     margin-top: 76px;
-    background: var(--color-primary-bg);
+    background: var(--color-catalog);
     color: var(--color-primary);
     padding-top: 20px;
   }

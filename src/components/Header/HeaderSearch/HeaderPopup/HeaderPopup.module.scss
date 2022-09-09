@@ -33,7 +33,6 @@
     overflow-y: auto;
     &::-webkit-scrollbar {
       width: 5px; /* ширина для вертикального скролла */
-      background-color: var(--color-scroll);
     }
 
     /* ползунок скроллбара */

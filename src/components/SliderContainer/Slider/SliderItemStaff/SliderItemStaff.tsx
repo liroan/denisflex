@@ -20,7 +20,7 @@ const SliderItemStaff:FC<SliderItemStaffProps> = React.memo(({ staff: {posterUrl
                 <div className={styles.movieCard}>
                     <img src={posterUrl} alt=""/>
                     <div className={styles.movieCard__marks}>
-                        <div className={classNames(styles.movieCard__mark, styles.movieCard__mark_gray)}>{ titleOrDash(professionText) }</div>
+                        <div className={classNames(styles.movieCard__mark, styles.movieCard__mark_red)}>{ titleOrDash(professionText) }</div>
                     </div>
                 </div>
                 <h3 className={styles.movieCardContainer__name}>{nameRu || nameEn}</h3>

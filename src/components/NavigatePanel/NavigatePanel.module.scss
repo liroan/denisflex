@@ -28,11 +28,29 @@
   }
   &__activeLink {
     color: var(--color-primary) !important;
+    position: relative;
+    opacity: 1 !important;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      background: red;
+      height: 3px;
+      width: 16px;
+    }
   }
 }
 
 @media screen and (max-width: 850px) {
   .panel {
     display: block;
+    &__activeLink {
+      &::before {
+        content: "";
+        height: 0;
+        width: 0;
+      }
+    }
   }
 }
