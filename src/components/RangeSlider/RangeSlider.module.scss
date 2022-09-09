@@ -16,13 +16,14 @@
         color: #fff !important;
       }
       &:active {
-        color: red;
+        color: red !important;
       }
     }
     fieldset {
       border-color: var(--color-light-border) !important;
     }
     input {
+      color: var(--color-primary) !important;
       padding: 10px !important;
     }
   }
