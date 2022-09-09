@@ -1,6 +1,7 @@
 .header {
   &__loginStatus {
     display: flex;
+    align-items: center;
     p {
       font-size: 18px;
       line-height: 18px;
@@ -13,6 +14,10 @@
       display: none;
       margin-left: 10px;
     }
+  }
+  &__theme {
+    cursor: pointer;
+    margin-left: 20px;
   }
 }
 

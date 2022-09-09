@@ -46,7 +46,6 @@ const Catalog:FC = React.memo(() => {
             return [allGenres, ...genresAndCountries.genres]
         }
     }, [genresAndCountries])
-
     return (
         <div className={styles.catalog}>
             <Container>
