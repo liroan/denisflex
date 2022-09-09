@@ -21,7 +21,8 @@ const CatalogFilms:FC<CatalogFilmsProps> = React.memo(({ filmsResponse,isFetchin
     const [movies, editMovies] = useGetMoviesLocalStorage();
     return (
         <div className={styles.films}>
-            <ScreensaverWrapper isLoading={isFetching} error={error} preloader={<CatalogPreloader />}>
+            <ScreensaverWrapper isLoading={isFetching} itemsLength={films?.length}
+                                error={error} preloader={<CatalogPreloader />}>
                 <CatalogFilmsWindow films={films}
                                     editMovies={editMovies}
                                     movies={movies}

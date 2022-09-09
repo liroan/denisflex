@@ -22,7 +22,7 @@ const Favourites:FC = () => {
        <div className={styles.favorites}>
            <Container>
                <div className={styles.favorites__title}>Избранное</div>
-               <ScreensaverWrapper isLoading={false} error={undefined}>
+               <ScreensaverWrapper isLoading={false} error={undefined} itemsLength={showingMovies.length}>
                    <FavouritesMovies items={showingMovies}
                                      editMovies={editMovies}
                    />

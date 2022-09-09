@@ -32,7 +32,7 @@ const DetailedContent:FC<DetailedContentProps> = React.memo(({ poster, title, su
                 {
                     isFilm && isFavourite !== undefined && toggler && (
                         <div className={styles.detail__buttons}>
-                            <Link to={`/room/${kinopoiskId}`}><RedButton>Смотреть</RedButton></Link>
+                            <Link to={`/room/${kinopoiskId}`} state={{ name: title }}><RedButton>Смотреть</RedButton></Link>
                             <FavouritesButton isFavourite={isFavourite} toggler={toggler}/>
                         </div>
                     )

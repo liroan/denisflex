@@ -1,17 +1,20 @@
 import {FC, useEffect} from "react";
 import styles from "./Room.module.scss"
 import {Back} from "../../components";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 
 interface RoomProps {
     title?: string;
     id?: number;
 }
 
+
 const Room:FC<RoomProps> = ({ title}) => {
 
     const { filmId } = useParams();
-
+    const location = useLocation();
+    const locationState = location.state as { name: string };
+    
     useEffect(() => {
         const script = document.createElement("script");
         script.src = "//yohoho.cc/yo.js";
@@ -31,7 +34,7 @@ const Room:FC<RoomProps> = ({ title}) => {
     return (
         <div className={styles.video}>
             <div className={styles.video__header}>
-                <Back title={title} />
+                <Back title={locationState?.name || title} />
             </div>
             <div className={styles.video__container}>
                 <div className={styles.video__movie} id="yohoho" data-kinopoisk={filmId} />
