@@ -8,9 +8,20 @@ import google from "../../assets/img/login/google.png"
 import classNames from "classnames";
 import {useState} from "react";
 import Authorization from "./Authorization/Authorization";
+import {TypeField} from "../../types/Login/TypeField";
+import Registration from "./Registration/Registration";
 
 const Login = () => {
-    const [activeWay, setActiveWay] = useState<'phone' | 'email'>("email");
+    const [typeField, setTypeField] = useState<TypeField>("email");
+    const [isRegistration, setIsRegistration] = useState(true);
+
+    const onAuth = () => {
+        setIsRegistration(false)
+    }
+    const onReg = () => {
+        setIsRegistration(true)
+    }
+
     return (
         <div className={styles.login}>
             <div className={styles.login__window}>
@@ -20,12 +31,19 @@ const Login = () => {
                     </div>
                     <p className={styles.login__info}>Войдите или зарегистрируйтесь</p>
                     <div className={styles.login__tabs}>
-                        <button onClick={() => setActiveWay('email')}
-                            className={classNames(styles.login__tab, {[styles.login__tab_active]: activeWay === "email"})}>Почта</button>
-                        <button onClick={() => setActiveWay('phone')}
-                            className={classNames(styles.login__tab, {[styles.login__tab_active]: activeWay === "phone"})}>Телефон</button>
+                        <button onClick={() => setTypeField('email')}
+                            className={classNames(styles.login__tab, {[styles.login__tab_active]: typeField === "email"})}>Почта</button>
+                        <button onClick={() => setTypeField('number')}
+                            className={classNames(styles.login__tab, {[styles.login__tab_active]: typeField === "number"})}>Телефон</button>
                     </div>
-                    <Authorization />
+                    {
+                        isRegistration ?
+                            <Registration typeField={typeField} onAuth={onAuth}/> :
+                            <Authorization typeField={typeField} onReg={onReg }/>
+                    }
+                    {
+                        !isRegistration && <div className={styles.login__forgot}><a>Не помню</a></div>
+                    }
                     <p className={styles.login__additionalInfo}>Войди с помощью</p>
                     <div className={styles.login__networks}>
                         <div className={styles.login__network}><img src={facebook} alt=""/></div>
