@@ -24,6 +24,8 @@
     max-height: calc(100vh - 76px);
   }
   &__movie {
+    position: relative;
+    z-index: 10000000;
     margin-top: 76px;
     padding-top: 76px;
     max-width: 100%;
@@ -35,8 +37,8 @@
 @media screen and (max-width: 850px) {
   .video {
     &__movie {
-      height: calc(100vh - 76px - 64px);
-      max-height: calc(100vh - 76px - 64px);
+      height: calc(100vh - 76px);
+      max-height: calc(100vh - 76px);
     }
   }
 }

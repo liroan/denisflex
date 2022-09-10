@@ -26,6 +26,7 @@ const Room:FC<RoomProps> = ({ title}) => {
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
+        window.scrollTo(0, 0);
         return () => {
             document.body.style.overflow = "unset";
         };

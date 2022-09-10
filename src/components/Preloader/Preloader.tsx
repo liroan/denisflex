@@ -22,7 +22,7 @@ const Preloader = React.memo(() => {
     return (
 
         <div className={styles.preloader}>
-            <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))" />;
+            <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))" />
         </div>
     )
 })

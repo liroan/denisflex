@@ -22,7 +22,7 @@ const Header:FC = () => {
             if (!throttle.current || window.scrollY === 0) {
                 throttle.current = true;
                 setTimeout(() => {
-                    setIsShowHeader(window.scrollY < prevScrollY);
+                    setIsShowHeader(window.scrollY <= prevScrollY);
                     setPrevScrollY(window.scrollY);
                     throttle.current = false;
                 }, 200)
