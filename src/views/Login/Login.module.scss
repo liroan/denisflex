@@ -1,0 +1,127 @@
+.login {
+  position: relative;
+  background-image: url("../../assets/img/login/loginBg.png");
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  & > div {
+    padding-top: 100px;
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 30px;
+    position: relative;
+    margin-bottom: 30px;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      lefT: 0;
+      height: 3px;
+      width: 60px;
+      background: var(--color-red);
+    }
+  }
+  &__networks {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  &__network {
+    cursor: pointer;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__mask {
+    color: #fff;
+    fieldset {
+      border-color: #fff !important;
+    }
+    input {
+      color: #fff !important;
+      &:hover {
+        border-bottom-color: #fff;
+      }
+    }
+    label {
+      color: #999;
+      & + div {
+        width: 80%;
+        color: #fff !important;
+        &:before {
+          border-bottom-color: #ccc;
+        }
+        &:hover:before {
+          border-bottom-color: #fff;
+        }
+      }
+      &[data-shrink="true"] {
+        color: var(--color-red) !important;
+        & + div {
+          &:before {
+            border-bottom-color: var(--color-red);
+          }
+        }
+      }
+    }
+    position: relative;
+    z-index: 10000;
+    width: 40%;
+    height: 100%;
+    background: rgba(#000, 0.5);
+    backdrop-filter: blur(3px);
+  }
+  &__checkbox {
+    span:first-child {
+      span:first-child + span {
+        background: #666 !important;
+      }
+    }
+    span:last-child {
+      font-size: 12px !important;
+    }
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(#050505, 0.6);
+  }
+  &__buttons {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    & > div {
+      width: 50%;
+    }
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .login {
+    &__mask {
+      width: 60%;
+    }
+  }
+}
+
+
+@media screen and (max-width: 750px) {
+  .login {
+    &__mask {
+      width: 100%;
+    }
+    &__buttons {
+      flex-wrap: wrap;
+    }
+  }
+}

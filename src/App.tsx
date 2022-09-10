@@ -5,6 +5,7 @@ import "./App.scss"
 import "./styles/_vars.scss"
 import {useAppDispatch, useAppSelector, useLocalStorageMovies} from "./hooks";
 import {setIsMobile} from "./store/auth.slice";
+import Login from "./views/Login/Login";
 
 const HomeLazy = React.lazy(() => import('./views/Home/Home'));
 const CatalogLazy = React.lazy(() => import('./views/Catalog/Catalog'));
@@ -45,7 +46,8 @@ const App:FC = () => {
         <ErrorBoundary>
             <MoviesProvider state={moviesState}>
                 <Suspense fallback={<Preloader />}>
-                    <Routes>
+                    <Login />
+                    {/*<Routes>
                         <Route path="/" element={<Dashboard />}>
                             <Route index element={<HomeLazy />} />
                             <Route path="catalog" element={<CatalogLazy />} />
@@ -54,7 +56,7 @@ const App:FC = () => {
                             <Route path="name/:personId" element={<PersonLazy />} />
                             <Route path="room/:filmId" element={<RoomLazy />}/>
                         </Route>
-                    </Routes>
+                    </Routes>*/}
                 </Suspense>
             </MoviesProvider>
         </ErrorBoundary>
