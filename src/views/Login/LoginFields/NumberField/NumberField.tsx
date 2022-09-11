@@ -17,7 +17,11 @@ const NumberField:FC<NumberFieldProps> = ({ control, message }) => {
             name="number"
             control={control}
             rules={{
-                required: REQUIRED
+                required: REQUIRED,
+                pattern: {
+                    value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+                    message: "Введите корректный номер телефона!"
+                }
             }}
             render={({field}) => (
                 <InputMask mask="+7 999 999 99 99" alwaysShowMask{...field} maskPlaceholder={undefined}>

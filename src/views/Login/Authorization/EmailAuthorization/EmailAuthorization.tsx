@@ -21,7 +21,7 @@ const EmailAuthorization:FC<EmailAuthorizationProps> = ({ onReg }) => {
     const onSubmit = (data: any) => {
         dispatch(authUser({ email: data.email, password: data.password }))
     };
-
+    console.log(errors)
     return (
         <form className={styles.login__form} onSubmit={handleSubmit(onSubmit)}>
             <EmailField control={control} message={errors.email?.message} />

@@ -9,9 +9,10 @@ interface PasswordFieldProps {
     control:  Control<FieldValues, any>;
     message:  string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
     placeholder: string;
+    passwordsError?: string;
 }
 
-const PasswordField:FC<PasswordFieldProps> = ({ name, control, message, placeholder }) => {
+const PasswordField:FC<PasswordFieldProps> = ({ name, control, passwordsError, message, placeholder }) => {
     return (
         <Controller
             name={name}
@@ -23,7 +24,7 @@ const PasswordField:FC<PasswordFieldProps> = ({ name, control, message, placehol
             render={({ field }) => (
                 <TextField {...field} id="outlined-basic" label="Пароль" variant="outlined"
                            placeholder={placeholder}
-                           error={!!message} helperText={(message || "") as string}
+                           error={!!message || !!passwordsError} helperText={(message || passwordsError || "") as string}
                 />
             )}
         />

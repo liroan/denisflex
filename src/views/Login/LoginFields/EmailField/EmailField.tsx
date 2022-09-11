@@ -13,7 +13,13 @@ const EmailField:FC<EmailFieldProps> = ({ control, message }) => {
         <Controller
             name="email"
             control={control}
-            rules={{ required: REQUIRED }}
+            rules={{
+                required: REQUIRED,
+                pattern: {
+                    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: "Введите корректный адрес электронной почты!"
+                }}
+            }
             render={({field}) => (
                 <TextField {...field} id="outlined-basic" label="Почта" error={!!message}
                            helperText={(message || "") as string} variant="outlined" />
