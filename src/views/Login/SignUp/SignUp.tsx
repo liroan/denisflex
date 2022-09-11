@@ -1,31 +1,35 @@
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import styles from "../Login.module.scss";
 import {OpacityButton, RedButton} from "../../../components";
-import {TypeField} from "../../../types/Login/TypeField";
+import {TypeSignIn} from "../../../types/Login/TypeSignIn";
 import React, {FC, useState} from "react";
 import {registrationUser} from "../../../store/auth.slice";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import FormError from "../FormError/FormError";
 import EmailField from "../LoginFields/EmailField/EmailField";
 import PasswordField from "../LoginFields/PasswordField/PasswordField";
+import {ISignUpData} from "../../../types";
 
 interface RegistrationProps {
-    typeField: TypeField;
-    onAuth: () => void;
+    chooseSignIn: () => void;
 }
 
-const Registration:FC<RegistrationProps> = ({ typeField, onAuth }) => {
-    const { register, handleSubmit, watch,control, formState: { errors }, getValues } = useForm();
+const SignUp:FC<RegistrationProps> = React.memo(({ chooseSignIn }) => {
+    const { handleSubmit,control, formState: { errors }, getValues } = useForm<ISignUpData>();
     const [passwordsError, setPasswordsError] = useState<string>("");
     const { error } = useAppSelector(state => state.auth);
-
     const dispatch = useAppDispatch();
-    const onSubmit = (data: any) => {
+
+    const isMatchedPasswords = () => {
         const password = getValues('password');
         const confirmPassword = getValues('repeatPassword');
         setPasswordsError(password !== confirmPassword ? "Пароли не совпадают" : "")
-        if (password !== confirmPassword) return;
-        dispatch(registrationUser({ email: data.email, password: data.password }))
+        return password === confirmPassword;
+    }
+
+    const onSubmit: SubmitHandler<ISignUpData> = ({ email, password }) => {
+        if (!isMatchedPasswords) return;
+        dispatch(registrationUser({ email, password }))
     };
 
     return (
@@ -40,12 +44,12 @@ const Registration:FC<RegistrationProps> = ({ typeField, onAuth }) => {
                 <RedButton type="submit">
                     Зарегистрироваться
                 </RedButton>
-                <OpacityButton onClick={onAuth} type="button">
+                <OpacityButton onClick={chooseSignIn} type="button">
                     Вход
                 </OpacityButton>
             </div>
         </form>
     )
-}
+})
 
-export default Registration;
+export default SignUp;

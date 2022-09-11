@@ -4,7 +4,7 @@ import {Control, Controller, FieldError, FieldErrorsImpl, FieldValues, Merge} fr
 import React, {FC} from "react";
 
 interface EmailFieldProps {
-    control:  Control<FieldValues, any>;
+    control:  Control<any, any>;
     message:  string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
 }
 

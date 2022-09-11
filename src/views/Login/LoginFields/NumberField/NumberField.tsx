@@ -7,7 +7,7 @@ import React, {FC} from "react";
 import InputMask from "react-input-mask";
 
 interface NumberFieldProps {
-    control:  Control<FieldValues, any>;
+    control:  Control<any, any>;
     message:  string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
 }
 

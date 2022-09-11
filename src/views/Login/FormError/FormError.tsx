@@ -4,13 +4,13 @@ interface FormErrorProps {
     error?: null | string;
 }
 
-const FormError:FC<FormErrorProps> = ({ error }) => {
+const FormError:FC<FormErrorProps> = React.memo(({ error }) => {
     if (error) return (
         <div className={styles.error}>
             {error}
         </div>
     )
     return <></>
-}
+})
 
 export default FormError;

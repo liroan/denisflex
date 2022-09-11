@@ -1,0 +1,1 @@
+export type TypeSignIn = "number" | "email";

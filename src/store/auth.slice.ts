@@ -1,6 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
-
+import auth from "../firebase.config"
 export enum HTTPStatus {
     IDLE,
     LOADING,
@@ -87,12 +87,10 @@ export const authSlice = createSlice({
 export const authUser = createAsyncThunk(
     'auth/authUser',
     async ({email, password}: { email: string, password: string }, thunkAPI) => {
-        const auth = getAuth();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             return userCredential.user.email;
         } catch(error: any) {
-            console.log(error.message);
             return thunkAPI.rejectWithValue(error.message);
         }
     }
@@ -101,7 +99,6 @@ export const authUser = createAsyncThunk(
 export const registrationUser = createAsyncThunk(
     'auth/registrationUser',
     async ({email, password}: { email: string, password: string }, thunkAPI) => {
-        const auth = getAuth();
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             return userCredential.user.email;
@@ -114,14 +111,11 @@ export const registrationUser = createAsyncThunk(
 export const sendNumber = createAsyncThunk(
     'auth/sendNumber',
     async (number: string, thunkAPI) => {
-        const auth = getAuth();
         try {
-            // @ts-ignore
             window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
                 'size': 'invisible',
                 'callback': async (response: any) => {}
             }, auth);
-            // @ts-ignore
             window.confirmationResult = await signInWithPhoneNumber(auth, number, window.recaptchaVerifier);
         } catch(error: any) {
             return thunkAPI.rejectWithValue(error.message);
@@ -132,10 +126,9 @@ export const sendNumber = createAsyncThunk(
 export const sendOTP = createAsyncThunk(
     'auth/sendOTP',
     async (code: string, thunkAPI) => {
-        const auth = getAuth();
         try {
-            // @ts-ignore
-            const userCredential = await window.confirmationResult.confirm(code.replace(/\s+/g, '').trim());
+            const userCredential = await window.confirmationResult
+                .confirm(code.replace(/\s+/g, '').trim());
             return userCredential.user.phoneNumber;
         } catch(error: any) {
             return thunkAPI.rejectWithValue(error.message);

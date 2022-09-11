@@ -9,7 +9,7 @@ import styles from "./PasswordField.module.scss"
 
 interface PasswordFieldProps {
     name: string;
-    control:  Control<FieldValues, any>;
+    control:  Control<any, any>;
     message:  string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
     placeholder: string;
     passwordsError?: string;

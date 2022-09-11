@@ -21,3 +21,8 @@ export type { IPerson } from './Person/IPerson';
 export type { IPersonStaff } from './Person/IPersonStaff';
 export type { RootState } from './Store/index.js';
 export type { AppDispatch } from './Store/index.js';
+
+export type { ISignInData } from './Form/Form';
+export type { ISignUpData } from './Form/Form';
+export type { ISignInWithPhone } from './Form/Form';
+export type { ISignInWithCode } from './Form/Form';

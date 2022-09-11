@@ -1,5 +1,5 @@
 import styles from "../../Login.module.scss";
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {OpacityButton, RedButton} from "../../../../components";
 import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../hooks";
@@ -7,21 +7,22 @@ import {authUser} from "../../../../store/auth.slice";
 import FormError from "../../FormError/FormError";
 import EmailField from "../../LoginFields/EmailField/EmailField";
 import PasswordField from "../../LoginFields/PasswordField/PasswordField";
+import {ISignInData} from "../../../../types";
 
 
 interface EmailAuthorizationProps {
-    onReg: () => void;
+    chooseSignUp: () => void;
 }
 
-const EmailAuthorization:FC<EmailAuthorizationProps> = ({ onReg }) => {
-    const { register, handleSubmit, watch,control, formState: { errors } } = useForm();
+const SignInEmail:FC<EmailAuthorizationProps> = ({ chooseSignUp }) => {
+    const { handleSubmit,control, formState: { errors } } = useForm<ISignInData>();
     const dispatch = useAppDispatch();
     const { error } = useAppSelector(state => state.auth);
 
-    const onSubmit = (data: any) => {
-        dispatch(authUser({ email: data.email, password: data.password }))
+    const onSubmit: SubmitHandler<ISignInData> = ({ email, password}) => {
+        dispatch(authUser({ email, password }))
     };
-    console.log(errors)
+
     return (
         <form className={styles.login__form} onSubmit={handleSubmit(onSubmit)}>
             <EmailField control={control} message={errors.email?.message} />
@@ -31,7 +32,7 @@ const EmailAuthorization:FC<EmailAuthorizationProps> = ({ onReg }) => {
                 <RedButton type="submit">
                     Войти
                 </RedButton>
-                <OpacityButton onClick={onReg} type="button">
+                <OpacityButton onClick={chooseSignUp} type="button">
                     Регистрация
                 </OpacityButton>
             </div>
@@ -39,4 +40,4 @@ const EmailAuthorization:FC<EmailAuthorizationProps> = ({ onReg }) => {
     )
 }
 
-export default EmailAuthorization;
+export default SignInEmail;
