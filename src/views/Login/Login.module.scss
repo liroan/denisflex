@@ -1,6 +1,7 @@
 .login {
   padding: 20px 0;
   position: relative;
+  z-index: 10000000;
   background-image: url("../../assets/img/login/films.jpg");
   background-size: contain;
   min-height: 100vh;

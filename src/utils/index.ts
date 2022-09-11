@@ -6,3 +6,4 @@ export {parseToDischargeNumber} from "./parseToDischargeNumber";
 export {removeInitialFilter} from "./removeInitialFilters";
 export {removeNullableProperty} from "./removeNullableProperty";
 export {removeUnwantedProperties} from "./removeUnwantedProperties";
+export {getTextLengthError} from "./getTextLengthError"

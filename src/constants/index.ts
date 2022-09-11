@@ -7,5 +7,5 @@ export enum Theme {
     LIGHT = "light",
 }
 
-
+export const REQUIRED = "Поле обязательно для заполнения!";
 

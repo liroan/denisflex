@@ -5,13 +5,17 @@ import Brightness3Icon from '@mui/icons-material/Brightness3';
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {Theme} from "../../../constants";
 import {setTheme} from "../../../store/theme.slice";
+import {Link} from "react-router-dom";
+import {logout} from "../../../store/auth.slice";
 interface HeaderLoginProps {
     setIsOpenInput: React.Dispatch<React.SetStateAction<boolean>>;
     openInputIconRef: RefObject<HTMLDivElement>;
 }
 
 const HeaderLogin:FC<HeaderLoginProps> = React.memo(({ setIsOpenInput, openInputIconRef }) => {
-    const { theme } = useAppSelector(state => state.theme)
+    const { theme } = useAppSelector(state => state.theme);
+    const email = useAppSelector(state => state.auth.email);
+    const number = useAppSelector(state => state.auth.number);
     const dispatch = useAppDispatch();
 
     const toggleTheme = (theme: Theme) => {
@@ -20,7 +24,9 @@ const HeaderLogin:FC<HeaderLoginProps> = React.memo(({ setIsOpenInput, openInput
 
     return (
         <div className={styles.header__loginStatus}>
-            <p>Войти</p>
+            <div className={styles.header__user} >
+                { email || number ? <span onClick={() => dispatch(logout())}>{email || number}</span> : <Link to="/login">Войти</Link> }
+            </div>
             <div className={styles.header__theme}>
                 {
                     theme === Theme.DARK ? <LightModeIcon onClick={() => toggleTheme(Theme.LIGHT)}/>

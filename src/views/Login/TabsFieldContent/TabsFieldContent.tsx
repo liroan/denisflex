@@ -10,32 +10,29 @@ interface TabsFieldContentProps {
 }
 
 const TabsFieldContent:FC<TabsFieldContentProps> = ({ control, typeField }) => {
-    switch (typeField) {
-        case "number": return (
-                <Controller
-                    name="number"
-                    control={control}
-                    render={({ field }) => (
-                        <InputMask
-                            mask="+7 999 999 99 99"
-                            alwaysShowMask
-                            {...field}
-                            maskPlaceholder={null}
-                        >
-                            {(() => <TextField {...field}  id="outlined-basic" label="Телефон" variant="outlined" />) as any}
-                        </InputMask>
-                    )}
-                />
-        )
-        case "email":
-        default: return (
-                <Controller
-                    name="email"
-                    control={control}
-                    render={({field}) => <TextField {...field} id="outlined-basic" label="Почта" variant="outlined"/>}
-                />
-        )
+    if (typeField === "number") {
+        return <Controller
+            name="number"
+            control={control}
+            render={({ field }) => (
+                <InputMask
+                    mask="+7 999 999 99 99"
+                    alwaysShowMask
+                    {...field}
+                    maskPlaceholder={null}
+                >
+                    {(() => <TextField {...field}  id="outlined-basic" label="Телефон" variant="outlined" />) as any}
+                </InputMask>
+            )}
+        />
     }
+    return (
+        <div><Controller
+            name="email"
+            control={control}
+            render={({field}) => <TextField {...field} id="outlined-basic" label="Почта" variant="outlined"/>}
+        /></div>
+    )
 }
 
 export default TabsFieldContent;
