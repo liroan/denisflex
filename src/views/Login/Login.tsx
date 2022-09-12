@@ -22,12 +22,12 @@ const Login = () => {
         dispatch(setStepMobileAuth("number"))
     }, [typeSignIn, isRegistration])
 
-    const chooseSignIn = () => {
+    const chooseSignIn =  useCallback(() => {
         setIsRegistration(false)
-    }
-    const chooseSignUp = () => {
+    }, [])
+    const chooseSignUp =  useCallback(() => {
         setIsRegistration(true)
-    }
+    }, [])
 
     const chooseEmail = useCallback(() => {
         setTypeSignIn('email')
