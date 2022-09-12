@@ -1,6 +1,7 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
+import { createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, signInWithPopup } from "firebase/auth";
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import auth from "../firebase.config"
+import auth, {githubProvider, provider} from "../firebase.config"
 
 
 
@@ -76,6 +77,28 @@ export const authUser = createAsyncThunk(
     async ({email, password}: { email: string, password: string }, thunkAPI) => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
+        } catch(error: any) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+)
+
+export const authWithGoogle = createAsyncThunk(
+    'auth/authUser',
+    async (_, thunkAPI) => {
+        try {
+            await signInWithPopup(auth, provider);
+        } catch(error: any) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+)
+
+export const authWithGithub = createAsyncThunk(
+    'auth/authUser',
+    async (_, thunkAPI) => {
+        try {
+            await signInWithPopup(auth, githubProvider);
         } catch(error: any) {
             return thunkAPI.rejectWithValue(error.message);
         }
