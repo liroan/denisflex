@@ -2,15 +2,12 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import React, {FC} from "react";
 import {privateRoutes, publicRoutes, RouteNames} from "../../router";
 import Dashboard from "../Dashboard/Dashboard";
-import {Preloader} from "../index";
 
 interface AppRouterProps {
-    authLoading: boolean;
     isAuth: boolean;
 }
 
-const AppRouter:FC<AppRouterProps> = ({ authLoading, isAuth }) => {
-    if (authLoading) return <Preloader />
+const AppRouter:FC<AppRouterProps> = ({ isAuth }) => {
     return (
         <Routes>
             {
