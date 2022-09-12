@@ -6,7 +6,8 @@ import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {Theme} from "../../../constants";
 import {setTheme} from "../../../store/theme.slice";
 import {Link} from "react-router-dom";
-import {logout} from "../../../store/auth.slice";
+import auth from "../../../firebase.config";
+
 interface HeaderLoginProps {
     setIsOpenInput: React.Dispatch<React.SetStateAction<boolean>>;
     openInputIconRef: RefObject<HTMLDivElement>;
@@ -14,18 +15,24 @@ interface HeaderLoginProps {
 
 const HeaderLogin:FC<HeaderLoginProps> = React.memo(({ setIsOpenInput, openInputIconRef }) => {
     const { theme } = useAppSelector(state => state.theme);
-    const email = useAppSelector(state => state.auth.email);
-    const number = useAppSelector(state => state.auth.number);
+    const {email, number} = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     const toggleTheme = (theme: Theme) => {
         dispatch(setTheme(theme))
     }
 
+    const authData = email || number;
+
+    const logout = () => {
+        auth.signOut();
+    }
+
     return (
         <div className={styles.header__loginStatus}>
             <div className={styles.header__user} >
-                { email || number ? <span onClick={() => dispatch(logout())}>{email || number}</span> : <Link to="/login">Войти</Link> }
+                { !!authData ? <span onClick={logout}>{authData}</span> :
+                    <Link to="/login">Войти</Link> }
             </div>
             <div className={styles.header__theme}>
                 {

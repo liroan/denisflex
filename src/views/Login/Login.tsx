@@ -8,16 +8,19 @@ import {useCallback, useEffect, useState} from "react";
 import SignIn from "./SignIn/SignIn";
 import {TypeSignIn} from "../../types/Login/TypeSignIn";
 import SignUp from "./SignUp/SignUp";
-import {useAppSelector} from "../../hooks";
-import {useNavigate} from "react-router-dom";
-import {HTTPStatus} from "../../store/auth.slice";
 import LoginTabs from "./LoginTabs/LoginTabs";
+import {useAppDispatch} from "../../hooks";
+import {setError, setStepMobileAuth} from "../../store/auth.slice";
 
 const Login = () => {
     const [typeSignIn, setTypeSignIn] = useState<TypeSignIn>("email");
     const [isRegistration, setIsRegistration] = useState(false);
-    const { status } = useAppSelector(state => state.auth);
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(setError(null))
+        dispatch(setStepMobileAuth("number"))
+    }, [typeSignIn, isRegistration])
 
     const chooseSignIn = () => {
         setIsRegistration(false)
@@ -33,11 +36,6 @@ const Login = () => {
     const chooseNumber = useCallback(() => {
         setTypeSignIn('number')
     }, [])
-
-    useEffect(() => {
-        if (status === HTTPStatus.SUCCESS)
-            navigate('/');
-    }, [status])
 
     return (
         <div className={styles.login}>

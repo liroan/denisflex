@@ -28,7 +28,7 @@ const SignUp:FC<RegistrationProps> = React.memo(({ chooseSignIn }) => {
     }
 
     const onSubmit: SubmitHandler<ISignUpData> = ({ email, password }) => {
-        if (!isMatchedPasswords) return;
+        if (!isMatchedPasswords()) return;
         dispatch(registrationUser({ email, password }))
     };
 

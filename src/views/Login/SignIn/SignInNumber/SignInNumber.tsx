@@ -15,7 +15,7 @@ const SignInNumber = () => {
     const { error } = useAppSelector(state => state.auth);
 
     const dispatch = useAppDispatch();
-    const currentStep = useAppSelector(state => state.auth.currentStep);
+    const currentStep = useAppSelector(state => state.auth.currentStepMobileAuth);
 
     const onSubmit: SubmitHandler<ISignInWithPhone | ISignInWithCode> = (data) => {
         if (currentStep === "number" && "number" in data) dispatch(sendNumber(data.number))
