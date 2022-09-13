@@ -1,10 +1,10 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch, useAppSelector} from "../../../../hooks";
-import {sendNumber, sendOTP, setStepMobileAuth} from "../../../../store/auth.slice";
+import {sendNumber, sendOTP, setError, setStepMobileAuth} from "../../../../store/auth.slice";
 import styles from "./SignInNumber.module.scss";
 import mainStyles from "../../Login.module.scss";
 import {RedButton} from "../../../../components";
-import React from "react";
+import React, {useEffect} from "react";
 import FormError from "../../FormError/FormError";
 import NumberField from "../../LoginFields/NumberField/NumberField";
 import CodeField from "../../LoginFields/CodeField/CodeField";
@@ -14,19 +14,22 @@ import classNames from "classnames";
 
 const SignInNumber = () => {
     const { handleSubmit,control, formState: { errors } } = useForm<ISignInWithPhone | ISignInWithCode>();
-    const { error } = useAppSelector(state => state.auth);
+    const { error, currentStepMobileAuth } = useAppSelector(state => state.auth);
 
     const dispatch = useAppDispatch();
-    const currentStep = useAppSelector(state => state.auth.currentStepMobileAuth);
 
     const onSubmit: SubmitHandler<ISignInWithPhone | ISignInWithCode> = (data) => {
-        if (currentStep === "number" && "number" in data) dispatch(sendNumber(data.number))
+        if (currentStepMobileAuth === "number" && "number" in data) dispatch(sendNumber(data.number))
         else if ("code" in data) dispatch(sendOTP(data.code))
     };
 
+    useEffect(() => {
+        dispatch(setError(null))
+    }, [currentStepMobileAuth])
+
     const backToInputPhone = () => dispatch(setStepMobileAuth("number"));
 
-    const isPhoneStep = currentStep === "number";
+    const isPhoneStep = currentStepMobileAuth === "number";
 
     return (
         <>

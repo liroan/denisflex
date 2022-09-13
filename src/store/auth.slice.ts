@@ -78,6 +78,7 @@ export const authSlice = createSlice({
             })
         builder
             .addMatcher(isFulfilledAction, (state) => {
+                state.error = null;
                 state.isLoading = false;
             })
         builder
@@ -159,6 +160,7 @@ export const sendNumber = createAsyncThunk(
                 }, auth);
             }
             window.confirmationResult = await signInWithPhoneNumber(auth, number, window.recaptchaVerifier);
+            window.recaptchaVerifier = null;
         } catch(error: any) {
             return thunkAPI.rejectWithValue(error.message);
         }
