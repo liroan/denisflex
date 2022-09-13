@@ -4,7 +4,7 @@ import classNames from "classnames";
 import {FC, useEffect, useRef, useState} from "react";
 import HeaderInfo from "./HeaderInfo/HeaderInfo";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
-import HeaderLogin from "./HeaderLogin/HeaderLogin";
+import HeaderButtons from "./HeaderButtons/HeaderButtons";
 import {useLocation} from "react-router-dom";
 
 
@@ -13,6 +13,7 @@ const Header:FC = () => {
     const [isShowHeader, setIsShowHeader] = useState(true);
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [prevScrollY, setPrevScrollY] = useState(0);
+    const [isShowUserPopup, setIsShowUserPopup] = useState(false);
     const openInputIconRef = useRef<HTMLDivElement>(null);
     const throttle = useRef<boolean>(false)
     const location = useLocation();
@@ -33,7 +34,7 @@ const Header:FC = () => {
         return () => window.removeEventListener('scroll', checkScrolled)
     }, [prevScrollY])
 
-    const isActive =  (isShowHeader || isOpenInput || isOpenMenu);
+    const isActive =  (isShowHeader || isOpenInput || isOpenMenu || isShowUserPopup);
 
     return (
         <header className={classNames(styles.header, styles.app__header,
@@ -45,7 +46,9 @@ const Header:FC = () => {
             <Container>
                 <HeaderInfo isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
                 <HeaderSearch isOpenInput={isOpenInput} setIsOpenInput={setIsOpenInput} openInputIconRef={openInputIconRef}/>
-                <HeaderLogin setIsOpenInput={setIsOpenInput} openInputIconRef={openInputIconRef}/>
+                <HeaderButtons setIsOpenInput={setIsOpenInput} isShowUserPopup={isShowUserPopup}
+                               setIsShowUserPopup={setIsShowUserPopup}
+                               openInputIconRef={openInputIconRef}/>
             </Container>
         </header>
     )

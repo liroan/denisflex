@@ -1,9 +1,10 @@
-import React, {FC, useEffect} from "react";
+import React, {FC, useCallback} from "react";
 import styles from "./HeaderInfo.module.scss";
 import classnames from "classnames";
 import logo from "../../../assets/img/header/logo.png"
 import {Link, useLocation} from "react-router-dom";
 import NavigatePanel from "../../NavigatePanel/NavigatePanel";
+import useClosePopup from "../../../hooks/useClosePopup";
 
 
 interface HeaderInfoProps {
@@ -12,7 +13,6 @@ interface HeaderInfoProps {
 }
 
 const HeaderInfo:FC<HeaderInfoProps> = React.memo(({ isOpenMenu, setIsOpenMenu }) => {
-    const PopupRef = React.useRef<HTMLDivElement>(null);
     let location = useLocation();
 
     React.useEffect(() => {
@@ -20,19 +20,16 @@ const HeaderInfo:FC<HeaderInfoProps> = React.memo(({ isOpenMenu, setIsOpenMenu }
     }, [location]);
 
 
-    useEffect(() => {
-        const closeOpenMenu = (e: MouseEvent) => {
-            const event = e as MouseEvent & { path: Node[]; };
-            if (PopupRef.current && !event.path.includes(PopupRef.current)) {
-                setIsOpenMenu(false);
-            }
+    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & {path: Node[]}) => {
+        if (popupRef.current && !event.path.includes(popupRef.current)) {
+            setIsOpenMenu(false);
         }
-        window.addEventListener('click', closeOpenMenu);
-        return () => window.removeEventListener('click', closeOpenMenu);
     }, [])
 
+    const popupRef = useClosePopup(handleClickAwayPopup);
+
     return (
-        <div className={styles.header__info} ref={PopupRef}>
+        <div className={styles.header__info} ref={popupRef}>
             <div className={styles.header__burger} onClick={() => setIsOpenMenu(prevState => !prevState)}>
                 <div className={classnames(styles.header__burger_open, { [styles.header__burger_close]: isOpenMenu })} />
             </div>

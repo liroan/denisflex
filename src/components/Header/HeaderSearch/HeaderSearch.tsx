@@ -15,6 +15,7 @@ import HeaderPopup from "./HeaderPopup/HeaderPopup";
 import {MovieType} from "../../../types";
 import {useLocation} from "react-router-dom";
 import {useDebounce} from "../../../hooks";
+import useClosePopup from "../../../hooks/useClosePopup";
 
 interface HeaderSearchProps {
     isOpenInput: boolean;
@@ -27,7 +28,6 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
 
     const [isOpenSearchPopup, setIsOpenSearchPopup] = useState(false);
     const [type, setType] = useState<MovieType>("ALL");
-    const popupSearchRef = useRef<HTMLDivElement>(null);
     const inputSearchRef = useRef<HTMLInputElement>(null);
     const location = useLocation();
     const [inputKeyword, setInputKeyword] = useState('');
@@ -43,17 +43,16 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
 
     const queryKeyword = useDebounce(inputKeyword, 700, action);
 
-    useEffect(() => {
-        const closeOpenMenu = (e: MouseEvent) => {
-            const event = e as MouseEvent & { path: Node[]; };
-            if (popupSearchRef.current && openInputIconRef.current &&
-                !event.path.includes(popupSearchRef.current) && !event.path.includes(openInputIconRef.current)) {
+    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & {path: Node[]}) => {
+        if (popupRef.current &&
+            openInputIconRef.current &&
+            !event.path.includes(popupRef.current) &&
+            !event.path.includes(openInputIconRef.current)) {
                 closePopup();
-            }
         }
-        window.addEventListener('click', closeOpenMenu);
-        return () => window.removeEventListener('click', closeOpenMenu);
     }, [])
+
+    const popupRef = useClosePopup(handleClickAwayPopup);
 
     useEffect(() => {
         closePopupWithDeleteKeyword();
@@ -72,7 +71,7 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
 
 
     return (
-        <div ref={popupSearchRef} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
+        <div ref={popupRef} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
             <HeaderField onChangeKeyword={onChangeKeyword}
                          inputKeyword={inputKeyword}
                          setIsOpenInput={setIsOpenInput}
