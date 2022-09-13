@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword,
     signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, signInWithPopup } from "firebase/auth";
 import {AnyAction, AsyncThunk, createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import auth, {githubProvider, provider} from "../firebase.config"
+import firebaseErrorParser from "../utils/firebaseErrorParser";
 
 type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>
 type RejectedAction = ReturnType<GenericAsyncThunk['rejected']>
@@ -73,7 +74,7 @@ export const authSlice = createSlice({
         builder
             .addMatcher(isRejectedAction, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload as string;
+                state.error = firebaseErrorParser(action.payload as string);
             })
         builder
             .addMatcher(isFulfilledAction, (state) => {
