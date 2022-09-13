@@ -5,6 +5,22 @@ import React, {FC, useCallback} from "react";
 import auth from "../../../../firebase.config";
 import useClosePopup from "../../../../hooks/useClosePopup";
 import {useAppSelector} from "../../../../hooks";
+import SettingsIcon from '@mui/icons-material/Settings';
+import {OverridableComponent} from "@mui/material/OverridableComponent";
+import {SvgIconTypeMap} from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
+
+interface IOption {
+    name: string;
+    onClick?: () => void;
+    isRed?: boolean;
+    Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {muiName: string}
+}
+
+const options: IOption[] = [
+    { name: "Настройки",  Icon: SettingsIcon },
+    { name: "Выход", onClick: () => auth.signOut(),  Icon: LogoutIcon, isRed: true },
+]
 
 interface HeaderUserPopupProps {
     isShowUserPopup: boolean;
@@ -23,8 +39,6 @@ const HeaderUserPopup:FC<HeaderUserPopupProps> = ({ isShowUserPopup, setIsShowUs
 
     const popupRef = useClosePopup(handleClickAwayPopup);
 
-    const logout = () => auth.signOut();
-
     return (
         <div className={styles.header__user} ref={popupRef}>
             <PersonIcon className={styles.header__userIcon} onClick={() => setIsShowUserPopup(prevState => !prevState)}/>
@@ -32,8 +46,17 @@ const HeaderUserPopup:FC<HeaderUserPopupProps> = ({ isShowUserPopup, setIsShowUs
                 <h3 className={styles.popup__title}>{email || number}</h3>
                 <div className={styles.popup__border}/>
                 <ul className={styles.popup__options}>
-                    <li>Настройки</li>
-                    <li onClick={logout}>Выйти</li>
+                    {
+                        options.map(({ Icon,
+                            name, onClick, isRed }) => (
+                                <li onClick={onClick} className={classNames(styles.popup__option,
+                                    { [styles.popup__option_red]: isRed })}
+                                >
+                                    <Icon />
+                                    {name}
+                                </li>
+                        ))
+                    }
                 </ul>
             </div>
         </div>
