@@ -1,9 +1,24 @@
 import { createUserWithEmailAndPassword,
     signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, signInWithPopup } from "firebase/auth";
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {AnyAction, AsyncThunk, createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import auth, {githubProvider, provider} from "../firebase.config"
 
+type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>
+type RejectedAction = ReturnType<GenericAsyncThunk['rejected']>
+type FulfilledAction = ReturnType<GenericAsyncThunk['fulfilled']>
+type PendingAction = ReturnType<GenericAsyncThunk['pending']>
 
+function isRejectedAction(action: AnyAction): action is RejectedAction {
+    return action.type.endsWith('/rejected')
+}
+
+function isFulfilledAction(action: AnyAction): action is FulfilledAction {
+    return action.type.endsWith('/fulfilled')
+}
+
+function isPendingAction(action: AnyAction): action is PendingAction {
+    return action.type.endsWith('/pending')
+}
 
 export interface AuthState  {
     isMobile: boolean;
@@ -11,6 +26,7 @@ export interface AuthState  {
     email: string | null | undefined,
     number: string | null | undefined,
     error: string | null | undefined,
+    isLoading: boolean;
 }
 
 export const initialState: AuthState = {
@@ -19,6 +35,7 @@ export const initialState: AuthState = {
     email: null,
     number: null,
     error: null,
+    isLoading: false,
 }
 
 interface IUserData {
@@ -46,29 +63,42 @@ export const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(sendNumber.fulfilled, (state, action) => {
+            .addCase(sendNumber.fulfilled, (state) => {
                 state.currentStepMobileAuth = "code";
             })
         builder
-            .addCase(sendOTP.fulfilled, (state, action) => {
+            .addCase(sendOTP.fulfilled, (state) => {
                 state.currentStepMobileAuth = "number";
             })
         builder
-            .addCase(authUser.rejected, (state, action) => {
+            .addMatcher(isRejectedAction, (state, action) => {
+                state.isLoading = false;
                 state.error = action.payload as string;
             })
         builder
-            .addCase(registrationUser.rejected, (state, action) => {
-                state.error = action.payload as string;
+            .addMatcher(isFulfilledAction, (state) => {
+                state.isLoading = false;
             })
         builder
-            .addCase(sendNumber.rejected, (state, action) => {
-                state.error = action.payload as string;
+            .addMatcher(isPendingAction, (state) => {
+                state.isLoading = true;
             })
-        builder
-            .addCase(sendOTP.rejected, (state, action) => {
-                state.error = action.payload as string;
-            })
+        // builder
+        //     .addCase(authUser.rejected, (state, action) => {
+        //         state.error = action.payload as string;
+        //     })
+        // builder
+        //     .addCase(registrationUser.rejected, (state, action) => {
+        //         state.error = action.payload as string;
+        //     })
+        // builder
+        //     .addCase(sendNumber.rejected, (state, action) => {
+        //         state.error = action.payload as string;
+        //     })
+        // builder
+        //     .addCase(sendOTP.rejected, (state, action) => {
+        //         state.error = action.payload as string;
+        //     })
     },
 })
 

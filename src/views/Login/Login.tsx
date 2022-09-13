@@ -1,5 +1,5 @@
 import styles from "./Login.module.scss";
-import {Container} from "../../components";
+import {Container, Preloader} from "../../components";
 import github from "../../assets/img/login/github.png"
 import logo from "../../assets/img/header/logo.png"
 import google from "../../assets/img/login/google.png"
@@ -8,12 +8,14 @@ import SignIn from "./SignIn/SignIn";
 import {TypeSignIn} from "../../types/Login/TypeSignIn";
 import SignUp from "./SignUp/SignUp";
 import LoginTabs from "./LoginTabs/LoginTabs";
-import {useAppDispatch} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {authWithGithub, authWithGoogle, setError, setStepMobileAuth} from "../../store/auth.slice";
+import LoginPreloader from "./LoginPreloader/LoginPreloader";
 
 const Login = () => {
     const [typeSignIn, setTypeSignIn] = useState<TypeSignIn>("email");
     const [isRegistration, setIsRegistration] = useState(false);
+    const { isLoading } = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -39,6 +41,7 @@ const Login = () => {
     return (
         <div className={styles.login}>
             <div className={styles.login__window}>
+                { isLoading && <LoginPreloader /> }
                 <Container>
                     <div className={styles.login__logo}>
                         <img src={logo} alt=""/>

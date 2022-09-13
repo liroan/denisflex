@@ -19,7 +19,7 @@
     bottom: 0;
   }
   &__window {
-    & > div {
+    & > div:last-child {
       width: 80% !important;
     }
     border-radius: 20px;
