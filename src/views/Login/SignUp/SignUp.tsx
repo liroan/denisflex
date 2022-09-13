@@ -1,7 +1,6 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import styles from "../Login.module.scss";
 import {OpacityButton, RedButton} from "../../../components";
-import {TypeSignIn} from "../../../types/Login/TypeSignIn";
 import React, {FC, useState} from "react";
 import {registrationUser} from "../../../store/auth.slice";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
@@ -44,9 +43,11 @@ const SignUp:FC<RegistrationProps> = React.memo(({ chooseSignIn }) => {
                 <RedButton type="submit">
                     Зарегистрироваться
                 </RedButton>
-                <OpacityButton onClick={chooseSignIn} type="button">
-                    Вход
-                </OpacityButton>
+                <div className={styles.blackTextButton}>
+                    <OpacityButton onClick={chooseSignIn} type="button">
+                        Вход
+                    </OpacityButton>
+                </div>
             </div>
         </form>
     )

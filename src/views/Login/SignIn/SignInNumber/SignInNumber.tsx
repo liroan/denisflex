@@ -1,7 +1,8 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch, useAppSelector} from "../../../../hooks";
 import {sendNumber, sendOTP, setStepMobileAuth} from "../../../../store/auth.slice";
-import styles from "../../Login.module.scss";
+import styles from "./SignInNumber.module.scss";
+import mainStyles from "../../Login.module.scss";
 import {RedButton} from "../../../../components";
 import React from "react";
 import FormError from "../../FormError/FormError";
@@ -29,13 +30,13 @@ const SignInNumber = () => {
 
     return (
         <>
-            <form className={styles.login__form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={mainStyles.login__form} onSubmit={handleSubmit(onSubmit)}>
                 { isPhoneStep ?
                     <NumberField control={control} message={"number" in errors ? errors.number?.message : undefined} /> :
                     <CodeField control={control} message={"code" in errors ? errors.code?.message : undefined} />
                 }
                 <FormError error={error} />
-                <div className={styles.login__buttons}>
+                <div className={mainStyles.login__buttons}>
                     <RedButton type="submit">
                         Войти
                     </RedButton>

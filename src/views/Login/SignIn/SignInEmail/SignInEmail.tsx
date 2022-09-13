@@ -32,9 +32,11 @@ const SignInEmail:FC<EmailAuthorizationProps> = ({ chooseSignUp }) => {
                 <RedButton type="submit">
                     Войти
                 </RedButton>
-                <OpacityButton onClick={chooseSignUp} type="button">
-                    Регистрация
-                </OpacityButton>
+                <div className={styles.blackTextButton}>
+                    <OpacityButton onClick={chooseSignUp} type="button">
+                        Регистрация
+                    </OpacityButton>
+                </div>
             </div>
         </form>
     )

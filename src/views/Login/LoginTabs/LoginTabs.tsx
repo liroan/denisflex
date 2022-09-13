@@ -1,4 +1,4 @@
-import styles from "../Login.module.scss";
+import styles from "./LoginTabs.module.scss";
 import classNames from "classnames";
 import React, {FC} from "react";
 
