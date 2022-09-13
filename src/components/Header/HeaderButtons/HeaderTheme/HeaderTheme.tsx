@@ -1,4 +1,4 @@
-import styles from "../HeaderButtons.module.scss";
+import styles from "./HeaderTheme.module.scss";
 import {Theme} from "../../../../constants";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import Brightness3Icon from "@mui/icons-material/Brightness3";

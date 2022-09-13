@@ -1,4 +1,4 @@
-import styles from "../HeaderButtons.module.scss";
+import styles from "./HeaderUserPopup.module.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import classNames from "classnames";
 import React, {FC, useCallback} from "react";

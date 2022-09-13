@@ -15,66 +15,8 @@
       display: none;
     }
   }
-  &__theme {
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  &__user {
-    padding: 0 20px 0 30px;
-    position: relative;
-  }
-  &__userIcon {
-    cursor: pointer;
-    position: relative;
-    z-index: 10000001;
-    stroke: #000;
-  }
 }
 
-.popup {
-  color: var(--color-primary);
-  z-index: 10000000;
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  background: var(--color-secondary);
-  top: -24px;
-  right: 0;
-  padding: 27px 20px 20px 20px;
-  width: 300px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  transition: 0.3s;
-  &__mainInfo {
-    display: flex;
-  }
-  &__title {
-    margin-right: 50px;
-    font-size: 16px;
-    color: var(--color-primary);
-    opacity: 0.9;
-  }
-  &__border {
-    width: 100%;
-    height: 2px;
-    margin: 15px 0;
-    background: var(--color-dark-border);
-  }
-  &__options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    li {
-      cursor: pointer;
-      color: var(--color-primary);
-      opacity: 0.6;
-    }
-  }
-  &_active {
-    opacity: 1;
-    visibility: visible;
-  }
-}
 
 @media screen and (max-width: 850px) {
   .header {
@@ -83,24 +25,9 @@
         display: block;
       }
     }
-    &__userIcon {
-      cursor: pointer;
-      position: relative;
-      z-index: 10;
-      stroke: #000;
-    }
-  }
-  .popup {
-    color: var(--color-primary);
-    z-index: 5;
   }
 }
 
-@media screen and (max-width: 380px) {
-  .popup {
-    width: calc(100vw - 60px);
-  }
-}
 
 
 
