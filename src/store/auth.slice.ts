@@ -10,15 +10,15 @@ type FulfilledAction = ReturnType<GenericAsyncThunk['fulfilled']>
 type PendingAction = ReturnType<GenericAsyncThunk['pending']>
 
 function isRejectedAction(action: AnyAction): action is RejectedAction {
-    return action.type.endsWith('/rejected')
+    return action.type.endsWith('/rejected') && action.type.startsWith('auth/')
 }
 
 function isFulfilledAction(action: AnyAction): action is FulfilledAction {
-    return action.type.endsWith('/fulfilled')
+    return action.type.endsWith('/fulfilled') && action.type.startsWith('auth/');
 }
 
 function isPendingAction(action: AnyAction): action is PendingAction {
-    return action.type.endsWith('/pending')
+    return action.type.endsWith('/pending') && action.type.startsWith('auth/');
 }
 
 export interface AuthState  {
