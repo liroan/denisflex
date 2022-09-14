@@ -4,6 +4,7 @@ import styles from "./CatalogFilm.module.scss";
 import {IMoviePreview} from "../../../../types";
 import {useNavigate} from "react-router-dom";
 import {FavouritesButton} from '../../../../components'
+import {getRatingAndColor} from "../../../../utils";
 
 
 
@@ -22,6 +23,7 @@ const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, edi
         editMovies(filmData)
     }, [editMovies, filmData])
 
+    const [rating, color] = getRatingAndColor(ratingKinopoisk || ratingImdb)
     return (
         <div className={styles.film} onClick={() => navigate(`/film/${kinopoiskId}`)}>
             <div className={styles.film__info}>
@@ -37,7 +39,11 @@ const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, edi
                 </div>
             </div>
             <div className={styles.film__additionalInfo}>
-                <div className={styles.film__rating}>{ratingKinopoisk || ratingImdb}</div>
+                {
+                    rating && color ?
+                        <div className={styles.film__rating} style={{ color }}>{ rating }</div> :
+                        <div className={styles.film__rating}><span> &#8210;</span></div>
+                }
                 <FavouritesButton isAdaptive isFavourite={isFavourite} toggler={toggleIsFavourite} />
             </div>
         </div>
