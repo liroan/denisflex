@@ -29,6 +29,7 @@
     display: flex;
   }
   &__title {
+    cursor: pointer;
     width: 220px;
     text-overflow: ellipsis;
     font-size: 16px;

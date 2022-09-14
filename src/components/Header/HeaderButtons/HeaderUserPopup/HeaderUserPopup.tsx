@@ -43,7 +43,7 @@ const HeaderUserPopup:FC<HeaderUserPopupProps> = ({ isShowUserPopup, setIsShowUs
         <div className={styles.header__user} ref={popupRef}>
             <PersonIcon className={styles.header__userIcon} onClick={() => setIsShowUserPopup(prevState => !prevState)}/>
             <div className={classNames(styles.header__userPopup, styles.popup, { [styles.popup_active]: isShowUserPopup })}>
-                <h3 className={styles.popup__title}>{email || number}</h3>
+                <h3 className={styles.popup__title} title={email || number || undefined}>{email || number}</h3>
                 <div className={styles.popup__border}/>
                 <ul className={styles.popup__options}>
                     {
