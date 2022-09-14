@@ -21,6 +21,15 @@ body {
   overflow-x: hidden;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex-grow: 1;
+}
+
 
 div[role="presentation"] { /* стилизация выпад списка у селекта */
     z-index: 100002;
@@ -46,10 +55,4 @@ div[role="presentation"] { /* стилизация выпад списка у с
 }
 .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked { /* цвет головы у чек бокса в конечной точке */
   color: #fff !important;
-}
-
-@media screen and (max-width: 850px) {
-  main {
-    margin-bottom: 64px;
-  }
 }

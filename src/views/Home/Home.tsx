@@ -6,11 +6,12 @@ import Banner from "./Banner/Banner";
 import {IGenre, IMovieTop} from "../../types";
 
 const Home:FC = () => {
-    const { data: genresAndCountries, isLoading: genresAndCountriesLoading,
+    const { data: genresAndCountries, isFetching: genresAndCountriesLoading,
         error: genresAndCountriesError } = useGetCountriesAndGenresQuery(null);
-    const { data: popularFilmsContainer, isLoading: popularFilmsLoading, error: popularFilmsError } = useGetCompilationMoviesQuery("TOP_100_POPULAR_FILMS");
-    const { data: bestFilmsContainer, isLoading: bestFilmsLoading, error: bestFilmsError } = useGetCompilationMoviesQuery("TOP_250_BEST_FILMS");
-    const { data: awaitFilmsContainer, isLoading: awaitFilmsLoading, error: awaitFilmsError } = useGetCompilationMoviesQuery("TOP_AWAIT_FILMS");
+    const { data: popularFilmsContainer, isFetching: popularFilmsLoading, error: popularFilmsError } = useGetCompilationMoviesQuery("TOP_100_POPULAR_FILMS");
+    const { data: bestFilmsContainer, isFetching: bestFilmsLoading, error: bestFilmsError } = useGetCompilationMoviesQuery("TOP_250_BEST_FILMS");
+    const { data: awaitFilmsContainer, isFetching: awaitFilmsLoading, error: awaitFilmsError } = useGetCompilationMoviesQuery("TOP_AWAIT_FILMS");
+
 
     const genres = useMemo(() => genresAndCountries?.genres?.slice(0, 16), [genresAndCountries])
     const bestFilms = bestFilmsContainer?.films;

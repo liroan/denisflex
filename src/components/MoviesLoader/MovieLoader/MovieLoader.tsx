@@ -14,8 +14,8 @@ const MovieLoader:React.FC<MovieLoaderProps> = React.memo(({ width, height }) =>
             speed={2}
             width={width}
             height={height}
-            backgroundColor="#333"
-            foregroundColor="#222"
+            backgroundColor="var(--color-contrast-gray)"
+            foregroundColor="var(--color-navigate)"
             style={{ borderRadius: 7 }}
         >
             <rect x="0" y="0" rx="0" ry="0" width={width} height={height} />

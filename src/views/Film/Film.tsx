@@ -66,9 +66,9 @@ interface FilmProps {
 const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmId}) => {
 
     const [activeCategory, setActiveCategory] = useState(FilmCategory.DESCRIPTION);
-    const { data: similarFilms, isLoading: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmId);
-    const { data: factsAndErrors, isLoading: factsLoading, error: factsError } = useGetFactsAndErrorsMovieByIdQuery(filmId);
-    const { data: staff, isLoading: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
+    const { data: similarFilms, isFetching: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmId);
+    const { data: factsAndErrors, isFetching: factsLoading, error: factsError } = useGetFactsAndErrorsMovieByIdQuery(filmId);
+    const { data: staff, isFetching: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
     const [movies, editMovies] = useGetMoviesLocalStorage();
 
     const findProperty = useCallback((key: keyof IMovie | "budget" | "distributors")

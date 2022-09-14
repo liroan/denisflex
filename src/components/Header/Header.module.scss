@@ -1,6 +1,6 @@
 .header {
   z-index: 10000;
-  transition: 0.2s;
+  transition: 0.4s;
   color: var(--color-primary);
   position: fixed;
   box-shadow: 7px -20px 20px 13px #444;
@@ -33,7 +33,7 @@
 .app {
   &__header {
     &_hidden {
-      transform: translateY(-76px);
+      transform: translateY(-90px);
     }
   }
 }

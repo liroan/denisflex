@@ -15,22 +15,15 @@ const Header:FC = () => {
     const [prevScrollY, setPrevScrollY] = useState(0);
     const [isShowUserPopup, setIsShowUserPopup] = useState(false);
     const openInputIconRef = useRef<HTMLDivElement>(null);
-    const throttle = useRef<boolean>(false)
     const location = useLocation();
 
     useEffect(() => {
         const checkScrolled = () => {
-            if (!throttle.current || window.scrollY === 0) {
-                throttle.current = true;
-                setTimeout(() => {
-                    setIsShowHeader(window.scrollY <= prevScrollY);
-                    setPrevScrollY(window.scrollY);
-                    throttle.current = false;
-                }, 200)
-            }
+            setIsShowHeader(window.scrollY <= prevScrollY);
+            setPrevScrollY(window.scrollY);
         }
         window.addEventListener('scroll', checkScrolled);
-        // setPrevScrollY(window.scrollY);
+        setPrevScrollY(window.scrollY);
         return () => window.removeEventListener('scroll', checkScrolled)
     }, [prevScrollY])
 
