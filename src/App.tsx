@@ -12,7 +12,7 @@ import useAuth from "./hooks/useAuth";
 const App:FC = () => {
     const moviesState = useLocalStorageMovies();
     const { userData, authLoading } = useAuth();
-    const { theme } = useAppSelector(state => state.theme)
+    const { theme } = useAppSelector(state => state);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -20,6 +20,7 @@ const App:FC = () => {
     }, [])
 
     useEffect(() => {
+        window.localStorage.setItem('theme', theme);
         document.body.setAttribute("data-theme", theme)
     }, [theme])
 

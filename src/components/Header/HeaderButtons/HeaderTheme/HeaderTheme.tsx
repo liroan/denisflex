@@ -9,7 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../../../hooks";
 
 const HeaderTheme = React.memo(() => {
 
-    const { theme } = useAppSelector(state => state.theme);
+    const { theme } = useAppSelector(state => state);
 
     const dispatch = useAppDispatch();
 

@@ -29,8 +29,14 @@
     display: flex;
   }
   &__title {
-    margin-right: 50px;
+    width: 220px;
+    text-overflow: ellipsis;
     font-size: 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
     color: var(--color-primary);
     opacity: 0.9;
   }
@@ -92,6 +98,9 @@
 @media screen and (max-width: 380px) {
   .popup {
     width: calc(100vw - 60px);
+    &__title {
+      width: 180px;
+    }
   }
 }
 

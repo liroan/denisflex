@@ -9,14 +9,14 @@
     position: absolute;
     top: 200px;
     transform: translateY(-50%);
-    color: var(--color-primary);
+    color: #ccc;
     z-index: 1;
     cursor: pointer;
     opacity: 0;
     transition: .5s;
     svg {
-      stroke: #fff;
-      fill: #fff;
+      stroke: #ccc;
+      fill: #ccc;
     }
     &_left {
       transform: translateY(-50%) rotate(0deg);

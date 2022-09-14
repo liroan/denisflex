@@ -1,23 +1,23 @@
 
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {Theme} from "../constants";
 
 
-export interface ThemeState  {
-    theme: Theme;
+type themeType = "light" | "dark";
+
+const getTheme = (): themeType => {
+    const theme = `${window.localStorage.getItem('theme')}`;
+    if (["dark", "light"].includes(theme)) return theme as themeType;
+    const matchMediaTheme = window.matchMedia("prefers-color-scheme: light");
+    if (matchMediaTheme.matches) return "light";
+    return "dark";
 }
 
-export const initialState: ThemeState = {
-    theme: Theme.LIGHT,
-}
-
+export const initialState: themeType = getTheme();
 export const themeSlice = createSlice({
     name: 'theme',
     initialState,
     reducers: {
-        setTheme: (state, action: PayloadAction<Theme>) => {
-            state.theme = action.payload;
-        },
+        setTheme: (state, action: PayloadAction<themeType>) => action.payload
     },
 })
 

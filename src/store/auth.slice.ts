@@ -62,46 +62,25 @@ export const authSlice = createSlice({
             state.currentStepMobileAuth = action.payload;
         },
     },
-    extraReducers: (builder) => {
+    extraReducers: (builder) =>
         builder
             .addCase(sendNumber.fulfilled, (state) => {
                 state.currentStepMobileAuth = "code";
             })
-        builder
             .addCase(sendOTP.fulfilled, (state) => {
                 state.currentStepMobileAuth = "number";
             })
-        builder
             .addMatcher(isRejectedAction, (state, action) => {
                 state.isLoading = false;
                 state.error = firebaseErrorParser(action.payload as string);
             })
-        builder
             .addMatcher(isFulfilledAction, (state) => {
                 state.error = null;
                 state.isLoading = false;
             })
-        builder
             .addMatcher(isPendingAction, (state) => {
                 state.isLoading = true;
             })
-        // builder
-        //     .addCase(authUser.rejected, (state, action) => {
-        //         state.error = action.payload as string;
-        //     })
-        // builder
-        //     .addCase(registrationUser.rejected, (state, action) => {
-        //         state.error = action.payload as string;
-        //     })
-        // builder
-        //     .addCase(sendNumber.rejected, (state, action) => {
-        //         state.error = action.payload as string;
-        //     })
-        // builder
-        //     .addCase(sendOTP.rejected, (state, action) => {
-        //         state.error = action.payload as string;
-        //     })
-    },
 })
 
 export const authUser = createAsyncThunk(
