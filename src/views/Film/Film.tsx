@@ -1,12 +1,8 @@
 import styles from "./Film.module.scss";
-import {Container, DetailedContent, Switcher,
-    Back, SliderItemStaff, SliderItemSimilarMovie, SliderContainer} from "../../components";
+import {Container, DetailedContent, Switcher, Back, SliderItemSimilarMovie, SliderContainer} from "../../components";
 import React, {FC, useCallback, useState} from "react";
-import {useGetFactsAndErrorsMovieByIdQuery, useGetSimilarMovieByIdQuery,
-    useGetStaffMovieByIdQuery
-} from "../../services/services";
-import { IBudget, ICountry, IDistributors,
-    IGenre, IMovie, IMovieSimilar, IPersonStaff} from "../../types";
+import { useGetSimilarMovieByIdQuery } from "../../services/services";
+import { IBudget, ICountry, IDistributors, IGenre, IMovie, IMovieSimilar} from "../../types";
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
 import {parseToDischargeNumber, getTitleWithCount} from "../../utils";
 import {useGetMoviesLocalStorage} from "../../hooks";
@@ -68,8 +64,6 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
 
     const [activeCategory, setActiveCategory] = useState(FilmCategory.DESCRIPTION);
     const { data: similarFilms, isFetching: similarFilmsLoading, error: similarFilmsError } = useGetSimilarMovieByIdQuery(filmId);
-    const { data: factsAndErrors, isFetching: factsLoading, error: factsError } = useGetFactsAndErrorsMovieByIdQuery(filmId);
-    const { data: staff, isFetching: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
     const [movies, editMovies] = useGetMoviesLocalStorage();
 
     const findProperty = useCallback((key: keyof IMovie | "budget" | "distributors")
@@ -84,6 +78,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
     }, [editMovies, movieData])
 
     const { nameRu, nameEn, nameOriginal, posterUrl, year, shortDescription, description, kinopoiskId} = movieData;
+
     return (
         <div className={styles.film}>
             <Container>
@@ -103,18 +98,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
 
                     <Switcher activeCategory={activeCategory} switcher={switcher} setActiveCategory={setActiveCategory} />
 
-                    <FilmSwitcherContent activeCategory={activeCategory}
-                                         description={description}
-                                         factsAndErrors={factsAndErrors}
-                                         factsLoading={factsLoading}
-                                         factsError={factsError}
-                    >
-                        <SliderContainer items={staff}
-                                         getSliderCard={(item: IPersonStaff) => <SliderItemStaff staff={item} key={item.staffId} />}
-                                         isLoading={staffLoading}
-                                         error={staffError} title={getTitleWithCount("Состав", staff?.length) }
-                        />
-                    </FilmSwitcherContent>
+                    <FilmSwitcherContent activeCategory={activeCategory} description={description} filmId={filmId} />
 
                     <div className={styles.film__similar}>
                         <SliderContainer items={similarFilms?.items}
