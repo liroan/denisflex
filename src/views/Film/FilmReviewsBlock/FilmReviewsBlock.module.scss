@@ -1,0 +1,33 @@
+
+
+.reviewsBlock {
+  position: relative;
+  &__title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+  }
+  &__content {
+    display: flex;
+  }
+  &__showMore {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    button {
+      padding: 10px 30px;
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .reviewsBlock {
+    &__content {
+      flex-direction: column-reverse;
+    }
+  }
+}

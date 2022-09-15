@@ -1,0 +1,54 @@
+.statistics {
+  margin-left: 30px;
+  padding-right: 50px;
+  position: sticky;
+  height: 400px;
+  top: 0;
+  left: 0;
+  &__info {
+    margin-top: 30px;
+  }
+  &__counter {
+    font-size: 28px;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+  &__counterName {
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 300;
+    margin-left: 2px;
+    margin-top: 5px;
+  }
+  &__countInfo {
+    display: flex;
+    align-items: flex-end;
+  }
+  &__percent {
+    margin-left: 10px;
+    color: #999;
+    font-size: 16px;
+    font-weight: 300;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .statistics {
+    position: static;
+    height: unset;
+    display: flex;
+    gap: 10px 50px;
+    margin: 0 0 30px 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .statistics {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    &__counter {
+      font-size: 20px;
+    }
+  }
+}

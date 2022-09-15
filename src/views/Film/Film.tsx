@@ -10,6 +10,7 @@ import { IBudget, ICountry, IDistributors,
 import FilmSwitcherContent from "./FilmSwitcherContent/FilmSwitcherContent";
 import {parseToDischargeNumber, getTitleWithCount} from "../../utils";
 import {useGetMoviesLocalStorage} from "../../hooks";
+import FilmReviewsBlock from "./FilmReviewsBlock/FilmReviewsBlock";
 
 
 
@@ -121,6 +122,10 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
                                          isLoading={similarFilmsLoading}
                                          error={similarFilmsError} title={getTitleWithCount("Похожее кино", similarFilms?.total) }
                         />
+                    </div>
+
+                    <div className={styles.film__reviews}>
+                        <FilmReviewsBlock />
                     </div>
                 </Container>
             </Container>
