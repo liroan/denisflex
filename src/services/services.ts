@@ -7,7 +7,7 @@ import {
     IFiltersResponse,
     IMovie, IPerson, IMoviesSimilar,
     IPersonStaff,
-    MovieTopType
+    MovieTopType, IReviewsResponse
 } from "../types";
 import {FiltersState} from "../store/filtersSlice";
 import {removeUnwantedProperties} from "../utils";
@@ -53,7 +53,7 @@ export const moviesApi = createApi({
         getSimilarMovieById: builder.query<IMoviesSimilar, number>({
             query: (id) => `v2.2/films/${id}/similars`,
         }),
-        getReviewsMovieById: builder.query<IMoviesSimilar, {id: number, page: number}>({
+        getReviewsMovieById: builder.query<IReviewsResponse, {id: number, page: number}>({
             query: ({id, page}) => ({
                 url: `v2.2/films/${id}/reviews`,
                 params: { page }
@@ -76,4 +76,4 @@ export const { useGetCompilationMoviesQuery,
     useGetPersonByIdQuery,
     useGetBoxOfficeMovieByIdQuery, useGetDistributorsMovieByIdQuery,
     useGetSimilarMovieByIdQuery, useGetMovieByIdQuery,
- useGetCountriesAndGenresQuery, useGetFiltersMovieQuery, useGetFactsAndErrorsMovieByIdQuery, useGetStaffMovieByIdQuery } = moviesApi;
+    useGetReviewsMovieByIdQuery, useGetCountriesAndGenresQuery, useGetFiltersMovieQuery, useGetFactsAndErrorsMovieByIdQuery, useGetStaffMovieByIdQuery } = moviesApi;

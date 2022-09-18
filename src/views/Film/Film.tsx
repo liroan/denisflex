@@ -109,7 +109,7 @@ const Film:FC<FilmProps> = React.memo(({ movieData, budget, distributors , filmI
                     </div>
 
                     <div className={styles.film__reviews}>
-                        <FilmReviewsBlock />
+                        <FilmReviewsBlock filmId={filmId} />
                     </div>
                 </Container>
             </Container>

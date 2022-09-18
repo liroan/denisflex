@@ -1,27 +1,40 @@
 import styles from "./FilmReviewsInfo.module.scss";
+import {FC} from "react";
 
 const statistics = [
-    { count: 132, name: "Всего", color: "var(--color-primary)" },
-    { count: 132, name: "Положительные", color: "green", percent: "100.00" },
-    { count: 0, name: "Отрицательные", color: "red", percent: "0.00" },
-    { count: 0, name: "Нейтральные", color: "#777", percent: "0.00" },
+    { name: "Всего", color: "var(--color-primary)" },
+    { name: "Положительные", color: "green" },
+    { name: "Отрицательные", color: "red" },
+    { name: "Нейтральные", color: "#777" },
 ]
 
-const FilmReviewsInfo = () => {
+
+interface FilmReviewsInfoProps {
+    counters: number[];
+}
+
+const FilmReviewsInfo:FC<FilmReviewsInfoProps> = ({ counters }) => {
     return (
         <div className={styles.statistics}>
             {
-                statistics.map(({ count, name, color, percent }) => (
-                    <div className={styles.statistics__info}>
-                        <div className={styles.statistics__countInfo}>
-                            <div className={styles.statistics__counter} style={{ color }}>
-                                { count }
+                statistics.map(({ name, color }, index) => {
+                    const percent = index !== 0 && (counters[index] / counters[0]) * 100;
+                    return (
+                        <div className={styles.statistics__info}>
+                            <div className={styles.statistics__countInfo}>
+                                <div className={styles.statistics__counter} style={{color}}>
+                                    {counters[index]}
+                                </div>
+                                {percent !== false &&  (
+                                    <div className={styles.statistics__percent}>
+                                        {percent.toFixed(2)}%
+                                    </div>
+                                )}
                             </div>
-                            { percent && <div className={styles.statistics__percent}>{percent}%</div> }
+                            <div className={styles.statistics__counterName}>{name}</div>
                         </div>
-                        <div className={styles.statistics__counterName}>{name}</div>
-                    </div>
-                ))
+                    )
+                })
             }
         </div>
     )

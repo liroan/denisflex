@@ -26,3 +26,5 @@ export type { ISignInData } from './Form/Form';
 export type { ISignUpData } from './Form/Form';
 export type { ISignInWithPhone } from './Form/Form';
 export type { ISignInWithCode } from './Form/Form';
+
+export type { IReviewsResponse } from './Reviews/IReviewsResponse';
