@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# Mileynflix
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Front-end приложение для поиска и просмотра фильмов. Демо: https://mileynflix.netlify.app/
 
-## Available Scripts
+# Стэк технологий
 
 In the project directory, you can run:
 
