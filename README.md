@@ -9,3 +9,5 @@ Front-end приложение для поиска и просмотра фил�
 * Redux Toolkit, RTK Query
 * Sass, CSS modules
 * React-hook-form
+* Firebase
+* Material UI
