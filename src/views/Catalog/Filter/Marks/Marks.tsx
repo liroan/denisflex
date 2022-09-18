@@ -22,14 +22,14 @@ const sortByDict: { [key in SortBy]: string; } = {
 }
 
 
-const Marks:FC<MarksProps> = React.memo(({ filters, genresNames }) => {
+const Marks: FC<MarksProps> = React.memo(({filters, genresNames}) => {
     return (
         <div className={styles.filter__info}>
-            <div className={styles.filter__mark}>Тип произведения: { MovieTypeDict[filters.type] }</div>
+            <div className={styles.filter__mark}>Тип произведения: {MovieTypeDict[filters.type]}</div>
             <div className={styles.filter__mark}>Рейтинг: {filters.ratingFrom} - {filters.ratingTo}</div>
-            <div className={styles.filter__mark}>Года производства: {filters.yearFrom} -  {filters.yearTo}</div>
+            <div className={styles.filter__mark}>Года производства: {filters.yearFrom} - {filters.yearTo}</div>
             <div className={styles.filter__mark}>Жанр: {genresNames[filters.genres]}</div>
-            <div className={styles.filter__mark}>Сортировка: { sortByDict[filters.order] }</div>
+            <div className={styles.filter__mark}>Сортировка: {sortByDict[filters.order]}</div>
         </div>
     )
 })

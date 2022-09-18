@@ -4,16 +4,16 @@ import {IMoviePreview} from "../../types";
 
 interface MoviesProviderProps {
     children: React.ReactNode;
-    state:  {movies: IMoviePreview[], editMovies: (movie: IMoviePreview) => void}
+    state: { movies: IMoviePreview[], editMovies: (movie: IMoviePreview) => void }
 }
 
-const MoviesProvider:FC<MoviesProviderProps> = ({
-                                                    children,
-                                                    state
-}) => {
+const MoviesProvider: FC<MoviesProviderProps> = ({
+                                                     children,
+                                                     state
+                                                 }) => {
     return (
         <EditMoviesContext.Provider value={state}>
-            { children }
+            {children}
         </EditMoviesContext.Provider>
     )
 }

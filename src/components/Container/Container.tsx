@@ -5,7 +5,7 @@ interface ContainerProps {
     children: React.ReactNode;
 }
 
-const Container:FC<ContainerProps> = React.memo(({ children }) => {
+const Container: FC<ContainerProps> = React.memo(({children}) => {
     return (
         <div className={styles.container}>
             {children}

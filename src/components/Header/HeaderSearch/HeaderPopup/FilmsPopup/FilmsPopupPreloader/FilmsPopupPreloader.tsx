@@ -8,11 +8,12 @@ const FilmPopupPreloader = React.memo(() => {
         <div className={styles.preloader}>
             <div className={styles.preloader__info}>
                 <div className={styles.preloader__poster}>
-                    <Skeleton variant="rounded" width={32} height={48} />
+                    <Skeleton variant="rounded" width={32} height={48}/>
                 </div>
                 <div className={styles.preloader__text}>
-                    <div className={styles.preloader__title}><Skeleton variant="rounded" width={120} height={22} /></div>
-                    <div className={styles.preloader__time}><Skeleton variant="rectangular" width={50} height={20} /></div>
+                    <div className={styles.preloader__title}><Skeleton variant="rounded" width={120} height={22}/></div>
+                    <div className={styles.preloader__time}><Skeleton variant="rectangular" width={50} height={20}/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,8 +22,8 @@ const FilmPopupPreloader = React.memo(() => {
 
 const FilmsPopupPreloader = React.memo(() => {
     return (
-        <div style={{ width: '100%' }}>
-            { new Array(10).fill(0).map((_, i) => <FilmPopupPreloader key={i} />)  }
+        <div style={{width: '100%'}}>
+            {new Array(10).fill(0).map((_, i) => <FilmPopupPreloader key={i}/>)}
         </div>
     )
 })

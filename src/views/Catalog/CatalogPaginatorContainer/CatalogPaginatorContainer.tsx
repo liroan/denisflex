@@ -2,13 +2,14 @@ import {Paginator} from '../../../components'
 import React, {FC, useCallback} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {setPage} from "../../../store/filtersSlice";
+
 interface CatalogPaginatorContainerProps {
     totalPages?: number;
 }
 
-const CatalogPaginatorContainer:FC<CatalogPaginatorContainerProps> = React.memo(({ totalPages }) => {
+const CatalogPaginatorContainer: FC<CatalogPaginatorContainerProps> = React.memo(({totalPages}) => {
 
-    let { page: activeNumber } = useAppSelector(state => state.filters)
+    let {page: activeNumber} = useAppSelector(state => state.filters)
     const dispatch = useAppDispatch();
 
     const setActiveNumber = useCallback((number: number) => {

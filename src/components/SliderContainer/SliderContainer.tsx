@@ -17,11 +17,11 @@ interface HomeMoviesProps<T> {
 }
 
 function SliderContainer<T>(props: HomeMoviesProps<T>) {
-    const { items, getSliderCard, isLoading, error, title, isWideCard } = props;
+    const {items, getSliderCard, isLoading, error, title, isWideCard} = props;
 
     const moviesLoader = isWideCard
-        ? <MoviesLoader width={300} height={195} />
-        : <MoviesLoader width={220} height={325} />
+        ? <MoviesLoader width={300} height={195}/>
+        : <MoviesLoader width={220} height={325}/>
 
     return (
         <div className={styles.home__movies}>

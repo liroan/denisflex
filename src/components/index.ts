@@ -23,6 +23,8 @@ export {default as SelectComponent} from "./Select/Select";
 export {default as SliderContainer} from "./SliderContainer/SliderContainer";
 export {default as SliderItemGenre} from "./SliderContainer/Slider/SliderItemGenre/SliderItemGenre";
 export {default as SliderItemMovie} from "./SliderContainer/Slider/SliderItemMovie/SliderItemMovie";
-export {default as SliderItemSimilarMovie} from "./SliderContainer/Slider/SliderItemSimilarMovie/SliderItemSimilarMovie";
+export {
+    default as SliderItemSimilarMovie
+} from "./SliderContainer/Slider/SliderItemSimilarMovie/SliderItemSimilarMovie";
 export {default as SliderItemStaff} from "./SliderContainer/Slider/SliderItemStaff/SliderItemStaff";
 export {default as Switcher} from "./Switcher/Switcher";

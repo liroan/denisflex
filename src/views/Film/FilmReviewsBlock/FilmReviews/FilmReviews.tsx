@@ -7,11 +7,11 @@ interface FilmReviewsProps {
     reviews: IReview[];
 }
 
-const FilmReviews:FC<FilmReviewsProps> = ({ reviews }) => {
+const FilmReviews: FC<FilmReviewsProps> = ({reviews}) => {
     return (
         <div className={styles.reviewsBlock__reviews}>
             {
-                reviews.map(review => <FilmReview review={review} />)
+                reviews.map(review => <FilmReview review={review}/>)
             }
         </div>
     )

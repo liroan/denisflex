@@ -8,7 +8,7 @@ interface RatingProps {
     ratingTo: number;
 }
 
-const Rating:FC<RatingProps> = React.memo(({ changeValue, ratingFrom, ratingTo }) => {
+const Rating: FC<RatingProps> = React.memo(({changeValue, ratingFrom, ratingTo}) => {
     return (
         <Accordion title="Рейтинг">
             <RangeSlider min={1} max={10}

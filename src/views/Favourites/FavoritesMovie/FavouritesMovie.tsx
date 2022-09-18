@@ -5,12 +5,13 @@ import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import {RedButton, OpacityButton} from "../../../components";
 import {Link} from "react-router-dom";
+
 interface FavoritesMovieProps {
     movie: IMoviePreview;
     editMovies: (movie: IMoviePreview) => void;
 }
 
-const FavouritesMovie:FC<FavoritesMovieProps> = ({ movie, editMovies }) => {
+const FavouritesMovie: FC<FavoritesMovieProps> = ({movie, editMovies}) => {
 
     const removeMovie = () => {
         editMovies(movie)
@@ -19,7 +20,7 @@ const FavouritesMovie:FC<FavoritesMovieProps> = ({ movie, editMovies }) => {
     return (
         <div className={styles.movie}>
             <div className={styles.movie__poster}>
-                <img src={movie.posterUrl} alt="" />
+                <img src={movie.posterUrl} alt=""/>
                 <div className={styles.movie__blind}>
                     <div className={styles.movie__blindContent}>
                         <Link to={`/film/${movie.kinopoiskId}`}>

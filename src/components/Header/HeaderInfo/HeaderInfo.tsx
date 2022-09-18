@@ -12,7 +12,7 @@ interface HeaderInfoProps {
     setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HeaderInfo:FC<HeaderInfoProps> = React.memo(({ isOpenMenu, setIsOpenMenu }) => {
+const HeaderInfo: FC<HeaderInfoProps> = React.memo(({isOpenMenu, setIsOpenMenu}) => {
     let location = useLocation();
 
     React.useEffect(() => {
@@ -20,7 +20,7 @@ const HeaderInfo:FC<HeaderInfoProps> = React.memo(({ isOpenMenu, setIsOpenMenu }
     }, [location]);
 
 
-    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & {path: Node[]}) => {
+    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & { path: Node[] }) => {
         if (popupRef.current && !event.path.includes(popupRef.current)) {
             setIsOpenMenu(false);
         }
@@ -31,13 +31,15 @@ const HeaderInfo:FC<HeaderInfoProps> = React.memo(({ isOpenMenu, setIsOpenMenu }
     return (
         <div className={styles.header__info} ref={popupRef}>
             <div className={styles.header__burger} onClick={() => setIsOpenMenu(prevState => !prevState)}>
-                <div className={classnames(styles.header__burger_open, { [styles.header__burger_close]: isOpenMenu })} />
+                <div className={classnames(styles.header__burger_open, {[styles.header__burger_close]: isOpenMenu})}/>
             </div>
             <div className={styles.header__logo}>
                 <Link to="/"><img src={logo} alt=""/></Link>
             </div>
-            <NavigatePanel className={classnames(styles.header__nav, {[styles.header__nav_show]: isOpenMenu,
-                [styles.header__nav_hidden]: !isOpenMenu})}/>
+            <NavigatePanel className={classnames(styles.header__nav, {
+                [styles.header__nav_show]: isOpenMenu,
+                [styles.header__nav_hidden]: !isOpenMenu
+            })}/>
         </div>
     )
 })

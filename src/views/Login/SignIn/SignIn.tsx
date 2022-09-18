@@ -8,8 +8,8 @@ interface AuthorizationProps {
     chooseSignUp: () => void;
 }
 
-const SignIn:FC<AuthorizationProps> = React.memo(({ typeSignIn, chooseSignUp }) => {
-    return typeSignIn === "email" ? <SignInEmail chooseSignUp={chooseSignUp} /> : <SignInNumber />
+const SignIn: FC<AuthorizationProps> = React.memo(({typeSignIn, chooseSignUp}) => {
+    return typeSignIn === "email" ? <SignInEmail chooseSignUp={chooseSignUp}/> : <SignInNumber/>
 })
 
 export default SignIn;

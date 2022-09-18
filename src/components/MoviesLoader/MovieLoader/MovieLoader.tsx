@@ -8,7 +8,7 @@ export interface MovieLoaderProps extends React.HTMLAttributes<any> {
 }
 
 
-const MovieLoader:React.FC<MovieLoaderProps> = React.memo(({ width, height }) => (
+const MovieLoader: React.FC<MovieLoaderProps> = React.memo(({width, height}) => (
     <div className={styles.movieLoader}>
         <ContentLoader
             speed={2}
@@ -16,9 +16,9 @@ const MovieLoader:React.FC<MovieLoaderProps> = React.memo(({ width, height }) =>
             height={height}
             backgroundColor="var(--color-contrast-gray)"
             foregroundColor="var(--color-navigate)"
-            style={{ borderRadius: 7 }}
+            style={{borderRadius: 7}}
         >
-            <rect x="0" y="0" rx="0" ry="0" width={width} height={height} />
+            <rect x="0" y="0" rx="0" ry="0" width={width} height={height}/>
         </ContentLoader>
     </div>
 ))

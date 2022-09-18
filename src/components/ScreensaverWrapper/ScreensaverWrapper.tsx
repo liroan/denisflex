@@ -13,19 +13,19 @@ interface ScreensaverWrapperProps {
     preloader?: React.ReactNode;
 }
 
-const ScreensaverWrapper:FC<ScreensaverWrapperProps> = ({
-   isLoading,
-   error,
-   itemsLength,
-   preloader,
-   children
-}) => {
-    if (!isLoading && error) return <ErrorContent />;
-    if (!isLoading && itemsLength === 0) return <EmptyContent />;
-    if (isLoading) return <>{ preloader }</> || <div>Загрузка...</div>;
+const ScreensaverWrapper: FC<ScreensaverWrapperProps> = ({
+                                                             isLoading,
+                                                             error,
+                                                             itemsLength,
+                                                             preloader,
+                                                             children
+                                                         }) => {
+    if (!isLoading && error) return <ErrorContent/>;
+    if (!isLoading && itemsLength === 0) return <EmptyContent/>;
+    if (isLoading) return <>{preloader}</> || <div>Загрузка...</div>;
     return (
         <>
-            { children }
+            {children}
         </>
     )
 }

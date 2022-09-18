@@ -9,12 +9,12 @@ interface RoomProps {
 }
 
 
-const Room:FC<RoomProps> = ({ title}) => {
+const Room: FC<RoomProps> = ({title}) => {
 
-    const { filmId } = useParams();
+    const {filmId} = useParams();
     const location = useLocation();
     const locationState = location.state as { name: string };
-    
+
     useEffect(() => {
         const script = document.createElement("script");
         script.src = "//yohoho.cc/yo.js";
@@ -35,10 +35,10 @@ const Room:FC<RoomProps> = ({ title}) => {
     return (
         <div className={styles.video}>
             <div className={styles.video__header}>
-                <Back title={locationState?.name || title} />
+                <Back title={locationState?.name || title}/>
             </div>
             <div className={styles.video__container}>
-                <div className={styles.video__movie} id="yohoho" data-kinopoisk={filmId} />
+                <div className={styles.video__movie} id="yohoho" data-kinopoisk={filmId}/>
             </div>
         </div>
     )

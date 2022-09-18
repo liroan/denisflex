@@ -8,8 +8,12 @@ interface FilmPopupProps {
     movie: IMoviePreview;
 }
 
-const FilmPopup:FC<FilmPopupProps> = React.memo(({ movie: { posterUrl, nameRu, nameEn,
-    nameOriginal, year, kinopoiskId, ratingImdb, ratingKinopoisk } }) => {
+const FilmPopup: FC<FilmPopupProps> = React.memo(({
+                                                      movie: {
+                                                          posterUrl, nameRu, nameEn,
+                                                          nameOriginal, year, kinopoiskId, ratingImdb, ratingKinopoisk
+                                                      }
+                                                  }) => {
     const [rating, color] = getRatingAndColor(ratingKinopoisk || ratingImdb)
     return (
         <Link to={`film/${kinopoiskId}`}>
@@ -25,7 +29,7 @@ const FilmPopup:FC<FilmPopupProps> = React.memo(({ movie: { posterUrl, nameRu, n
                 </div>
                 {
                     rating && color ?
-                        <div className={styles.header__filmRating} style={{ color }}>{ rating }</div> :
+                        <div className={styles.header__filmRating} style={{color}}>{rating}</div> :
                         <div className={styles.header__filmRating}><span> &#8210;</span></div>
                 }
             </div>

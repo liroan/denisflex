@@ -3,16 +3,15 @@ import {Footer, Header, NavigatePanel} from "../index";
 import {Outlet} from "react-router-dom";
 
 
-
 const Dashboard = React.memo(() => {
     return (
         <div className='app'>
-            <Header />
+            <Header/>
             <main>
-                <Outlet />
+                <Outlet/>
             </main>
-            <Footer />
-            <NavigatePanel />
+            <Footer/>
+            <NavigatePanel/>
         </div>
     );
 })

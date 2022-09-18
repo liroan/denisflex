@@ -7,14 +7,13 @@ interface MoviesLoaderProps {
     height: number;
 }
 
-const MoviesLoader:FC<MoviesLoaderProps> = React.memo(({ width, height }) => {
-
+const MoviesLoader: FC<MoviesLoaderProps> = React.memo(({width, height}) => {
     return (
         <div className={styles.moviesLoader}>
             {
                 new Array(10)
                     .fill(0)
-                    .map((_, index) => <MovieLoader key={index} width={width} height={height} />)
+                    .map((_, index) => <MovieLoader key={index} width={width} height={height}/>)
             }
         </div>
     )

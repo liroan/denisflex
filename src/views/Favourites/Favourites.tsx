@@ -1,11 +1,10 @@
-
 import styles from "./Favourites.module.scss";
 import {Paginator, Container, ScreensaverWrapper} from "../../components";
 import React, {FC, useEffect, useMemo, useState} from "react";
 import {useGetMoviesLocalStorage} from "../../hooks";
 import FavouritesMovies from "./FavouritesMovies/FavouritesMovies";
 
-const Favourites:FC = () => {
+const Favourites: FC = () => {
     const [movies, editMovies] = useGetMoviesLocalStorage();
     const totalPages = Math.ceil(movies.length / 20);
 
@@ -19,20 +18,20 @@ const Favourites:FC = () => {
         [activeNumber, movies])
 
     return (
-       <div className={styles.favorites}>
-           <Container>
-               <div className={styles.favorites__title}>Избранное</div>
-               <ScreensaverWrapper isLoading={false} error={undefined} itemsLength={showingMovies.length}>
-                   <FavouritesMovies items={showingMovies}
-                                     editMovies={editMovies}
-                   />
-               </ScreensaverWrapper>
+        <div className={styles.favorites}>
+            <Container>
+                <div className={styles.favorites__title}>Избранное</div>
+                <ScreensaverWrapper isLoading={false} error={undefined} itemsLength={showingMovies.length}>
+                    <FavouritesMovies items={showingMovies}
+                                      editMovies={editMovies}
+                    />
+                </ScreensaverWrapper>
 
-               <div className={styles.favorites__paginator}>
-                   <Paginator totalPages={totalPages} activeNumber={activeNumber} setActiveNumber={setActiveNumber}/>
-               </div>
-           </Container>
-       </div>
+                <div className={styles.favorites__paginator}>
+                    <Paginator totalPages={totalPages} activeNumber={activeNumber} setActiveNumber={setActiveNumber}/>
+                </div>
+            </Container>
+        </div>
     )
 }
 

@@ -10,7 +10,7 @@ interface SliderProps<T> {
 }
 
 function Slider<T>(props: SliderProps<T>) {
-    const { items, getSliderCard, isWideCard } = props;
+    const {items, getSliderCard, isWideCard} = props;
     const [translate, setTranslate] = useState(0);
     const [maxTranslate, setMaxTranslate] = useState(0);
     const [lastTranslate, setLastTranslate] = useState(0);
@@ -33,8 +33,7 @@ function Slider<T>(props: SliderProps<T>) {
         if (maxTranslate >= translate + width && maxTranslate < translate + width + widthItem) {
             setTranslate(maxTranslate - width + 50);
             setLastTranslate(translate);
-        }
-        else if (maxTranslate >= translate + width)
+        } else if (maxTranslate >= translate + width)
             setTranslate(prevState => prevState + widthItem);
         else
             setTranslate(0);
@@ -43,8 +42,7 @@ function Slider<T>(props: SliderProps<T>) {
     const previousItem = useCallback(() => {
         if (translate === maxTranslate - width + 50) {
             setTranslate(lastTranslate)
-        }
-        else
+        } else
             setTranslate(prevState => prevState - widthItem);
     }, [maxTranslate, translate, width])
 
@@ -52,18 +50,22 @@ function Slider<T>(props: SliderProps<T>) {
         <div className={classNames(styles.movieChapter__slider, styles.slider)} ref={translateWrapper}>
 
             <div onClick={previousItem} className={classNames(styles.slider__arrow, styles.slider__arrow_left,
-                { [styles.slider__arrow_wide]: isWideCard, [styles.slider__arrow_noOpacity]: isMobile })}>
-                {translate > 0 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>}
+                {[styles.slider__arrow_wide]: isWideCard, [styles.slider__arrow_noOpacity]: isMobile})}>
+                {translate > 0 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
+                </svg>}
             </div>
 
             <div className={styles.slider__translateWrapper} style={{transform: `translateX(${-translate}px`}}>
                 {items.map(getSliderCard)}
             </div>
 
-            { maxTranslate > width && (
-                 <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right,
-                     { [styles.slider__arrow_wide]: isWideCard, [styles.slider__arrow_noOpacity]: isMobile })}>
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+            {maxTranslate > width && (
+                <div onClick={nextItem} className={classNames(styles.slider__arrow, styles.slider__arrow_right,
+                    {[styles.slider__arrow_wide]: isWideCard, [styles.slider__arrow_noOpacity]: isMobile})}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
+                    </svg>
                 </div>
             )}
 

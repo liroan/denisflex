@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Range, getTrackBackground } from 'react-range';
+import {Range, getTrackBackground} from 'react-range';
 import styles from "./RangeSlider.module.scss"
 import {TextField} from "@mui/material";
 
@@ -15,9 +15,10 @@ interface RangeSlider {
     idSecondField: string;
 }
 
-const RangeSlider: React.FC<RangeSlider> = React.memo(({ min, max, fromValue, changeValue,
-                                                beforeValue, idFirstField,idSecondField
-}) => {
+const RangeSlider: React.FC<RangeSlider> = React.memo(({
+                                                           min, max, fromValue, changeValue,
+                                                           beforeValue, idFirstField, idSecondField
+                                                       }) => {
 
     const setFromValue = changeValue(idFirstField);
     const setBeforeValue = changeValue(idSecondField);
@@ -81,34 +82,37 @@ const RangeSlider: React.FC<RangeSlider> = React.memo(({ min, max, fromValue, ch
                     setFromValue(values[0])
                     setBeforeValue(values[1])
                 }}
-                    renderTrack={({ props, children }) => (
-                        <div onMouseDown={props.onMouseDown} onTouchStart={props.onTouchStart}
-                             style={{...props.style, height: '16px', display: 'flex', width: '100%',}}
-                        >
-                            <div
-                                ref={props.ref}
-                                style={{height: '3px', borderRadius: '3px', width: '100%',
-                                    background: getTrackBackground({values, colors: ['#333', '#E50914', '#333'],
-                                        min,
-                                        max,
-                                    }),
-                                    alignSelf: 'center'
-                                }}
-                            >
-                                {children}
-                            </div>
-                        </div>
-                    )}
-                    renderThumb={({ props }) => (
-                        <div
-                            className={styles.rangeSlider__thumb}
-                            {...props}
-                            style={{...props.style, height: '17px', width: '17px', borderRadius: '50%',
-                                boxShadow: 'box-shadow: 10px 5px 5px black', outline: 'none',
-                            }}
-                        >
-                        </div>
-                    )}
+                       renderTrack={({props, children}) => (
+                           <div onMouseDown={props.onMouseDown} onTouchStart={props.onTouchStart}
+                                style={{...props.style, height: '16px', display: 'flex', width: '100%',}}
+                           >
+                               <div
+                                   ref={props.ref}
+                                   style={{
+                                       height: '3px', borderRadius: '3px', width: '100%',
+                                       background: getTrackBackground({
+                                           values, colors: ['#333', '#E50914', '#333'],
+                                           min,
+                                           max,
+                                       }),
+                                       alignSelf: 'center'
+                                   }}
+                               >
+                                   {children}
+                               </div>
+                           </div>
+                       )}
+                       renderThumb={({props}) => (
+                           <div
+                               className={styles.rangeSlider__thumb}
+                               {...props}
+                               style={{
+                                   ...props.style, height: '17px', width: '17px', borderRadius: '50%',
+                                   boxShadow: 'box-shadow: 10px 5px 5px black', outline: 'none',
+                               }}
+                           >
+                           </div>
+                       )}
                 />
             </div>
         </div>

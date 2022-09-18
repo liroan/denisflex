@@ -6,9 +6,9 @@ import React, {FC} from "react";
 import {SortBy} from "../../../../store/filtersSlice";
 
 const checkboxes: { id: number; label: string; sortType: SortBy }[] = [
-    { id: 1, label: "по рейтингу", sortType: "RATING" },
-    { id: 2, label: "по голосам", sortType: "NUM_VOTE" },
-    { id: 3, label: "по дате выхода", sortType: "YEAR" },
+    {id: 1, label: "по рейтингу", sortType: "RATING"},
+    {id: 2, label: "по голосам", sortType: "NUM_VOTE"},
+    {id: 3, label: "по дате выхода", sortType: "YEAR"},
 ]
 
 interface CheckboxesProps {
@@ -17,7 +17,7 @@ interface CheckboxesProps {
     name: string;
 }
 
-const Checkboxes:FC<CheckboxesProps> = React.memo(({ value, changeValue, name }) => {
+const Checkboxes: FC<CheckboxesProps> = React.memo(({value, changeValue, name}) => {
     const onChange = changeValue(name);
     return (
         <div className={classNames(styles.filter__checkboxes)}>
@@ -25,9 +25,9 @@ const Checkboxes:FC<CheckboxesProps> = React.memo(({ value, changeValue, name })
                 {
                     checkboxes.map(({id, label, sortType}) => (
                         <FormControlLabel key={id}
-                            control={<Switch checked={sortType === value}
-                                             onChange={() => onChange(sortType)} />}
-                                             label={label}
+                                          control={<Switch checked={sortType === value}
+                                                           onChange={() => onChange(sortType)}/>}
+                                          label={label}
                         />
                     ))
                 }

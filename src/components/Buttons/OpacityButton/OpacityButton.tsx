@@ -9,11 +9,11 @@ interface OpacityButtonProps {
     type?: "button" | "submit" | "reset";
 }
 
-const OpacityButton:FC<OpacityButtonProps> = React.memo(({ onClick, startIcon, type, children }) => {
+const OpacityButton: FC<OpacityButtonProps> = React.memo(({onClick, startIcon, type, children}) => {
     return (
         <div className={styles.opacityButton}>
             <Button variant="contained" startIcon={startIcon} onClick={onClick} type={type}>
-                { children }
+                {children}
             </Button>
         </div>
     )

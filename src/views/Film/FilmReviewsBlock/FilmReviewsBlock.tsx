@@ -11,12 +11,12 @@ interface FilmReviewsBlockProps {
     filmId: number;
 }
 
-const FilmReviewsBlock:FC<FilmReviewsBlockProps> = ({ filmId }) => {
+const FilmReviewsBlock: FC<FilmReviewsBlockProps> = ({filmId}) => {
 
     const [page, setPage] = useState(1);
     const [allReviews, setAllReviews] = useState<IReview[]>([]);
-    const { data: reviews, isFetching: reviewsLoading, error: reviewsError }
-        = useGetReviewsMovieByIdQuery({ id: filmId, page });
+    const {data: reviews, isFetching: reviewsLoading, error: reviewsError}
+        = useGetReviewsMovieByIdQuery({id: filmId, page});
 
     const totalPages = reviews?.totalPages;
 
@@ -26,7 +26,7 @@ const FilmReviewsBlock:FC<FilmReviewsBlockProps> = ({ filmId }) => {
 
     const reviewsData = useMemo(() => {
         if (reviews) {
-            const {total, totalNegativeReviews, totalPositiveReviews, totalNeutralReviews } = reviews;
+            const {total, totalNegativeReviews, totalPositiveReviews, totalNeutralReviews} = reviews;
             return [total, totalPositiveReviews, totalNegativeReviews, totalNeutralReviews];
         }
     }, [reviews])
@@ -38,8 +38,8 @@ const FilmReviewsBlock:FC<FilmReviewsBlockProps> = ({ filmId }) => {
             <div className={styles.reviewsBlock}>
                 <h3 className={styles.reviewsBlock__title}>Рецензии кинокритиков</h3>
                 <div className={styles.reviewsBlock__content}>
-                    <FilmReviews reviews={allReviews} />
-                    <FilmReviewsInfo counters={reviewsData!} />
+                    <FilmReviews reviews={allReviews}/>
+                    <FilmReviewsInfo counters={reviewsData!}/>
                 </div>
                 {page !== totalPages && (
                     <div className={styles.reviewsBlock__showMore}>

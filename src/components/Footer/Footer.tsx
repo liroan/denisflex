@@ -9,10 +9,10 @@ const Footer = () => {
     return (
         <section className={styles.footer}>
             <Container>
-                <FooterNetworks />
-                <FooterRefs />
-                <FooterButtons />
-                <FooterInfo />
+                <FooterNetworks/>
+                <FooterRefs/>
+                <FooterButtons/>
+                <FooterInfo/>
             </Container>
         </section>
     )

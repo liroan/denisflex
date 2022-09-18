@@ -7,7 +7,8 @@ interface LoginTabsProps {
     chooseEmail: () => void;
     chooseNumber: () => void;
 }
-const LoginTabs:FC<LoginTabsProps> = React.memo(({ typeSignIn, chooseEmail, chooseNumber }) => {
+
+const LoginTabs: FC<LoginTabsProps> = React.memo(({typeSignIn, chooseEmail, chooseNumber}) => {
     return (
         <div className={styles.login__tabs}>
             <button onClick={chooseEmail}

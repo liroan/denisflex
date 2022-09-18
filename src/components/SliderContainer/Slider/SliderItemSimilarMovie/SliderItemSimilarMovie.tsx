@@ -7,7 +7,7 @@ interface SliderItemSimilarMovieProps {
     movie: IMovieSimilar;
 }
 
-const SliderItemSimilarMovie:FC<SliderItemSimilarMovieProps> = React.memo(({ movie: { filmId, posterUrl } }) => {
+const SliderItemSimilarMovie: FC<SliderItemSimilarMovieProps> = React.memo(({movie: {filmId, posterUrl}}) => {
 
     return (
         <Link to={"/film/" + filmId}>

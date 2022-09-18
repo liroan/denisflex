@@ -8,7 +8,7 @@ interface YearsProps {
     yearTo: number;
 }
 
-const Years:FC<YearsProps> = React.memo(({ changeValue, yearFrom, yearTo }) => {
+const Years: FC<YearsProps> = React.memo(({changeValue, yearFrom, yearTo}) => {
     return (
         <Accordion title="Годы производства">
             <RangeSlider min={1900} max={2022}

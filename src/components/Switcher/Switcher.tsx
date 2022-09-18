@@ -6,19 +6,19 @@ import {PersonCategory} from "../../views/Person/Person";
 
 interface FilmSwitcherProps {
     activeCategory: FilmCategory | PersonCategory;
-    switcher: {id: number, title: string, value: any}[];
-    setActiveCategory:  React.Dispatch<React.SetStateAction<FilmCategory>> | React.Dispatch<React.SetStateAction<PersonCategory>>;
+    switcher: { id: number, title: string, value: any }[];
+    setActiveCategory: React.Dispatch<React.SetStateAction<FilmCategory>> | React.Dispatch<React.SetStateAction<PersonCategory>>;
 }
 
-const Switcher:FC<FilmSwitcherProps> = React.memo(({ activeCategory, switcher, setActiveCategory }) => {
+const Switcher: FC<FilmSwitcherProps> = React.memo(({activeCategory, switcher, setActiveCategory}) => {
     return (
         <div className={styles.switcher__switch}>
             {
-                switcher.map(({ id, title, value }) => (
+                switcher.map(({id, title, value}) => (
                     <div key={id}
-                         className={classNames(styles.switcher__option, { [styles.switcher__activeOption]: value === activeCategory })}
+                         className={classNames(styles.switcher__option, {[styles.switcher__activeOption]: value === activeCategory})}
                          onClick={() => setActiveCategory(value)}>
-                        { title }
+                        {title}
                     </div>
                 ))
             }

@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import preloader from "../../assets/img/preloader/preloader.json";
 import Lottie from 'react-lottie';
 import styles from "./Preloader.module.scss"
+
 const Preloader = React.memo(() => {
     const defaultOptions = {
         loop: true,
@@ -22,7 +23,7 @@ const Preloader = React.memo(() => {
     return (
 
         <div className={styles.preloader}>
-            <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))" />
+            <Lottie options={defaultOptions} height="auto" width="calc(min(400px, 60%))"/>
         </div>
     )
 })

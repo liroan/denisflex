@@ -1,5 +1,5 @@
 import styles from "./Login.module.scss";
-import {Container, Preloader} from "../../components";
+import {Container} from "../../components";
 import github from "../../assets/img/login/github.png"
 import logo from "../../assets/img/header/logo.png"
 import google from "../../assets/img/login/google.png"
@@ -15,7 +15,7 @@ import LoginPreloader from "./LoginPreloader/LoginPreloader";
 const Login = () => {
     const [typeSignIn, setTypeSignIn] = useState<TypeSignIn>("email");
     const [isRegistration, setIsRegistration] = useState(false);
-    const { isLoading } = useAppSelector(state => state.auth);
+    const {isLoading} = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -23,10 +23,10 @@ const Login = () => {
         dispatch(setStepMobileAuth("number"))
     }, [typeSignIn, isRegistration])
 
-    const chooseSignIn =  useCallback(() => {
+    const chooseSignIn = useCallback(() => {
         setIsRegistration(false)
     }, [])
-    const chooseSignUp =  useCallback(() => {
+    const chooseSignUp = useCallback(() => {
         setIsRegistration(true)
     }, [])
 
@@ -41,15 +41,15 @@ const Login = () => {
     return (
         <div className={styles.login}>
             <div className={styles.login__window}>
-                { isLoading && <LoginPreloader /> }
+                {isLoading && <LoginPreloader/>}
                 <Container>
                     <div className={styles.login__logo}>
                         <img src={logo} alt=""/>
                     </div>
                     <p className={styles.login__info}>Войдите или зарегистрируйтесь</p>
-                    { !isRegistration && <LoginTabs typeSignIn={typeSignIn}
-                                                    chooseNumber={chooseNumber}
-                                                    chooseEmail={chooseEmail}/>}
+                    {!isRegistration && <LoginTabs typeSignIn={typeSignIn}
+                                                   chooseNumber={chooseNumber}
+                                                   chooseEmail={chooseEmail}/>}
                     {
                         isRegistration ?
                             <SignUp chooseSignIn={chooseSignIn}/> :
@@ -64,10 +64,12 @@ const Login = () => {
                     }
                     <p className={styles.login__additionalInfo}>Войди с помощью</p>
                     <div className={styles.login__networks}>
-                        <div className={styles.login__network} onClick={() => dispatch(authWithGithub())}><img src={github} alt=""/></div>
-                        <div className={styles.login__network} onClick={() => dispatch(authWithGoogle())}><img src={google} alt=""/></div>
+                        <div className={styles.login__network} onClick={() => dispatch(authWithGithub())}><img
+                            src={github} alt=""/></div>
+                        <div className={styles.login__network} onClick={() => dispatch(authWithGoogle())}><img
+                            src={google} alt=""/></div>
                     </div>
-                    <div id="recaptcha-container" />
+                    <div id="recaptcha-container"/>
                 </Container>
             </div>
         </div>

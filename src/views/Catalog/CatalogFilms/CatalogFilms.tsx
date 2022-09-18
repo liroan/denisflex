@@ -16,20 +16,20 @@ interface CatalogFilmsProps {
 }
 
 
-const CatalogFilms:FC<CatalogFilmsProps> = React.memo(({ filmsResponse,isFetching, error  }) => {
+const CatalogFilms: FC<CatalogFilmsProps> = React.memo(({filmsResponse, isFetching, error}) => {
     const films = filmsResponse?.items;
     const [movies, editMovies] = useGetMoviesLocalStorage();
     return (
         <div className={styles.films}>
             <ScreensaverWrapper isLoading={isFetching} itemsLength={films?.length}
-                                error={error} preloader={<CatalogPreloader />}>
+                                error={error} preloader={<CatalogPreloader/>}>
                 <CatalogFilmsWindow films={films}
                                     editMovies={editMovies}
                                     movies={movies}
                 />
             </ScreensaverWrapper>
             <div className={styles.films__paginator}>
-                <CatalogPaginatorContainer totalPages={filmsResponse?.totalPages} />
+                <CatalogPaginatorContainer totalPages={filmsResponse?.totalPages}/>
             </div>
         </div>
     )

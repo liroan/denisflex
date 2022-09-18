@@ -8,7 +8,7 @@ interface CatalogFilmsWindowProps {
     movies: IMoviePreview[];
 }
 
-const CatalogFilmsWindow:FC<CatalogFilmsWindowProps> = ({ films, editMovies, movies }) => {
+const CatalogFilmsWindow: FC<CatalogFilmsWindowProps> = ({films, editMovies, movies}) => {
     return (
         <>
             {

@@ -13,8 +13,8 @@ import classNames from "classnames";
 
 
 const SignInNumber = () => {
-    const { handleSubmit,control, formState: { errors } } = useForm<ISignInWithPhone | ISignInWithCode>();
-    const { error, currentStepMobileAuth } = useAppSelector(state => state.auth);
+    const {handleSubmit, control, formState: {errors}} = useForm<ISignInWithPhone | ISignInWithCode>();
+    const {error, currentStepMobileAuth} = useAppSelector(state => state.auth);
 
     const dispatch = useAppDispatch();
 
@@ -34,11 +34,11 @@ const SignInNumber = () => {
     return (
         <>
             <form className={mainStyles.login__form} onSubmit={handleSubmit(onSubmit)}>
-                { isPhoneStep ?
-                    <NumberField control={control} message={"number" in errors ? errors.number?.message : undefined} /> :
-                    <CodeField control={control} message={"code" in errors ? errors.code?.message : undefined} />
+                {isPhoneStep ?
+                    <NumberField control={control} message={"number" in errors ? errors.number?.message : undefined}/> :
+                    <CodeField control={control} message={"code" in errors ? errors.code?.message : undefined}/>
                 }
-                <FormError error={error} />
+                <FormError error={error}/>
                 <div className={mainStyles.login__buttons}>
                     <RedButton type="submit">
                         Войти
@@ -46,8 +46,10 @@ const SignInNumber = () => {
                 </div>
             </form>
             <div onClick={backToInputPhone}
-                className={classNames(styles.login__toPhone, { [styles.login__toPhone_hidden]: isPhoneStep })}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+                 className={classNames(styles.login__toPhone, {[styles.login__toPhone_hidden]: isPhoneStep})}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
+                </svg>
             </div>
         </>
     )

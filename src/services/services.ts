@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {API_KEY, API_URL} from "../constants";
 import {
     IFilmTopResponse, IBudgetResponse, IDistributorsResponse,
@@ -26,7 +26,7 @@ export const moviesApi = createApi({
         getCompilationMovies: builder.query<IFilmTopResponse, MovieTopType>({
             query: (type) => ({
                 url: "v2.2/films/top",
-                params: { type }
+                params: {type}
             }),
         }),
         getCountriesAndGenres: builder.query<IFiltersResponse, null>({
@@ -35,7 +35,7 @@ export const moviesApi = createApi({
         getFiltersMovie: builder.query<IFilmSearchByFiltersResponse, FiltersState>({
             query: (filters) => ({
                 url: "v2.2/films",
-                params: { ...removeUnwantedProperties(filters) }
+                params: {...removeUnwantedProperties(filters)}
             })
         }),
         getMovieById: builder.query<IMovie, number>({
@@ -47,16 +47,16 @@ export const moviesApi = createApi({
         getStaffMovieById: builder.query<IPersonStaff[], number>({
             query: (filmId) => ({
                 url: "v1/staff",
-                params: { filmId }
+                params: {filmId}
             }),
         }),
         getSimilarMovieById: builder.query<IMoviesSimilar, number>({
             query: (id) => `v2.2/films/${id}/similars`,
         }),
-        getReviewsMovieById: builder.query<IReviewsResponse, {id: number, page: number}>({
+        getReviewsMovieById: builder.query<IReviewsResponse, { id: number, page: number }>({
             query: ({id, page}) => ({
                 url: `v2.2/films/${id}/reviews`,
-                params: { page }
+                params: {page}
             }),
         }),
         getDistributorsMovieById: builder.query<IDistributorsResponse, number>({
@@ -72,8 +72,16 @@ export const moviesApi = createApi({
 })
 
 
-export const { useGetCompilationMoviesQuery,
+export const {
+    useGetCompilationMoviesQuery,
     useGetPersonByIdQuery,
-    useGetBoxOfficeMovieByIdQuery, useGetDistributorsMovieByIdQuery,
-    useGetSimilarMovieByIdQuery, useGetMovieByIdQuery,
-    useGetReviewsMovieByIdQuery, useGetCountriesAndGenresQuery, useGetFiltersMovieQuery, useGetFactsAndErrorsMovieByIdQuery, useGetStaffMovieByIdQuery } = moviesApi;
+    useGetBoxOfficeMovieByIdQuery,
+    useGetDistributorsMovieByIdQuery,
+    useGetSimilarMovieByIdQuery,
+    useGetMovieByIdQuery,
+    useGetReviewsMovieByIdQuery,
+    useGetCountriesAndGenresQuery,
+    useGetFiltersMovieQuery,
+    useGetFactsAndErrorsMovieByIdQuery,
+    useGetStaffMovieByIdQuery
+} = moviesApi;

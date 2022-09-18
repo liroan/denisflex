@@ -8,7 +8,7 @@ import HeaderButtons from "./HeaderButtons/HeaderButtons";
 import {useLocation} from "react-router-dom";
 
 
-const Header:FC = () => {
+const Header: FC = () => {
     const [isOpenInput, setIsOpenInput] = useState(false);
     const [isShowHeader, setIsShowHeader] = useState(true);
     const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -27,7 +27,7 @@ const Header:FC = () => {
         return () => window.removeEventListener('scroll', checkScrolled)
     }, [prevScrollY])
 
-    const isActive =  (isShowHeader || isOpenInput || isOpenMenu || isShowUserPopup);
+    const isActive = (isShowHeader || isOpenInput || isOpenMenu || isShowUserPopup);
 
     return (
         <header className={classNames(styles.header, styles.app__header,
@@ -37,8 +37,9 @@ const Header:FC = () => {
                 [styles.app__header_white]: prevScrollY === 0 && location.pathname === '/'
             })}>
             <Container>
-                <HeaderInfo isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
-                <HeaderSearch isOpenInput={isOpenInput} setIsOpenInput={setIsOpenInput} openInputIconRef={openInputIconRef}/>
+                <HeaderInfo isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu}/>
+                <HeaderSearch isOpenInput={isOpenInput} setIsOpenInput={setIsOpenInput}
+                              openInputIconRef={openInputIconRef}/>
                 <HeaderButtons setIsOpenInput={setIsOpenInput} isShowUserPopup={isShowUserPopup}
                                setIsShowUserPopup={setIsShowUserPopup}
                                openInputIconRef={openInputIconRef}/>

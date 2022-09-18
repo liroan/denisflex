@@ -13,10 +13,10 @@ interface RegistrationProps {
     chooseSignIn: () => void;
 }
 
-const SignUp:FC<RegistrationProps> = React.memo(({ chooseSignIn }) => {
-    const { handleSubmit,control, formState: { errors }, getValues } = useForm<ISignUpData>();
+const SignUp: FC<RegistrationProps> = React.memo(({chooseSignIn}) => {
+    const {handleSubmit, control, formState: {errors}, getValues} = useForm<ISignUpData>();
     const [passwordsError, setPasswordsError] = useState<string>("");
-    const { error } = useAppSelector(state => state.auth);
+    const {error} = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     const isMatchedPasswords = () => {
@@ -26,19 +26,19 @@ const SignUp:FC<RegistrationProps> = React.memo(({ chooseSignIn }) => {
         return password === confirmPassword;
     }
 
-    const onSubmit: SubmitHandler<ISignUpData> = ({ email, password }) => {
+    const onSubmit: SubmitHandler<ISignUpData> = ({email, password}) => {
         if (!isMatchedPasswords()) return;
-        dispatch(registrationUser({ email, password }))
+        dispatch(registrationUser({email, password}))
     };
 
     return (
         <form className={styles.login__form} onSubmit={handleSubmit(onSubmit)}>
-            <EmailField control={control} message={errors.email?.message} />
+            <EmailField control={control} message={errors.email?.message}/>
             <PasswordField name="password" control={control} message={errors.password?.message}
-                           placeholder="Пароль" passwordsError={passwordsError} />
+                           placeholder="Пароль" passwordsError={passwordsError}/>
             <PasswordField name="repeatPassword" control={control} message={errors.repeatPassword?.message}
-                           placeholder="Повторите пароль" passwordsError={passwordsError} />
-            <FormError error={error} />
+                           placeholder="Повторите пароль" passwordsError={passwordsError}/>
+            <FormError error={error}/>
             <div className={styles.login__buttons}>
                 <RedButton type="submit">
                     Зарегистрироваться

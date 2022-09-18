@@ -13,14 +13,13 @@ import {IGenre} from "../../types";
 import {removeInitialFilter} from "../../utils";
 
 
-
-const Catalog:FC = React.memo(() => {
+const Catalog: FC = React.memo(() => {
 
     const [isShowFilters, setIsShowFilters] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const filters = useAppSelector(state => state.filters);
-    const { data: genresAndCountries } = useGetCountriesAndGenresQuery(null);
-    const { data: filmsResponse, isFetching, error } = useGetFiltersMovieQuery(filters);
+    const {data: genresAndCountries} = useGetCountriesAndGenresQuery(null);
+    const {data: filmsResponse, isFetching, error} = useGetFiltersMovieQuery(filters);
     const [isCanUpdateFilterFromURL, setIsCanUpdateFilterFromURL] = useState(false);
 
     const dispatch = useAppDispatch();
@@ -42,7 +41,7 @@ const Catalog:FC = React.memo(() => {
     const genresWithAllGenres = useMemo(() => {
         if (genresAndCountries) {
             const allGenres: IGenre =
-                { id: genresAndCountries.genres[genresAndCountries.genres.length - 1].id + 1,genre: "Все жанры" }
+                {id: genresAndCountries.genres[genresAndCountries.genres.length - 1].id + 1, genre: "Все жанры"}
             return [allGenres, ...genresAndCountries.genres]
         }
     }, [genresAndCountries])
@@ -56,7 +55,7 @@ const Catalog:FC = React.memo(() => {
                             <Filter isShowFilters={isShowFilters} setIsShowFilters={setIsShowFilters}
                                     filters={filters} genres={genresWithAllGenres}/>
                         </div>
-                        <CatalogFilms filmsResponse={filmsResponse} isFetching={isFetching} error={error} />
+                        <CatalogFilms filmsResponse={filmsResponse} isFetching={isFetching} error={error}/>
                     </div>
                 </Container>
             </Container>

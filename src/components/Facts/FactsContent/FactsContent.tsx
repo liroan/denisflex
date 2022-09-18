@@ -7,16 +7,16 @@ interface FactsProps {
     facts: Array<string | IFactOrError>;
 }
 
-const FactsContent:FC<FactsProps> = ({ facts }) => {
+const FactsContent: FC<FactsProps> = ({facts}) => {
     return (
         <>
-        {
-            facts.map((fact, i) => (
-                <p key={i} className={styles.film__fact}>
-                    {typeof fact !== "string" ? parse(fact.text) : parse(fact)}
-                </p>
-            ))
-        }
+            {
+                facts.map((fact, i) => (
+                    <p key={i} className={styles.film__fact}>
+                        {typeof fact !== "string" ? parse(fact.text) : parse(fact)}
+                    </p>
+                ))
+            }
         </>
     )
 

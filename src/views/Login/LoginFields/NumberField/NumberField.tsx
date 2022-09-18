@@ -1,17 +1,15 @@
-
-
 import {REQUIRED} from "../../../../constants";
 import {TextField} from "@mui/material";
-import {Control, Controller, FieldError, FieldErrorsImpl, FieldValues, Merge} from "react-hook-form";
+import {Control, Controller, FieldError, FieldErrorsImpl, Merge} from "react-hook-form";
 import React, {FC} from "react";
 import InputMask from "react-input-mask";
 
 interface NumberFieldProps {
-    control:  Control<any, any>;
-    message:  string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
+    control: Control<any, any>;
+    message: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
 }
 
-const NumberField:FC<NumberFieldProps> = ({ control, message }) => {
+const NumberField: FC<NumberFieldProps> = ({control, message}) => {
     return (
         <Controller
             name="number"

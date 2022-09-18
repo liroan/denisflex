@@ -16,9 +16,9 @@ interface HeaderPopupProps {
     closePopupWithDeleteKeyword: () => void;
 }
 
-const HeaderPopup:FC<HeaderPopupProps> = React.memo(({ queryKeyword, type, setType, closePopupWithDeleteKeyword }) => {
+const HeaderPopup: FC<HeaderPopupProps> = React.memo(({queryKeyword, type, setType, closePopupWithDeleteKeyword}) => {
 
-    const { width } = useSizeWindow();
+    const {width} = useSizeWindow();
 
     useEffect(() => { // убираем второй скролл у окна фильтров
         document.body.style.overflowY = width <= 850 ? "hidden" : "unset";
@@ -29,15 +29,16 @@ const HeaderPopup:FC<HeaderPopupProps> = React.memo(({ queryKeyword, type, setTy
 
     return (
         <div className={classNames(styles.header__searchPopup)}>
-            <Category type={type} setType={setType} />
+            <Category type={type} setType={setType}/>
             <div className={classNames(styles.header__filmsWrapper)}>
-                { queryKeyword ?
-                    <FilmsPopup type={type} queryKeyword={queryKeyword} /> :
+                {queryKeyword ?
+                    <FilmsPopup type={type} queryKeyword={queryKeyword}/> :
                     <EmptyFilms>Фильмы будут загружены после того, как вы перестанете вводить</EmptyFilms>
                 }
             </div>
             <div className={styles.header__showAll}>
-                <Link to={`/catalog?type=${type}&keyword=${queryKeyword}`} onClick={closePopupWithDeleteKeyword}>Показать всё</Link>
+                <Link to={`/catalog?type=${type}&keyword=${queryKeyword}`} onClick={closePopupWithDeleteKeyword}>Показать
+                    всё</Link>
             </div>
         </div>
     )

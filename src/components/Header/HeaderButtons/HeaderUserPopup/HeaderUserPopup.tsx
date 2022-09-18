@@ -14,12 +14,12 @@ interface IOption {
     name: string;
     onClick?: () => void;
     isRed?: boolean;
-    Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {muiName: string}
+    Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string }
 }
 
 const options: IOption[] = [
-    { name: "Настройки",  Icon: SettingsIcon },
-    { name: "Выход", onClick: () => auth.signOut(),  Icon: LogoutIcon, isRed: true },
+    {name: "Настройки", Icon: SettingsIcon},
+    {name: "Выход", onClick: () => auth.signOut(), Icon: LogoutIcon, isRed: true},
 ]
 
 interface HeaderUserPopupProps {
@@ -27,11 +27,11 @@ interface HeaderUserPopupProps {
     setIsShowUserPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HeaderUserPopup:FC<HeaderUserPopupProps> = ({ isShowUserPopup, setIsShowUserPopup }) => {
+const HeaderUserPopup: FC<HeaderUserPopupProps> = ({isShowUserPopup, setIsShowUserPopup}) => {
 
     const {email, number} = useAppSelector(state => state.auth);
 
-    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & {path: Node[]}) => {
+    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & { path: Node[] }) => {
         if (popupRef.current && !event.path.includes(popupRef.current)) {
             setIsShowUserPopup(false);
         }
@@ -41,20 +41,24 @@ const HeaderUserPopup:FC<HeaderUserPopupProps> = ({ isShowUserPopup, setIsShowUs
 
     return (
         <div className={styles.header__user} ref={popupRef}>
-            <PersonIcon className={styles.header__userIcon} onClick={() => setIsShowUserPopup(prevState => !prevState)}/>
-            <div className={classNames(styles.header__userPopup, styles.popup, { [styles.popup_active]: isShowUserPopup })}>
+            <PersonIcon className={styles.header__userIcon}
+                        onClick={() => setIsShowUserPopup(prevState => !prevState)}/>
+            <div
+                className={classNames(styles.header__userPopup, styles.popup, {[styles.popup_active]: isShowUserPopup})}>
                 <h3 className={styles.popup__title} title={email || number || undefined}>{email || number}</h3>
                 <div className={styles.popup__border}/>
                 <ul className={styles.popup__options}>
                     {
-                        options.map(({ Icon,
-                            name, onClick, isRed }) => (
-                                <li onClick={onClick} className={classNames(styles.popup__option,
-                                    { [styles.popup__option_red]: isRed })}
-                                >
-                                    <Icon />
-                                    {name}
-                                </li>
+                        options.map(({
+                                         Icon,
+                                         name, onClick, isRed
+                                     }) => (
+                            <li onClick={onClick} className={classNames(styles.popup__option,
+                                {[styles.popup__option_red]: isRed})}
+                            >
+                                <Icon/>
+                                {name}
+                            </li>
                         ))
                     }
                 </ul>

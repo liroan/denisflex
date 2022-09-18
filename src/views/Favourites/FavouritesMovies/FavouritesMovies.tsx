@@ -8,7 +8,7 @@ interface FavouritesMoviesProps {
     editMovies: (movie: IMoviePreview) => void;
 }
 
-const FavouritesMovies:FC<FavouritesMoviesProps> = ({ items, editMovies }) => {
+const FavouritesMovies: FC<FavouritesMoviesProps> = ({items, editMovies}) => {
     return (
         <div className={styles.favorites__films}>
             {

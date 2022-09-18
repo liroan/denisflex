@@ -24,7 +24,7 @@ interface HeaderSearchProps {
 }
 
 
-const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenInput, openInputIconRef}) => {
+const HeaderSearch: FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenInput, openInputIconRef}) => {
 
     const [isOpenSearchPopup, setIsOpenSearchPopup] = useState(false);
     const [type, setType] = useState<MovieType>("ALL");
@@ -43,12 +43,12 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
 
     const queryKeyword = useDebounce(inputKeyword, 700, action);
 
-    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & {path: Node[]}) => {
+    const handleClickAwayPopup = useCallback((ref: React.RefObject<HTMLDivElement>, event: MouseEvent & { path: Node[] }) => {
         if (popupRef.current &&
             openInputIconRef.current &&
             !event.path.includes(popupRef.current) &&
             !event.path.includes(openInputIconRef.current)) {
-                closePopup();
+            closePopup();
         }
     }, [])
 
@@ -71,7 +71,8 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
 
 
     return (
-        <div ref={popupRef} className={classNames(styles.header__search, { [styles.header__search_hidden]: !isOpenInput })}>
+        <div ref={popupRef}
+             className={classNames(styles.header__search, {[styles.header__search_hidden]: !isOpenInput})}>
             <HeaderField onChangeKeyword={onChangeKeyword}
                          inputKeyword={inputKeyword}
                          setIsOpenInput={setIsOpenInput}
@@ -81,10 +82,10 @@ const HeaderSearch:FC<HeaderSearchProps> = React.memo(({isOpenInput, setIsOpenIn
                          closePopup={closePopup}
                          inputSearchRef={inputSearchRef}
             />
-            { isOpenSearchPopup && <HeaderPopup queryKeyword={queryKeyword}
-                                                type={type}
-                                                setType={setType}
-                                                closePopupWithDeleteKeyword={closePopupWithDeleteKeyword}/> }
+            {isOpenSearchPopup && <HeaderPopup queryKeyword={queryKeyword}
+                                               type={type}
+                                               setType={setType}
+                                               closePopupWithDeleteKeyword={closePopupWithDeleteKeyword}/>}
         </div>
     )
 })

@@ -7,14 +7,13 @@ import {FavouritesButton} from '../../../../components'
 import {getRatingAndColor} from "../../../../utils";
 
 
-
 interface CatalogFilmProps {
     filmData: IMoviePreview;
     isFavourite: boolean;
     editMovies: (movie: IMoviePreview) => void;
 }
 
-const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, editMovies }) => {
+const CatalogFilm: FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, editMovies}) => {
 
     const {posterUrl, nameOriginal, nameRu, nameEn, year, ratingKinopoisk, ratingImdb, kinopoiskId} = filmData;
     const navigate = useNavigate();
@@ -34,17 +33,18 @@ const CatalogFilm:FC<CatalogFilmProps> = React.memo(({filmData, isFavourite, edi
                     <h3 className={styles.film__title}>{nameRu || nameEn || nameOriginal}</h3>
                     <h4 className={styles.film__time}>{year}</h4>
                     <p className={styles.film__descr}>
-                        Описание недоступно. Нажмите на фильм и перейдите на него, чтобы увидеть подробную информацию о нем
+                        Описание недоступно. Нажмите на фильм и перейдите на него, чтобы увидеть подробную информацию о
+                        нем
                     </p>
                 </div>
             </div>
             <div className={styles.film__additionalInfo}>
                 {
                     rating && color ?
-                        <div className={styles.film__rating} style={{ color }}>{ rating }</div> :
+                        <div className={styles.film__rating} style={{color}}>{rating}</div> :
                         <div className={styles.film__rating}><span> &#8210;</span></div>
                 }
-                <FavouritesButton isAdaptive isFavourite={isFavourite} toggler={toggleIsFavourite} />
+                <FavouritesButton isAdaptive isFavourite={isFavourite} toggler={toggleIsFavourite}/>
             </div>
         </div>
     )

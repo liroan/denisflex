@@ -16,31 +16,35 @@ type IColors = {
     [key in reviewType]: string;
 };
 
-const colors:IColors = {
+const colors: IColors = {
     "NEUTRAL": "#e1e1e1",
     "POSITIVE": "#ccffcc",
     "NEGATIVE": "#feb7b7",
 }
 
-const FilmReview:FC<FilmReviewProps> = ({ review: {  negativeRating,
- date, description, type, title, positiveRating} }) => {
+const FilmReview: FC<FilmReviewProps> = ({
+                                             review: {
+                                                 negativeRating,
+                                                 date, description, type, title, positiveRating
+                                             }
+                                         }) => {
 
     const [isFullText, setIsFullText] = useState(false);
 
     const buttonsData = useMemo(() => [
-        { Icon: ThumbUpIcon, text: "Полезно", count: positiveRating },
-        { Icon: ThumbDownIcon, text: "Не полезно", count: negativeRating }
+        {Icon: ThumbUpIcon, text: "Полезно", count: positiveRating},
+        {Icon: ThumbDownIcon, text: "Не полезно", count: negativeRating}
     ], [negativeRating, positiveRating])
 
     const dateForShow = useMemo(() =>
-        new Date(date).toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: "numeric"}),
+            new Date(date).toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: "numeric"}),
         [date])
 
     return (
-        <div className={styles.review} style={{ background: colors[type] }}>
-            <h5 className={styles.review__title}>{ title || "Аноним" }</h5>
-            <p className={classNames(styles.review__text, { [styles.review__text_full]: isFullText })}>
-                { parse(description) }
+        <div className={styles.review} style={{background: colors[type]}}>
+            <h5 className={styles.review__title}>{title || "Аноним"}</h5>
+            <p className={classNames(styles.review__text, {[styles.review__text_full]: isFullText})}>
+                {parse(description)}
             </p>
             <div className={styles.review__allText}>
                 {
@@ -54,7 +58,7 @@ const FilmReview:FC<FilmReviewProps> = ({ review: {  negativeRating,
             <div className={styles.review__info}>
                 <div className={styles.review__date}>{dateForShow}</div>
                 <div className={styles.review__buttons}>
-                    { buttonsData.map(buttonData => <FilmReviewButton {...buttonData} />) }
+                    {buttonsData.map(buttonData => <FilmReviewButton {...buttonData} />)}
                 </div>
             </div>
         </div>

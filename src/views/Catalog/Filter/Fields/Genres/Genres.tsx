@@ -10,7 +10,7 @@ interface GenresProps {
     changeValue: (name: string) => (value: string | number) => void;
 }
 
-const Genres:FC<GenresProps> = React.memo(({ genresNames,  genres, changeValue}) => {
+const Genres: FC<GenresProps> = React.memo(({genresNames, genres, changeValue}) => {
     return (
         <Accordion title="Жанры">
             <SelectComponent id="genres" title="Жанры"

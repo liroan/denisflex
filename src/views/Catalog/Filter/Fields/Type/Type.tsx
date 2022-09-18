@@ -12,7 +12,7 @@ interface TypeProps {
     changeValue: (name: string) => (value: string | number) => void;
 }
 
-const Type:FC<TypeProps> = React.memo(({ type,  types, changeValue}) => {
+const Type: FC<TypeProps> = React.memo(({type, types, changeValue}) => {
     return (
         <Accordion title="Тип произведения">
             <SelectComponent id="type" title="Тип произведения"

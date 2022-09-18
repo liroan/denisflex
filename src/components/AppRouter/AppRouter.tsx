@@ -7,18 +7,18 @@ interface AppRouterProps {
     isAuth: boolean;
 }
 
-const AppRouter:FC<AppRouterProps> = ({ isAuth }) => {
+const AppRouter: FC<AppRouterProps> = ({isAuth}) => {
     return (
         <Routes>
             {
                 isAuth ? (
-                    <Route path="/" element={<Dashboard />}>
+                    <Route path="/" element={<Dashboard/>}>
                         {
-                            privateRoutes.map(({ Component, path, index }) => (
-                                <Route path={path} index={index} element={<Component />} />
+                            privateRoutes.map(({Component, path, index}) => (
+                                <Route path={path} index={index} element={<Component/>}/>
                             ))
                         }
-                        <Route path="*" element={<Navigate replace to="/" />} />
+                        <Route path="*" element={<Navigate replace to="/"/>}/>
                     </Route>
                 ) : (
                     <>
@@ -27,7 +27,7 @@ const AppRouter:FC<AppRouterProps> = ({ isAuth }) => {
                                 <Route path={path} index={index} element={<Component/>}/>
                             ))
                         }
-                        <Route path="*" element={<Navigate replace to={RouteNames.LOGIN} />} />
+                        <Route path="*" element={<Navigate replace to={RouteNames.LOGIN}/>}/>
                     </>
                 )
             }

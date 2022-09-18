@@ -25,11 +25,11 @@ export const MovieTypeFilter: MovieType[] = ["ALL", "FILM", "TV_SHOW", "TV_SERIE
 
 const types = ["все", "фильмы", "тв-шоу", "сериалы"];
 
-const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, filters, genres }) => {
+const Filter: FC<FilterProps> = React.memo(({isShowFilters, setIsShowFilters, filters, genres}) => {
 
 
     const [formData, setFormData] = useState(filters);
-    const { width } = useSizeWindow();
+    const {width} = useSizeWindow();
 
     useEffect(() => {
         setFormData(filters)
@@ -64,18 +64,18 @@ const Filter:FC<FilterProps> = React.memo(({ isShowFilters, setIsShowFilters, fi
 
 
     return (
-        <form onSubmit={handleSubmit} className={classNames(styles.filter, { [styles.filterTransform]: isShowFilters })}>
+        <form onSubmit={handleSubmit} className={classNames(styles.filter, {[styles.filterTransform]: isShowFilters})}>
 
             <FilterHeader setIsShowFilters={setIsShowFilters}/>
 
             <div className={styles.filter__wrapper}>
 
-                <Marks filters={filters} genresNames={genresNames} />
+                <Marks filters={filters} genresNames={genresNames}/>
 
-                <Rating changeValue={changeValue} ratingFrom={formData.ratingFrom} ratingTo={formData.ratingTo} />
-                <Years changeValue={changeValue} yearFrom={formData.yearFrom} yearTo={formData.yearTo} />
+                <Rating changeValue={changeValue} ratingFrom={formData.ratingFrom} ratingTo={formData.ratingTo}/>
+                <Years changeValue={changeValue} yearFrom={formData.yearFrom} yearTo={formData.yearTo}/>
                 <Genres changeValue={changeValue} genres={formData.genres} genresNames={genresNames}/>
-                <Type changeValue={changeValue} type={formData.type} types={types} />
+                <Type changeValue={changeValue} type={formData.type} types={types}/>
                 <CheckboxAccordion order={formData.order} changeValue={changeValue}/>
 
                 <div className={classNames(styles.filter__buttons)}>

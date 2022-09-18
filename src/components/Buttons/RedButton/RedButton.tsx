@@ -9,11 +9,11 @@ interface RedButtonProps {
     type?: "button" | "submit" | "reset" | undefined;
 }
 
-const RedButton:FC<RedButtonProps> = React.memo(({ onClick, startIcon, type, children }) => {
+const RedButton: FC<RedButtonProps> = React.memo(({onClick, startIcon, type, children}) => {
     return (
         <div className={styles.redButton}>
             <Button variant="contained" startIcon={startIcon} onClick={onClick} type={type}>
-                { children }
+                {children}
             </Button>
         </div>
     )

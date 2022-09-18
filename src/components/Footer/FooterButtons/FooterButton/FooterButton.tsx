@@ -7,14 +7,14 @@ interface FooterButtonProps {
     titleUpload: string;
 }
 
-const FooterButton:FC<FooterButtonProps> = ({ icon, titleApp, titleUpload }) => {
+const FooterButton: FC<FooterButtonProps> = ({icon, titleApp, titleUpload}) => {
     return (
         <div className={styles.footer__uploadButton}>
             <button>
-                { icon }
+                {icon}
                 <span className={styles.footer__uploadButtonText}>
-                    <span>{ titleUpload }</span>
-                    <span>{ titleApp }</span>
+                    <span>{titleUpload}</span>
+                    <span>{titleApp}</span>
                 </span>
             </button>
         </div>

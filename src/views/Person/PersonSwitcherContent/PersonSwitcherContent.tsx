@@ -9,11 +9,11 @@ interface PersonSwitcherContentProps {
     factsAndErrors: string[];
 }
 
-const PersonSwitcherContent:FC<PersonSwitcherContentProps> = React.memo(({ activeCategory, factsAndErrors }) => {
+const PersonSwitcherContent: FC<PersonSwitcherContentProps> = React.memo(({activeCategory, factsAndErrors}) => {
     return (
         <div className={styles.person__switchContent}>
             {
-                activeCategory === PersonCategory.FACTS && <Facts facts={factsAndErrors} isLoading={false} />
+                activeCategory === PersonCategory.FACTS && <Facts facts={factsAndErrors} isLoading={false}/>
             }
         </div>
     )

@@ -8,9 +8,9 @@ interface PaginatorButtonProps {
     onClick: () => void;
 }
 
-const PaginatorButton:FC<PaginatorButtonProps> = ({ number, isActive, onClick }) => {
+const PaginatorButton: FC<PaginatorButtonProps> = ({number, isActive, onClick}) => {
     return (
-        <div className={classNames(styles.paginator__button, { [styles.paginator__button_active]: isActive })}>
+        <div className={classNames(styles.paginator__button, {[styles.paginator__button_active]: isActive})}>
             <button onClick={onClick}>{number}</button>
         </div>
     )

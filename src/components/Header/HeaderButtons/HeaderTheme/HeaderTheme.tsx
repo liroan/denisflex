@@ -9,7 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../../../hooks";
 
 const HeaderTheme = React.memo(() => {
 
-    const { theme } = useAppSelector(state => state);
+    const {theme} = useAppSelector(state => state);
 
     const dispatch = useAppDispatch();
 
@@ -21,7 +21,7 @@ const HeaderTheme = React.memo(() => {
         <div className={styles.header__theme}>
             {
                 theme === Theme.DARK ? <LightModeIcon onClick={() => toggleTheme(Theme.LIGHT)}/>
-                    :  <Brightness3Icon onClick={() => toggleTheme(Theme.DARK)} />
+                    : <Brightness3Icon onClick={() => toggleTheme(Theme.DARK)}/>
             }
         </div>
     )

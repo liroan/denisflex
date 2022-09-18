@@ -4,7 +4,7 @@ import classNames from "classnames";
 import styles from "./Select.module.scss";
 
 interface SelectComponentProps {
-    id:string;
+    id: string;
     title: string;
     options: string[];
     value: number | string;
@@ -12,7 +12,7 @@ interface SelectComponentProps {
     mutator: (value: string) => number | string;
 }
 
-const SelectComponent:FC<SelectComponentProps> = React.memo(({ id, title, options, value, changeValue, mutator }) => {
+const SelectComponent: FC<SelectComponentProps> = React.memo(({id, title, options, value, changeValue, mutator}) => {
 
     const setValue = changeValue(id);
 
@@ -30,7 +30,7 @@ const SelectComponent:FC<SelectComponentProps> = React.memo(({ id, title, option
                     label={title}
                     onChange={handleChange}
                 >
-                    { options.map((option, index) => <MenuItem value={index} key={index}>{option}</MenuItem>) }
+                    {options.map((option, index) => <MenuItem value={index} key={index}>{option}</MenuItem>)}
                 </Select>
             </FormControl>
         </div>

@@ -13,26 +13,31 @@ interface FilmSwitcherContentProps {
     filmId: number;
 }
 
-const FilmSwitcherContent:FC<FilmSwitcherContentProps> = React.memo(({ activeCategory, description, filmId }) => {
+const FilmSwitcherContent: FC<FilmSwitcherContentProps> = React.memo(({activeCategory, description, filmId}) => {
 
-    const { data: factsAndErrors, isFetching: factsLoading, error: factsError } = useGetFactsAndErrorsMovieByIdQuery(filmId);
-    const { data: staff, isFetching: staffLoading, error: staffError } = useGetStaffMovieByIdQuery(filmId);
+    const {
+        data: factsAndErrors,
+        isFetching: factsLoading,
+        error: factsError
+    } = useGetFactsAndErrorsMovieByIdQuery(filmId);
+    const {data: staff, isFetching: staffLoading, error: staffError} = useGetStaffMovieByIdQuery(filmId);
 
     return (
         <div className={styles.film__switchContent}>
             {
                 activeCategory === FilmCategory.DESCRIPTION && (
-                    !description ? <EmptyContent /> :
-                    <p className={styles.film__description}>
-                        {description}
-                    </p>)
+                    !description ? <EmptyContent/> :
+                        <p className={styles.film__description}>
+                            {description}
+                        </p>)
             }
             {
                 activeCategory === FilmCategory.ACTORS && (
                     <SliderContainer items={staff}
-                                     getSliderCard={(item: IPersonStaff) => <SliderItemStaff staff={item} key={item.staffId} />}
+                                     getSliderCard={(item: IPersonStaff) => <SliderItemStaff staff={item}
+                                                                                             key={item.staffId}/>}
                                      isLoading={staffLoading}
-                                     error={staffError} title={getTitleWithCount("Состав", staff?.length) }
+                                     error={staffError} title={getTitleWithCount("Состав", staff?.length)}
                     />
                 )
             }

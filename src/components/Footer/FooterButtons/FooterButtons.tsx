@@ -5,8 +5,8 @@ import FooterButton from "./FooterButton/FooterButton";
 
 
 const buttons = [
-    { icon: <AppleIcon />, titleUpload: "Загрузите в", titleApp: "App store" },
-    { icon: <ShopIcon />, titleUpload: "Доступно в", titleApp: "Google Play" },
+    {icon: <AppleIcon/>, titleUpload: "Загрузите в", titleApp: "App store"},
+    {icon: <ShopIcon/>, titleUpload: "Доступно в", titleApp: "Google Play"},
 ]
 
 const FooterButtons = () => {
@@ -14,7 +14,7 @@ const FooterButtons = () => {
         <div className={styles.footer__uploadButtons}>
             {
                 buttons.map((button, index) => (
-                    <FooterButton {...button} key={index} />
+                    <FooterButton {...button} key={index}/>
                 ))
             }
         </div>

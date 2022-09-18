@@ -8,10 +8,10 @@ interface CheckboxAccordionProps {
     changeValue: (name: string) => (value: string | number) => void;
 }
 
-const CheckboxAccordion:FC<CheckboxAccordionProps> = React.memo(({ order, changeValue  }) => {
+const CheckboxAccordion: FC<CheckboxAccordionProps> = React.memo(({order, changeValue}) => {
     return (
         <Accordion title="Сортировка">
-            <Checkboxes value={order} name="order"  changeValue={changeValue} />
+            <Checkboxes value={order} name="order" changeValue={changeValue}/>
         </Accordion>
     )
 })
