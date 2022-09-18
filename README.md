@@ -4,11 +4,8 @@ Front-end приложение для поиска и просмотра фил�
 
 # Стэк технологий
 
-* ul React + React Hooks
-+ul TypeScript
-+ulRedux Toolkit, RTK Query
-+ulSass, CSS modules
-+ulJest
-+ulNextJS
-+ulPWA
-+ulReact-hook-form, Yup
+* React + React Hooks
+* TypeScript
+* Redux Toolkit, RTK Query
+* Sass, CSS modules
+* React-hook-form
